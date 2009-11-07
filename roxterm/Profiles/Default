@@ -1,0 +1,18 @@
+
+[roxterm profile]
+height=40
+hide_menubar=1
+visible_bell=0
+audible_bell=0
+cursor_blink_mode=2
+browser=firefox
+scrollbar_pos=0
+scrollback_lines=8000
+scroll_on_keystroke=1
+disable_menu_access=1
+disable_menu_shortcuts=1
+disable_tab_menu_shortcuts=1
+font=Monospace 9
+background_type=0
+saturation=0.000000
+true_translucence=1
