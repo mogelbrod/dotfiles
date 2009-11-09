@@ -25,11 +25,11 @@ $include /etc/inputrc
 "\e[5~": "/"
 "\e[6~": "~"
 
+# Shift+Tab cycles between completions if multiple
+"[Z": menu-complete
+
 # Ctrl+p loads previous command, positions cursor for typing an option
 #"\C-p": "\C-p\C-a\M-f "
-
-# Ctrl+Q cycles between completions if multiple
-"\C-q": menu-complete
 
 # Ctrl+D deletes the whole line
 "\C-d": kill-whole-line

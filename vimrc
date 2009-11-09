@@ -120,6 +120,9 @@ set display=lastline
 let g:loaded_matchparen=1 " disable
 set matchpairs=(:),{:},[:]
 
+" Fold
+set foldmethod=marker
+
 " Show search results while being typed
 set incsearch
 
@@ -180,6 +183,6 @@ endif
 "============================
 
 " Ruby
-autocmd FileType ruby setlocal formatoptions=ql ts=2 shiftwidth=2
-autocmd FileType ruby setlocal smarttab expandtab
+autocmd FileType ruby setlocal formatoptions=ql tabstop=2 shiftwidth=2 smarttab expandtab
+autocmd FileType lua setlocal tabstop=2 shiftwidth=2 
 
