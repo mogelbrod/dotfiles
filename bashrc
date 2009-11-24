@@ -3,12 +3,12 @@
 ############################################################
 
 # Add user bin to path
-if [ -d ~/bin ] ; then
-    if [[ ! "$PATH" =~ `cd ~/bin; pwd` ]] ; then
-		PATH=~/bin:$PATH
-    	export PATH
-	fi
-fi
+#if [ -d ~/bin ] ; then
+#    if [[ ! "$PATH" =~ `cd ~/bin; pwd` ]] ; then
+#		PATH=~/bin:$PATH
+#    	export PATH
+#	fi
+#fi
 
 # Change promt
 #PS1="\e[0;34m\u\$ \e[m"

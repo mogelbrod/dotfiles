@@ -15,14 +15,14 @@
   theme.fg_focus  = "#ffddbb"
   theme.fg_urgent = "#ffffff"
   theme.bg_normal = "#333333"
-  theme.bg_focus  = "#444444"
+  theme.bg_focus  = "#665544"
   theme.bg_urgent = "#aa3333"
 -- }}}
 
 -- {{{ Borders
   theme.border_width  = "2"
   theme.border_normal = "#333333"
-  theme.border_focus  = "#444444"
+  theme.border_focus  = "#665544"
   theme.border_marked = "#666666"
 -- }}}
 

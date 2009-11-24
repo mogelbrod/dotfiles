@@ -1,11 +1,11 @@
 
 [roxterm shortcuts scheme]
-File/New Window=<Shift><Control>n
+File/New Window=<Control>n
 File/New Tab=<Shift><Control>t
 File/Close Window=<Control>q
 File/Close Tab=<Shift><Control>w
-Tabs/Previous Tab=<Shift>Left
-Tabs/Next Tab=<Shift>Right
+Tabs/Previous Tab=<Control>Page_Up
+Tabs/Next Tab=<Control>Page_Down
 Edit/Copy=<Shift><Control>c
 Edit/Paste=<Shift><Control>v
 View/Zoom In=<Control>question

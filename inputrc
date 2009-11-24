@@ -3,6 +3,8 @@ $include /etc/inputrc
 # Laptop rebinds
 # Ctrl+Delete
 "\e[3;3~": kill-word
+"\e[3;5~": kill-word
+
 # Shift-Tab
 "\e[Z": menu-complete
 
@@ -12,11 +14,11 @@ $include /etc/inputrc
 
 # Word moving
 # Ctrl+left/right
-"[1;5C": forward-word
-"[1;5D": backward-word
+"\e[1;5C": forward-word
+"\e[1;5D": backward-word
 # Alt+left/right
-"[1;3C": forward-word
-"[1;3D": backward-word
+"\e[1;3C": forward-word
+"\e[1;3D": backward-word
 
 "\C-\b": backward-kill-word
 "\C-\d": kill-word
@@ -26,7 +28,7 @@ $include /etc/inputrc
 "\e[6~": "~"
 
 # Shift+Tab cycles between completions if multiple
-"[Z": menu-complete
+"\e[Z": menu-complete
 
 # Ctrl+p loads previous command, positions cursor for typing an option
 #"\C-p": "\C-p\C-a\M-f "

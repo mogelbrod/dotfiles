@@ -14,16 +14,18 @@
 	editor = "vim"
 	editor_cmd = terminal .. " -e " .. editor
 	browser = "firefox"
+	explorer = "nautilus"
+	printscreen = "/home/mogel/bin/screenshot"
 	modkey = "Mod4"
 	theme_path = "/home/mogel/.config/awesome/mogelbrod/theme.lua"
 
 	layouts = {
-		awful.layout.suit.tile,
-		--awful.layout.suit.tile.left,
-		awful.layout.suit.tile.bottom,
-		--awful.layout.suit.tile.top,
 		awful.layout.suit.fair,
 		awful.layout.suit.fair.horizontal,
+		--awful.layout.suit.tile,
+		awful.layout.suit.tile.left,
+		awful.layout.suit.tile.bottom,
+		--awful.layout.suit.tile.top,
 		awful.layout.suit.max,
 		--awful.layout.suit.max.fullscreen,
 		--awful.layout.suit.magnifier,
@@ -37,8 +39,9 @@
 	globalkeys = awful.util.table.join(
 		awful.key({ modkey, "Control" }, "r", awesome.restart),
 		awful.key({ modkey, "Control" }, "q", awesome.quit),
-		awful.key({ modkey, }, "Return", function () awful.util.spawn(terminal) end),
-		awful.key({ modkey, }, "b", function () awful.util.spawn(browser) end),
+		awful.key({ modkey }, "Return", function () awful.util.spawn(terminal) end),
+		awful.key({ modkey }, "b", function () awful.util.spawn(browser) end),
+		awful.key({ modkey }, "p", function () awful.util.spawn(explorer) end),
 		awful.key({ modkey }, "c", function () teardrop(terminal, "top") end)
 	)
 	root.keys(globalkeys)
@@ -57,11 +60,15 @@
 
 	shifty.config.apps = {
 
-		{ match = { "^Mirage" }, tag = "4:full" },
+		{ match = { "^Mirage", "Mozilla Firefox$" }, tag = "4:full" },
+		{ match = { "^Mirage" }, nopopup = false },
 
-		{ match = { "^Buddy List$", "^irssi$", "^conversation$" }, tag = "5:chat", float = true },
-		{ match = { "^Buddy List$" }, geometry = {1818,19,260,778} },
-		{ match = { "^irssi$" }, geometry = {2,19,600,778} },
+		{ match = { "^Buddy List$", "^irssi$", "^conversation$" },
+			tag = "5:chat", float = true },
+		{ match = { "^Buddy List$" }, geometry = {1818,18,260,780} },
+		{ match = { "^irssi$" }, geometry = {0,18,600,780} },
+
+		{ match = { "gimp%-image%-window" }, float = true, slave = true },
 
 		-- Button bindings
 		{ match = { "" }, buttons = awful.util.table.join(
@@ -72,9 +79,10 @@
 	}
 
 	shifty.config.defaults = {
-		layout = awful.layout.suit.tile,
+		layout = layouts[1],
 		ncol = 2,
-		mwfact = 0.60,
+		mwfact = 0.50,
+		nopopup = true
 		--floatBars = true,
 	}
 -- }}}
@@ -86,15 +94,15 @@
 
 -- {{{ Menus
 	awesomemenu = {
-		{ "manual", terminal .. " -e man awesome" },
 		{ "edit config", editor_cmd .. " " .. awful.util.getdir("config") .. "/rc.lua" },
 		{ "restart", awesome.restart },
-		{ "quit", awesome.quit }
+		{ "quit", awesome.quit },
+		{ "manual", terminal .. " -e man awesome" },
 	}
 
 	mainmenu = awful.menu.new({ items = {
 		{ "awesome", awesomemenu },
-		{ "open terminal", terminal },
+		{ "terminal", terminal },
 		{ "debian", debian.menu.Debian_menu.Debian }
 	}})
 -- }}}
@@ -119,9 +127,9 @@
 		awful.button({ }, 1, awful.tag.viewonly),
 		awful.button({ modkey }, 1, awful.client.movetotag),
 		awful.button({ }, 3, awful.tag.viewtoggle),
-		awful.button({ modkey }, 3, awful.client.toggletag),
-		awful.button({ }, 4, awful.tag.viewnext),
-		awful.button({ }, 5, awful.tag.viewprev)
+		awful.button({ modkey }, 3, awful.client.toggletag)
+		--awful.button({ }, 4, awful.tag.viewnext),
+		--awful.button({ }, 5, awful.tag.viewprev)
 	)
 
 	mytasklist = {}
@@ -211,6 +219,10 @@
 			awful.key({ modkey, "Control" }, "Right", shifty.send_next ),
 
 			-- Client navigation
+			awful.key({ "Mod1", }, "Tab", function ()
+				awful.client.focus.byidx( 1)
+				if client.focus then client.focus:raise() end
+			end),
 			awful.key({ modkey, }, "a", function ()
 				awful.client.focus.byidx( 1)
 				if client.focus then client.focus:raise() end
@@ -245,7 +257,7 @@
 
 			-- Prompt
 			awful.key({ modkey }, "r", function () mypromptbox[mouse.screen]:run({ prompt = " Run: "}) end),
-			awful.key({ modkey }, "x", function ()
+			awful.key({ modkey, "Shift" }, "x", function ()
 				awful.prompt.run({ prompt = " Run Lua: " },
 				mypromptbox[mouse.screen].widget,
 				awful.util.eval, nil,
@@ -271,6 +283,7 @@
 			awful.key({ modkey, "Control" }, "Return", function (c) c:swap(awful.client.getmaster()) end),
 			awful.key({ modkey, "Control" }, "f", function (c) c:redraw() end),
 			awful.key({ modkey, "Shift" }, "c", function (c) c:kill() end),
+			awful.key({ modkey }, "k", function (c) c:kill() end),
 			awful.key({ modkey, }, "o", awful.client.movetoscreen)
 	)
 -- }}}
@@ -283,7 +296,7 @@
 				local t = awful.tag.viewonly(shifty.getpos(i))
 			end),
 			-- Toggle tag
-			awful.key({ modkey, "Control" }, i, function ()
+			awful.key({ modkey, "Shift" }, i, function ()
 				local t = shifty.getpos(i)
 				t.selected = not t.selected
 			end),
@@ -294,7 +307,7 @@
 				end
 			end),
 			-- Move client to tag
-			awful.key({ modkey, "Shift" }, i, function ()
+			awful.key({ modkey, "Control" }, i, function ()
 				if client.focus then
 					local t = shifty.getpos(i)
 					awful.client.movetotag(t)

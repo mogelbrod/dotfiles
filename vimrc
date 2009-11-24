@@ -52,6 +52,7 @@ set pastetoggle=<F4>
 
 " F7 copies selected text to system clipboard
 vmap <F7> "+ygv"zy`>
+vmap <C-y> "+ygv"zy`>
 
 " Using Tab and Shift-Tab to (un)indent
 map <Tab> >gv
@@ -76,12 +77,10 @@ vnoremap <C-h> "hy:%s/<C-r>h//gc<left><left><left>
 " Text display & guides
 "============================
 
-" Editor font
-if !has("unix")
-	set guifont=ProFontWindows:h9
-endif
-
 if has("gui_running")
+
+	" Editor font
+	set guifont=ProFontWindows:h9
 
 	" Toolbar
 	set guioptions-=T
@@ -89,6 +88,9 @@ if has("gui_running")
 	" Window size
 	set columns=80
 	set lines=40
+
+	" Highlight current line
+	set cursorline
 
 endif
 
@@ -104,11 +106,6 @@ set numberwidth=4
 " Tabs
 set tabstop=2 
 set shiftwidth=2
-
-" Highlight current line
-if has("gui_running")
-	set cursorline
-endif
 
 " Minimum number of lines surrounding cursor
 set scrolloff=3
@@ -160,7 +157,7 @@ inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 inoremap <expr> <Down> pumvisible() ? "\<C-n>" : "\<Down>"
 inoremap <expr> <Up> pumvisible() ? "\<C-p>" : "\<Up>"
 
-" Leader-W: Wrap selection with tag
+" Control-W: Wrap selection with tag
 source ~/.vim/scripts/wrapwithtag.vim
 
 "============================
@@ -174,9 +171,7 @@ if &t_Co > 2 || has("gui_running")
 endif
 
 " Select colorscheme
-"if has("gui_running")
-	colorscheme mogelbrod
-"endif
+colorscheme mogelbrod
 
 "============================
 " File type specific
@@ -184,5 +179,11 @@ endif
 
 " Ruby
 autocmd FileType ruby setlocal formatoptions=ql tabstop=2 shiftwidth=2 smarttab expandtab
+
+" Lua
 autocmd FileType lua setlocal tabstop=2 shiftwidth=2 
+
+" Java
+noremap <Leader>jc :set makeprg=javac\ %<CR>:make<CR>
+noremap <Leader>jr :!echo %\|awk -F. '{print $1}'\|xargs java<CR>
 
