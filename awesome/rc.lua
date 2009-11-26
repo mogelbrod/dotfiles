@@ -15,7 +15,7 @@
 	editor_cmd = terminal .. " -e " .. editor
 	browser = "firefox"
 	explorer = "nautilus"
-	printscreen = "/home/mogel/bin/screenshot"
+	screenshot = "/home/mogel/bin/screenshot"
 	modkey = "Mod4"
 	theme_path = "/home/mogel/.config/awesome/mogelbrod/theme.lua"
 
@@ -42,6 +42,7 @@
 		awful.key({ modkey }, "Return", function () awful.util.spawn(terminal) end),
 		awful.key({ modkey }, "b", function () awful.util.spawn(browser) end),
 		awful.key({ modkey }, "p", function () awful.util.spawn(explorer) end),
+		awful.key({ modkey }, "F12", function () awful.util.spawn(screenshot) end),
 		awful.key({ modkey }, "c", function () teardrop(terminal, "top") end)
 	)
 	root.keys(globalkeys)
@@ -66,7 +67,7 @@
 		{ match = { "^Buddy List$", "^irssi$", "^conversation$" },
 			tag = "5:chat", float = true },
 		{ match = { "^Buddy List$" }, geometry = {1818,18,260,780} },
-		{ match = { "^irssi$" }, geometry = {0,18,600,780} },
+		--{ match = { "^irssi$" }, geometry = {0,18,600,780} },
 
 		{ match = { "gimp%-image%-window" }, float = true, slave = true },
 
@@ -100,9 +101,31 @@
 		{ "manual", terminal .. " -e man awesome" },
 	}
 
+	appmenu = {
+		{ "firefox", "firefox" },
+		{ "nautilus", "nautilus" },
+		{ "vlc", "vlc" },
+		{ "spotify", "spotify" },
+		{ "gimp", "gimp" },
+		{ "transmission", "transmission" },
+		{ "speedcrunch", "speedcrunch" },
+		{ "inkscape", "inkscape" },
+		{ "openoffice", "ooffice" },
+	}
+
+	systemmenu = {
+		{ "synaptic", "gksudo synaptic" },
+		{ "software-center", "gksudo software-center" },
+		{ "control-center", "gnome-control-center" },
+		{ "sysmonitor", "gnome-system-monitor" },
+		{ "nettool", "gnome-nettool" },
+	}
+
 	mainmenu = awful.menu.new({ items = {
 		{ "awesome", awesomemenu },
 		{ "terminal", terminal },
+		{ "applications", appmenu },
+		{ "system", systemmenu },
 		{ "debian", debian.menu.Debian_menu.Debian }
 	}})
 -- }}}

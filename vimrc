@@ -12,8 +12,26 @@ set termencoding=utf-8
 set encoding=utf-8
 set fileformat=unix
 
+set ignorecase smartcase
+
 "============================
-" Command input
+" Buffers 
+"============================
+
+" Allow switching of buffers without saving them first
+set hidden
+
+" Ctrl+Left/right switches between buffers
+map [D :bprevious<CR>
+map [C :bnext<CR>
+map [1;5D :bprevious<CR>
+map [1;5C :bnext<CR>
+
+" List buffers with <F5>, and allow switching by using the corresponding number
+noremap <F5> :buffers<CR>:buffer<Space>
+
+"============================
+" Command input and display
 "============================
 
 set history=50 " command line history length
@@ -57,15 +75,6 @@ vmap <C-y> "+ygv"zy`>
 " Using Tab and Shift-Tab to (un)indent
 map <Tab> >gv
 map [Z <gv
-
-" Ctrl+Left/right switches between buffers
-map [D :set hidden<CR>:bprevious<CR>
-map [C :set hidden<CR>:bnext<CR>
-map [1;5D :set hidden<CR>:bprevious<CR>
-map [1;5C :set hidden<CR>:bnext<CR>
-
-" List buffers with <F5>, and allow switching by using the corresponding number
-noremap <F5> :buffers<CR>:buffer<Space>
 
 " have the cursor keys wrap between lines (like <Space> and <BkSpc> do)
 set whichwrap=h,l,<,>,[,]
@@ -130,17 +139,21 @@ set incsearch
 " Yank to system clipboard by default
 set clipboard=unnamed 
 
+filetype on
+filetype plugin on
+filetype indent on
+
 " Indentation
 "set autoindent
-set smartindent
-autocmd FileType * setlocal autoindent
+set nosmartindent autoindent
+autocmd FileType * setlocal nosmartindent autoindent
 
 " Formatting options (disable autocommenting)
 set formatoptions-=cro
 autocmd FileType * setlocal formatoptions-=cro
 
 " Do not reindent lines with a comment sign (removed 0#)
-set cinkeys=0{,0},0),:,!^F,o,O,e
+autocmd FileType * setlocal cinkeys=0{,0},0),:,!^F,o,O,e
 
 "============================
 " Completion

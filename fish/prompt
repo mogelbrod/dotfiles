@@ -1,0 +1,27 @@
+function shorten_path --description "Display a shortened version of the path"
+	set -l path $argv[1]
+	if test $path = $HOME
+		echo '~'; return 0
+	end
+  # Source: /usr/share/fish/functions/prompt_pwd
+	echo $path | sed -e "s|^$HOME|~|" -e 's|\(\.\?[^/]\{1,1\}\)\([^/]*\)/|\1/|g'
+end
+
+function fish_prompt --description "Write out the prompt"
+	set -l grey (set_color -o black)
+	set -l reset (set_color normal)
+	set -l host (hostname | cut -d . -f 1)
+	
+	printf '%s[%s%s%s@%s %s%s%s> %s' $grey $reset (set_color green) $USER $host (set_color yellow) (shorten_path $PWD) $grey $reset
+
+end
+
+# Double-line prompt (not supported by fish yet)
+# set -l sign "\$"
+# if test $USER = "mogel"
+# 	set -l sign "#"
+# end
+# set -l tty (tty | cut -d / -f 4)
+#printf '%s[%s%s%s@%s%s:%s] %s%s%s ' $grey $reset (set_color green) $USER $host $grey $tty $reset (set_color yellow) (shorten_path $PWD) 
+#echo
+#printf '%s%s %s' (set_color blue) $sign (set_color normal)

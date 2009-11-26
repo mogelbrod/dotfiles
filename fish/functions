@@ -1,0 +1,70 @@
+# Basic aliases
+alias cls clear
+alias quit exit
+
+# Directory listings
+alias l "ls -lh"
+alias ll "ls -lha" 
+alias la "ls -a" 
+
+# Applications
+alias un "tar -xf"
+alias vi vim
+
+# Screen
+alias scr "screen -RdU"
+alias sc screen
+
+# Useful stuff
+function datex
+	date +"%Y-%m-%d (%A) @ %H:%M:%S" 
+end
+
+# Subversion
+function svnci
+	set -l mfile "svn-commit.tmp"
+	svn commit -F $mfile
+	if test "$status" = 0
+		echo "##################################################"
+		echo "Commit successful, message provided:"
+		echo "##################################################"
+		cat $SVN_MFILE
+		echo "##################################################"
+		rm $SVN_MFILE
+	end
+end
+
+function svnm
+	set -l mfile "svn-commit.tmp"
+	if test "$argv[1]" = ""
+		cat $mfile
+	else
+		echo "$argv" >> $mfile
+	end
+end
+
+function svndiff
+	svn diff $argv | vim -R -
+end
+
+function svncheck
+	svnadd; svndel
+	echo "## Done ##########################################"
+end
+
+function svnadd
+	echo "## Add: ##########################################"
+	svn add . --force
+end
+
+function svndel
+	echo "## Remove: #######################################"
+	svn status | sed -e '/^!/!d' -e 's/^! *//' | tr '\n' '\0' | xargs --null -i -t svn rm {}
+end
+
+# Ruby on rails shortcuts
+alias rgen "script/generate"
+alias rdes "script/destroy"
+alias rcon "script/console"
+alias rplug "script/plugin"
+alias rdbmig "rake db:migrate"
