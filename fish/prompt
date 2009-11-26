@@ -1,10 +1,11 @@
 function shorten_path --description "Display a shortened version of the path"
 	set -l path $argv[1]
-	if test $path = $HOME
-		echo '~'; return 0
+	switch $path
+		case $HOME; echo '~'; return 0
+		case ''; echo '/'; return 0
 	end
   # Source: /usr/share/fish/functions/prompt_pwd
-	echo $path | sed -e "s|^$HOME|~|" -e 's|\(\.\?[^/]\{1,1\}\)\([^/]*\)/|\1/|g'
+	echo $path | sed -e "s|^$HOME|~|" -e 's|\(\.\?[^/]\{1,3\}\)\([^/]*\)/|\1/|g'
 end
 
 function fish_prompt --description "Write out the prompt"

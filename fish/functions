@@ -28,15 +28,15 @@ function svnci
 		echo "##################################################"
 		echo "Commit successful, message provided:"
 		echo "##################################################"
-		cat $SVN_MFILE
+		cat $mfile
 		echo "##################################################"
-		rm $SVN_MFILE
+		rm $mfile
 	end
 end
 
 function svnm
 	set -l mfile "svn-commit.tmp"
-	if test "$argv[1]" = ""
+	if test "$argv" = ""
 		cat $mfile
 	else
 		echo "$argv" >> $mfile

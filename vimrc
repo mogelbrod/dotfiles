@@ -159,16 +159,20 @@ autocmd FileType * setlocal cinkeys=0{,0},0),:,!^F,o,O,e
 " Completion
 "============================
 
-" Inser the longest common text, show menu for one result too
+" Insert the longest common text, show menu for one result too
 set completeopt=longest,menuone
 
-" Map Ctrl+Space to word completion 
-inoremap <C-@> <C-x><C-u>
-
-" Use the enter key to select an option when the menu is visible
+" Add some expected functionality to some keys when the completion menu is visible
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 inoremap <expr> <Down> pumvisible() ? "\<C-n>" : "\<Down>"
 inoremap <expr> <Up> pumvisible() ? "\<C-p>" : "\<Up>"
+
+" SuperTab settings
+let g:SuperTabMappingForward = '<nul>'
+let g:SuperTabMappingBackward = '<s-nul>'
+
+" Map Ctrl+Space to word completion 
+"inoremap <C-@> <C-x><C-u>
 
 " Control-W: Wrap selection with tag
 source ~/.vim/scripts/wrapwithtag.vim
@@ -190,6 +194,11 @@ colorscheme mogelbrod
 " File type specific
 "============================
 
+" Compiling
+command -nargs=* Make make <args> | cwindow 5
+noremap <Leader>c :Make<CR>
+noremap <Leader>r :Make run<CR>
+
 " Ruby
 autocmd FileType ruby setlocal formatoptions=ql tabstop=2 shiftwidth=2 smarttab expandtab
 
@@ -197,6 +206,5 @@ autocmd FileType ruby setlocal formatoptions=ql tabstop=2 shiftwidth=2 smarttab 
 autocmd FileType lua setlocal tabstop=2 shiftwidth=2 
 
 " Java
-noremap <Leader>jc :set makeprg=javac\ %<CR>:make<CR>
-noremap <Leader>jr :!echo %\|awk -F. '{print $1}'\|xargs java<CR>
+autocmd FileType java setlocal makeprg=ant\ -e
 
