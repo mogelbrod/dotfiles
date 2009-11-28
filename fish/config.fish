@@ -1,36 +1,24 @@
-# Function to reload configuration files
-function reload
-	echo "Reloading FISH configuration."
-	. $HOME/.config/fish/config.fish
+set fish_config_path $HOME/.config/fish
+
+# {{{ Function to reload configuration files
+function rc
+	echo "Reloading FISH configuration"
+	. $fish_config_path/config.fish
 end
+# }}}
 
 # Initialize prompt
-. $HOME/.config/fish/prompt
+. $fish_config_path/prompt
 
 # Define functions
-. $HOME/.config/fish/functions
+. $fish_config_path/functions
+
+# Do not include home directory in cd alternatives
+set -x CDPATH "."
 
 # Disable the greeting and exit messages
 set fish_greeting ""
-# function fish_on_exit --on-process %self; exit; end
-
-set -x CDPATH "."
-
-# {{{ Key bindings
-function custom_key_bindings
-	fish_default_key_bindings
-
-	# Word movement
-	bind "[1;5D" backward-word
-	bind "[1;5C" forward-word
-	bind "[3;3~" kill-word
-
-	# Other bindings
-	bind \cd kill-whole-line
-
-end
-set fish_key_bindings custom_key_bindings
-# }}}
+#function fish_on_exit --on-process %self; exit; end
 
 # {{{ Colors
 # normal, black, white, red, green, blue, cyan, yellow (brown), magenta (purple)

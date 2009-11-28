@@ -62,6 +62,20 @@ function svndel
 	svn status | sed -e '/^!/!d' -e 's/^! *//' | tr '\n' '\0' | xargs --null -i -t svn rm {}
 end
 
+function svnlog
+	set -l limit $argv[1]
+	if test "$limit" = ""; set -l limit 5; end
+	svn log --verbose --limit $limit
+end
+
+function svnrestore
+	set -l dest $argv[3]
+	if test "$dest" = ""; then
+		set -l dest "."
+	end
+	svn copy -r$argv[1] $argv[2]@$argv[1] $dest
+end
+
 # Ruby on rails shortcuts
 alias rgen "script/generate"
 alias rdes "script/destroy"
