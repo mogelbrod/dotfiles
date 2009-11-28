@@ -139,8 +139,24 @@ alias svnco='svn checkout'
 svndiff() {
 	svn diff $* | vim -R -
 }
-alias svnadd="svn add . --force"
-alias svndel="svn status | sed -e '/^!/!d' -e 's/^! *//' | tr '\n' '\0' | xargs --null -i -t svn rm {}"
+svncheck() {
+	svnadd; svndel
+}
+svnadd() {
+	svn add . --force
+}
+svndel() {
+	svn status | sed -e '/^!/!d' -e 's/^! *//' | tr '\n' '\0' | xargs --null -i -t svn rm
+}
+svnlog() {
+	svn log --verbose --limit 5
+}
+svnrestore() {
+	if [[ "$3" == "" ]]; then
+		3="."
+	fi
+	svn copy -r$1 $2@$1 $3
+}
 # }}}
 
 # {{{ Ruby on rails shortcuts

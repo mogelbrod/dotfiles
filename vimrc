@@ -39,6 +39,8 @@ set showcmd " show incomplete commands
 
 set laststatus=2 " always show status line
 
+set shortmess=filnxtToOI
+
 "============================
 " Key behavior
 "============================
@@ -196,6 +198,7 @@ colorscheme mogelbrod
 
 " Compiling
 command -nargs=* Make make <args> | cwindow 5
+noremap <Leader>m :Make 
 noremap <Leader>c :Make<CR>
 noremap <Leader>r :Make run<CR>
 

@@ -1,6 +1,6 @@
 # Basic aliases
 alias cls clear
-alias quit exit
+#alias quit exit
 
 # Directory listings
 alias l "ls -lh"

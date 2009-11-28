@@ -11,13 +11,13 @@ end
 . $HOME/.config/fish/functions
 
 # Disable the greeting and exit messages
-set fish_greeting
+set fish_greeting ""
 # function fish_on_exit --on-process %self; exit; end
 
 set -x CDPATH "."
 
 # {{{ Key bindings
-function key_bindings
+function custom_key_bindings
 	fish_default_key_bindings
 
 	# Word movement
@@ -29,7 +29,7 @@ function key_bindings
 	bind \cd kill-whole-line
 
 end
-set -U fish_key_bindings key_bindings
+set fish_key_bindings custom_key_bindings
 # }}}
 
 # {{{ Colors
@@ -58,4 +58,14 @@ set -U fish_key_bindings key_bindings
 	set fish_pager_color_description black -o
 	set fish_pager_color_prefix      cyan -o
 	set fish_pager_color_progress    blue
+# }}}
+
+# {{{ Title
+function fish_title
+	if test "$title" = ""
+		echo $_ ' '; pwd
+	else
+		echo $title
+	end
+end
 # }}}
