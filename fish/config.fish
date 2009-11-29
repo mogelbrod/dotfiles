@@ -1,3 +1,4 @@
+cd $HOME
 set fish_config_path $HOME/.config/fish
 
 # {{{ Function to reload configuration files
