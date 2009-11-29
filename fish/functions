@@ -21,7 +21,7 @@ function datex
 end
 
 # Subversion
-function svnci
+function svnci -d "SVN: Commit, optionally using the contents of svn-commit.tmp as the message."
 	set -l mfile "svn-commit.tmp"
 	svn commit -F $mfile
 	if test "$status" = 0
@@ -34,7 +34,7 @@ function svnci
 	end
 end
 
-function svnm
+function svnm -d "SVN: Add a message or list the contents of the svn-commit.tmp file."
 	set -l mfile "svn-commit.tmp"
 	if test "$argv" = ""
 		cat $mfile
@@ -43,32 +43,32 @@ function svnm
 	end
 end
 
-function svndiff
+function svndiff -d "SVN: Show diff in vim."
 	svn diff $argv | vim -R -
 end
 
-function svncheck
+function svncheck -d "SVN: Add and/or remove filesystem changes (svnadd/svndel)."
 	svnadd; svndel
 	echo "## Done ##########################################"
 end
 
-function svnadd
+function svnadd -d "SVN: Add unversioned files."
 	echo "## Add: ##########################################"
 	svn add . --force
 end
 
-function svndel
+function svndel -d "SVN: Remove deleted files."
 	echo "## Remove: #######################################"
 	svn status | sed -e '/^!/!d' -e 's/^! *//' | tr '\n' '\0' | xargs --null -i -t svn rm {}
 end
 
-function svnlog
+function svnlog -d "SVN: Show latest changes."
 	set -l limit $argv[1]
 	if test "$limit" = ""; set -l limit 5; end
 	svn log --verbose --limit $limit
 end
 
-function svnrestore
+function svnrestore -d "SVN: Restore a previous version of the path specified. Args are 1: revision, 2: repository, 3: path."
 	set -l dest $argv[3]
 	if test "$dest" = ""; then
 		set -l dest "."
