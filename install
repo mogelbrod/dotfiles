@@ -10,7 +10,17 @@ Dir['*'].each do |file|
   else
     target = File.join(home, ".#{file}")
   end
-  `ln -s #{File.expand_path file} #{target}`
+  
+  if File.exists?(target)
+    puts " - #{file} (#{target}) already exists, skipping."
+  else
+    res = `ln -s #{File.expand_path file} #{target}`
+    if $?.existatus != 0
+      puts " ! #{target} could not be linked."
+    else
+      puts " + #{target} have been linked to #{file}."
+    end
+  end
 end
 
 # git push on commit
