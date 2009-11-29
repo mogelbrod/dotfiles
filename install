@@ -6,7 +6,7 @@ home = File.expand_path('~')
 Dir['*'].each do |file|
   next if file =~ /install/
   if file =~ /fish|roxterm\.sourceforge\.net|awesome/
-    target = File.join(home, ".config/")
+    target = File.join(home, ".config/#{file}")
   else
     target = File.join(home, ".#{file}")
   end
@@ -15,7 +15,7 @@ Dir['*'].each do |file|
     puts " - #{file} (#{target}) already exists, skipping."
   else
     res = `ln -s #{File.expand_path file} #{target}`
-    if $?.existatus != 0
+    if $?.exitstatus != 0
       puts " ! #{target} could not be linked."
     else
       puts " + #{target} have been linked to #{file}."

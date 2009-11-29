@@ -1,19 +1,19 @@
 # Basic aliases
-alias cls clear
-#alias quit exit
+function cls; clear; end
+#function quit; exit; end
 
 # Directory listings
-alias l "ls -lh"
-alias ll "ls -lha" 
-alias la "ls -a" 
+function l; ls -lh; end
+function ll; ls -lha; end 
+function la; ls -a; end 
 
 # Applications
-alias un "tar -xf"
-alias vi vim
+function un; tar -xf; end
+function vi; vim; end
 
 # Screen
-alias scr "screen -RdU"
-alias sc screen
+function scr; screen -RdU; end
+function sc; screen; end
 
 # Useful stuff
 function datex
@@ -77,8 +77,8 @@ function svnrestore
 end
 
 # Ruby on rails shortcuts
-alias rgen "script/generate"
-alias rdes "script/destroy"
-alias rcon "script/console"
-alias rplug "script/plugin"
-alias rdbmig "rake db:migrate"
+function rgen; script/generate; end
+function rdes; script/destroy; end
+function rcon; script/console; end
+function rplug; script/plugin; end
+function rdbmig; rake db:migrate; end

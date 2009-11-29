@@ -28,7 +28,7 @@ set fish_greeting ""
 	set fish_color_comment         black -o
 
 	set fish_color_cwd             yellow
-	set fish_color_cwd_root        brown
+	set fish_color_cwd_root        yellow
 
 	set fish_color_normal          normal
 	set fish_color_operator        blue -o

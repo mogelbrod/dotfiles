@@ -9,11 +9,21 @@ function shorten_path --description "Display a shortened version of the path"
 end
 
 function fish_prompt --description "Write out the prompt"
+	# Variable definitions
+	set -l last_status $status
 	set -l grey (set_color -o black)
 	set -l reset (set_color normal)
 	set -l host (hostname | cut -d . -f 1)
+	set -l user_color green
+	if test "$USER" = "root"; set user_color cyan; end
+
+	# Print exit status if not 0
+	if test "$last_status" != "0"
+		printf '%s[%s%s%s%s]' $grey $reset (set_color red) $last_status $grey
+	end
 	
-	printf '%s[%s%s%s@%s %s%s%s> %s' $grey $reset (set_color green) $USER $host (set_color yellow) (shorten_path $PWD) $grey $reset
+	# Print prompt
+	printf '%s[%s%s%s@%s %s%s%s> %s' $grey $reset (set_color $user_color) $USER $host (set_color yellow) (shorten_path $PWD) $grey $reset
 
 end
 
