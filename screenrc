@@ -10,8 +10,7 @@ caption always "%{Yk} %?%{Bk}%-w%?%{Yk}%n %t%?(%u)%?%?%{Bk}%+w%?%{Kk} %=%c "
 autodetach on
 
 # Initial screens
-#screen 9 irssi
-screen 0 bash
+screen 0 fish
 
 # Hide start up message
 startup_message off
@@ -38,10 +37,3 @@ defflow off
 bind 'a' title
 bind ' ' windowlist -b
 bind 's' split
-bindkey -k k7 screen
-bindkey -k k8 kill
-bindkey -k k9 windowlist -b
-bindkey -k k; title
-bindkey -k F1 prev
-bindkey -k F2 next
-
