@@ -3,17 +3,17 @@ function cls; clear; end
 #function quit; exit; end
 
 # Directory listings
-function l; ls -lh; end
-function ll; ls -lha; end 
-function la; ls -a; end 
+function l; ls -lh $argv; end
+function ll; ls -lha $argv; end 
+function la; ls -a $argv; end 
 
 # Applications
-function un; tar -xf; end
-function vi; vim; end
+function un; tar -xf $argv; end
+function vi; vim $argv; end
 
 # Screen
-function scr; screen -RdU; end
-function sc; screen; end
+function scr; screen -RdU $argv; end
+function sc; screen $argv; end
 
 # Useful stuff
 function datex
@@ -77,8 +77,8 @@ function svnrestore
 end
 
 # Ruby on rails shortcuts
-function rgen; script/generate; end
-function rdes; script/destroy; end
-function rcon; script/console; end
-function rplug; script/plugin; end
-function rdbmig; rake db:migrate; end
+function rgen; script/generate $argv; end
+function rdes; script/destroy $argv; end
+function rcon; script/console $argv; end
+function rplug; script/plugin $argv; end
+function rdbmig; rake db:migrate $argv; end
