@@ -1,5 +1,5 @@
-cd .
 set fish_config_path $HOME/.config/fish
+cd .
 
 # {{{ Function to reload configuration files
 function rc

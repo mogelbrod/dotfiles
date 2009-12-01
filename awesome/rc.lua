@@ -306,8 +306,7 @@
 			awful.key({ modkey, "Control" }, "Return", function (c) c:swap(awful.client.getmaster()) end),
 			awful.key({ modkey, "Control" }, "f", function (c) c:redraw() end),
 			awful.key({ modkey, "Shift" }, "c", function (c) c:kill() end),
-			awful.key({ modkey }, "k", function (c) c:kill() end),
-			awful.key({ modkey, }, "o", awful.client.movetoscreen)
+			awful.key({ modkey }, "k", function (c) c:kill() end)
 	)
 -- }}}
 
