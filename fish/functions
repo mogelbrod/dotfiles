@@ -1,6 +1,7 @@
 # Basic aliases
 function cls; clear; end
 #function quit; exit; end
+function sp; roxterm; end
 
 # Directory listings
 function l; ls -lh $argv; end
