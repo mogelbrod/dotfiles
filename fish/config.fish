@@ -14,6 +14,10 @@ end
 # Define functions
 . $fish_config_path/functions
 
+# Define key bindings
+# Seems to bug out =(
+#. $fish_config_path/keybindings
+
 # Do not include home directory in cd alternatives
 set -x CDPATH "."
 
