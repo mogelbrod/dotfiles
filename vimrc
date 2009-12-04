@@ -84,6 +84,10 @@ set whichwrap=h,l,<,>,[,]
 " Ctrl+H replaces the selected text with something else
 vnoremap <C-h> "hy:%s/<C-r>h//gc<left><left><left>
 
+" Display possibly unwanted spaces
+noremap <Leader>se / \+$
+noremap <Leader>ss /^ \+
+
 "============================
 " Text display & guides
 "============================
