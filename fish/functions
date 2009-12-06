@@ -65,7 +65,7 @@ end
 
 function svnlog --description "SVN: Show latest changes."
 	set -l limit $argv[1]
-	if test "$limit" = ""; set -l limit 5; end
+	if test "$limit" = ""; set limit 3; end
 	svn log --verbose --limit $limit
 end
 
