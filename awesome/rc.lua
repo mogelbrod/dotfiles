@@ -148,9 +148,14 @@
 	shifty.taglist = mytaglist
 	mytaglist.buttons = awful.util.table.join(
 		awful.button({ }, 1, awful.tag.viewonly),
-		awful.button({ modkey }, 1, function ()
+		awful.button({ modkey }, 1, function (t)
 				if client.focus then
-					local t = shifty.getpos(i)
+					awful.client.movetotag(t)
+					awful.tag.viewonly(t)
+				end
+			end),
+		awful.button({ }, 2, function (t)
+				if client.focus then
 					awful.client.movetotag(t)
 					awful.tag.viewonly(t)
 				end
@@ -234,6 +239,7 @@
 -- }}}
 
 -- {{{ Key bindings
+-- {{{ Global key bindings
 	globalkeys = awful.util.table.join(globalkeys, 
 			-- Menu
 			awful.key({ modkey, }, "v", function () mainmenu:show(true) end),
@@ -292,6 +298,7 @@
 				awful.util.getdir("cache") .. "/history_eval")
 			end)
 	)
+-- }}}
 
 -- {{{ Client key bindings
 	clientkeys = awful.util.table.join(
@@ -315,7 +322,7 @@
 	)
 -- }}}
 
--- {{{ Number keys to tag mappings
+-- {{{ Tag (number) bindings 
 	for i=1, ( shifty.config.maxtags or 9 ) do
 		globalkeys = awful.util.table.join(globalkeys,
 			-- View tag
