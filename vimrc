@@ -215,3 +215,5 @@ autocmd FileType lua setlocal tabstop=2 shiftwidth=2
 " Java
 autocmd FileType java setlocal makeprg=ant\ -e
 
+" C++
+autocmd FileType cpp setlocal makeprg=make foldmarker={,}

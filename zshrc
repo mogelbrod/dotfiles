@@ -9,9 +9,10 @@ for COLOR in RED GREEN YELLOW BLUE MAGENTA CYAN WHITE BLACK; do
 done
 PR_RESET="%{${reset_color}%}";
 
-eval `dircolors`
+LS_COLORS="no=00:fi=00:di=00;34:ln=01;36:pi=00;33:so=01;35:do=01;35:bd=00;33;01:cd=00;33;01:or=40;34;01:su=00;41:sg=00;43:tw=40;32:ow=40;32:st=37;44:ex=01;32:*.tar=01;33:*.tgz=01;33:*.gz=01;33:*.bz2=01;33:*.png=01;31:*.gif=01;31:*.jpg=01;31:*.jpeg=01;31:*.svg=01;31:*.bmp=01;31"
 zstyle ':completion:*' list-colors ''
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+
 # }}}
 
 # {{{ Prompt
@@ -38,7 +39,6 @@ ${PR_BLUE}%(!.#.$) ${PR_RESET}"
 
 # {{{ Completion
 zstyle ':completion:*' completer _expand _complete _ignored _approximate
-zstyle ':completion:*' list-colors ''
 zstyle ':completion:*' matcher-list 'm:{[:lower:]}={[:upper:]}'
 zstyle ':completion:*' max-errors 1
 zstyle :compinstall filename '/home/mogel/.zshrc'
@@ -71,9 +71,11 @@ bindkey "\e[1;3D" backward-word
 bindkey "\e[3;5~" backward-kill-word
 bindkey "\e[3;3~" kill-word
 
-# Page up/down inserts some keys otherwise further away
-bindkey "\e[5~" "/"
-bindkey "\e[6~" "~"
+# Page up/down
+bindkey "\e[5~" backward-word
+bindkey "\e[6~" forward-word
+bindkey "\e[5;5~" backward-kill-word
+bindkey "\e[6;5~" kill-word
 
 # Ctrl-D clears line
 bindkey "\C-d" kill-whole-line
@@ -94,10 +96,12 @@ alias rc='source ~/.zshrc'
 alias cls=clear
 alias quit=exit
 
+alias sp=roxterm
+
 # Directory listing
 alias ls='/bin/ls -b -CF --color=auto'
-alias l='ls -lh'
 alias la='ls -a'
+alias l='ls -lh'
 alias ll='ls -lha'
 
 # Shortcuts
@@ -135,21 +139,26 @@ svnm() {
 		cat svn-commit.tmp
 	fi
 }
-alias svnco='svn checkout'
 svndiff() {
 	svn diff $* | vim -R -
 }
 svncheck() {
 	svnadd; svndel
+	echo "## Done ##########################################"
 }
 svnadd() {
+	echo "## Add: ##########################################"
 	svn add . --force
 }
 svndel() {
+	echo "## Remove: #######################################"
 	svn status | sed -e '/^!/!d' -e 's/^! *//' | tr '\n' '\0' | xargs --null -i -t svn rm
 }
 svnlog() {
-	svn log --verbose --limit 5
+	if [[ "$1" == "" ]]; then
+		1=3
+	fi
+	svn log --verbose --limit $1
 }
 svnrestore() {
 	if [[ "$3" == "" ]]; then

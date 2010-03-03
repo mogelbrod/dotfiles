@@ -64,7 +64,7 @@
 		{ match = { "^Mirage", "Mozilla Firefox$" }, tag = "4:full" },
 		{ match = { "^Mirage" }, nopopup = false },
 
-		{ match = { "^Buddy List$", "^irssi$", "^conversation$" },
+		{ match = { "^Buddy List$", "^irssi ", "^conversation$" },
 			tag = "5:chat", float = true },
 		{ match = { "^Buddy List$" }, geometry = {1818,18,260,780} },
 		--{ match = { "^irssi$" }, geometry = {0,18,600,780} },
@@ -258,19 +258,19 @@
 				if client.focus then client.focus:raise() end
 			end),
 			awful.key({ modkey, }, "a", function ()
-				awful.client.focus.byidx( 1)
+				awful.client.focus.byidx(-1)
 				if client.focus then client.focus:raise() end
 			end),
 			awful.key({ modkey, }, "d", function ()
-				awful.client.focus.byidx(-1)
+				awful.client.focus.byidx( 1)
 				if client.focus then client.focus:raise() end
 			end),
 
 			-- Layout manipulation
 			awful.key({ modkey, }, "e", function () awful.client.swap.byidx(  1)    end),
 			awful.key({ modkey, }, "q", function () awful.client.swap.byidx( -1)    end),
-			awful.key({ modkey, "Shift" }, "a", function () awful.screen.focus_relative( 1) end),
-			awful.key({ modkey, "Shift" }, "d", function () awful.screen.focus_relative(-1) end),
+			awful.key({ modkey, "Shift" }, "a", function () awful.screen.focus_relative(-1) end),
+			awful.key({ modkey, "Shift" }, "d", function () awful.screen.focus_relative( 1) end),
 			awful.key({ modkey, }, "g", awful.client.urgent.jumpto),
 			awful.key({ modkey, }, "Tab", function ()
 				awful.client.focus.history.previous()
