@@ -122,46 +122,28 @@ alias datex='date +"%Y-%m-%d (%A) @ %H:%M:%S"'
 
 # {{{ Subversion shortcuts
 svnci() {
-SVN_MFILE='svn-commit.tmp'
-svn commit -F $SVN_MFILE
-if [ "$?" -eq 0 ]; then
-echo "##################################################"
-echo "Commit successful, message provided:"
-echo "##################################################"
-cat $SVN_MFILE
-echo "##################################################"
-rm $SVN_MFILE
-fi
+	SVN_MFILE='svn-commit.tmp'
+	svn commit -F $SVN_MFILE
+	if [ "$?" -eq 0 ]; then
+		echo "##################################################"
+		echo "Commit successful, message provided:"
+		echo "##################################################"
+		cat $SVN_MFILE
+		echo "##################################################"
+		rm $SVN_MFILE
+	fi
 }
 svnm() {
-if [[ "$1" != "" ]]; then
-echo "$*" >> svn-commit.tmp
-else
-cat svn-commit.tmp
-fi
+	if [[ "$1" != "" ]]; then
+		echo "$*" >> svn-commit.tmp
+	else
+		cat svn-commit.tmp
+	fi
 }
 svndiff() {
-svn diff $* | vim -R -
+	svn diff $* | vim -R -
 }
 svncheck() {
-<<<<<<< HEAD:zshrc
-svnadd; svndel
-echo "## Done ##########################################"
-}
-svnadd() {
-echo "## Add: ##########################################"
-svn add . --force
-}
-svndel() {
-echo "## Remove: #######################################"
-svn status | sed -e '/^!/!d' -e 's/^! *//' | tr '\n' '\0' | xargs --null -i -t svn rm
-}
-svnlog() {
-if [[ "$1" == "" ]]; then
-1=3
-fi
-svn log --verbose --limit $1
-=======
 	svnadd; svndel
 	echo "## Done ##########################################"
 }
@@ -178,13 +160,12 @@ svnlog() {
 		1=3
 	fi
 	svn log --verbose --limit $1
->>>>>>> 9186ef9dfcda6a03c39c1c218adb8729d6032310:zshrc
 }
 svnrestore() {
-if [[ "$3" == "" ]]; then
-3="."
-fi
-svn copy -r$1 $2@$1 $3
+	if [[ "$3" == "" ]]; then
+		3="."
+	fi
+	svn copy -r$1 $2@$1 $3
 }
 # }}}
 
