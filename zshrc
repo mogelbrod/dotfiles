@@ -4,8 +4,8 @@
 autoload colors zsh/terminfo
 colors
 for COLOR in RED GREEN YELLOW BLUE MAGENTA CYAN WHITE BLACK; do
-	eval PR_$COLOR='%{$fg[${(L)COLOR}]%}'
-	eval PR_BRIGHT_$COLOR='%{$fg_bold[${(L)COLOR}]%}'
+eval PR_$COLOR='%{$fg[${(L)COLOR}]%}'
+eval PR_BRIGHT_$COLOR='%{$fg_bold[${(L)COLOR}]%}'
 done
 PR_RESET="%{${reset_color}%}";
 
@@ -25,7 +25,7 @@ local pwdlen=${#${(%):-%~}}
 local pwdsize; (( pwdsize = $termwidth - $promptlen))
 local pwdpad=0; (( pwdpad = $pwdsize - $pwdlen))
 if [[ $pwdpad -lt 0 ]]; then
-	pwdpad=0;
+pwdpad=0;
 fi
 
 PROMPT="${PR_BRIGHT_BLACK}[${PR_RESET}${PR_GREEN}%n@%m${PR_BRIGHT_BLACK}:%l]\
@@ -38,9 +38,10 @@ ${PR_BLUE}%(!.#.$) ${PR_RESET}"
 # }}}
 
 # {{{ Completion
+zstyle ':completion:*' special-dirs true
 zstyle ':completion:*' completer _expand _complete _ignored _approximate
 zstyle ':completion:*' matcher-list 'm:{[:lower:]}={[:upper:]}'
-zstyle ':completion:*' max-errors 1
+#zstyle ':completion:*' max-errors 1
 zstyle :compinstall filename '/home/mogel/.zshrc'
 autoload -Uz compinit && compinit
 # }}}
@@ -121,28 +122,46 @@ alias datex='date +"%Y-%m-%d (%A) @ %H:%M:%S"'
 
 # {{{ Subversion shortcuts
 svnci() {
-	SVN_MFILE='svn-commit.tmp'
-	svn commit -F $SVN_MFILE
-	if [ "$?" -eq 0 ]; then
-		echo "##################################################"
-		echo "Commit successful, message provided:"
-		echo "##################################################"
-		cat $SVN_MFILE
-		echo "##################################################"
-		rm $SVN_MFILE
-	fi
+SVN_MFILE='svn-commit.tmp'
+svn commit -F $SVN_MFILE
+if [ "$?" -eq 0 ]; then
+echo "##################################################"
+echo "Commit successful, message provided:"
+echo "##################################################"
+cat $SVN_MFILE
+echo "##################################################"
+rm $SVN_MFILE
+fi
 }
 svnm() {
-	if [[ "$1" != "" ]]; then
-		echo "$*" >> svn-commit.tmp
-	else
-		cat svn-commit.tmp
-	fi
+if [[ "$1" != "" ]]; then
+echo "$*" >> svn-commit.tmp
+else
+cat svn-commit.tmp
+fi
 }
 svndiff() {
-	svn diff $* | vim -R -
+svn diff $* | vim -R -
 }
 svncheck() {
+<<<<<<< HEAD:zshrc
+svnadd; svndel
+echo "## Done ##########################################"
+}
+svnadd() {
+echo "## Add: ##########################################"
+svn add . --force
+}
+svndel() {
+echo "## Remove: #######################################"
+svn status | sed -e '/^!/!d' -e 's/^! *//' | tr '\n' '\0' | xargs --null -i -t svn rm
+}
+svnlog() {
+if [[ "$1" == "" ]]; then
+1=3
+fi
+svn log --verbose --limit $1
+=======
 	svnadd; svndel
 	echo "## Done ##########################################"
 }
@@ -159,12 +178,13 @@ svnlog() {
 		1=3
 	fi
 	svn log --verbose --limit $1
+>>>>>>> 9186ef9dfcda6a03c39c1c218adb8729d6032310:zshrc
 }
 svnrestore() {
-	if [[ "$3" == "" ]]; then
-		3="."
-	fi
-	svn copy -r$1 $2@$1 $3
+if [[ "$3" == "" ]]; then
+3="."
+fi
+svn copy -r$1 $2@$1 $3
 }
 # }}}
 
@@ -177,4 +197,3 @@ alias rdbmig='rake db:migrate'
 # }}}
 
 # }}}
-

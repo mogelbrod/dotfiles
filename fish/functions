@@ -65,7 +65,11 @@ end
 
 function svnlog --description "SVN: Show latest changes."
 	set -l limit $argv[1]
+<<<<<<< HEAD:fish/functions
+	if test "$limit" = ""; set limit 5; end
+=======
 	if test "$limit" = ""; set limit 3; end
+>>>>>>> 9186ef9dfcda6a03c39c1c218adb8729d6032310:fish/functions
 	svn log --verbose --limit $limit
 end
 

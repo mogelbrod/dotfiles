@@ -81,8 +81,6 @@ map [Z <gv
 " have the cursor keys wrap between lines (like <Space> and <BkSpc> do)
 set whichwrap=h,l,<,>,[,]
 
-" Ctrl+H replaces the selected text with something else
-vnoremap <C-h> "hy:%s/<C-r>h//gc<left><left><left>
 
 " Display possibly unwanted spaces
 noremap <Leader>se / \+$
@@ -138,6 +136,7 @@ set foldmethod=marker
 " Show search results while being typed
 set incsearch
 
+
 "============================
 " Input
 "============================
@@ -161,6 +160,21 @@ autocmd FileType * setlocal formatoptions-=cro
 " Do not reindent lines with a comment sign (removed 0#)
 autocmd FileType * setlocal cinkeys=0{,0},0),:,!^F,o,O,e
 
+
+"============================
+" Search & replace
+"============================
+
+" Ctrl+H replaces the selected text with something else
+vnoremap <C-h> "hy:%s/<C-r>h//gc<left><left><left>
+
+" Search for <cword> and replace with input() in all open buffers
+map <Leader>h "hy:bufdo! %s/<C-r>h//ge<left><left><left>
+
+" Control-W: Wrap selection with tag
+source ~/.vim/scripts/wrapwithtag.vim
+
+
 "============================
 " Completion
 "============================
@@ -179,9 +193,6 @@ let g:SuperTabMappingBackward = '<s-nul>'
 
 " Map Ctrl+Space to word completion 
 "inoremap <C-@> <C-x><C-u>
-
-" Control-W: Wrap selection with tag
-source ~/.vim/scripts/wrapwithtag.vim
 
 "============================
 " Colors & syntax highlighting
@@ -204,7 +215,6 @@ colorscheme mogelbrod
 command -nargs=* Make make <args> | cwindow 5
 noremap <Leader>m :Make 
 noremap <Leader>c :Make<CR>
-noremap <Leader>r :Make run<CR>
 
 " Ruby
 autocmd FileType ruby setlocal formatoptions=ql tabstop=2 shiftwidth=2 smarttab expandtab
