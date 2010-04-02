@@ -10,7 +10,7 @@ caption always "%{Yk} %?%{Bk}%-w%?%{Yk}%n %t%?(%u)%?%?%{Bk}%+w%?%{Kk} %=%c "
 autodetach on
 
 # Initial screens
-screen 0 fish
+screen 0 zsh
 
 # Hide start up message
 startup_message off

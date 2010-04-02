@@ -39,7 +39,7 @@ ${PR_BLUE}%(!.#.$) ${PR_RESET}"
 
 # {{{ Completion
 zstyle ':completion:*' special-dirs true
-zstyle ':completion:*' completer _expand _complete _ignored _approximate
+zstyle ':completion:*' completer _expand _complete _ignored #_approximate
 zstyle ':completion:*' matcher-list 'm:{[:lower:]}={[:upper:]}'
 #zstyle ':completion:*' max-errors 1
 zstyle :compinstall filename '/home/mogel/.zshrc'
