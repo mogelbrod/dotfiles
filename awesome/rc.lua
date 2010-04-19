@@ -52,8 +52,8 @@
 	shifty.config.sloppy = false
 
 	shifty.config.tags = {
-		["1:gen"]  = { position = 1, init = true },
-		["2:term"] = { position = 2, init = true },
+		["1:term"]  = { position = 1, init = true },
+		["2:gen"] = { position = 2, init = true },
 		["3:work"] = { position = 3, init = true },
 		["4:full"] = { position = 4, init = true, layout = awful.layout.suit.max },
 		["5:chat"] = { position = 5, init = true, layout = awful.layout.suit.floating },
