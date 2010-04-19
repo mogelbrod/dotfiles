@@ -4,8 +4,8 @@
 autoload colors zsh/terminfo
 colors
 for COLOR in RED GREEN YELLOW BLUE MAGENTA CYAN WHITE BLACK; do
-	eval PR_$COLOR='%{$fg[${(L)COLOR}]%}'
-	eval PR_BRIGHT_$COLOR='%{$fg_bold[${(L)COLOR}]%}'
+eval PR_$COLOR='%{$fg[${(L)COLOR}]%}'
+eval PR_BRIGHT_$COLOR='%{$fg_bold[${(L)COLOR}]%}'
 done
 PR_RESET="%{${reset_color}%}";
 
@@ -25,7 +25,7 @@ local pwdlen=${#${(%):-%~}}
 local pwdsize; (( pwdsize = $termwidth - $promptlen))
 local pwdpad=0; (( pwdpad = $pwdsize - $pwdlen))
 if [[ $pwdpad -lt 0 ]]; then
-	pwdpad=0;
+pwdpad=0;
 fi
 
 PROMPT="${PR_BRIGHT_BLACK}[${PR_RESET}${PR_GREEN}%n@%m${PR_BRIGHT_BLACK}:%l]\
@@ -38,9 +38,10 @@ ${PR_BLUE}%(!.#.$) ${PR_RESET}"
 # }}}
 
 # {{{ Completion
-zstyle ':completion:*' completer _expand _complete _ignored _approximate
+zstyle ':completion:*' special-dirs true
+zstyle ':completion:*' completer _expand _complete _ignored #_approximate
 zstyle ':completion:*' matcher-list 'm:{[:lower:]}={[:upper:]}'
-zstyle ':completion:*' max-errors 1
+#zstyle ':completion:*' max-errors 1
 zstyle :compinstall filename '/home/mogel/.zshrc'
 autoload -Uz compinit && compinit
 # }}}
@@ -177,4 +178,3 @@ alias rdbmig='rake db:migrate'
 # }}}
 
 # }}}
-
