@@ -1,5 +1,5 @@
 # Bottom caption line
-caption always "%{Yk} %?%{Bk}%-w%?%{Yk}%n %t%?(%u)%?%?%{Bk}%+w%?%{Kk} %=%c "
+caption always "%{Yk} %?%{Bk}%-w%?%{Yk}%n %t%?(%u)%?%?%{Bk}%+w%?%{Kk} %= %H "
 
 # Message display
 #hardstatus message "%{kr}%h"
