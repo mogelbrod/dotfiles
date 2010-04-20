@@ -31,7 +31,10 @@ precmd() {
 		pwdpad=0;
 	fi
 
-PROMPT="${PR_BRIGHT_BLACK}[${PR_RESET}${PR_GREEN}%n@%m${PR_BRIGHT_BLACK}:%l]\
+	HCOLOR=$PR_GREEN
+	[[ -n "${SSH_CONNECTION}" ]] && HCOLOR=$PR_CYAN
+
+PROMPT="${PR_BRIGHT_BLACK}[${PR_RESET}${HCOLOR}%n@%m${PR_BRIGHT_BLACK}:%l]\
 ${PR_RESET} ${PR_YELLOW}\
 %$pwdsize<...<%~%<<${(r:$pwdpad:: :::)} \
 ${PR_BRIGHT_BLACK}[%T]${PR_RESET}
