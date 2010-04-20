@@ -4,8 +4,8 @@
 autoload colors zsh/terminfo
 colors
 for COLOR in RED GREEN YELLOW BLUE MAGENTA CYAN WHITE BLACK; do
-eval PR_$COLOR='%{$fg[${(L)COLOR}]%}'
-eval PR_BRIGHT_$COLOR='%{$fg_bold[${(L)COLOR}]%}'
+	eval PR_$COLOR='%{$fg[${(L)COLOR}]%}'
+	eval PR_BRIGHT_$COLOR='%{$fg_bold[${(L)COLOR}]%}'
 done
 PR_RESET="%{${reset_color}%}";
 
@@ -19,14 +19,17 @@ zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 setopt prompt_subst
 
 precmd() {
-local termwidth; (( termwidth = ${COLUMNS} - 1 ))
-local promptlen=${#${(%):-[%n@%m:%l] [%T]}}
-local pwdlen=${#${(%):-%~}}
-local pwdsize; (( pwdsize = $termwidth - $promptlen))
-local pwdpad=0; (( pwdpad = $pwdsize - $pwdlen))
-if [[ $pwdpad -lt 0 ]]; then
-pwdpad=0;
-fi
+	# Title
+	print -Pn "\e]0;[%n@%m] %~\a"
+
+	local termwidth; (( termwidth = ${COLUMNS} - 1 ))
+	local promptlen=${#${(%):-[%n@%m:%l] [%T]}}
+	local pwdlen=${#${(%):-%~}}
+	local pwdsize; (( pwdsize = $termwidth - $promptlen))
+	local pwdpad=0; (( pwdpad = $pwdsize - $pwdlen))
+	if [[ $pwdpad -lt 0 ]]; then
+		pwdpad=0;
+	fi
 
 PROMPT="${PR_BRIGHT_BLACK}[${PR_RESET}${PR_GREEN}%n@%m${PR_BRIGHT_BLACK}:%l]\
 ${PR_RESET} ${PR_YELLOW}\
@@ -44,6 +47,9 @@ zstyle ':completion:*' matcher-list 'm:{[:lower:]}={[:upper:]}'
 #zstyle ':completion:*' max-errors 1
 zstyle :compinstall filename '/home/mogel/.zshrc'
 autoload -Uz compinit && compinit
+
+setopt complete_in_word
+setopt auto_param_slash auto_param_keys
 # }}}
 
 # {{{ History
@@ -51,6 +57,7 @@ HISTFILE=~/.histfile
 HISTSIZE=1000
 SAVEHIST=1000
 setopt append_history hist_reduce_blanks
+setopt inc_append_history
 # }}}
 
 # {{{ Bindings
