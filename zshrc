@@ -144,10 +144,18 @@ svnci() {
 	fi
 }
 svnm() {
+	SVN_MFILE='svn-commit.tmp'
+	parent=""
+	grandparent="."
+	while [ -d "$grandparent/.svn" ]; do
+			parent=$grandparent
+			grandparent="$parent/.."
+	done
+	[ ! -z "$parent" ] && SVN_MFILE="${parent}/${SVN_MFILE}"
 	if [[ "$1" != "" ]]; then
-		echo "$*" >> svn-commit.tmp
+		echo "$*" >> $SVN_MFILE
 	else
-		cat svn-commit.tmp
+		[[ -a "${SVN_MFILE}" ]] && cat $SVN_MFILE
 	fi
 }
 svndiff() {
