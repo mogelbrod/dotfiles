@@ -131,8 +131,19 @@ alias datex='date +"%Y-%m-%d (%A) @ %H:%M:%S"'
 # {{{ Program specific functionality
 
 # {{{ Subversion shortcuts
-svnci() {
+svnbase() {
 	SVN_MFILE='svn-commit.tmp'
+	parent=""
+	grandparent="."
+	while [ -d "$grandparent/.svn" ]; do
+			parent=$grandparent
+			grandparent="$parent/.."
+	done
+	[ ! -z "$parent" ] && SVN_MFILE="${parent}/${SVN_MFILE}"
+	echo $SVN_MFILE
+}
+svnci() {
+	SVN_MFILE=$(svnbase)
 	svn commit -F $SVN_MFILE
 	if [ "$?" -eq 0 ]; then
 		echo "##################################################"
@@ -144,14 +155,7 @@ svnci() {
 	fi
 }
 svnm() {
-	SVN_MFILE='svn-commit.tmp'
-	parent=""
-	grandparent="."
-	while [ -d "$grandparent/.svn" ]; do
-			parent=$grandparent
-			grandparent="$parent/.."
-	done
-	[ ! -z "$parent" ] && SVN_MFILE="${parent}/${SVN_MFILE}"
+	SVN_MFILE=$(svnbase)
 	if [[ "$1" != "" ]]; then
 		echo "$*" >> $SVN_MFILE
 	else
