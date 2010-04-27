@@ -212,7 +212,7 @@ colorscheme mogelbrod
 command! -nargs=* Make make <args> | cwindow 5
 noremap <Leader>m :Make 
 noremap <Leader>c :Make<CR>
-noremap <Leader>p :!pdflatex % && evince %:r.pdf<CR>
+noremap <Leader>p :!pdflatex % && evince %:r.pdf &<CR>
 
 " Ruby
 autocmd FileType ruby setlocal formatoptions=ql tabstop=2 shiftwidth=2 smarttab expandtab
