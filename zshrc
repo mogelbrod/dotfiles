@@ -175,13 +175,13 @@ svnadd() {
 }
 svndel() {
 	echo "## Remove: #######################################"
-	svn status | sed -e '/^!/!d' -e 's/^! *//' | tr '\n' '\0' | xargs --null -i -t svn rm
+	svn status | sed -e '/^!/!d' -e 's/^! *//' | tr '\n' '\0' | xargs --null svn rm
 }
 svnlog() {
 	if [[ "$1" == "" ]]; then
 		1=3
 	fi
-	svn log --verbose --limit $1
+	svn log --verbose --limit $1 -r HEAD:BASE
 }
 svnrestore() {
 	if [[ "$3" == "" ]]; then
