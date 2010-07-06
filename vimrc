@@ -52,6 +52,9 @@ set shortmess=filnxtToOI
 
 set nocursorline nocursorcolumn
 
+cmap <C-A> <Home>
+cmap <C-E> <End>
+
 " }}}
 " {{{ Key behaviour ============================================================
 
@@ -59,8 +62,8 @@ set nocursorline nocursorcolumn
 let mapleader = ","
 
 " Bindings to open vimrc and to reload vimrc
-map <leader>v :sp $MYVIMRC<CR><C-W>_
-map <silent> <leader>V :source $MYVIMRC<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>
+map <leader>V :args $MYVIMRC<CR>
+map <silent> <leader>v :source $MYVIMRC<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>
 
 set backspace=indent,eol,start
 vnoremap <BS> d " backspace in visual mode deletes selection
