@@ -206,6 +206,11 @@ endif
 colorscheme mogelbrod
 
 " }}}
+" {{{ Tag list window ==========================================================
+
+map <F6> :TlistToggle<CR>
+
+" }}}
 " {{{ File type specific options ===============================================
 
 " Compiling
@@ -270,6 +275,10 @@ if has("gui_running")
 	if has('mouse')
 		set mouse=a
 	endif
+
+else
+	
+	let Tlist_Inc_Winwidth = 0
 
 endif
 
