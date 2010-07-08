@@ -192,10 +192,10 @@ svnrestore() {
 # }}}
 
 # {{{ Ruby on rails shortcuts
-alias rgen='script/generate'
-alias rdes='script/destroy'
-alias rcon='script/console'
-alias rplug='script/plugin'
+alias rgen='script/rails generate'
+alias rdes='script/rails destroy'
+alias rcon='script/rails console'
+alias rplug='script/rails plugin'
 alias rdbmig='rake db:migrate'
 # }}}
 
