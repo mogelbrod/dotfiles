@@ -23,7 +23,7 @@ precmd() {
 	print -Pn "\e]0;[%n@%m] %~\a"
 
 	local termwidth; (( termwidth = ${COLUMNS} - 1 ))
-	local promptlen=${#${(%):-[%n@%m:%l] [%T]}}
+	local promptlen=${#${(%):-[%n@%m:%l] [%D{%H:%M}]}}
 	local pwdlen=${#${(%):-%~}}
 	local pwdsize; (( pwdsize = $termwidth - $promptlen))
 	local pwdpad=0; (( pwdpad = $pwdsize - $pwdlen))
@@ -37,7 +37,7 @@ precmd() {
 PROMPT="${PR_BRIGHT_BLACK}[${PR_RESET}${HCOLOR}%n@%m${PR_BRIGHT_BLACK}:%l]\
 ${PR_RESET} ${PR_YELLOW}\
 %$pwdsize<...<%~%<<${(r:$pwdpad:: :::)} \
-${PR_BRIGHT_BLACK}[%T]${PR_RESET}
+${PR_BRIGHT_BLACK}[%D{%H:%M}]${PR_RESET}
 %(?::${PR_BRIGHT_BLACK}[${PR_BRIGHT_RED}%?${PR_RESET}${PR_BRIGHT_BLACK}]${PR_RESET} )\
 ${PR_BLUE}%(!.#.$) ${PR_RESET}"
 }
