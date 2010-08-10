@@ -175,13 +175,13 @@ svnadd() {
 }
 svndel() {
 	echo "## Remove: #######################################"
-	svn status | sed -e '/^!/!d' -e 's/^! *//' | tr '\n' '\0' | xargs --null -i -t svn rm
+	svn status | sed -e '/^!/!d' -e 's/^! *//' | tr '\n' '\0' | xargs --null svn rm
 }
 svnlog() {
 	if [[ "$1" == "" ]]; then
 		1=3
 	fi
-	svn log --verbose --limit $1
+	svn log --verbose --limit $1 -r HEAD:BASE
 }
 svnrestore() {
 	if [[ "$3" == "" ]]; then
@@ -192,10 +192,10 @@ svnrestore() {
 # }}}
 
 # {{{ Ruby on rails shortcuts
-alias rgen='script/generate'
-alias rdes='script/destroy'
-alias rcon='script/console'
-alias rplug='script/plugin'
+alias rgen='script/rails generate'
+alias rdes='script/rails destroy'
+alias rcon='script/rails console'
+alias rplug='script/rails plugin'
 alias rdbmig='rake db:migrate'
 # }}}
 

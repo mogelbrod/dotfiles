@@ -52,6 +52,9 @@ set shortmess=filnxtToOI
 
 set nocursorline nocursorcolumn
 
+cmap <C-A> <Home>
+cmap <C-E> <End>
+
 " }}}
 " {{{ Key behaviour ============================================================
 
@@ -59,8 +62,8 @@ set nocursorline nocursorcolumn
 let mapleader = ","
 
 " Bindings to open vimrc and to reload vimrc
-map <leader>v :sp $MYVIMRC<CR><C-W>_
-map <silent> <leader>V :source $MYVIMRC<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>
+map <leader>V :args $MYVIMRC<CR>
+map <silent> <leader>v :source $MYVIMRC<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>
 
 set backspace=indent,eol,start
 vnoremap <BS> d " backspace in visual mode deletes selection
@@ -206,6 +209,19 @@ endif
 colorscheme mogelbrod
 
 " }}}
+" {{{ Tag list window ==========================================================
+
+map <F6> :TlistToggle<CR>
+let Tlist_Compact_Format = 1
+let Tlist_Enable_Fold_Column = 0
+let Tlist_File_Fold_Auto_Close = 1
+"let Tlist_Exit_OnlyWindow = 1
+"let Tlist_GainFocus_On_ToggleOpen = 1
+let Tlist_Highlight_Tag_On_BufEnter = 0
+let Tlist_Use_Right_Window = 1
+
+
+" }}}
 " {{{ File type specific options ===============================================
 
 " Compiling
@@ -270,6 +286,10 @@ if has("gui_running")
 	if has('mouse')
 		set mouse=a
 	endif
+
+else
+	
+	let Tlist_Inc_Winwidth = 0
 
 endif
 
