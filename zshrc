@@ -68,8 +68,8 @@ bindkey -e
 bindkey ' ' magic-space
 
 # Up/down scrolls through history (search if possible)
-bindkey "\e[B" history-search-forward
-bindkey "\e[A" history-search-backward
+bindkey "\e[B" history-beginning-search-forward 
+bindkey "\e[A" history-beginning-search-backward
 
 # Word moving
 # Ctrl+left/right
