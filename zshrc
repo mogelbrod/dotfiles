@@ -123,6 +123,7 @@ alias un='tar -xf'
 alias scr='screen -RdU'
 alias sc='screen'
 alias du='du -h'
+alias gitdiff='git diff --color'
 
 # Nicely formatted date
 alias datex='date +"%Y-%m-%d (%A) @ %H:%M:%S"'

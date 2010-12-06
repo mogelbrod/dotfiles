@@ -1,6 +1,9 @@
 " No backwards compability with vi
 set nocompatible
 
+" Map leader
+let mapleader = ","
+
 " {{{ Language and file encoding ===============================================
 
 " Language settings
@@ -40,6 +43,8 @@ nmap <silent> <F5> <Plug>SelectBuf
 imap <silent> <F5> <ESC><Plug>SelectBuf
 let g:selBufUseVerticalSplit = 1
 
+noremap <leader>d :cd %:p:h<CR>
+
 " }}}
 " {{{ Command input and display ================================================
 
@@ -57,9 +62,6 @@ cmap <C-E> <End>
 
 " }}}
 " {{{ Key behaviour ============================================================
-
-" Map leader
-let mapleader = ","
 
 " Bindings to open vimrc and to reload vimrc
 map <leader>V :args $MYVIMRC<CR>
@@ -94,10 +96,10 @@ map [Z <gv
 " have the cursor keys wrap between lines (like <Space> and <BkSpc> do)
 set whichwrap=h,l,<,>,[,]
 
-
 " Display possibly unwanted spaces
-noremap <Leader>se / \+$
-noremap <Leader>ss /^ \+
+noremap <leader>se / \+$
+noremap <leader>ss /^ \+
+
 
 " }}}
 " {{{ Text & display guides ====================================================
@@ -158,7 +160,7 @@ autocmd FileType * setlocal cinkeys=0{,0},0),:,!^F,o,O,e
 vnoremap <C-h> "hy:%s/<C-r>h//gc<left><left><left>
 
 " Search for <cword> and replace with input() in all open buffers
-map <Leader>h "hy:bufdo! %s/<C-r>h//ge<left><left><left>
+map <leader>h "hy:bufdo! %s/<C-r>h//ge<left><left><left>
 
 " Wrap visual selection in an HTML tag.
 vmap <C-w> <Esc>:call VisualHTMLTagWrap()<CR>
@@ -226,9 +228,9 @@ let Tlist_Use_Right_Window = 1
 
 " Compiling
 command! -nargs=* Make make <args> | cwindow 5
-noremap <Leader>m :Make 
-noremap <Leader>c :Make<CR>
-noremap <Leader>p :!pdflatex % && evince %:r.pdf &<CR>
+noremap <leader>m :Make 
+noremap <leader>c :Make<CR>
+noremap <leader>p :!pdflatex % && evince %:r.pdf &<CR>
 
 " Ruby
 autocmd FileType ruby setlocal formatoptions=ql tabstop=2 shiftwidth=2 smarttab expandtab
@@ -240,15 +242,24 @@ autocmd FileType lua setlocal tabstop=2 shiftwidth=2
 autocmd FileType java setlocal makeprg=ant\ -e
 
 " C++
-autocmd FileType cpp setlocal makeprg=make foldmarker={,}
+autocmd FileType cpp setlocal foldmarker={,}
+if has("win32")
+	autocmd FileType cpp setlocal makeprg=mingw32-make
+else
+	autocmd FileType cpp setlocal makeprg=make
+endif
 
 " }}}
 " {{{ GUI settings/overwrites ==================================================
 
 if has("gui_running")
 
-	" Editor font
-	set guifont=ProFontWindows:h9
+	if has("win32")
+		" Editor font
+		set guifont=ProFontWindows:h9
+		" Ctrl-C copies
+		vmap <C-c> "+y
+	endif
 
 	" Toolbar
 	set guioptions-=T
@@ -275,9 +286,6 @@ if has("gui_running")
 	" SuperTab bindings for GUI
 	let g:SuperTabMappingForward = '<C-Space>'
 	let g:SuperTabMappingBackward = '<S-C-Space>'
-
-	" Ctrl-C copies
-	vmap <C-c> "+y
 
 	" Disable swap files
 	set noswapfile
