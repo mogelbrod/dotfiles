@@ -230,7 +230,11 @@ let Tlist_Use_Right_Window = 1
 command! -nargs=* Make make <args> | cwindow 5
 noremap <leader>m :Make 
 noremap <leader>c :Make<CR>
-noremap <leader>p :!pdflatex % && evince %:r.pdf &<CR>
+if has("win32")
+	noremap <leader>p :!start cmd /c pdflatex "%" && "C:\Program Files (x86)\Adobe\Reader 9.0\Reader\AcroRd32.exe" "%:r.pdf" & pause<CR>
+else
+	noremap <leader>p :!pdflatex % && evince %:r.pdf &<CR>
+endif
 
 " Ruby
 autocmd FileType ruby setlocal formatoptions=ql tabstop=2 shiftwidth=2 smarttab expandtab
@@ -245,6 +249,7 @@ autocmd FileType java setlocal makeprg=ant\ -e
 autocmd FileType cpp setlocal foldmarker={,}
 if has("win32")
 	autocmd FileType cpp setlocal makeprg=mingw32-make
+	autocmd FileType h setlocal makeprg=mingw32-make
 else
 	autocmd FileType cpp setlocal makeprg=make
 endif
