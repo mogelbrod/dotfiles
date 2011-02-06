@@ -1,5 +1,7 @@
 # {{{ Environment setup
 
+export EDITOR=vim PAGER=less BROWSER=w3m
+
 # {{{ Colors
 autoload colors zsh/terminfo
 colors
@@ -60,21 +62,13 @@ setopt auto_param_slash auto_param_keys
 
 # {{{ History
 HISTFILE=~/.histfile
-HISTSIZE=1000
+HISTSIZE=5000
 SAVEHIST=1000
 setopt append_history hist_reduce_blanks
 setopt inc_append_history
 # }}}
 
-# {{{ Other options
-setopt autocd
-setopt noflowcontrol
-setopt ignore_eof # dop not exit on Ctrl-D
-WORDCHARS=
-# }}}
-
 # {{{ Environment
-export EDITOR=vim
 # }}}
 
 # }}}
@@ -143,6 +137,16 @@ alias gitdiff='git diff --color'
 
 # Nicely formatted date
 alias datex='date +"%Y-%m-%d (%A) @ %H:%M:%S"'
+
+# Global aliases
+alias -g M='| more'
+alias -g L="| less"
+
+# }}}
+
+# {{{ File handling
+alias -s tex=$EDITOR txt=$EDITOR css=$EDITOR js=$EDITOR conf=$EDITOR
+alias -s htm=$BROWSER html=$BROWSER
 # }}}
 
 # {{{ Program specific functionality
