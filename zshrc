@@ -20,7 +20,9 @@ setopt prompt_subst
 
 precmd() {
 	# Title
-	print -Pn "\e]0;[%n@%m] %~\a"
+	if [[ $TERM == (*xterm*|rxvt); ]]; then
+		print -Pn "\e]0;[%n@%m] %~\a"
+	fi
 
 	local termwidth; (( termwidth = ${COLUMNS} - 1 ))
 	local promptlen=${#${(%):-[%n@%m:%l] [%D{%H:%M}]}}
@@ -46,7 +48,8 @@ ${PR_BLUE}%(!.#.$) ${PR_RESET}"
 # {{{ Completion
 zstyle ':completion:*' special-dirs true
 zstyle ':completion:*' completer _expand _complete _ignored #_approximate
-zstyle ':completion:*' matcher-list 'm:{[:lower:]}={[:upper:]}'
+#zstyle ':completion:*' matcher-list 'm:{[:lower:]}={[:upper:]}'
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 #zstyle ':completion:*' max-errors 1
 zstyle :compinstall filename '/home/mogel/.zshrc'
 autoload -Uz compinit && compinit
@@ -63,6 +66,19 @@ setopt append_history hist_reduce_blanks
 setopt inc_append_history
 # }}}
 
+# {{{ Other options
+setopt autocd
+setopt noflowcontrol
+setopt ignore_eof # dop not exit on Ctrl-D
+WORDCHARS=
+# }}}
+
+# {{{ Environment
+export EDITOR=vim
+# }}}
+
+# }}}
+
 # {{{ Bindings
 bindkey -e
 bindkey ' ' magic-space
@@ -73,31 +89,31 @@ bindkey "\e[A" history-beginning-search-backward
 
 # Word moving
 # Ctrl+left/right
-bindkey "\e[1;5C" forward-word
-bindkey "\e[1;5D" backward-word
+#bindkey "\e[1;5D" backward-word
+#bindkey "\e[1;5C" forward-word
 # Alt+left/right
-bindkey "\e[1;3C" forward-word
-bindkey "\e[1;3D" backward-word
+bindkey '[D' backward-word
+bindkey '[C' forward-word
+#bindkey "\e[1;3D" backward-word
+#bindkey "\e[1;3C" forward-word
 
 bindkey "\e[3;5~" backward-kill-word
 bindkey "\e[3;3~" kill-word
+bindkey "[3~" kill-word # alt-delete
 
 # Page up/down
-bindkey "\e[5~" backward-word
-bindkey "\e[6~" forward-word
+#bindkey "\e[5~" backward-word
+#bindkey "\e[6~" forward-word
 bindkey "\e[5;5~" backward-kill-word
 bindkey "\e[6;5~" kill-word
 
 # Ctrl-D clears line
 bindkey "\C-d" kill-whole-line
-# }}}
 
-# {{{ Other options
-setopt autocd
-setopt noflowcontrol
-setopt ignore_eof # dop not exit on Ctrl-D
-WORDCHARS=
-# }}}
+# Alt-S inserts sudo at beginning of line
+insert_sudo () { zle beginning-of-line; zle -U "sudo " }
+zle -N insert-sudo insert_sudo
+bindkey "^[s" insert-sudo
 
 # }}}
 
