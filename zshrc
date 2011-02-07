@@ -1,6 +1,9 @@
 # {{{ Environment setup
 
+# {{{ Environment
 export EDITOR=vim PAGER=less BROWSER=w3m
+export WORDCHARS="_-"
+# }}}
 
 # {{{ Colors
 autoload colors zsh/terminfo
@@ -68,9 +71,6 @@ setopt append_history hist_reduce_blanks
 setopt inc_append_history
 # }}}
 
-# {{{ Environment
-# }}}
-
 # }}}
 
 # {{{ Bindings
@@ -132,8 +132,7 @@ alias vi='vim'
 alias un='tar -xf'
 alias scr='screen -RdU'
 alias sc='screen'
-alias du='du -h'
-alias gitdiff='git diff --color'
+alias du='du -hs'
 
 # Nicely formatted date
 alias datex='date +"%Y-%m-%d (%A) @ %H:%M:%S"'
@@ -141,6 +140,7 @@ alias datex='date +"%Y-%m-%d (%A) @ %H:%M:%S"'
 # Global aliases
 alias -g M='| more'
 alias -g L="| less"
+alias -g G='| grep'
 
 # }}}
 
@@ -150,6 +150,8 @@ alias -s htm=$BROWSER html=$BROWSER
 # }}}
 
 # {{{ Program specific functionality
+
+alias gitdiff='git diff --color'
 
 # {{{ Subversion shortcuts
 svnbase() {
