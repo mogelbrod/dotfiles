@@ -151,7 +151,11 @@ alias -s htm=$BROWSER html=$BROWSER
 
 # {{{ Program specific functionality
 
-alias gitdiff='git diff --color'
+alias gs='git status'
+alias ga='git add'
+alias gc='git commit'
+alias gdiff='git diff --color'
+alias glog='git log --color --shortstat --summary --pretty=format:"%Cred[%h] %an %Cblue(%ar)%n %Cgreen%s%Creset"'
 
 # {{{ Subversion shortcuts
 svnbase() {
