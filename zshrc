@@ -154,8 +154,9 @@ alias -s htm=$BROWSER html=$BROWSER
 alias gs='git status'
 alias ga='git add'
 alias gc='git commit'
-alias gdiff='git diff --color'
-alias glog='git log --color --shortstat --summary --pretty=format:"%Cred[%h] %an %Cblue(%ar)%n %Cgreen%s%Creset"'
+alias gd='git diff --color'
+alias gds='git diff --color --staged'
+alias gl='git log --color --shortstat --summary --pretty=format:"%Cred[%h] %an %Cblue(%ar)%n %Cgreen%s%Creset"'
 
 # {{{ Subversion shortcuts
 svnbase() {
