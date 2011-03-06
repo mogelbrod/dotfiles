@@ -26,12 +26,12 @@ set ignorecase smartcase
 set hidden
 
 " Ctrl+Left/right switches between buffers
+map <C-Left> :bprevious<CR>
+map <C-Right> :bnext<CR>
 map [D :bprevious<CR>
 map [C :bnext<CR>
 map [1;5D :bprevious<CR>
 map [1;5C :bnext<CR>
-map <C-Left> :bprevious<CR>
-map <C-Right> :bnext<CR>
 
 " List buffers with <F5>, and allow switching by using the corresponding number
 "noremap <F5> :buffers<CR>:buffer<Space>
@@ -93,13 +93,16 @@ map <Tab> >gv
 map <S-Tab> <gv
 map [Z <gv
 
-" have the cursor keys wrap between lines (like <Space> and <BkSpc> do)
+" Have the cursor keys wrap between lines (like <Space> and <BkSpc> do)
 set whichwrap=h,l,<,>,[,]
 
 " Display possibly unwanted spaces
-noremap <leader>se / \+$
-noremap <leader>ss /^ \+
+noremap <leader>se / \+$<CR>
+noremap <leader>ss /^ \+$<CR>
 
+" Fold navigation
+map <silent> <Leader><Up> zk
+map <silent> <Leader><Down> zj
 
 " }}}
 " {{{ Text & display guides ====================================================
@@ -112,7 +115,7 @@ set nonu
 set wrap linebreak
 
 " Tabs
-set tabstop=2 
+set tabstop=2
 set shiftwidth=2
 
 " Minimum number of lines surrounding cursor
@@ -135,7 +138,7 @@ set incsearch
 " {{{ Input ====================================================================
 
 " Yank to system clipboard by default
-set clipboard=unnamed 
+set clipboard=unnamed
 
 filetype on
 filetype plugin on
@@ -190,7 +193,7 @@ inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 inoremap <expr> <Down> pumvisible() ? "\<C-n>" : "\<Down>"
 inoremap <expr> <Up> pumvisible() ? "\<C-p>" : "\<Up>"
 
-" Map Ctrl+Space to word completion 
+" Map Ctrl+Space to word completion
 "inoremap <C-@> <C-p> "<C-x><C-u>
 "inoremap <C-Space> <C-p> "<C-x><C-u>
 
@@ -228,7 +231,7 @@ let Tlist_Use_Right_Window = 1
 
 " Compiling
 command! -nargs=* Make make <args> | cwindow 5
-noremap <leader>m :Make 
+noremap <leader>m :Make
 noremap <leader>c :Make<CR>
 if has("win32")
 	noremap <leader>p :!start cmd /c pdflatex "%" && "C:\Program Files (x86)\Adobe\Reader 9.0\Reader\AcroRd32.exe" "%:r.pdf" & pause<CR>
@@ -240,7 +243,7 @@ endif
 autocmd FileType ruby setlocal formatoptions=ql tabstop=2 shiftwidth=2 smarttab expandtab
 
 " Lua
-autocmd FileType lua setlocal tabstop=2 shiftwidth=2 
+autocmd FileType lua setlocal tabstop=2 shiftwidth=2
 
 " Java
 autocmd FileType java setlocal makeprg=ant\ -e
