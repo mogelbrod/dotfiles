@@ -2,7 +2,7 @@
 
 # {{{ Environment
 export EDITOR=vim PAGER=less BROWSER=w3m
-export WORDCHARS="_-"
+export WORDCHARS="_-~"
 # }}}
 
 # {{{ Colors
