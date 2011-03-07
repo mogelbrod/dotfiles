@@ -197,9 +197,19 @@ inoremap <expr> <Up> pumvisible() ? "\<C-p>" : "\<Up>"
 "inoremap <C-@> <C-p> "<C-x><C-u>
 "inoremap <C-Space> <C-p> "<C-x><C-u>
 
+" Map Ctrl-A to expand abbreviation
+imap <silent>  <C-]>
+
 " SuperTab bindings for terminal
-let g:SuperTabMappingForward = '<nul>'
-let g:SuperTabMappingBackward = '<s-nul>'
+if has("gui_running")
+	let g:SuperTabMappingForward = '<C-Space>'
+	let g:SuperTabMappingBackward = '<S-C-Space>'
+else
+	let g:SuperTabMappingBackward = '<Tab>'
+	let g:SuperTabMappingForward = '[Z'
+end
+
+let g:SuperTabLongestHighlight = 1
 
 " }}}
 " {{{ Colors & syntax highlighting =============================================
@@ -291,10 +301,6 @@ if has("gui_running")
 	set guicursor+=r-i-ci:blinkwait900-blinkon600-blinkoff300
 	set guicursor+=n:blinkwait900-blinkon600-blinkoff300
 	
-	" SuperTab bindings for GUI
-	let g:SuperTabMappingForward = '<C-Space>'
-	let g:SuperTabMappingBackward = '<S-C-Space>'
-
 	" Disable swap files
 	set noswapfile
 
