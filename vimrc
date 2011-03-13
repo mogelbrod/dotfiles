@@ -104,6 +104,9 @@ noremap <leader>ss /^ \+$<CR>
 map <silent> <Leader><Up> zk
 map <silent> <Leader><Down> zj
 
+" Tag jumping
+map <silent> <Leader>t <C-]>
+
 " }}}
 " {{{ Text & display guides ====================================================
 
