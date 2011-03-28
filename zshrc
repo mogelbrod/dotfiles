@@ -158,7 +158,8 @@ alias gca='git commit --amend'
 alias gd='git diff --color'
 alias gds='git diff --color --staged'
 alias gl='git log --color --shortstat --summary --pretty=format:"%Cred[%h] %an %Cblue(%ar)%n %Cgreen%s%Creset"'
-alias gr='git checkout'
+alias gco='git checkout'
+alias gr='git reset HEAD'
 
 # {{{ Subversion shortcuts
 svnbase() {
