@@ -205,11 +205,11 @@ imap <silent>  <C-]>
 
 " SuperTab bindings for terminal
 if has("gui_running")
-	let g:SuperTabMappingForward = '<C-Space>'
-	let g:SuperTabMappingBackward = '<S-C-Space>'
+	let g:SuperTabMappingBackward = '<Tab>'
+	let g:SuperTabMappingForward  = '<S-Tab>'
 else
 	let g:SuperTabMappingBackward = '<Tab>'
-	let g:SuperTabMappingForward = '[Z'
+	let g:SuperTabMappingForward  = '[Z'
 end
 
 let g:SuperTabLongestHighlight = 1
