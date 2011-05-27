@@ -1,3 +1,5 @@
 [user]
 	name = Victor Hallberg
 	email = vigge19@gmail.com
+[core]
+	excludesfile = /home/vigge/.gitignore
