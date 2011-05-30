@@ -3,6 +3,9 @@
 # {{{ Environment
 export EDITOR=vim PAGER=less BROWSER=w3m
 export WORDCHARS="_-~"
+
+# Disable flow control
+stty -ixon -ixoff
 # }}}
 
 # {{{ Colors
