@@ -131,7 +131,7 @@ set scrolloff=3
 set display=lastline
 
 " Highlighting of matching braces
-let g:loaded_matchparen=1 " disable
+"let g:loaded_matchparen=1 " disable
 set matchpairs=(:),{:},[:]
 
 " Fold
