@@ -60,6 +60,9 @@ set nocursorline nocursorcolumn
 cmap <C-A> <Home>
 cmap <C-E> <End>
 
+" Alias capital W to write
+cnoreabbrev W w
+
 " }}}
 " {{{ Key behaviour ============================================================
 
@@ -158,6 +161,9 @@ autocmd FileType * setlocal formatoptions-=cro
 
 " Do not reindent lines with a comment sign (removed 0#)
 autocmd FileType * setlocal cinkeys=0{,0},0),:,!^F,o,O,e
+
+" Add chars to word separator list
+set iskeyword-=_
 
 " }}}
 " {{{ Search and replace =======================================================
