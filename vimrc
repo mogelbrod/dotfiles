@@ -163,7 +163,7 @@ autocmd FileType * setlocal formatoptions-=cro
 autocmd FileType * setlocal cinkeys=0{,0},0),:,!^F,o,O,e
 
 " Add chars to word separator list
-set iskeyword-=_
+" set iskeyword-=_
 
 " }}}
 " {{{ Search and replace =======================================================
