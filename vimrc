@@ -4,6 +4,12 @@ set nocompatible
 " Map leader
 let mapleader = ","
 
+if has('win32') || has ('win64')
+    let $VIMHOME = $VIMRUNTIME
+else
+    let $VIMHOME = $HOME."/.vim"
+endif
+
 " {{{ Language and file encoding ===============================================
 
 " Language settings
@@ -219,6 +225,12 @@ else
 end
 
 let g:SuperTabLongestHighlight = 1
+
+" Enable keyword (dictionary) completion
+set complete+=k
+
+" Dictionary
+autocmd FileType * exe('setl dict+='.$VIMHOME.'/comp/'.&filetype)
 
 " }}}
 " {{{ Colors & syntax highlighting =============================================

@@ -1,0 +1,11 @@
+def begin end
+defined?
+super yield
+true false
+nil self __FILE__ __LINE__
+case do for if unless while until else elsif then when
+and not break ensure in next or redo rescue retry return
+public protected private module_function
+eval class_eval instance_eval module_eval
+raise fail catch throw
+include extend load require
