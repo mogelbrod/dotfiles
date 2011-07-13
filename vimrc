@@ -61,13 +61,16 @@ set laststatus=2 " always show status line
 
 set shortmess=filnxtToOI
 
-set nocursorline nocursorcolumn
-
 cmap <C-A> <Home>
 cmap <C-E> <End>
 
 " Alias capital W to write
 cnoreabbrev W w
+
+" Command line completion
+set wildmenu
+set wildmode=list:longest
+set wildignore=*.o,*.bak,*.swc
 
 " }}}
 " {{{ Key behaviour ============================================================
@@ -123,6 +126,8 @@ set ruler " show the cursor position all the time
 
 set nonu
 
+set nocursorline nocursorcolumn
+
 " Word wrap
 set wrap linebreak
 
@@ -138,6 +143,7 @@ set display=lastline
 
 " Highlighting of matching braces
 "let g:loaded_matchparen=1 " disable
+set showmatch
 set matchpairs=(:),{:},[:]
 
 " Fold
@@ -264,7 +270,8 @@ let Tlist_Use_Right_Window = 1
 command! -nargs=* Make make <args> | cwindow 5
 noremap <leader>m :Make
 noremap <leader>c :Make<CR>
-if has("win32")
+
+if has("win32") " PDF
 	noremap <leader>p :!start cmd /c pdflatex "%" && "C:\Program Files (x86)\Adobe\Reader 9.0\Reader\AcroRd32.exe" "%:r.pdf" & pause<CR>
 else
 	noremap <leader>p :!pdflatex % && evince %:r.pdf &<CR>
@@ -272,6 +279,15 @@ endif
 
 " Ruby
 autocmd FileType ruby setlocal formatoptions=ql tabstop=2 shiftwidth=2 smarttab expandtab
+autocmd FileType ruby setlocal makeprg=ruby\ -w\ $* errorformat=
+	\%+E%f:%l:\ parse\ error,
+	\%W%f:%l:\ warning:\ %m,
+	\%E%f:%l:in\ %*[^:]:\ %m,
+	\%E%f:%l:\ %m,
+	\%-C%\tfrom\ %f:%l:in\ %.%#,
+	\%-Z%\tfrom\ %f:%l,
+	\%-Z%p^,
+	\%-G%.%#
 
 " Lua
 autocmd FileType lua setlocal tabstop=2 shiftwidth=2
