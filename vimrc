@@ -213,13 +213,9 @@ endfunction
 set completeopt=longest,menu ",menuone
 
 " Add some expected functionality to some keys when the completion menu is visible
-inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"
+"inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"
 inoremap <expr> <Down> pumvisible() ? "\<C-n>" : "\<Down>"
 inoremap <expr> <Up> pumvisible() ? "\<C-p>" : "\<Up>"
-
-" Map Ctrl+Space to word completion
-"inoremap <C-@> <C-p> "<C-x><C-u>
-"inoremap <C-Space> <C-p> "<C-x><C-u>
 
 " Map Ctrl-A to expand abbreviation
 imap <silent>  <C-]>
@@ -237,6 +233,7 @@ end
 let g:SuperTabDefaultCompletionType = "context"
 let g:SuperTabContextDefaultCompletionType = "<c-p>"
 let g:SuperTabLongestHighlight = 1
+let g:SuperTabCrMapping = 0
 
 " Enable keyword (dictionary) completion
 set complete+=k
