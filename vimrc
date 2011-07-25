@@ -222,18 +222,18 @@ imap <silent>  <C-]>
 
 " SuperTab bindings for terminal
 if has("gui_running")
-	let g:SuperTabMappingBackward = '<Tab>'
-	let g:SuperTabMappingForward  = '<S-Tab>'
+	let g:SuperTabMappingBackward = '<S-Tab>'
+	let g:SuperTabMappingForward  = '<Tab>'
 else
-	let g:SuperTabMappingBackward = '<Tab>'
-	let g:SuperTabMappingForward  = '[Z'
+	let g:SuperTabMappingBackward = '[Z'
+	let g:SuperTabMappingForward  = '<Tab>'
 end
 
 " SuperTab options
 let g:SuperTabDefaultCompletionType = "context"
 let g:SuperTabContextDefaultCompletionType = "<c-p>"
 let g:SuperTabLongestHighlight = 1
-let g:SuperTabCrMapping = 0
+"let g:SuperTabCrMapping = 0
 
 " Enable keyword (dictionary) completion
 set complete+=k
@@ -291,6 +291,8 @@ autocmd FileType ruby setlocal makeprg=ruby\ -w\ $* errorformat=
 	\%-Z%\tfrom\ %f:%l,
 	\%-Z%p^,
 	\%-G%.%#
+autocmd FileType ruby let g:rubycomplete_classes_in_global = 1
+autocmd FileType ruby let g:rubycomplete_buffer_loading = 1
 
 " Lua
 autocmd FileType lua setlocal tabstop=2 shiftwidth=2
