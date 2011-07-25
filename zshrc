@@ -71,7 +71,7 @@ HISTFILE=~/.histfile
 HISTSIZE=5000
 SAVEHIST=1000
 setopt append_history hist_reduce_blanks
-setopt inc_append_history
+setopt inc_append_history share_history
 # }}}
 
 # }}}
