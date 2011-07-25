@@ -143,7 +143,7 @@ set display=lastline
 
 " Highlighting of matching braces
 "let g:loaded_matchparen=1 " disable
-set showmatch
+" set showmatch " do not jump between matching brace
 set matchpairs=(:),{:},[:]
 
 " Fold
@@ -207,7 +207,7 @@ endfunction
 " {{{ Completion ===============================================================
 
 " Insert the longest common text, show menu for one result too
-set completeopt=longest,menuone
+set completeopt=longest,menu ",menuone
 
 " Add some expected functionality to some keys when the completion menu is visible
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
