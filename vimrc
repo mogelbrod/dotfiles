@@ -233,6 +233,9 @@ else
 	let g:SuperTabMappingForward  = '[Z'
 end
 
+" SuperTab options
+let g:SuperTabDefaultCompletionType = "context"
+let g:SuperTabContextDefaultCompletionType = "<c-p>"
 let g:SuperTabLongestHighlight = 1
 
 " Enable keyword (dictionary) completion
@@ -306,6 +309,9 @@ if has("win32")
 else
 	autocmd FileType cpp setlocal makeprg=make
 endif
+
+" Help files
+autocmd FileType help nmap <buffer><CR> <C-]>
 
 " }}}
 " {{{ GUI settings/overwrites ==================================================
