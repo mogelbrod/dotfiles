@@ -43,8 +43,8 @@ map [1;5C :bnext<CR>
 "noremap <F5> :buffers<CR>:buffer<Space>
 
 " SelectBuf plugin
-nmap <silent> <C-Tab> <Plug>SelectBuf
-imap <silent> <C-Tab> <ESC><Plug>SelectBuf
+"nmap <silent> <C-Tab> <Plug>SelectBuf
+"imap <silent> <C-Tab> <ESC><Plug>SelectBuf
 nmap <silent> <F5> <Plug>SelectBuf
 imap <silent> <F5> <ESC><Plug>SelectBuf
 let g:selBufUseVerticalSplit = 1
@@ -101,9 +101,12 @@ vmap <F7> "+ygv"zy`>
 vmap <C-y> "+ygv"zy`>
 
 " Using Tab and Shift-Tab to (un)indent
-map <Tab> >gv
-map <S-Tab> <gv
-map [Z <gv
+nmap <Tab> >>
+nmap <S-Tab> <<
+vmap [Z <<
+vmap <Tab> >gv
+vmap <S-Tab> <gv
+vmap [Z <gv
 
 " Have the cursor keys wrap between lines (like <Space> and <BkSpc> do)
 set whichwrap=h,l,<,>,[,]
