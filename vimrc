@@ -169,9 +169,9 @@ filetype plugin on
 filetype indent on
 
 " Indentation
-"set autoindent
-set nosmartindent autoindent
-autocmd FileType * setlocal nosmartindent autoindent
+set autoindent
+"set nosmartindent autoindent
+"autocmd FileType * setlocal nosmartindent autoindent
 
 " Formatting options (disable autocommenting)
 set formatoptions-=cro
