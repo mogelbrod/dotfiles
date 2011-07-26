@@ -357,6 +357,7 @@ if has("gui_running")
 	if has('mouse')
 		set mouse=a
 	endif
+	set nomousehide
 
 else
 	
