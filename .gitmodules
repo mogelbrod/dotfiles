@@ -34,3 +34,6 @@
 	path = vim/bundle/command-t
 	url = https://github.com/wincent/Command-T.git
 	ignore = untracked
+[submodule "vim/bundle/rake"]
+	path = vim/bundle/rake
+	url = https://github.com/tpope/vim-rake.git
