@@ -184,10 +184,10 @@ autocmd FileType * setlocal cinkeys=0{,0},0),:,!^F,o,O,e
 " {{{ Search and replace =======================================================
 
 " Ctrl+H replaces the selected text with something else
-vnoremap <C-h> "hy:%s/<C-r>h//gc<left><left><left>
+vnoremap <C-h> "hy:%s`\V\<<C-r>h\>``gc<left><left><left>
 
 " Search for <cword> and replace with input() in all open buffers
-map <leader>h "hy:bufdo! %s/<C-r>h//ge<left><left><left>
+map <leader>h "hy:bufdo! %s`\V\<<C-r>h\>``ge<left><left><left>
 
 " Wrap visual selection in an HTML tag.
 vmap <C-w> <Esc>:call VisualHTMLTagWrap()<CR>
