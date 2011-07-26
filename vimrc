@@ -234,7 +234,7 @@ end
 
 " SuperTab options
 let g:SuperTabDefaultCompletionType = "context"
-let g:SuperTabContextDefaultCompletionType = "<c-p>"
+let g:SuperTabContextDefaultCompletionType = "<c-x><c-o>" "<c-p>
 let g:SuperTabLongestHighlight = 1
 "let g:SuperTabCrMapping = 0
 
@@ -242,7 +242,7 @@ let g:SuperTabLongestHighlight = 1
 set complete+=k
 
 " Dictionary
-autocmd FileType * exe('setl dict+='.$VIMHOME.'/comp/'.&filetype)
+autocmd FileType * exe('setl dict+='.$VIMHOME.'/dict/'.&filetype)
 
 " }}}
 " {{{ Colors & syntax highlighting =============================================
