@@ -212,8 +212,6 @@ endfunction
 
 " }}}
 " {{{ Completion ===============================================================
-Co
-
 
 " Insert the longest common text, show menu for one result too
 set completeopt=longest,menu ",menuone
