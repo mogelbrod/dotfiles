@@ -154,14 +154,22 @@ alias -s htm=$BROWSER html=$BROWSER
 
 # {{{ Program specific functionality
 
+# {{{ Git
 alias gs='git status'
 alias ga='git add'
 alias gc='git commit'
+
 alias gca='git commit --amend'
+alias gr='git reset HEAD'  # unstage files
+alias gcundo='git reset --soft HEAD^'  # undo commit
+
 alias gd='git diff --color'
 alias gds='git diff --color --staged'
+
 alias gl='git log --color --name-status --pretty=format:"%Cred[%h] %an %Cblue(%ar)%n%Cgreen%s%n%b%Creset"' alias gco='git checkout'
-alias gr='git reset HEAD'
+
+alias grm='git ls-files -d -z | xargs -0 git update-index --remove'  # remove missing files
+# }}}
 
 # {{{ Subversion shortcuts
 svnbase() {
