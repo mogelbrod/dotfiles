@@ -69,7 +69,7 @@ cnoreabbrev W w
 
 " Command line completion
 set wildmenu
-set wildmode=list:longest
+set wildmode=longest,list,full
 set wildignore=*.o,*.bak,*.swc
 
 " }}}
