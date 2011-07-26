@@ -221,10 +221,6 @@ set completeopt=longest,menu ",menuone
 inoremap <expr> <Down> pumvisible() ? "\<C-n>" : "\<Down>"
 inoremap <expr> <Up> pumvisible() ? "\<C-p>" : "\<Up>"
 
-" Completion shortcuts
-inoremap <silent>  <C-n>
-inoremap <silent>  <C-x><C-f>
-
 " SuperTab mappings
 if has("gui_running")
 	let g:SuperTabMappingBackward = '<S-Tab>'
@@ -235,9 +231,15 @@ else
 end
 
 " SuperTab options
-let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
+let g:SuperTabDefaultCompletionType = "<C-x><C-i>"
 let g:SuperTabLongestHighlight = 1
 "let g:SuperTabCrMapping = 0
+
+" Completion shortcuts
+inoremap <silent> <C-Space> <C-x><C-o>
+inoremap <silent> <C-@> <C-x><C-o>
+inoremap <silent>  <C-x><C-f>
+inoremap <silent>  <C-n>
 
 " Enable keyword (dictionary) completion
 set complete+=k
