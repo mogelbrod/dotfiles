@@ -6,6 +6,7 @@ let mapleader = ","
 
 if has('win32') || has ('win64')
     let $VIMHOME = $VIMRUNTIME
+		let loaded_taglist=1 " do not load taglist on windows
 else
     let $VIMHOME = $HOME."/.vim"
 endif
