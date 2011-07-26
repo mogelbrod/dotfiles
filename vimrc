@@ -10,6 +10,9 @@ else
     let $VIMHOME = $HOME."/.vim"
 endif
 
+" Include plugins and stuff via pathogen
+call pathogen#infect()
+
 " {{{ Language and file encoding ===============================================
 
 " Language settings
