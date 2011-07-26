@@ -1,7 +1,0 @@
-function custom_key_bindings
-	fish_default_key_bindings
-	bind "\e[1;5D" backward-word
-	bind "\e[1;5C" forward-word
-	bind "\e[3;3~" kill-word 
-end
-set fish_key_bindings custom_key_bindings
