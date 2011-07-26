@@ -158,6 +158,7 @@ alias -s htm=$BROWSER html=$BROWSER
 alias gs='git status'
 alias ga='git add'
 alias gc='git commit'
+alias gcm='git commit -m'
 
 alias gca='git commit --amend'
 alias gr='git reset HEAD'  # unstage files
