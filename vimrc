@@ -212,6 +212,8 @@ endfunction
 
 " }}}
 " {{{ Completion ===============================================================
+Co
+
 
 " Insert the longest common text, show menu for one result too
 set completeopt=longest,menu ",menuone
@@ -221,10 +223,11 @@ set completeopt=longest,menu ",menuone
 inoremap <expr> <Down> pumvisible() ? "\<C-n>" : "\<Down>"
 inoremap <expr> <Up> pumvisible() ? "\<C-p>" : "\<Up>"
 
-" Map Ctrl-A to expand abbreviation
-imap <silent>  <C-]>
+" Completion shortcuts
+inoremap <silent>  <C-n>
+inoremap <silent>  <C-x><C-f>
 
-" SuperTab bindings for terminal
+" SuperTab mappings
 if has("gui_running")
 	let g:SuperTabMappingBackward = '<S-Tab>'
 	let g:SuperTabMappingForward  = '<Tab>'
