@@ -235,8 +235,7 @@ else
 end
 
 " SuperTab options
-let g:SuperTabDefaultCompletionType = "context"
-let g:SuperTabContextDefaultCompletionType = "<c-x><c-o>" "<c-p>
+let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
 let g:SuperTabLongestHighlight = 1
 "let g:SuperTabCrMapping = 0
 
