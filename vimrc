@@ -1,6 +1,10 @@
 " No backwards compability with vi
 set nocompatible
 
+filetype on
+filetype plugin on
+filetype indent on
+
 " Map leader
 let mapleader = ","
 
@@ -161,10 +165,6 @@ set incsearch
 " Yank to system clipboard by default
 set clipboard=unnamed
 
-filetype on
-filetype plugin on
-filetype indent on
-
 " Indentation
 set autoindent
 "set nosmartindent autoindent
@@ -276,6 +276,37 @@ let Tlist_Use_Right_Window = 1
 
 
 " }}}
+" {{{ Custom functions =========================================================
+
+function! RI_lookup(ruby_entity)
+	let s:ri_result = system('ri ' . a:ruby_entity)
+	if match(s:ri_result, "More than one") != -1
+		let s:header_and_result = split(s:ri_result, '\n\n')
+		let s:result_as_list = split(substitute(substitute(s:header_and_result[1], '\n', '', 'g'), ' ', '', 'g'), ',')
+
+		echo s:header_and_result[0]
+		echo '---------------------------------------------------------'
+
+		let s:index = 0
+		for item in s:result_as_list
+			echo '' . s:index . '  -  ' . item
+			let s:index += 1
+		endfor
+
+		echo '---------------------------------------------------------'
+		let s:user_selection = input('Specify choice by number: ')
+
+		:redraw
+		:call RI_lookup(s:result_as_list[str2nr(s:user_selection)])
+	else
+		echo s:ri_result
+	endif
+endfunction
+
+au filetype ruby nn <buffer> <silent> <leader>i <Esc>:call<space>RI_lookup(expand('<cword>'))<CR>
+au filetype ruby vn <buffer> <silent> <leader>i "xy<Esc>:call<space>RI_lookup(<C-r>x)<CR>
+
+" }}}
 " {{{ File type specific options ===============================================
 
 " Compiling
@@ -300,8 +331,8 @@ autocmd FileType ruby setlocal makeprg=ruby\ -w\ $* errorformat=
 	\%-Z%\tfrom\ %f:%l,
 	\%-Z%p^,
 	\%-G%.%#
-autocmd FileType ruby let g:rubycomplete_classes_in_global = 1
-autocmd FileType ruby let g:rubycomplete_buffer_loading = 1
+"autocmd FileType ruby let g:rubycomplete_buffer_loading = 1
+autocmd FileType ruby let g:rubycomplete_rails = 1
 
 " Lua
 autocmd FileType lua setlocal tabstop=2 shiftwidth=2
