@@ -115,10 +115,6 @@ vmap [Z <gv
 " Have the cursor keys wrap between lines (like <Space> and <BkSpc> do)
 set whichwrap=h,l,<,>,[,]
 
-" Display possibly unwanted spaces
-noremap <leader>se / \+$<CR>
-noremap <leader>ss /^ \+$<CR>
-
 " Fold navigation
 map <silent> <Leader><Up> zk
 map <silent> <Leader><Down> zj
@@ -255,6 +251,13 @@ if &t_Co > 2 || has("gui_running")
   syntax on
   set hlsearch
 endif
+
+" Highlight extra whitespace
+autocmd ColorScheme * hi ExtraWhitespace ctermbg=brown guibg=brown
+autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+autocmd BufWinLeave * call clearmatches()
 
 " Select colorscheme
 colorscheme mogelbrod
