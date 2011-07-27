@@ -303,8 +303,9 @@ function! RI_lookup(ruby_entity)
 	endif
 endfunction
 
-au filetype ruby nn <buffer> <silent> <leader>i <Esc>:call<space>RI_lookup(expand('<cword>'))<CR>
-au filetype ruby vn <buffer> <silent> <leader>i "xy<Esc>:call<space>RI_lookup(@x)<CR>
+au filetype ruby nn <buffer> <silent> K <Esc>:call<space>RI_lookup(expand('<cword>'))<CR>
+au filetype ruby vn <buffer> <silent> K "xy<Esc>:call<space>RI_lookup(@x)<CR>
+command -nargs=* Ri call RI_lookup(<q-args>)
 
 " }}}
 " {{{ File type specific options ===============================================
