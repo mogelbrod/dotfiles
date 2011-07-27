@@ -37,3 +37,4 @@
 [submodule "vim/bundle/rake"]
 	path = vim/bundle/rake
 	url = https://github.com/tpope/vim-rake.git
+	ignore = untracked

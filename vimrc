@@ -27,7 +27,7 @@ set termencoding=utf-8
 set encoding=utf-8
 set fileformat=unix
 
-set ignorecase smartcase
+set noignorecase "smartcase
 
 " }}}
 " {{{ Buffer handling ==========================================================
