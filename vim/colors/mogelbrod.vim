@@ -90,25 +90,25 @@ hi Function			ctermfg=Red		ctermbg=none	cterm=none		guifg=#f65a5a	gui=none
 
 " Statements
 hi Statement		ctermfg=Brown	ctermbg=none	cterm=none		guifg=#f0b43c	gui=none
-"hi Conditional		
-"hi Repeat			
-"hi Label			
-"hi Operator		
-"hi Keyword			
-"hi Exception		
+"hi Conditional
+"hi Repeat
+"hi Label
+"hi Operator
+"hi Keyword
+"hi Exception
 
 " Preprocessors
 hi PreProc			ctermfg=Cyan	ctermbg=none	cterm=none		guifg=#3cb9e6	gui=none
-"hi Include			
-"hi Define			
-"hi Macro			
-"hi PreCondit		
+"hi Include
+"hi Define
+"hi Macro
+"hi PreCondit
 
 " Types
 hi Type				ctermfg=Green	ctermbg=none	cterm=none		guifg=#78dc1e	gui=none
-"hi StorageClass	
-"hi Structure		
-"hi Typedef			
+"hi StorageClass
+"hi Structure
+"hi Typedef
 
 " Special symbols
 hi Special			ctermfg=Blue	ctermbg=none	cterm=bold		guifg=#7373e6	gui=none
@@ -118,7 +118,7 @@ hi Delimeter		ctermfg=White	ctermbg=none	cterm=none		guifg=#ffffff	gui=none
 hi Debug			ctermfg=Red		ctermbg=none	cterm=bold		guifg=#f35d5d	gui=none
 
 " Other stuff
-hi Error			ctermfg=White	ctermbg=Red		cterm=none		guifg=#000000	guibg=#f65a5a	gui=none
+hi Error			ctermfg=White	ctermbg=Red		cterm=none		guifg=#ffcccc	guibg=#aa3333	gui=none
 hi Ignored			ctermfg=White	ctermbg=none	cterm=bold		guifg=#ffffff	gui=none
 hi Todo				ctermfg=White	ctermbg=none	cterm=bold		guifg=yellow	guibg=bg		gui=none
 hi Underlined		ctermfg=White	ctermbg=none	cterm=underline	guifg=#ffffff	gui=none
