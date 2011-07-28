@@ -2,10 +2,6 @@
 	path = vim/bundle/autoclose
 	url = https://github.com/Townk/vim-autoclose.git
 	ignore = untracked
-[submodule "vim/bundle/ragtag"]
-	path = vim/bundle/ragtag
-	url = https://github.com/tpope/vim-ragtag.git
-	ignore = untracked
 [submodule "vim/bundle/surround"]
 	path = vim/bundle/surround
 	url = https://github.com/tpope/vim-surround.git
