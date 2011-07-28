@@ -240,6 +240,9 @@ inoremap <silent>  <C-n>
 " Sparkup HTML mapping
 let g:sparkupExecuteMapping = '<C-i>'
 
+" Ragtag options
+let g:ragtag_global_maps = 1
+
 " Enable keyword (dictionary) completion
 set complete+=k
 
