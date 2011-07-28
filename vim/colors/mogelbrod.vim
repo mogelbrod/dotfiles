@@ -30,7 +30,7 @@ hi CursorColumn	ctermfg=none	ctermbg=none	cterm=none		guibg=#1b1b1b	gui=none
 " Search
 hi Search				ctermfg=Black	ctermbg=Brown	cterm=none		guifg=#141414	guibg=#f0b43c	gui=none
 hi IncSearch		ctermfg=Black	ctermbg=Brown	cterm=bold		guifg=#141414	guibg=#ffcd64	gui=none
-hi MatchParen		ctermfg=White	ctermbg=Black cterm=bold		guifg=#ffffff	guibg=#3cb9e6	gui=none
+hi MatchParen		ctermfg=White	ctermbg=Black cterm=bold		guifg=#ffffff	guibg=#445566 gui=none
 
 " Window Elements
 hi LineNr				ctermfg=Grey	ctermbg=none	cterm=none		guifg=#626262	guibg=#141414	gui=none
