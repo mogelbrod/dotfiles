@@ -227,18 +227,15 @@ else
 end
 
 " SuperTab options
-let g:SuperTabDefaultCompletionType = "<C-x><C-i>"
+let g:SuperTabDefaultCompletionType = "<C-n>"
 let g:SuperTabLongestHighlight = 1
 "let g:SuperTabCrMapping = 0
 
 " Completion shortcuts
 inoremap <silent> <C-Space> <C-x><C-o>
 inoremap <silent> <C-@> <C-x><C-o>
+inoremap <silent>  <C-x><C-i>
 inoremap <silent>  <C-x><C-f>
-inoremap <silent>  <C-n>
-
-" Sparkup HTML mapping
-let g:sparkupExecuteMapping = '<C-i>'
 
 " Ragtag options
 let g:ragtag_global_maps = 1
@@ -311,7 +308,7 @@ endfunction
 
 au filetype ruby nn <buffer> <silent> K <Esc>:call<space>RI_lookup(expand('<cword>'))<CR>
 au filetype ruby vn <buffer> <silent> K "xy<Esc>:call<space>RI_lookup(@x)<CR>
-command -nargs=* Ri call RI_lookup(<q-args>)
+command! -nargs=* Ri call RI_lookup(<q-args>)
 
 " }}}
 " {{{ File type specific options ===============================================
