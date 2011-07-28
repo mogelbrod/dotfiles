@@ -126,6 +126,11 @@ map <silent> <Leader><Down> zj
 " Tag jumping
 map <silent> <Leader>t <C-]>
 
+" Fix bug introduced by AutoClose (arrow keys mapping to ABCD)
+if !has("gui_running")
+	let g:AutoClosePreservDotReg = 0
+endif
+
 " }}}
 " {{{ Text & display guides ====================================================
 
