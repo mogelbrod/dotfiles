@@ -237,6 +237,9 @@ inoremap <silent> <C-@> <C-x><C-o>
 inoremap <silent>  <C-x><C-f>
 inoremap <silent>  <C-n>
 
+" Sparkup HTML mapping
+let g:sparkupExecuteMapping = '<C-i>'
+
 " Enable keyword (dictionary) completion
 set complete+=k
 
@@ -279,7 +282,7 @@ let Tlist_Use_Right_Window = 1
 " {{{ Custom functions =========================================================
 
 function! RI_lookup(ruby_entity)
-	let s:ri_result = system('ri ' . a:ruby_entity)
+	let s:ri_result = system('ri "' . a:ruby_entity . '"')
 	if match(s:ri_result, "More than one") != -1
 		let s:header_and_result = split(s:ri_result, '\n\n')
 		let s:result_as_list = split(substitute(substitute(s:header_and_result[1], '\n', '', 'g'), ' ', '', 'g'), ',')
