@@ -137,6 +137,9 @@ alias scr='screen -RdU'
 alias sc='screen'
 alias du='du -hs'
 
+# cd which replaces substrings in PWD
+function scd { cd `echo $PWD | sed s/$1/$2/` }
+
 # Nicely formatted date
 alias datex='date +"%Y-%m-%d (%A) @ %H:%M:%S"'
 
