@@ -1,48 +1,5 @@
 require 'rubygems'
 
-begin
-  colors = { # {{{ Wirble colors
-    # delimiter colors
-    :comma              => :white,
-    :refers             => :white,
-
-    # container colors (hash and array)
-    :open_hash          => :white,
-    :close_hash         => :white,
-    :open_array         => :white,
-    :close_array        => :white,
-
-    # object colors
-    :open_object        => :light_red,
-    :object_class       => :white,
-    :object_addr_prefix => :dark_gray,
-    :object_line_prefix => :blue,
-    :close_object       => :light_red,
-
-    # symbol colors
-    :symbol             => :light_green,
-    :symbol_prefix      => :light_green,
-
-    # string colors
-    :open_string        => :blue,
-    :string             => :light_purple,
-    :close_string       => :blue,
-
-    # misc colors
-    :number             => :purple,
-    :keyword            => :brown,
-    :class              => :red,
-    :range              => :blue,
-  } # }}}
-
-  require 'wirble'
-  Wirble::Colorize.colors = colors
-  Wirble.init
-  Wirble.colorize
-rescue LoadError => ex
-  warn "Wirble gem failed to load: #{ex}"
-end
-
 IRB.conf[:SAVE_HISTORY] = 100
 IRB.conf[:EVAL_HISTORY] = 10
 IRB.conf[:USE_READLINE] = true
