@@ -8,6 +8,7 @@ filetype indent on
 " Map leader
 let mapleader = ","
 
+" Override vim home path on windows
 if has('win32') || has ('win64')
     let $VIMHOME = $VIMRUNTIME
 		let loaded_taglist=1 " do not load taglist on windows
@@ -15,10 +16,14 @@ else
     let $VIMHOME = $HOME."/.vim"
 endif
 
+" Bindings to open vimrc and to reload vimrc
+map <leader>V :args $MYVIMRC<CR>
+map <silent> <leader>v :source $MYVIMRC<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>
+
 " Include plugins and stuff via pathogen
 call pathogen#infect()
 
-" {{{ Language and file encoding ===============================================
+" {{{ Basic settings
 
 " Language settings
 let $LANG='en'
@@ -26,117 +31,30 @@ set langmenu=en
 set helplang=en
 
 " Use Unicode and Unix linebreaks
-"let &termencoding = &encoding
 set termencoding=utf-8
 set encoding=utf-8
 set fileformat=unix
 
 set noignorecase "smartcase
 
-" }}}
-" {{{ Buffer handling ==========================================================
-
-" Allow switching of buffers without saving them first
-set hidden
-
-" Ctrl+Left/right switches between buffers
-map <C-Left> :bprevious<CR>
-map <C-Right> :bnext<CR>
-map [D :bprevious<CR>
-map [C :bnext<CR>
-map [1;5D :bprevious<CR>
-map [1;5C :bnext<CR>
-
-" List buffers with <F5>, and allow switching by using the corresponding number
-"noremap <F5> :buffers<CR>:buffer<Space>
-
-" SelectBuf plugin
-"nmap <silent> <C-Tab> <Plug>SelectBuf
-"imap <silent> <C-Tab> <ESC><Plug>SelectBuf
-nmap <silent> <F5> <Plug>SelectBuf
-imap <silent> <F5> <ESC><Plug>SelectBuf
-let g:selBufUseVerticalSplit = 1
-
-noremap <leader>d :cd %:p:h<CR>
-
-" }}}
-" {{{ Command input and display ================================================
-
 set history=50 " command line history length
-set showcmd " show incomplete commands
-
-set laststatus=2 " always show status line
-
-set shortmess=filnxtToOI
-
-cmap <C-A> <Home>
-cmap <C-E> <End>
-
-" Alias capital W to write
-cnoreabbrev W w
 
 " Command line completion
 set wildmenu
 set wildmode=longest,list,full
 set wildignore=*.o,*.bak,*.swc
 
-" }}}
-" {{{ Key behaviour ============================================================
+" Yank to system clipboard by default
+set clipboard=unnamed
 
-" Bindings to open vimrc and to reload vimrc
-map <leader>V :args $MYVIMRC<CR>
-map <silent> <leader>v :source $MYVIMRC<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>
-
-set backspace=indent,eol,start
-vnoremap <BS> d " backspace in visual mode deletes selection
-
-" Navigate through displayed lines, not physical
-imap <silent> <Down> <C-o>gj
-imap <silent> <Up> <C-o>gk
-nmap <silent> <Down> gj
-nmap <silent> <Up> gk
-
-" F2 toggles pasting mode
-set pastetoggle=<F2>
-nnoremap <F2> :set invpaste paste?<CR>
-
-" F3 toggles highlighting of search results
-noremap <F3> :set hls!<CR>
-
-" F7 copies selected text to system clipboard
-vmap <F7> "+ygv"zy`>
-vmap <C-y> "+ygv"zy`>
-
-" Using Tab and Shift-Tab to (un)indent
-nmap <Tab> >>
-nmap <S-Tab> <<
-vmap [Z <<
-vmap <Tab> >gv
-vmap <S-Tab> <gv
-vmap [Z <gv
-
-" Have the cursor keys wrap between lines (like <Space> and <BkSpc> do)
-set whichwrap=h,l,<,>,[,]
-
-" Fold navigation
-map <silent> <Leader><Up> zk
-map <silent> <Leader><Down> zj
-
-" Tag jumping
-map <silent> <Leader>t <C-]>
-
-" Fix bug introduced by AutoClose (arrow keys mapping to ABCD)
-if !has("gui_running")
-	let g:AutoClosePreservDotReg = 0
-endif
+" Indentation
+set autoindent
 
 " }}}
-" {{{ Text & display guides ====================================================
+" {{{ UI / display appearance
 
-set ruler " show the cursor position all the time
-
-set nonu
-
+set ruler
+set nonumber
 set nocursorline nocursorcolumn
 
 " Word wrap
@@ -149,30 +67,103 @@ set shiftwidth=2
 " Minimum number of lines surrounding cursor
 set scrolloff=3
 
-" Show as much as possible of the last line instead of "@"-lines
+" Show as much as possible of the last line instead of @-lines
 set display=lastline
 
 " Highlighting of matching braces
-"let g:loaded_matchparen=1 " disable
-" set showmatch " do not jump between matching brace
 set matchpairs=(:),{:},[:]
 
-" Fold
 set foldmethod=marker
 
-" Show search results while being typed
-set incsearch
+set incsearch " Show search results while being typed
+set showcmd " show incomplete commands
+set laststatus=2 " always show status line
+
+set shortmess=filnxtToOI
 
 " }}}
-" {{{ Input ====================================================================
+" {{{ Buffers
 
-" Yank to system clipboard by default
-set clipboard=unnamed
+" Allow switching of buffers without saving them first
+set hidden
 
-" Indentation
-set autoindent
-"set nosmartindent autoindent
-"autocmd FileType * setlocal nosmartindent autoindent
+" Ctrl+Left/right switches between buffers
+noremap <C-Left> :bprevious<CR>
+noremap <C-Right> :bnext<CR>
+noremap [D :bprevious<CR>
+noremap [C :bnext<CR>
+noremap [1;5D :bprevious<CR>
+noremap [1;5C :bnext<CR>
+
+" SelectBuf plugin
+"nmap <silent> <C-Tab> <Plug>SelectBuf
+"imap <silent> <C-Tab> <ESC><Plug>SelectBuf
+nmap <silent> <F5> <Plug>SelectBuf
+imap <silent> <F5> <ESC><Plug>SelectBuf
+let g:selBufUseVerticalSplit = 1
+
+" }}}
+" {{{ Command line
+
+" Quick shortcut for entering mode
+nnoremap - :
+
+" Usable bindings
+cnoremap <C-A> <Home>
+cnoremap <C-E> <End>
+" Ctrl-Arrow word jump
+cnoremap [D <S-Left>
+cnoremap [C <S-Right>
+
+" Alias capital W to write
+cnoreabbrev W w
+
+" }}}
+" {{{ Key behaviour & custom mappings
+
+" Navigate through displayed lines, not physical
+imap <silent> <Down> <C-o>gj
+imap <silent> <Up> <C-o>gk
+nmap <silent> <Down> gj
+nmap <silent> <Up> gk
+
+" Allow backspacing over everything
+set backspace=indent,eol,start
+
+" Have the cursor keys wrap between lines (like <Space> and <BkSpc> do)
+set whichwrap=h,l,<,>,[,]
+
+" F2 toggles pasting mode
+set pastetoggle=<F2>
+nnoremap <F2> :set invpaste paste?<CR>
+
+" F3 toggles highlighting of search results
+noremap <F3> :set hls!<CR>
+
+" F7 copies selected text to system clipboard
+vmap <F7> "+ygv"zy`>
+vmap <C-y> "+ygv"zy`>
+
+" Fold navigation
+map <silent> <Leader><Up> zk
+map <silent> <Leader><Down> zj
+
+" Tag jumping
+map <silent> <Leader>t <C-]>
+
+" Change directory to current buffer path
+noremap <leader>d :cd %:p:h<CR>
+
+" }}}
+" {{{ (Re)formatting
+
+" Using Tab and Shift-Tab to (un)indent
+nmap <Tab> >>
+nmap <S-Tab> <<
+vmap [Z <<
+vmap <Tab> >gv
+vmap <S-Tab> <gv
+vmap [Z <gv
 
 " Formatting options (disable autocommenting)
 set formatoptions-=cro
@@ -181,11 +172,8 @@ autocmd FileType * setlocal formatoptions-=cro
 " Do not reindent lines with a comment sign (removed 0#)
 autocmd FileType * setlocal cinkeys=0{,0},0),:,!^F,o,O,e
 
-" Add chars to word separator list
-" set iskeyword-=_
-
 " }}}
-" {{{ Search and replace =======================================================
+" {{{ Search and replace
 
 " Ctrl+H replaces the selected text with something else
 vnoremap <C-h> "hy:%s`\V\<<C-r>h\>``gc<left><left><left>
@@ -211,7 +199,7 @@ function! VisualHTMLTagWrap()
 endfunction
 
 " }}}
-" {{{ Completion ===============================================================
+" {{{ Completion
 
 " Insert the longest common text, show menu for one result too
 set completeopt=longest,menu ",menuone
@@ -251,7 +239,7 @@ set complete+=k
 autocmd FileType * exe('setl dict+='.$VIMHOME.'/dict/'.&filetype)
 
 " }}}
-" {{{ Colors & syntax highlighting =============================================
+" {{{ Colors & syntax highlighting
 
 " Enable syntax highlighting
 if &t_Co > 2 || has("gui_running")
@@ -261,17 +249,18 @@ endif
 
 " Highlight extra whitespace
 autocmd ColorScheme * hi ExtraWhitespace ctermbg=brown guibg=brown
-autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+autocmd BufWinEnter * match ExtraWhitespace /[^\s]\s\+$/
 autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
-autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+autocmd InsertLeave * match ExtraWhitespace /[^\s]\s\+$/
 autocmd BufWinLeave * call clearmatches()
 
 " Select colorscheme
 colorscheme mogelbrod
 
 " }}}
-" {{{ Tag list window ==========================================================
+" {{{ Plugins
 
+" Tag list
 map <F6> :TlistToggle<CR>
 let Tlist_Compact_Format = 1
 let Tlist_Enable_Fold_Column = 0
@@ -281,9 +270,16 @@ let Tlist_File_Fold_Auto_Close = 1
 let Tlist_Highlight_Tag_On_BufEnter = 0
 let Tlist_Use_Right_Window = 1
 
+if !has("gui_running")
+	" Do not resize window when toggling tag list split
+	let Tlist_Inc_Winwidth = 0
+	" Fix bug introduced by AutoClose (arrow keys mapping to ABCD)
+	let g:AutoClosePreservDotReg = 0
+endif
+
 
 " }}}
-" {{{ Custom functions =========================================================
+" {{{ Custom functions
 
 function! RI_lookup(ruby_entity)
 	let s:ri_result = system('ri "' . a:ruby_entity . '"')
@@ -315,7 +311,7 @@ au filetype ruby vn <buffer> <silent> K "xy<Esc>:call<space>RI_lookup(@x)<CR>
 command! -nargs=* Ri call RI_lookup(<q-args>)
 
 " }}}
-" {{{ File type specific options ===============================================
+" {{{ File type specific options
 
 " Compiling
 command! -nargs=* Make make <args> | cwindow 5
@@ -323,7 +319,7 @@ noremap <leader>m :Make
 noremap <leader>c :Make<CR>
 
 if has("win32") " PDF
-	noremap <leader>p :!start cmd /c pdflatex "%" && "C:\Program Files (x86)\Adobe\Reader 9.0\Reader\AcroRd32.exe" "%:r.pdf" & pause<CR>
+	noremap <leader>p :!start cmd /c pdflatex "%" && "C:\Program Files (x86)\Adobe\Reader 10.0\Reader\AcroRd32.exe" "%:r.pdf" & pause<CR>
 else
 	noremap <leader>p :!pdflatex % && evince %:r.pdf &<CR>
 endif
@@ -361,7 +357,7 @@ endif
 autocmd FileType help nmap <buffer><CR> <C-]>
 
 " }}}
-" {{{ GUI settings/overwrites ==================================================
+" {{{ GUI settings/overwrites
 
 if has("gui_running")
 
@@ -376,12 +372,10 @@ if has("gui_running")
 	set guioptions-=T
 
 	" Window size
-	set columns=100
-	set lines=50
+	set columns=100 lines=50
 
 	" Line numbers
-	set numberwidth=5
-	set nu
+	set number numberwidth=5
 
 	" Highlight current line
 	set cursorline
@@ -402,10 +396,6 @@ if has("gui_running")
 		set mouse=a
 	endif
 	set nomousehide
-
-else
-	
-	let Tlist_Inc_Winwidth = 0
 
 endif
 
