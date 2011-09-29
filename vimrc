@@ -96,13 +96,12 @@ imap <silent> <Up> <C-o>gk
 nmap <silent> <Down> gj
 nmap <silent> <Up> gk
 
+" F2 toggles pasting mode
+set pastetoggle=<F2>
+nnoremap <F2> :set invpaste paste?<CR>
+
 " F3 toggles highlighting of search results
 noremap <F3> :set hls!<CR>
-
-" F4 toggles pasting mode
-nnoremap <F4> :set invpaste paste?<CR>
-imap <F4> <C-O><F4>
-set pastetoggle=<F4>
 
 " F7 copies selected text to system clipboard
 vmap <F7> "+ygv"zy`>
