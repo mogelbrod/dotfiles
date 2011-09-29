@@ -243,13 +243,6 @@ if &t_Co > 2 || has("gui_running")
   set hlsearch
 endif
 
-" Highlight extra whitespace
-autocmd ColorScheme * hi ExtraWhitespace ctermbg=brown guibg=brown
-autocmd BufWinEnter * match ExtraWhitespace /[^\s]\s\+$/
-autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
-autocmd InsertLeave * match ExtraWhitespace /[^\s]\s\+$/
-autocmd BufWinLeave * call clearmatches()
-
 " Select colorscheme
 colorscheme mogelbrod
 
@@ -316,7 +309,7 @@ command! -nargs=* Ri call RI_lookup(<q-args>)
 
 " Compiling
 command! -nargs=* Make make <args> | cwindow 5
-noremap <leader>m :Make
+noremap <leader>m :Make<space>
 noremap <leader>c :Make<CR>
 
 if has("win32") " PDF
