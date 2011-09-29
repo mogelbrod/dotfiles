@@ -136,10 +136,6 @@ nnoremap <F2> :set invpaste paste?<CR>
 " F3 toggles highlighting of search results
 noremap <F3> :set hls!<CR>
 
-" F7 copies selected text to system clipboard
-vmap <F7> "+ygv"zy`>
-vmap <C-y> "+ygv"zy`>
-
 " Fold navigation
 map <silent> <Leader><Up> zk
 map <silent> <Leader><Down> zj
@@ -259,6 +255,9 @@ colorscheme mogelbrod
 
 " }}}
 " {{{ Plugins
+
+" NERDtree
+map <F4> :NERDTreeToggle<CR>
 
 " Tag list
 map <F6> :TlistToggle<CR>
