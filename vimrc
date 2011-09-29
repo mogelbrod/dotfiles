@@ -258,6 +258,8 @@ colorscheme mogelbrod
 
 " NERDtree
 map <F4> :NERDTreeToggle<CR>
+let NERDTreeWinSize=26
+let NERDTreeMinimalUI=1
 
 " Tag list
 map <F6> :TlistToggle<CR>
