@@ -1,6 +1,3 @@
-" No backwards compability with vi
-set nocompatible
-
 filetype on
 filetype plugin on
 filetype indent on
@@ -16,14 +13,13 @@ else
     let $VIMHOME = $HOME."/.vim"
 endif
 
-" Bindings to open vimrc and to reload vimrc
-map <leader>V :args $MYVIMRC<CR>
-map <silent> <leader>v :source $MYVIMRC<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>
-
 " Include plugins and stuff via pathogen
 call pathogen#infect()
 
 " {{{ Basic settings
+
+" No backwards compability with vi
+set nocompatible
 
 " Language settings
 let $LANG='en'
@@ -153,6 +149,10 @@ map <silent> <Leader>t <C-]>
 
 " Change directory to current buffer path
 noremap <leader>d :cd %:p:h<CR>
+
+" Bindings to open vimrc and to reload vimrc
+map <leader>V :args $MYVIMRC<CR>
+map <silent> <leader>v :source $MYVIMRC<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>
 
 " }}}
 " {{{ (Re)formatting
