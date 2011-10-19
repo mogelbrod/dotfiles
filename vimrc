@@ -319,7 +319,7 @@ else
 endif
 
 " Ruby
-autocmd FileType ruby setlocal formatoptions=ql tabstop=2 shiftwidth=2 smarttab expandtab
+autocmd FileType ruby,haml setlocal formatoptions=ql tabstop=2 shiftwidth=2 smarttab noexpandtab
 autocmd FileType ruby setlocal makeprg=ruby\ -w\ $* errorformat=
 	\%+E%f:%l:\ parse\ error,
 	\%W%f:%l:\ warning:\ %m,
