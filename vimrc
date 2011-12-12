@@ -315,11 +315,10 @@ noremap <leader>c :Make<CR>
 " LaTeX
 autocmd FileType tex setlocal makeprg=pdflatex\ -file-line-error\ % errorformat=%f:%l:\ %m
 
-
 if has("win32") " PDF
-	noremap <leader>p :!start cmd /c pdflatex "%" && "C:\Program Files (x86)\Adobe\Reader 10.0\Reader\AcroRd32.exe" "%:r.pdf" & pause<CR>
+	noremap <leader>p :silent ! start "1" "%:r.pdf"<CR>
 else
-	noremap <leader>p :!pdflatex % && evince %:r.pdf &<CR>
+	noremap <leader>p :silent !start evince %:r.pdf &<CR>
 endif
 
 " Ruby
