@@ -316,7 +316,7 @@ noremap <leader>c :Make<CR>
 autocmd FileType tex setlocal makeprg=pdflatex\ -file-line-error\ % errorformat=%f:%l:\ %m
 
 if has("win32") " PDF
-	noremap <leader>p :silent ! start "1" "%:r.pdf"<CR>
+	noremap <leader>p :make<CR>:silent ! start "1" "%:r.pdf"<CR>
 else
 	noremap <leader>p :silent !start evince %:r.pdf &<CR>
 endif
@@ -361,6 +361,9 @@ if has("gui_running")
 	if has("win32")
 		" Editor font
 		set guifont=ProFontWindows:h9
+		map <leader>0 :set guifont=ProFontWindows:h9<CR>
+		map <leader>+ :set guifont=ProFontWindows:h16<CR>
+
 		" Ctrl-C copies
 		vmap <C-c> "+y
 	endif
