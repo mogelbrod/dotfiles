@@ -339,7 +339,7 @@ autocmd FileType ruby let g:rubycomplete_rails = 1
 autocmd FileType lua setlocal tabstop=2 shiftwidth=2
 
 " Java
-autocmd FileType java setlocal makeprg=ant\ -e
+autocmd FileType java setlocal makeprg=ant\ -e\ -find
 
 " C++
 autocmd FileType cpp setlocal foldmarker={,}
