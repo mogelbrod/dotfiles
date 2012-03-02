@@ -161,6 +161,9 @@ vmap <Tab> >gv
 vmap <S-Tab> <gv
 vmap [Z <gv
 
+" Expand tabs to spaces in selection
+vmap <leader>e :s#\t#\=repeat(" ", &l:ts)#g<CR>
+
 " Formatting options (disable autocommenting)
 set formatoptions-=cro
 autocmd FileType * setlocal formatoptions-=cro
