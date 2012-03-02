@@ -60,7 +60,7 @@ set wrap linebreak
 set tabstop=2
 set shiftwidth=2
 
-set listchars=tab:··,trail:°
+set listchars=tab:·\ ,trail:°
 
 " Minimum number of lines surrounding cursor
 set scrolloff=3
