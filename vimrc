@@ -366,6 +366,7 @@ if has("gui_running")
 	if has("win32")
 		" Editor font
 		set guifont=ProFontWindows:h9
+		map <leader>9 :set guifont=Consolas:h9<CR>
 		map <leader>0 :set guifont=ProFontWindows:h9<CR>
 		map <leader>+ :set guifont=ProFontWindows:h16<CR>
 
