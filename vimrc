@@ -60,6 +60,8 @@ set wrap linebreak
 set tabstop=2
 set shiftwidth=2
 
+set listchars=tab:·\ ,trail:°
+
 " Minimum number of lines surrounding cursor
 set scrolloff=3
 
@@ -160,6 +162,9 @@ vmap [Z <<
 vmap <Tab> >gv
 vmap <S-Tab> <gv
 vmap [Z <gv
+
+" Expand tabs to spaces in selection
+vmap <leader>e :s#\t#\=repeat(" ", &l:ts)#g<CR>
 
 " Formatting options (disable autocommenting)
 set formatoptions-=cro
@@ -312,10 +317,13 @@ command! -nargs=* Make make <args> | cwindow 5
 noremap <leader>m :Make<space>
 noremap <leader>c :Make<CR>
 
+" LaTeX
+autocmd FileType tex setlocal makeprg=pdflatex\ -file-line-error\ % errorformat=%f:%l:\ %m
+
 if has("win32") " PDF
-	noremap <leader>p :!start cmd /c pdflatex "%" && "C:\Program Files (x86)\Adobe\Reader 10.0\Reader\AcroRd32.exe" "%:r.pdf" & pause<CR>
+	noremap <leader>p :make<CR>:silent ! start "1" "%:r.pdf"<CR>
 else
-	noremap <leader>p :!pdflatex % && evince %:r.pdf &<CR>
+	noremap <leader>p :silent !start evince %:r.pdf &<CR>
 endif
 
 " Ruby
@@ -336,7 +344,7 @@ autocmd FileType ruby let g:rubycomplete_rails = 1
 autocmd FileType lua setlocal tabstop=2 shiftwidth=2
 
 " Java
-autocmd FileType java setlocal makeprg=ant\ -e
+autocmd FileType java setlocal makeprg=ant\ -e\ -find
 
 " C++
 autocmd FileType cpp setlocal foldmarker={,}
@@ -358,6 +366,10 @@ if has("gui_running")
 	if has("win32")
 		" Editor font
 		set guifont=ProFontWindows:h9
+		map <leader>9 :set guifont=Consolas:h9<CR>
+		map <leader>0 :set guifont=ProFontWindows:h9<CR>
+		map <leader>+ :set guifont=ProFontWindows:h16<CR>
+
 		" Ctrl-C copies
 		vmap <C-c> "+y
 	endif

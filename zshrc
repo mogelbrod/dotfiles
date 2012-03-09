@@ -169,6 +169,7 @@ alias gc='git commit'
 alias gcm='git commit -m'
 
 alias gca='git commit --amend'
+alias gundo='git rm --cached -r ' # proper unstaging of files
 alias gr='git reset HEAD'  # unstage files
 alias gcundo='git reset --soft HEAD^'  # undo commit
 
