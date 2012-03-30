@@ -126,10 +126,10 @@ nmap <silent> <Down> gj
 nmap <silent> <Up> gk
 
 " Scroll screen with <C-arrows>
-nmap <silent> <C-Up> <C-e>
-nmap <silent> <C-Down> <C-y>
-imap <silent> <C-Up> <C-x><C-e>
-imap <silent> <C-Down> <C-x><C-y>
+nmap <silent> <C-Down> <C-e>
+nmap <silent> <C-Up> <C-y>
+imap <silent> <C-Down> <C-x><C-e>
+imap <silent> <C-Up> <C-x><C-y>
 
 " Allow backspacing over everything
 set backspace=indent,eol,start
