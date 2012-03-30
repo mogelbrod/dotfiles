@@ -158,6 +158,10 @@ noremap <leader>d :cd %:p:h<CR>
 map <leader>V :args $MYVIMRC<CR>
 map <silent> <leader>v :source $MYVIMRC<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>
 
+" Map Ctrl-< (lt) to surround plugin
+" Surround plugin also allows <C-s><CR>< to create multi-line tag
+imap <silent>  <C-s><
+
 " }}}
 " {{{ (Re)formatting
 
