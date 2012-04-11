@@ -1,0 +1,30 @@
+# awesome_print ruby gem config
+AwesomePrint.defaults = {
+	:indent     => -4,
+	:index      => true,
+	:html       => false,
+	:multiline  => true,
+	:plain      => false,
+	:sort_keys  => false,
+	:limit      => 50,
+	:color => {
+		:keyword    => :blue, 
+		:class      => :cyanish,
+		:struct     => :cyanish,
+		:args       => :red,
+		:method     => :yellow,
+		:variable   => :cyan,
+		:hash       => :pale, # =>
+		:array      => :pale, # []
+		:symbol     => :green,
+		:date       => :green,
+		:time       => :green,
+		:string     => :purple,
+		:fixnum     => :purpleish,
+		:bigdecimal => :purpleish,
+		:float      => :purpleish,
+		:falseclass => :red,
+		:trueclass  => :green,
+		:nilclass   => :red
+	}
+}
