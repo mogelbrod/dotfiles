@@ -316,6 +316,51 @@ au filetype ruby vn <buffer> <silent> K "xy<Esc>:call<space>RI_lookup(@x)<CR>
 command! -nargs=* Ri call RI_lookup(<q-args>)
 
 " }}}
+" {{{ GUI settings/overwrites
+
+if has("gui_running")
+	if has("win32")
+		" Editor font
+		set guifont=ProFontWindows:h9
+		map <leader>0 :set guifont=ProFontWindows:h9<CR>
+		map <leader>+ :set guifont=ProFontWindows:h16<CR>
+
+		" Ctrl-C copies
+		vmap <C-c> "+y
+	endif
+
+	" Toolbar
+	set guioptions-=T
+
+	" Window size
+	set columns=100 lines=50
+
+	" Line numbers
+	set number numberwidth=5
+
+	" Highlight current line
+	set cursorline
+	autocmd WinEnter * setlocal cursorline
+	autocmd WinLeave * setlocal nocursorline
+
+	" Cursor settings
+	set guicursor=n-v-c-r:block-Cursor/lCursor-blinkon0
+	set guicursor+=i-ci:ver25
+	set guicursor+=r-i-ci:blinkwait900-blinkon600-blinkoff300
+	set guicursor+=n:blinkwait900-blinkon600-blinkoff300
+	
+	" Disable swap files
+	set noswapfile
+
+	" Enable mouse actions if possible
+	if has('mouse')
+		set mouse=a
+	endif
+	set nomousehide
+
+endif
+
+" }}}
 " {{{ File type specific options
 
 " Compiling
@@ -366,51 +411,6 @@ else
 endif
 
 " Help files
-autocmd FileType help nmap <buffer><CR> <C-]>
-
-" }}}
-" {{{ GUI settings/overwrites
-
-if has("gui_running")
-	if has("win32")
-		" Editor font
-		set guifont=ProFontWindows:h9
-		map <leader>0 :set guifont=ProFontWindows:h9<CR>
-		map <leader>+ :set guifont=ProFontWindows:h16<CR>
-
-		" Ctrl-C copies
-		vmap <C-c> "+y
-	endif
-
-	" Toolbar
-	set guioptions-=T
-
-	" Window size
-	set columns=100 lines=50
-
-	" Line numbers
-	set number numberwidth=5
-
-	" Highlight current line
-	set cursorline
-	autocmd WinEnter * setlocal cursorline
-	autocmd WinLeave * setlocal nocursorline
-
-	" Cursor settings
-	set guicursor=n-v-c-r:block-Cursor/lCursor-blinkon0
-	set guicursor+=i-ci:ver25
-	set guicursor+=r-i-ci:blinkwait900-blinkon600-blinkoff300
-	set guicursor+=n:blinkwait900-blinkon600-blinkoff300
-	
-	" Disable swap files
-	set noswapfile
-
-	" Enable mouse actions if possible
-	if has('mouse')
-		set mouse=a
-	endif
-	set nomousehide
-
-endif
+autocmd FileType help nmap <buffer> <CR> <C-]>
 
 " }}}
