@@ -7,7 +7,7 @@ home = File.expand_path('~')
 
 Dir['*'].each do |file|
   next if file =~ /install/
-  if file =~ /fish|roxterm\.sourceforge\.net|awesome/
+  if file =~ /fish/
     target = File.join(home, ".config/#{file}")
   else
     target = File.join(home, ".#{file}")
