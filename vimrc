@@ -315,11 +315,6 @@ au filetype ruby nn <buffer> <silent> K <Esc>:call<space>RI_lookup(expand('<cwor
 au filetype ruby vn <buffer> <silent> K "xy<Esc>:call<space>RI_lookup(@x)<CR>
 command! -nargs=* Ri call RI_lookup(<q-args>)
 
-" S: Silent execute
-command! -nargs=* -complete=shellcmd S
-			\ | execute ':silent !'.<q-args>
-			\ | execute ':redraw!'
-
 " }}}
 " {{{ GUI settings/overwrites
 
