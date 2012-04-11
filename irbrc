@@ -12,15 +12,6 @@ ORI.conf.frontend = 'ri --no-gems -T -f ansi %s'
 
 # Awesome_Print (ap)
 require 'ap'
-unless IRB.version.include?('DietRB')
-  IRB::Irb.class_eval do
-    def output_value; ap @context.last_value; end
-  end
-else # MacRuby
-  IRB.formatter = Class.new(IRB::Formatter) do
-    def inspect_object(object); object.ai; end
-  end.new
-end
 
 if defined?(RAILS_ENV) # {{{ Rails SQL logger
   # Called after the irb session is initialized and Rails has been loaded
