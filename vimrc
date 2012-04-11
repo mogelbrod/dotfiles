@@ -31,7 +31,7 @@ set termencoding=utf-8
 set encoding=utf-8
 set fileformat=unix
 
-set noignorecase "smartcase
+set ignorecase "smartcase "noignorecase
 
 set history=50 " command line history length
 
@@ -125,6 +125,12 @@ imap <silent> <Up> <C-o>gk
 nmap <silent> <Down> gj
 nmap <silent> <Up> gk
 
+" Scroll screen with <C-arrows>
+nmap <silent> <C-Down> <C-e>
+nmap <silent> <C-Up> <C-y>
+imap <silent> <C-Down> <C-x><C-e>
+imap <silent> <C-Up> <C-x><C-y>
+
 " Allow backspacing over everything
 set backspace=indent,eol,start
 
@@ -151,6 +157,10 @@ noremap <leader>d :cd %:p:h<CR>
 " Bindings to open vimrc and to reload vimrc
 map <leader>V :args $MYVIMRC<CR>
 map <silent> <leader>v :source $MYVIMRC<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>
+
+" Map Ctrl-< (lt) to surround plugin
+" Surround plugin also allows <C-s><CR>< to create multi-line tag
+imap <silent>  <C-s><
 
 " }}}
 " {{{ (Re)formatting
@@ -220,17 +230,18 @@ else
 end
 
 " SuperTab options
-let g:SuperTabDefaultCompletionType = "<C-n>"
+let g:SuperTabDefaultCompletionType = "context"
+let g:SuperTabContextDefaultCompletionType = "<C-n>"
 let g:SuperTabLongestHighlight = 1
 "let g:SuperTabCrMapping = 0
 
 " Completion shortcuts
 inoremap <silent> <C-Space> <C-x><C-o>
 inoremap <silent> <C-@> <C-x><C-o>
-inoremap <silent>  <C-x><C-i>
+inoremap <silent>  <C-n>
 inoremap <silent>  <C-x><C-f>
 
-" Ragtag options
+" Ragtag options (uses <C-e>)
 let g:ragtag_global_maps = 1
 
 " Enable keyword (dictionary) completion
@@ -340,6 +351,10 @@ autocmd FileType ruby setlocal makeprg=ruby\ -w\ $* errorformat=
 "autocmd FileType ruby let g:rubycomplete_buffer_loading = 1
 autocmd FileType ruby let g:rubycomplete_rails = 1
 
+" HTML
+autocmd FileType *html call SuperTabSetDefaultCompletionType("<c-x><c-o>")
+autocmd FileType *html let b:SuperTabNoCompleteAfter = []
+
 " Lua
 autocmd FileType lua setlocal tabstop=2 shiftwidth=2
 
@@ -366,7 +381,6 @@ if has("gui_running")
 	if has("win32")
 		" Editor font
 		set guifont=ProFontWindows:h9
-		map <leader>9 :set guifont=Consolas:h9<CR>
 		map <leader>0 :set guifont=ProFontWindows:h9<CR>
 		map <leader>+ :set guifont=ProFontWindows:h16<CR>
 
