@@ -368,6 +368,8 @@ command! -nargs=* Make make <args> | cwindow 5
 noremap <leader>m :Make<space>
 noremap <leader>c :Make<CR>
 
+set autowrite " autosave before making
+
 " LaTeX
 autocmd FileType tex setlocal makeprg=pdflatex\ -file-line-error\ % errorformat=%f:%l:\ %m
 
@@ -379,7 +381,7 @@ endif
 
 " Ruby
 autocmd FileType ruby,haml setlocal formatoptions=ql tabstop=2 shiftwidth=2 smarttab noexpandtab
-autocmd FileType ruby setlocal makeprg=ruby\ -w\ $* errorformat=
+autocmd FileType ruby setlocal makeprg=ruby\ -c\ $* errorformat=
 	\%+E%f:%l:\ parse\ error,
 	\%W%f:%l:\ warning:\ %m,
 	\%E%f:%l:in\ %*[^:]:\ %m,
@@ -404,10 +406,9 @@ autocmd FileType java setlocal makeprg=ant\ -e\ -find
 " C++
 autocmd FileType cpp setlocal foldmarker={,}
 if has("win32")
-	autocmd FileType cpp setlocal makeprg=mingw32-make
-	autocmd FileType h setlocal makeprg=mingw32-make
+	autocmd FileType cpp,h setlocal makeprg=mingw32-make
 else
-	autocmd FileType cpp setlocal makeprg=make
+	autocmd FileType cpp,h setlocal makeprg=make
 endif
 
 " Help files
