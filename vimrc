@@ -15,6 +15,13 @@ endif
 " Include plugins and stuff via pathogen
 call pathogen#infect()
 
+" Enable syntax highlighting
+if &t_Co > 2 || has("gui_running")
+  syntax on
+endif
+
+colorscheme mogelbrod
+
 " {{{ Basic settings
 
 " No backwards compability with vi
@@ -34,19 +41,11 @@ set ignorecase "smartcase "noignorecase
 
 set history=50 " command line history length
 
-" Command line completion
-set wildmenu
-set wildmode=longest,list,full
-set wildignore=*.o,*.bak,*.swc
-
 " Yank to system clipboard by default
 set clipboard=unnamed
 
 " Indentation
 set autoindent
-
-" }}}
-" {{{ UI / display appearance
 
 set ruler
 set nonumber
@@ -59,6 +58,7 @@ set wrap linebreak
 set tabstop=2
 set shiftwidth=2
 
+" Whitespace chars visible on :set list
 set listchars=tab:·\ ,trail:°
 
 " Minimum number of lines surrounding cursor
@@ -70,19 +70,22 @@ set display=lastline
 " Highlighting of matching braces
 set matchpairs=(:),{:},[:]
 
+" Folding
 set foldmethod=marker
 
 set incsearch " Show search results while being typed
+set hlsearch " Highlight matches
+
 set showcmd " show incomplete commands
 set laststatus=2 " always show status line
 
 set shortmess=filnxtToOI
 
-" }}}
-" {{{ Buffers
-
 " Allow switching of buffers without saving them first
 set hidden
+
+" }}}
+" {{{ Buffer navigation
 
 " Ctrl+Left/right switches between buffers
 noremap <C-Left> :bprevious<CR>
@@ -100,9 +103,9 @@ imap <silent> <F5> <ESC><Plug>SelectBuf
 let g:selBufUseVerticalSplit = 1
 
 " }}}
-" {{{ Command line
+" {{{ Command mode 
 
-" Quick shortcut for entering mode
+" Quick shortcut for entering command mode
 nnoremap - :
 
 " Usable bindings
@@ -114,6 +117,11 @@ cnoremap [C <S-Right>
 
 " Alias capital W to write
 cnoreabbrev W w
+
+" Completion
+set wildmenu
+set wildmode=longest,list,full
+set wildignore=*.o,*.bak,*.swc
 
 " }}}
 " {{{ Key behaviour & custom mappings
@@ -250,18 +258,6 @@ set complete+=k
 autocmd FileType * exe('setl dict+='.$VIMHOME.'/dict/'.&filetype)
 
 " }}}
-" {{{ Colors & syntax highlighting
-
-" Enable syntax highlighting
-if &t_Co > 2 || has("gui_running")
-  syntax on
-  set hlsearch
-endif
-
-" Select colorscheme
-colorscheme mogelbrod
-
-" }}}
 " {{{ Plugins
 
 " NERDtree
@@ -376,7 +372,6 @@ autocmd FileType help nmap <buffer><CR> <C-]>
 " {{{ GUI settings/overwrites
 
 if has("gui_running")
-
 	if has("win32")
 		" Editor font
 		set guifont=ProFontWindows:h9
