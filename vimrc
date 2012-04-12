@@ -70,14 +70,20 @@ set display=lastline
 " Highlighting of matching braces
 set matchpairs=(:),{:},[:]
 
-" Folding
+" Folding by braces
 set foldmethod=marker
 
 set incsearch " Show search results while being typed
 set hlsearch " Highlight matches
 
 set showcmd " show incomplete commands
+
 set laststatus=2 " always show status line
+
+" Statusline: %f(ile) [flags] {align} [%ft] %col %line/%total %percent
+set statusline=%<\ %-f\ \ %m%r%h%w%q\ %=%y\ %4(%v%)\ %10(%l/%L%)\ \ %P
+
+"set statusline=
 
 set shortmess=filnxtToOI
 
@@ -168,6 +174,10 @@ map <silent> <leader>v :source $MYVIMRC<CR>:filetype detect<CR>:exe ":echo 'vimr
 " Map Ctrl-< (lt) to surround plugin
 " Surround plugin also allows <C-s><CR>< to create multi-line tag
 imap <silent>  <C-s><
+
+" Ctrl-L inserts =>
+imap  <space>=><space>
+imap <C-L> <space>=><space>
 
 " }}}
 " {{{ (Re)formatting
