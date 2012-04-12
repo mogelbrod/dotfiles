@@ -175,7 +175,7 @@ imap <silent>  <C-s><
 " Using Tab and Shift-Tab to (un)indent
 nmap <Tab> >>
 nmap <S-Tab> <<
-vmap [Z <<
+nmap [Z <<
 vmap <Tab> >gv
 vmap <S-Tab> <gv
 vmap [Z <gv
