@@ -70,8 +70,8 @@ set display=lastline
 " Highlighting of matching braces
 set matchpairs=(:),{:},[:]
 
-" Folding by braces
-set foldmethod=marker
+" Folding (by braces)
+set foldmethod=marker foldmarker={{,}}
 
 set incsearch " Show search results while being typed
 set hlsearch " Highlight matches
@@ -104,8 +104,8 @@ noremap [1;5C :bnext<CR>
 " SelectBuf plugin
 "nmap <silent> <C-Tab> <Plug>SelectBuf
 "imap <silent> <C-Tab> <ESC><Plug>SelectBuf
-nmap <silent> <F5> <Plug>SelectBuf
-imap <silent> <F5> <ESC><Plug>SelectBuf
+nmap <F5> <Plug>SelectBuf
+imap <F5> <ESC><Plug>SelectBuf
 let g:selBufUseVerticalSplit = 1
 
 " }}}
@@ -143,6 +143,10 @@ nmap <silent> <C-Down> <C-e>
 nmap <silent> <C-Up> <C-y>
 imap <silent> <C-Down> <C-x><C-e>
 imap <silent> <C-Up> <C-x><C-y>
+
+" Scroll with Space in normal mode
+noremap <S-space> <C-b>
+noremap <space> <C-f>
 
 " Allow backspacing over everything
 set backspace=indent,eol,start
@@ -321,8 +325,8 @@ function! RI_lookup(ruby_entity)
 	endif
 endfunction
 
-au filetype ruby nn <buffer> <silent> K <Esc>:call<space>RI_lookup(expand('<cword>'))<CR>
-au filetype ruby vn <buffer> <silent> K "xy<Esc>:call<space>RI_lookup(@x)<CR>
+au filetype ruby nn <buffer> K <Esc>:call<space>RI_lookup(expand('<cword>'))<CR>
+au filetype ruby vn <buffer> K "xy<Esc>:call<space>RI_lookup(@x)<CR>
 command! -nargs=* Ri call RI_lookup(<q-args>)
 
 " }}}
@@ -400,6 +404,8 @@ autocmd FileType ruby setlocal makeprg=ruby\ -c\ $* errorformat=
 	\%-Z%\tfrom\ %f:%l,
 	\%-Z%p^,
 	\%-G%.%#
+" Expand <Ctrl-E> into #{_}
+autocmd FileType ruby,haml inoremap <buffer>  #{}<left>
 "autocmd FileType ruby let g:rubycomplete_buffer_loading = 1
 autocmd FileType ruby let g:rubycomplete_rails = 1
 
