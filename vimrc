@@ -81,7 +81,7 @@ set showcmd " show incomplete commands
 set laststatus=2 " always show status line
 
 " Statusline: %f(ile) [flags] {align} [%ft] %col %line/%total %percent
-set statusline=%<\ %-f\ \ %m%r%h%w%q\ %=%y\ %4(%v%)\ %10(%l/%L%)\ \ %P
+set statusline=%<\ %-f\ \ %m%r%h%w\ %=%y\ %4(%v%)\ %10(%l/%L%)\ \ %P
 
 "set statusline=
 
