@@ -274,6 +274,9 @@ autocmd FileType * exe('setl dict+='.$VIMHOME.'/dict/'.&filetype)
 " }}}
 " {{{ Plugins
 
+" Ctrl-P
+map  :CtrlP<CR>
+
 " NERDtree
 map <F4> :NERDTreeToggle<CR>
 let NERDTreeWinSize=26
