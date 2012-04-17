@@ -61,6 +61,9 @@ set shiftwidth=2
 " Whitespace chars visible on :set list
 set listchars=tab:·\ ,trail:°
 
+" Ignore whitespace when diffing
+set diffopt+=iwhite
+
 " Minimum number of lines surrounding cursor
 set scrolloff=3
 
