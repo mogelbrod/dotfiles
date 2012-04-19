@@ -61,6 +61,9 @@ set shiftwidth=2
 " Whitespace chars visible on :set list
 set listchars=tab:·\ ,trail:°
 
+" Ignore whitespace when diffing
+set diffopt+=iwhite
+
 " Minimum number of lines surrounding cursor
 set scrolloff=3
 
@@ -313,6 +316,9 @@ autocmd FileType * exe('setl dict+='.$VIMHOME.'/dict/'.&filetype)
 
 " }}
 " {{ Plugins
+
+" Ctrl-P
+map  :CtrlP<CR>
 
 " NERDtree
 map <F4> :NERDTreeToggle<CR>
