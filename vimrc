@@ -22,7 +22,7 @@ endif
 
 colorscheme mogelbrod
 
-" {{{ Basic settings
+" {{ Basic settings
 
 " No backwards compability with vi
 set nocompatible
@@ -73,6 +73,46 @@ set matchpairs=(:),{:},[:]
 " Folding (by braces)
 set foldmethod=marker foldmarker={{,}}
 
+" Fold text (title)
+function! CustomFoldText()
+	" TODO: Remove "//", "/*" and the text from &foldmarker and &commentstring.
+	let line = getline(v:foldstart)
+	let linecount = v:foldend - v:foldstart + 1
+
+	" Remove fold marker if present
+	let foldmarkers = split(&foldmarker, ',')
+	let line = substitute(line, '\V' . foldmarkers[0] . '\%(\d\+\)\?', ' ', '')
+
+	" Remove known comment strings
+	let comment = split(&commentstring, '%s')
+	if comment[0] != ''
+		let comment_begin = comment[0]
+		let comment_end = ''
+		if len(comment) > 1
+			let comment_end = comment[1]
+		end
+		let pattern = '\V' . comment_begin . '\s\*' . comment_end . '\s\*\$'
+		if line =~ pattern
+			let line = substitute(line, pattern, ' ', '')
+		else
+			let line = substitute(line, '.*\V' . comment_begin, ' ', '')
+			if comment_end != ''
+				let line = substitute(line, '\V' . comment_end, ' ', '')
+			endif
+		endif
+	endif
+
+	" Remove any remaining leading or trailing whitespace
+	let line = substitute(line, '^\s*\(.\{-}\)\s*$', '\1', '') . ' '
+
+	let linecount = ' '. linecount .  ' lines | ' . v:foldlevel
+	let fill = repeat('-', &columns - strlen(line) - strlen(linecount))
+	let line = strpart(line, 0, &columns - strlen(linecount)) . fill . linecount
+
+	return line
+endfunction
+set foldtext=CustomFoldText()
+
 set incsearch " Show search results while being typed
 set hlsearch " Highlight matches
 
@@ -90,8 +130,8 @@ set shortmess=filnxtToOI
 " Allow switching of buffers without saving them first
 set hidden
 
-" }}}
-" {{{ Buffer navigation
+" }}
+" {{ Buffer navigation
 
 " Ctrl+Left/right switches between buffers
 noremap <C-Left> :bprevious<CR>
@@ -108,8 +148,8 @@ nmap <F5> <Plug>SelectBuf
 imap <F5> <ESC><Plug>SelectBuf
 let g:selBufUseVerticalSplit = 1
 
-" }}}
-" {{{ Command mode 
+" }}
+" {{ Command mode 
 
 " Quick shortcut for entering command mode
 nnoremap - :
@@ -129,8 +169,8 @@ set wildmenu
 set wildmode=longest,list,full
 set wildignore=*.o,*.bak,*.swc
 
-" }}}
-" {{{ Key behaviour & custom mappings
+" }}
+" {{ Key behaviour & custom mappings
 
 " Navigate through displayed lines, not physical
 imap <silent> <Down> <C-o>gj
@@ -183,8 +223,8 @@ imap <silent>  <C-s><
 imap  <space>=><space>
 imap <C-L> <space>=><space>
 
-" }}}
-" {{{ (Re)formatting
+" }}
+" {{ (Re)formatting
 
 " Using Tab and Shift-Tab to (un)indent
 nmap <Tab> >>
@@ -204,8 +244,8 @@ autocmd FileType * setlocal formatoptions-=cro
 " Do not reindent lines with a comment sign (removed 0#)
 autocmd FileType * setlocal cinkeys=0{,0},0),:,!^F,o,O,e
 
-" }}}
-" {{{ Search and replace
+" }}
+" {{ Search and replace
 
 " Ctrl+H replaces the selected text with something else
 vnoremap <C-h> "hy:%s`\V\<<C-r>h\>``gc<left><left><left>
@@ -230,8 +270,8 @@ function! VisualHTMLTagWrap()
   endif
 endfunction
 
-" }}}
-" {{{ Completion
+" }}
+" {{ Completion
 
 " Insert the longest common text, show menu for one result too
 set completeopt=longest,menu ",menuone
@@ -271,8 +311,8 @@ set complete+=k
 " Dictionary
 autocmd FileType * exe('setl dict+='.$VIMHOME.'/dict/'.&filetype)
 
-" }}}
-" {{{ Plugins
+" }}
+" {{ Plugins
 
 " NERDtree
 map <F4> :NERDTreeToggle<CR>
@@ -297,8 +337,8 @@ if !has("gui_running")
 endif
 
 
-" }}}
-" {{{ Custom functions
+" }}
+" {{ Custom functions
 
 function! RI_lookup(ruby_entity)
 	let s:ri_result = system('ri "' . a:ruby_entity . '"')
@@ -329,8 +369,25 @@ au filetype ruby nn <buffer> K <Esc>:call<space>RI_lookup(expand('<cword>'))<CR>
 au filetype ruby vn <buffer> K "xy<Esc>:call<space>RI_lookup(@x)<CR>
 command! -nargs=* Ri call RI_lookup(<q-args>)
 
-" }}}
-" {{{ GUI settings/overwrites
+" Custom folding
+function! IndentationFoldExpr(ln)
+	let line = getline(a:ln)
+	let ind = indent(a:ln)
+	let ind_next = indent(a:ln+1)
+
+	if ind_next >= ind+&sw
+		return '>'.(ind/&sw+1)
+	elseif ind_next+&sw <= ind
+		return 's1'
+	elseif indent(nextnonblank(a:ln)) == 0
+		return 0
+	end
+
+	return '='
+endfunction
+
+" }}
+" {{ GUI settings/overwrites
 
 if has("gui_running")
 	if has("win32")
@@ -374,8 +431,8 @@ if has("gui_running")
 
 endif
 
-" }}}
-" {{{ File type specific options
+" }}
+" {{ File type specific options
 
 " Compiling
 command! -nargs=* Make make <args> | cwindow 5
@@ -408,6 +465,8 @@ autocmd FileType ruby setlocal makeprg=ruby\ -c\ $* errorformat=
 autocmd FileType ruby,haml inoremap <buffer>  #{}<left>
 "autocmd FileType ruby let g:rubycomplete_buffer_loading = 1
 autocmd FileType ruby let g:rubycomplete_rails = 1
+autocmd FileType yaml setlocal foldmethod=expr 
+	\ foldexpr=IndentationFoldExpr(v:lnum)
 
 " HTML
 autocmd FileType *html call SuperTabSetDefaultCompletionType("<c-x><c-o>")
@@ -430,4 +489,4 @@ endif
 " Help files
 autocmd FileType help nmap <buffer> <CR> <C-]>
 
-" }}}
+" }}
