@@ -77,13 +77,13 @@ set matchpairs=(:),{:},[:]
 set foldmethod=marker foldmarker={{,}}
 
 " Fold text (title)
-function! CustomFoldText()
+function! CustomFoldText() " {{
 	let line = getline(v:foldstart)
 	let linecount = v:foldend - v:foldstart + 1
 
 	" Remove fold marker if present
 	let foldmarkers = split(&foldmarker, ',')
-	let line = substitute(line, '\V' . foldmarkers[0] . '\%(\d\+\)\?', ' ', '')
+	let line = substitute(line, '\V\s\*' . foldmarkers[0] . '\%(\d\+\)\?\s\*', '', '')
 
 	" Remove known comment strings
 	let comment = split(&commentstring, '%s')
@@ -112,7 +112,7 @@ function! CustomFoldText()
 	let line = strpart(line, 0, &columns - strlen(linecount)) . fill . linecount
 
 	return line
-endfunction
+endfunction " }}
 set foldtext=CustomFoldText()
 
 set incsearch " Show search results while being typed
@@ -377,19 +377,18 @@ command! -nargs=* Ri call RI_lookup(<q-args>)
 function! IndentationFoldExpr(ln) " {{
 	let line = getline(a:ln)
 	let ind = indent(a:ln)
-	let ind_next = indent(a:ln+1)
+	let ind_next = indent(nextnonblank(a:ln+1))
 
-	if ind_next >= ind+&sw
+	if line =~ '^\s*$'
+		return '='
+	elseif ind_next >= ind+&sw
 		return '>'.(ind/&sw+1)
 	elseif ind_next+&sw <= ind
 		return 's1'
-	elseif indent(nextnonblank(a:ln)) == 0
-		return 0
 	end
 
 	return '='
-endfunction
-" }}
+endfunction " }}
 
 " }}
 " {{ GUI settings/overwrites
