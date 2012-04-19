@@ -78,7 +78,6 @@ set foldmethod=marker foldmarker={{,}}
 
 " Fold text (title)
 function! CustomFoldText()
-	" TODO: Remove "//", "/*" and the text from &foldmarker and &commentstring.
 	let line = getline(v:foldstart)
 	let linecount = v:foldend - v:foldstart + 1
 
@@ -105,8 +104,8 @@ function! CustomFoldText()
 		endif
 	endif
 
-	" Remove any remaining leading or trailing whitespace
-	let line = substitute(line, '^\s*\(.\{-}\)\s*$', '\1', '') . ' '
+	" Remove any remaining trailing whitespace
+	let line = substitute(line, '\s*$', '', '') . ' '
 
 	let linecount = ' '. linecount .  ' lines | ' . v:foldlevel
 	let fill = repeat('-', &columns - strlen(line) - strlen(linecount))
@@ -346,7 +345,7 @@ endif
 " }}
 " {{ Custom functions
 
-function! RI_lookup(ruby_entity)
+function! RI_lookup(ruby_entity) " {{
 	let s:ri_result = system('ri "' . a:ruby_entity . '"')
 	if match(s:ri_result, "More than one") != -1
 		let s:header_and_result = split(s:ri_result, '\n\n')
@@ -369,14 +368,13 @@ function! RI_lookup(ruby_entity)
 	else
 		echo s:ri_result
 	endif
-endfunction
+endfunction " }}
 
 au filetype ruby nn <buffer> K <Esc>:call<space>RI_lookup(expand('<cword>'))<CR>
 au filetype ruby vn <buffer> K "xy<Esc>:call<space>RI_lookup(@x)<CR>
 command! -nargs=* Ri call RI_lookup(<q-args>)
 
-" Custom folding
-function! IndentationFoldExpr(ln)
+function! IndentationFoldExpr(ln) " {{
 	let line = getline(a:ln)
 	let ind = indent(a:ln)
 	let ind_next = indent(a:ln+1)
@@ -391,6 +389,7 @@ function! IndentationFoldExpr(ln)
 
 	return '='
 endfunction
+" }}
 
 " }}
 " {{ GUI settings/overwrites
@@ -471,7 +470,7 @@ autocmd FileType ruby setlocal makeprg=ruby\ -c\ $* errorformat=
 autocmd FileType ruby,haml inoremap <buffer>  #{}<left>
 "autocmd FileType ruby let g:rubycomplete_buffer_loading = 1
 autocmd FileType ruby let g:rubycomplete_rails = 1
-autocmd FileType yaml setlocal foldmethod=expr 
+autocmd FileType yaml,haml setlocal foldmethod=expr 
 	\ foldexpr=IndentationFoldExpr(v:lnum)
 
 " HTML
