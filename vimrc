@@ -169,7 +169,13 @@ cnoreabbrev W w
 " Completion
 set wildmenu
 set wildmode=longest,list,full
-set wildignore=*.o,*.bak,*.swc
+set wildignore=*.o,*.bak,*.swc,*.swp,.git/*
+set wildignore+=*/tmp/*,*.so,*.zip
+set wildignore+=tmp\*,*.zip,*.exe
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\.git$\|\.hg$\|\.svn$',
+  \ 'file': '\.exe$\|\.so$\|\.dll$'
+	\ }
 
 " }}
 " {{ Key behaviour & custom mappings
@@ -455,7 +461,7 @@ else
 endif
 
 " Ruby
-autocmd FileType ruby,haml setlocal formatoptions=ql tabstop=2 shiftwidth=2 smarttab noexpandtab
+autocmd FileType ruby,haml setlocal formatoptions=ql
 autocmd FileType ruby setlocal makeprg=ruby\ -c\ $* errorformat=
 	\%+E%f:%l:\ parse\ error,
 	\%W%f:%l:\ warning:\ %m,
