@@ -37,3 +37,9 @@ defflow off
 bind 'a' title
 bind ' ' windowlist -b
 bind 's' split
+bind 'n' screen
+bind ^n screen
+bind 'c' copy
+bind ^c copy
+bind 'v' paste .
+bind ^v paste .
