@@ -216,9 +216,9 @@ function! CustomFoldText() " {{
 		if line =~ pattern
 			let line = substitute(line, pattern, ' ', '')
 		else
-			let line = substitute(line, '.*\V' . comment_begin, ' ', '')
+			let line = substitute(line, '\V' . comment_begin . '\s\*', '', '')
 			if comment_end != ''
-				let line = substitute(line, '\V' . comment_end, ' ', '')
+				let line = substitute(line, '\V' . comment_end, '', '')
 			endif
 		endif
 	endif
