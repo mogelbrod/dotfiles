@@ -73,48 +73,6 @@ set display=lastline
 " Highlighting of matching braces
 set matchpairs=(:),{:},[:]
 
-" Folding (by braces)
-set foldmethod=marker foldmarker={{,}}
-
-" Fold text (title)
-function! CustomFoldText() " {{
-	let line = getline(v:foldstart)
-	let linecount = v:foldend - v:foldstart + 1
-
-	" Remove fold marker if present
-	let foldmarkers = split(&foldmarker, ',')
-	let line = substitute(line, '\V\s\*' . foldmarkers[0] . '\%(\d\+\)\?\s\*', '', '')
-
-	" Remove known comment strings
-	let comment = split(&commentstring, '%s')
-	if comment[0] != ''
-		let comment_begin = comment[0]
-		let comment_end = ''
-		if len(comment) > 1
-			let comment_end = comment[1]
-		end
-		let pattern = '\V' . comment_begin . '\s\*' . comment_end . '\s\*\$'
-		if line =~ pattern
-			let line = substitute(line, pattern, ' ', '')
-		else
-			let line = substitute(line, '.*\V' . comment_begin, ' ', '')
-			if comment_end != ''
-				let line = substitute(line, '\V' . comment_end, ' ', '')
-			endif
-		endif
-	endif
-
-	" Remove any remaining trailing whitespace
-	let line = substitute(line, '\s*$', '', '') . ' '
-
-	let linecount = ' '. linecount .  ' lines | ' . v:foldlevel
-	let fill = repeat('-', &columns - strlen(line) - strlen(linecount))
-	let line = strpart(line, 0, &columns - strlen(linecount)) . fill . linecount
-
-	return line
-endfunction " }}
-set foldtext=CustomFoldText()
-
 set incsearch " Show search results while being typed
 set hlsearch " Highlight matches
 
@@ -230,6 +188,67 @@ imap <silent>  <C-s><
 " Ctrl-L inserts =>
 imap  <space>=><space>
 imap <C-L> <space>=><space>
+
+" }}
+" {{ Folding
+
+" Folding (by braces)
+set foldmethod=marker foldmarker={{,}}
+
+" Fold text (title)
+function! CustomFoldText() " {{
+	let line = getline(v:foldstart)
+	let linecount = v:foldend - v:foldstart + 1
+
+	" Remove fold marker if present
+	let foldmarkers = split(&foldmarker, ',')
+	let line = substitute(line, '\V\s\*' . foldmarkers[0] . '\%(\d\+\)\?\s\*', '', '')
+
+	" Remove known comment strings
+	let comment = split(&commentstring, '%s')
+	if comment[0] != ''
+		let comment_begin = comment[0]
+		let comment_end = ''
+		if len(comment) > 1
+			let comment_end = comment[1]
+		end
+		let pattern = '\V' . comment_begin . '\s\*' . comment_end . '\s\*\$'
+		if line =~ pattern
+			let line = substitute(line, pattern, ' ', '')
+		else
+			let line = substitute(line, '.*\V' . comment_begin, ' ', '')
+			if comment_end != ''
+				let line = substitute(line, '\V' . comment_end, ' ', '')
+			endif
+		endif
+	endif
+
+	" Remove any remaining trailing whitespace
+	let line = substitute(line, '\s*$', '', '') . ' '
+
+	let linecount = ' '. linecount .  ' lines | ' . v:foldlevel
+	let fill = repeat('-', &columns - strlen(line) - strlen(linecount))
+	let line = strpart(line, 0, &columns - strlen(linecount)) . fill . linecount
+
+	return line
+endfunction " }}
+set foldtext=CustomFoldText()
+
+function! IndentationFoldExpr(ln) " {{
+	let line = getline(a:ln)
+	let ind = indent(a:ln)
+	let ind_next = indent(nextnonblank(a:ln+1))
+
+	if line =~ '^\s*$'
+		return '='
+	elseif ind_next >= ind+&sw
+		return '>'.(ind/&sw+1)
+	elseif ind_next+&sw <= ind
+		return 's1'
+	end
+
+	return '='
+endfunction " }}
 
 " }}
 " {{ (Re)formatting
@@ -379,22 +398,6 @@ endfunction " }}
 au filetype ruby nn <buffer> K <Esc>:call<space>RI_lookup(expand('<cword>'))<CR>
 au filetype ruby vn <buffer> K "xy<Esc>:call<space>RI_lookup(@x)<CR>
 command! -nargs=* Ri call RI_lookup(<q-args>)
-
-function! IndentationFoldExpr(ln) " {{
-	let line = getline(a:ln)
-	let ind = indent(a:ln)
-	let ind_next = indent(nextnonblank(a:ln+1))
-
-	if line =~ '^\s*$'
-		return '='
-	elseif ind_next >= ind+&sw
-		return '>'.(ind/&sw+1)
-	elseif ind_next+&sw <= ind
-		return 's1'
-	end
-
-	return '='
-endfunction " }}
 
 " }}
 " {{ GUI settings/overwrites
