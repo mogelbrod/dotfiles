@@ -113,6 +113,7 @@ let g:selBufUseVerticalSplit = 1
 
 " Quick shortcut for entering command mode
 nnoremap - :
+vnoremap - :
 
 " Usable bindings
 cnoremap <C-A> <Home>
@@ -274,28 +275,15 @@ autocmd FileType * setlocal cinkeys=0{,0},0),:,!^F,o,O,e
 " }}
 " {{ Search and replace
 
-" Ctrl+H replaces the selected text with something else
-vnoremap <C-h> "hy:%s`\V\<<C-r>h\>``gc<left><left><left>
+" Ctrl+H replaces all occurences of the selected text with something else
+vnoremap <C-h> "hy<Esc>:call ReplaceSelection()<CR>
+fun! ReplaceSelection()
+	let replacement = input("Replacement for ".@h.": ")
+	exe "s#".escape(@h, '#').'#'.replacement.'#gc'
+endfun
 
 " Search for <cword> and replace with input() in all open buffers
-map <leader>h "hy:bufdo! %s`\V\<<C-r>h\>``ge<left><left><left>
-
-" Wrap visual selection in an HTML tag.
-vmap <C-w> <Esc>:call VisualHTMLTagWrap()<CR>
-function! VisualHTMLTagWrap()
-  let tag = input("Tag to wrap block: ")
-  if len(tag) > 0
-    normal `>
-    if &selection == 'exclusive'
-      exe "normal i</".tag.">"
-    else
-      exe "normal a</".tag.">"
-    endif
-    normal `<
-    exe "normal i<".tag.">"
-    normal `<
-  endif
-endfunction
+map <leader>h "hy:bufdo! %s¨\V<C-r>h¨¨ge<left><left><left>
 
 " }}
 " {{ Completion
