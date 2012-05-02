@@ -279,7 +279,7 @@ autocmd FileType * setlocal cinkeys=0{,0},0),:,!^F,o,O,e
 vnoremap <C-h> "hy<Esc>:call ReplaceSelection()<CR>
 fun! ReplaceSelection()
 	let replacement = input("Replacement for ".@h.": ")
-	exe "s#".escape(@h, '#').'#'.replacement.'#gc'
+	exe "%s#".escape(@h, '#').'#'.replacement.'#gc'
 endfun
 
 " Search for <cword> and replace with input() in all open buffers
