@@ -101,6 +101,14 @@ noremap [C :bnext<CR>
 noremap [1;5D :bprevious<CR>
 noremap [1;5C :bnext<CR>
 
+" CtrlP plugin
+" search for both files, buffers and MRUs
+let g:ctrlp_cmd = 'CtrlPMixed'
+let g:ctrlp_switch_buffer = 1 " jump to existing buffers in same tab
+let g:ctrlp_max_depth = 10
+let g:ctrlp_open_new_file = 'r'
+let g:ctrlp_mruf_max = 50
+
 " SelectBuf plugin
 "nmap <silent> <C-Tab> <Plug>SelectBuf
 "imap <silent> <C-Tab> <ESC><Plug>SelectBuf
@@ -424,12 +432,13 @@ if has("gui_running")
 	" Disable swap files
 	set noswapfile
 
-	" Enable mouse actions if possible
-	if has('mouse')
-		set mouse=a
-	endif
 	set nomousehide
 
+endif
+
+" Enable mouse actions if possible
+if has('mouse')
+	set mouse=a
 endif
 
 " }}
