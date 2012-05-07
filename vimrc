@@ -108,6 +108,7 @@ let g:ctrlp_switch_buffer = 1 " jump to existing buffers in same tab
 let g:ctrlp_max_depth = 10
 let g:ctrlp_open_new_file = 'r'
 let g:ctrlp_mruf_max = 50
+let g:ctrlp_extensions = ['mixed']
 
 " SelectBuf plugin
 "nmap <silent> <C-Tab> <Plug>SelectBuf
@@ -136,7 +137,7 @@ cnoreabbrev W w
 " Completion
 set wildmenu
 set wildmode=longest,list,full
-set wildignore=*.o,*.bak,*.swc,*.swp,.git/*
+set wildignore=*.o,*.bak,*.swc,*.swp,.git/*,.gitkeep
 set wildignore+=*/tmp/*,*.so,*.zip
 set wildignore+=tmp\*,*.zip,*.exe
 let g:ctrlp_custom_ignore = {
