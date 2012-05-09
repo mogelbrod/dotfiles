@@ -22,7 +22,7 @@ endif
 
 colorscheme mogelbrod
 
-" {{ Basic settings
+" {{{ Basic settings
 
 " No backwards compability with vi
 set nocompatible
@@ -90,8 +90,8 @@ set shortmess=filnxtToOI
 " Allow switching of buffers without saving them first
 set hidden
 
-" }}
-" {{ Buffer navigation
+" }}}
+" {{{ Buffer navigation
 
 " Ctrl+Left/right switches between buffers
 noremap <C-Left> :bprevious<CR>
@@ -117,8 +117,8 @@ nmap <F5> <Plug>SelectBuf
 imap <F5> <ESC><Plug>SelectBuf
 let g:selBufUseVerticalSplit = 1
 
-" }}
-" {{ Command mode 
+" }}}
+" {{{ Command mode 
 
 " Quick shortcut for entering command mode
 nnoremap - :
@@ -145,8 +145,8 @@ let g:ctrlp_custom_ignore = {
   \ 'file': '\.exe$\|\.so$\|\.dll$'
 	\ }
 
-" }}
-" {{ Key behaviour & custom mappings
+" }}}
+" {{{ Key behaviour & custom mappings
 
 " Navigate through displayed lines, not physical
 imap <silent> <Down> <C-o>gj
@@ -199,20 +199,29 @@ imap <silent>  <C-s><
 imap  <space>=><space>
 imap <C-L> <space>=><space>
 
-" }}
-" {{ Folding
+" }}}
+" {{{ Folding
 
 " Folding (by braces)
-set foldmethod=marker foldmarker={{,}}
+set foldmethod=marker foldmarker={{{,}}}
 
 " Fold text (title)
-function! CustomFoldText() " {{
-	let line = getline(v:foldstart)
-	let linecount = v:foldend - v:foldstart + 1
+function! CustomFoldText(...) " {{{
+	if a:0 > 0
+		let line = a:1
+		let linecount = a:0 > 1 ? a:2 : -1
+	else
+		let line = getline(v:foldstart)
+		let linecount = v:foldend - v:foldstart + 1
+	endif
+
+	" Store indentation and later re-apply it
+	let spaces4tab = repeat(' ', &l:ts)
+	let indentation = substitute(matchstr(line, '^\s*'), "\t", spaces4tab, 'g')
 
 	" Remove fold marker if present
 	let foldmarkers = split(&foldmarker, ',')
-	let line = substitute(line, '\V\s\*' . foldmarkers[0] . '\%(\d\+\)\?\s\*', '', '')
+	let line = substitute(line, '\V' . foldmarkers[0] . '\%(\d\+\)\?', '', '')
 
 	" Remove known comment strings
 	let comment = split(&commentstring, '%s')
@@ -224,44 +233,58 @@ function! CustomFoldText() " {{
 		end
 		let pattern = '\V' . comment_begin . '\s\*' . comment_end . '\s\*\$'
 		if line =~ pattern
-			let line = substitute(line, pattern, ' ', '')
+			let line = substitute(line, pattern, '', '')
 		else
-			let line = substitute(line, '\V' . comment_begin . '\s\*', '', '')
+			let line = substitute(line, '\V' . comment_begin, '', '')
 			if comment_end != ''
 				let line = substitute(line, '\V' . comment_end, '', '')
 			endif
 		endif
 	endif
 
-	" Remove any remaining trailing whitespace
-	let line = substitute(line, '\s*$', '', '') . ' '
+	" Remove additional comment prefixes
+	if &ft=='cpp' || &ft=='php'
+		let line = substitute(line, '\V//', '', '')
+	endif
 
-	let linecount = ' '. linecount .  ' lines | ' . v:foldlevel
+	" Remove any remaining leading/trailing whitespace
+	let line = substitute(line, '^\s*\(.\{-}\)\s*$', '\1', '') . ' '
+
+	" Reapply indentation
+	let line = indentation . line
+
+	" Line count
+	if linecount == -1
+		let linecount = ''
+	else
+		let linecount = ' '. linecount .  ' lines | ' . v:foldlevel
+	end
+
 	let fill = repeat('-', &columns - strlen(line) - strlen(linecount))
 	let line = strpart(line, 0, &columns - strlen(linecount)) . fill . linecount
 
 	return line
-endfunction " }}
+endfunction " }}}
 set foldtext=CustomFoldText()
 
-function! IndentationFoldExpr(ln) " {{
+function! IndentationFoldExpr(ln) " {{{
 	let line = getline(a:ln)
-	let ind = indent(a:ln)
-	let ind_next = indent(nextnonblank(a:ln+1))
+	let ind = indent(a:ln) / &sw
+	let ind_next = indent(nextnonblank(a:ln+1)) / &sw
 
 	if line =~ '^\s*$'
 		return '='
-	elseif ind_next >= ind+&sw
-		return '>'.(ind/&sw+1)
-	elseif ind_next+&sw <= ind
-		return 's1'
+	elseif ind_next >= ind+1
+		return '>'.(ind+1)
+	elseif ind_next+1 <= ind
+		return '<'.(ind)
 	end
 
-	return '='
-endfunction " }}
+	return ind
+endfunction " }}}
 
-" }}
-" {{ (Re)formatting
+" }}}
+" {{{ (Re)formatting
 
 " Using Tab and Shift-Tab to (un)indent
 nmap <Tab> >>
@@ -281,8 +304,8 @@ autocmd FileType * setlocal formatoptions-=cro
 " Do not reindent lines with a comment sign (removed 0#)
 autocmd FileType * setlocal cinkeys=0{,0},0),:,!^F,o,O,e
 
-" }}
-" {{ Search and replace
+" }}}
+" {{{ Search and replace
 
 " Ctrl+H replaces all occurences of the selected text with something else
 vnoremap <C-h> "hy<Esc>:call ReplaceSelection()<CR>
@@ -294,16 +317,17 @@ endfun
 " Search for <cword> and replace with input() in all open buffers
 map <leader>h "hy:bufdo! %s¨\V<C-r>h¨¨ge<left><left><left>
 
-" }}
-" {{ Completion
+" }}}
+" {{{ Completion
 
 " Insert the longest common text, show menu for one result too
 set completeopt=longest,menu ",menuone
 
 " Add some expected functionality to some keys when the completion menu is visible
+" SuperTab already does this
 "inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"
-inoremap <expr> <Down> pumvisible() ? "\<C-n>" : "\<Down>"
-inoremap <expr> <Up> pumvisible() ? "\<C-p>" : "\<Up>"
+"inoremap <expr> <Down> pumvisible() ? "\<C-n>" : "\<Down>"
+"inoremap <expr> <Up> pumvisible() ? "\<C-p>" : "\<Up>"
 
 " SuperTab mappings
 if has("gui_running")
@@ -335,8 +359,8 @@ set complete+=k
 " Dictionary
 autocmd FileType * exe('setl dict+='.$VIMHOME.'/dict/'.&filetype)
 
-" }}
-" {{ Plugins
+" }}}
+" {{{ Plugins
 
 " Ctrl-P
 map  :CtrlP<CR>
@@ -364,10 +388,10 @@ if !has("gui_running")
 endif
 
 
-" }}
-" {{ Custom functions
+" }}}
+" {{{ Custom functions
 
-function! RI_lookup(ruby_entity) " {{
+function! RI_lookup(ruby_entity) " {{{
 	let s:ri_result = system('ri "' . a:ruby_entity . '"')
 	if match(s:ri_result, "More than one") != -1
 		let s:header_and_result = split(s:ri_result, '\n\n')
@@ -390,14 +414,14 @@ function! RI_lookup(ruby_entity) " {{
 	else
 		echo s:ri_result
 	endif
-endfunction " }}
+endfunction " }}}
 
 au filetype ruby nn <buffer> K <Esc>:call<space>RI_lookup(expand('<cword>'))<CR>
 au filetype ruby vn <buffer> K "xy<Esc>:call<space>RI_lookup(@x)<CR>
 command! -nargs=* Ri call RI_lookup(<q-args>)
 
-" }}
-" {{ GUI settings/overwrites
+" }}}
+" {{{ GUI settings/overwrites
 
 if has("gui_running")
 	if has("win32")
@@ -442,8 +466,8 @@ if has('mouse')
 	set mouse=a
 endif
 
-" }}
-" {{ File type specific options
+" }}}
+" {{{ File type specific options
 
 " Compiling
 command! -nargs=* Make make <args> | cwindow 5
@@ -500,4 +524,4 @@ endif
 " Help files
 autocmd FileType help nmap <buffer> <CR> <C-]>
 
-" }}
+" }}}
