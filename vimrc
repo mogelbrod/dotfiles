@@ -37,9 +37,11 @@ set fileformat=unix
 set clipboard=unnamed " yank to system clipboard
 set autoindent
 
+" Display guides & line numbers
 set ruler
-set nonumber
 set nocursorline nocursorcolumn
+set nonumber
+
 set lazyredraw
 
 " Allow switching of buffers without saving them first
@@ -119,12 +121,17 @@ vnoremap - :
 " Usable bindings
 cnoremap <C-A> <Home>
 cnoremap <C-E> <End>
+cnoremap  <Home>
+cnoremap  <End>
 " Ctrl-Arrow word jump
 cnoremap [D <S-Left>
 cnoremap [C <S-Right>
 
 " Alias capital W to write
 cnoreabbrev W w
+
+" Add :w!! command which will write file as sudo
+cmap w!! %!sudo tee > /dev/null %
 
 " Completion
 set wildmenu
@@ -139,6 +146,9 @@ let g:ctrlp_custom_ignore = {
 
 " }}}
 " {{{ Key behaviour & custom mappings
+
+" kj as alternative to <Esc> in insert mode
+inoremap kj <Esc>
 
 " Navigate through displayed lines, not physical
 imap <silent> <Down> <C-o>gj
@@ -459,7 +469,7 @@ if has('mouse')
 endif
 
 " }}}
-" {{{ File type specific options
+" {{{ Auto commands and file type specific options
 
 " Compiling
 command! -nargs=* Make make <args> | cwindow 5
@@ -467,6 +477,9 @@ noremap <leader>m :Make<space>
 noremap <leader>c :Make<CR>
 
 set autowrite " autosave before making
+
+" Disable paste after leaving insert mode
+au InsertLeave * set nopaste
 
 " LaTeX
 autocmd FileType tex setlocal makeprg=pdflatex\ -file-line-error\ % errorformat=%f:%l:\ %m
