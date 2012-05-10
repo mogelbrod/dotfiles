@@ -24,9 +24,6 @@ colorscheme mogelbrod
 
 " {{{ Basic settings
 
-" No backwards compability with vi
-set nocompatible
-
 " Language settings
 let $LANG='en'
 set langmenu=en
@@ -37,58 +34,53 @@ set termencoding=utf-8
 set encoding=utf-8
 set fileformat=unix
 
-set ignorecase "smartcase "noignorecase
-
-set history=50 " command line history length
-
-" Yank to system clipboard by default
-set clipboard=unnamed
-
-" Indentation
+set clipboard=unnamed " yank to system clipboard
 set autoindent
 
 set ruler
 set nonumber
 set nocursorline nocursorcolumn
+set lazyredraw
 
-" Word wrap
-set wrap linebreak
+" Allow switching of buffers without saving them first
+set hidden
+
+set wrap linebreak " word wrap
+
+set listchars=tab:·\ ,trail:° " whitespace visible on :set list
+set diffopt+=iwhite " ignore whitespace when diffing
+
+set incsearch " Show search results while being typed
+set hlsearch " Highlight matches
+set ignorecase "smartcase "noignorecase
+
+set showcmd " show incomplete commands
+set history=50 " command line history length
+
+" Show as much as possible of the last line instead of @-lines
+set display=lastline
+" Minimum number of lines surrounding cursor
+set scrolloff=3
 
 " Tabs
 set tabstop=2
 set shiftwidth=2
-
-" Whitespace chars visible on :set list
-set listchars=tab:·\ ,trail:°
-
-" Ignore whitespace when diffing
-set diffopt+=iwhite
-
-" Minimum number of lines surrounding cursor
-set scrolloff=3
-
-" Show as much as possible of the last line instead of @-lines
-set display=lastline
+set shiftround
 
 " Highlighting of matching braces
 set matchpairs=(:),{:},[:]
-
-set incsearch " Show search results while being typed
-set hlsearch " Highlight matches
-
-set showcmd " show incomplete commands
 
 set laststatus=2 " always show status line
 
 " Statusline: %f(ile) [flags] {align} [%ft] %col %line/%total %percent
 set statusline=%<\ %-f\ \ %m%r%h%w\ %=%y\ %4(%v%)\ %10(%l/%L%)\ \ %P
 
-"set statusline=
+" Shorten various messages in vim
+set shortmess=filnxoOtTI
 
-set shortmess=filnxtToOI
-
-" Allow switching of buffers without saving them first
-set hidden
+" Directories
+set backupdir=~/.vim/backup
+set directory=~/.vim/swap
 
 " }}}
 " {{{ Buffer navigation
