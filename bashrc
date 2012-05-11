@@ -25,12 +25,6 @@
 	# Ignore one Ctrl+D press (exits)
 	export IGNOREEOF=1
 
-	# Disable flow control
-	stty -ixon
-
-	# Disable bell sound
-	setterm -bfreq 0
-
 #}}}
 #{{{ Aliases
 
@@ -84,4 +78,13 @@
 
 	alias gl='git log --color --name-status --pretty=format:"%Cred[%h] %an %Cblue(%ar)%n%Cgreen%s%n%b%Creset"'
 
+#}}}
+#{{{ Cygwin / Windows
+  if [ "$TERM" = "cygwin" ] ; then
+
+		vim() { # use graphical vim
+			`D:\\\Programs\\\vim\\\vim73\\\gvim.exe $*` & 
+		}
+
+  fi
 #}}}
