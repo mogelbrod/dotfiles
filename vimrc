@@ -389,6 +389,14 @@ if !has("gui_running")
 	let g:AutoClosePreservDotReg = 0
 endif
 
+" Syntastic
+let g:syntastic_check_on_open = 0
+let g:syntastic_echo_current_error = 1
+let g:syntastic_enable_signs = 0
+let g:syntastic_enable_highlighting = 0
+let g:syntastic_auto_jump = 0
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_loc_list_height = 4
 
 " }}}
 " {{{ Custom functions
