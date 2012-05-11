@@ -8,7 +8,12 @@
 
 	# Add user bin to PATH
 	if [ -d "$HOME/bin" ] ; then
-			export PATH="$HOME/bin:$PATH"
+		export PATH="$HOME/bin:$PATH"
+	fi
+
+	# In cygwin (windows)?
+	if ["$TERM" = "cygwin"] ; then
+		alias vim='D:\Programs\vim\vim73\gvim.exe'
 	fi
 
 #}}}
