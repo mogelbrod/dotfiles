@@ -11,11 +11,6 @@
 		export PATH="$HOME/bin:$PATH"
 	fi
 
-	# In cygwin (windows)?
-	if ["$TERM" = "cygwin"] ; then
-		alias vim='D:\Programs\vim\vim73\gvim.exe'
-	fi
-
 #}}}
 #{{{ Display and behaviour
 
