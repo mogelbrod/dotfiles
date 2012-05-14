@@ -2,5 +2,5 @@ fish/fish_read_history
 fish/fish_history
 fish/fishd.*
 vim/.netrwhist
-vim/swap/**/*
-vim/backup/**/*
+vim/swap/*
+vim/backup/*
