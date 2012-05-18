@@ -273,18 +273,19 @@ set foldtext=CustomFoldText()
 
 function! IndentationFoldExpr(ln) " {{{
 	let line = getline(a:ln)
+
+	if line =~ '^\s*$'
+		return '-1' "'='
+	end
+
 	let ind = indent(a:ln) / &sw
 	let ind_next = indent(nextnonblank(a:ln+1)) / &sw
 
-	if line =~ '^\s*$'
-		return '='
-	elseif ind_next >= ind+1
-		return '>'.(ind+1)
-	elseif ind_next+1 <= ind
-		return '<'.(ind)
+	if ind_next <= ind
+		return ind
+	elseif ind_next > ind
+		return '>'.ind_next
 	end
-
-	return ind
 endfunction " }}}
 
 " }}}
