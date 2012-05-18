@@ -22,6 +22,8 @@ endif
 
 colorscheme mogelbrod
 
+set autowrite " autosave before making
+
 " {{{ Basic settings
 
 " Language settings
@@ -313,11 +315,11 @@ autocmd FileType * setlocal cinkeys=0{,0},0),:,!^F,o,O,e
 vnoremap <C-h> "hy<Esc>:call ReplaceSelection()<CR>
 fun! ReplaceSelection()
 	let replacement = input("Replacement for ".@h.": ")
-	exe "%s#".escape(@h, '#').'#'.replacement.'#gc'
+	exe "%s~".escape(@h, '~').'~'.replacement.'~gc'
 endfun
 
 " Search for <cword> and replace with input() in all open buffers
-map <leader>h "hy:bufdo! %s¨\V<C-r>h¨¨ge<left><left><left>
+map <leader>h "hy:bufdo! %s~\V<C-r>h~~ge<left><left><left>
 
 " }}}
 " {{{ Completion
@@ -426,9 +428,14 @@ function! RI_lookup(ruby_entity) " {{{
 	endif
 endfunction " }}}
 
+command! -nargs=* Ri call RI_lookup(<q-args>)
 au filetype ruby nn <buffer> K <Esc>:call<space>RI_lookup(expand('<cword>'))<CR>
 au filetype ruby vn <buffer> K "xy<Esc>:call<space>RI_lookup(@x)<CR>
-command! -nargs=* Ri call RI_lookup(<q-args>)
+
+" Make
+command! -nargs=* Make make <args> | cwindow 5
+noremap <leader>m :Make<space>
+noremap <leader>c :Make<CR>
 
 " }}}
 " {{{ GUI settings/overwrites
@@ -479,60 +486,64 @@ endif
 " }}}
 " {{{ Auto commands and file type specific options
 
-" Compiling
-command! -nargs=* Make make <args> | cwindow 5
-noremap <leader>m :Make<space>
-noremap <leader>c :Make<CR>
-
-set autowrite " autosave before making
-
 " Disable paste after leaving insert mode
 au InsertLeave * set nopaste
 
 " LaTeX
-autocmd FileType tex setlocal makeprg=pdflatex\ -file-line-error\ % errorformat=%f:%l:\ %m
-
-if has("win32") " PDF
-	noremap <leader>p :make<CR>:silent ! start "1" "%:r.pdf"<CR>
-else
-	noremap <leader>p :silent !start evince %:r.pdf &<CR>
-endif
+augroup ft_latex
+	autocmd!
+	autocmd FileType *tex setlocal makeprg=pdflatex\ -file-line-error\ % errorformat=%f:%l:\ %m
+	if has("win32")
+		autocmd FileType *tex noremap <buffer> <leader>p :make<CR>:silent ! start "1" "%:r.pdf"<CR>
+	else
+		autocmd FileType *tex noremap <buffer> <leader>p :silent !start evince %:r.pdf &<CR>
+	endif
+augroup END
 
 " Ruby
-autocmd FileType ruby,haml setlocal formatoptions=ql
-autocmd FileType ruby setlocal makeprg=ruby\ -c\ $* errorformat=
-	\%+E%f:%l:\ parse\ error,
-	\%W%f:%l:\ warning:\ %m,
-	\%E%f:%l:in\ %*[^:]:\ %m,
-	\%E%f:%l:\ %m,
-	\%-C%\tfrom\ %f:%l:in\ %.%#,
-	\%-Z%\tfrom\ %f:%l,
-	\%-Z%p^,
-	\%-G%.%#
-" Expand <Ctrl-E> into #{_}
-autocmd FileType ruby,haml inoremap <buffer>  #{}<left>
-"autocmd FileType ruby let g:rubycomplete_buffer_loading = 1
-autocmd FileType ruby let g:rubycomplete_rails = 1
-autocmd FileType yaml,haml setlocal foldmethod=expr 
-	\ foldexpr=IndentationFoldExpr(v:lnum)
+augroup ft_ruby
+	autocmd!
+	autocmd FileType ruby,haml setlocal formatoptions=ql
+	autocmd FileType ruby setlocal makeprg=ruby\ -c\ $* errorformat=
+		\%+E%f:%l:\ parse\ error,
+		\%W%f:%l:\ warning:\ %m,
+		\%E%f:%l:in\ %*[^:]:\ %m,
+		\%E%f:%l:\ %m,
+		\%-C%\tfrom\ %f:%l:in\ %.%#,
+		\%-Z%\tfrom\ %f:%l,
+		\%-Z%p^,
+		\%-G%.%#
+	" Expand <Ctrl-E> into #{_}
+	autocmd FileType ruby,haml inoremap <buffer>  #{}<left>
+	"autocmd FileType ruby let g:rubycomplete_buffer_loading = 1
+	autocmd FileType ruby let g:rubycomplete_rails = 1
+	autocmd FileType yaml,haml setlocal foldmethod=expr 
+		\ foldexpr=IndentationFoldExpr(v:lnum)
+augroup END
 
 " HTML
-autocmd FileType *html call SuperTabSetDefaultCompletionType("<c-x><c-o>")
-autocmd FileType *html let b:SuperTabNoCompleteAfter = []
+augroup ft_html
+	autocmd!
+	autocmd FileType *html call SuperTabSetDefaultCompletionType("<c-x><c-o>")
+	autocmd FileType *html let b:SuperTabNoCompleteAfter = []
+augroup END
+
+" C++
+augroup ft_cpp
+	autocmd!
+	autocmd FileType cpp setlocal foldmarker={,}
+	if has("win32")
+		autocmd FileType cpp,h setlocal makeprg=mingw32-make
+	else
+		autocmd FileType cpp,h setlocal makeprg=make
+	endif
+augroup END
 
 " Lua
 autocmd FileType lua setlocal tabstop=2 shiftwidth=2
 
 " Java
 autocmd FileType java setlocal makeprg=ant\ -e\ -find
-
-" C++
-autocmd FileType cpp setlocal foldmarker={,}
-if has("win32")
-	autocmd FileType cpp,h setlocal makeprg=mingw32-make
-else
-	autocmd FileType cpp,h setlocal makeprg=make
-endif
 
 " Help files
 autocmd FileType help nmap <buffer> <CR> <C-]>
