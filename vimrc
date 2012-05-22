@@ -5,11 +5,14 @@ filetype indent on
 " Map leader
 let mapleader = ","
 
-" Override vim home path on windows
+" Home directory and swap files
 if has('win32') || has ('win64')
-    let $VIMHOME = $VIMRUNTIME
+	let $VIMHOME = $VIMRUNTIME
+	set noswapfile
 else
-    let $VIMHOME = $HOME."/.vim"
+	let $VIMHOME = $HOME."/.vim"
+	set backupdir=~/.vim/backup
+	set directory=~/.vim/swap
 endif
 
 " Include plugins and stuff via pathogen
@@ -471,12 +474,8 @@ if has("gui_running")
 	set guicursor+=i-ci:ver25
 	set guicursor+=r-i-ci:blinkwait900-blinkon600-blinkoff300
 	set guicursor+=n:blinkwait900-blinkon600-blinkoff300
-	
-	" Disable swap files
-	set noswapfile
 
 	set nomousehide
-
 endif
 
 " Enable mouse actions if possible
