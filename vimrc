@@ -85,10 +85,6 @@ set statusline=%<\ %-f\ \ %m%r%h%w\ %=%y\ %4(%v%)\ %10(%l/%L%)\ \ %P
 " Shorten various messages in vim
 set shortmess=filnxoOtTI
 
-" Directories
-set backupdir=~/.vim/backup
-set directory=~/.vim/swap
-
 " }}}
 " {{{ Buffer navigation
 
