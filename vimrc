@@ -540,6 +540,8 @@ autocmd FileType lua setlocal tabstop=2 shiftwidth=2
 
 " Java
 autocmd FileType java setlocal makeprg=ant\ -e\ -find
+autocmd FileType java iabbrev <silent> <buffer> syso System.out.println
+autocmd FileType java iabbrev <silent> <buffer> syse System.err.println
 
 " Help files
 autocmd FileType help nmap <buffer> <CR> <C-]>
