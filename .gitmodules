@@ -37,8 +37,9 @@
 [submodule "vim/bundle/syntastic"]
 	path = vim/bundle/syntastic
 	url = https://github.com/scrooloose/syntastic.git
+	ignore = untracked
 [submodule "vim/bundle/snipmate-plus"]
 	path = vim/bundle/snipmate-plus
 	url = https://github.com/acevery/snipmate-plus.git
-	ignore = untracked
+	ignore = all
 

@@ -362,6 +362,10 @@ set complete+=k
 " Ctrl-P
 map  :CtrlP<CR>
 
+" Snipmate-plus (comment out mappings in snipmate-plus/after/plugin)
+ino <silent> <C-s> <c-r>=TriggerSnippet()<cr>
+snor <silent> <c-s> <esc>i<right><c-r>=TriggerSnippet()<cr>
+
 " NERDtree
 map <F4> :NERDTreeToggle<CR>
 let NERDTreeWinSize=26
