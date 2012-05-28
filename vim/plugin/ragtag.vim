@@ -13,6 +13,7 @@ if has("autocmd")
     autocmd!
     autocmd FileType *html*,wml,xml,xslt,xsd,jsp    call s:Init()
     autocmd FileType php,asp*,cf,mason,eruby,liquid call s:Init()
+		autocmd FileType * call s:DefaultToExpandAbbrev()
     if version >= 700
       autocmd InsertLeave * call s:Leave()
     endif
@@ -31,7 +32,16 @@ function! AllmlInit()
   call s:Init()
 endfunction
 
+" Map used mapping to expand abbreviations when HTML mappings aren't used
+function! s:DefaultToExpandAbbrev()
+	if exists("b:mapped_ragtag")
+		return
+	endif
+  imap <silent> <buffer> <C-e> <Esc>a
+endfunction
+
 function! s:Init()
+  let b:mapped_ragtag = 1
   let b:loaded_ragtag = 1
   inoremap <silent> <buffer> <SID>xmlversion  <?xml version="1.0" encoding="<C-R>=toupper(<SID>charset())<CR>"?>
   inoremap      <buffer> <SID>htmltrans   <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">

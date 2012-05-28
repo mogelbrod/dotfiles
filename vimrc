@@ -354,14 +354,8 @@ inoremap <silent> <C-@> <C-x><C-o>
 inoremap <silent>  <C-n>
 inoremap <silent>  <C-x><C-f>
 
-" Ragtag options (uses <C-e>)
-let g:ragtag_global_maps = 1
-
 " Enable keyword (dictionary) completion
 set complete+=k
-
-" Dictionary
-autocmd FileType * exe('setl dict+='.$VIMHOME.'/dict/'.&filetype)
 
 " }}}
 " {{{ Plugins
@@ -485,22 +479,25 @@ endif
 " Disable paste after leaving insert mode
 au InsertLeave * set nopaste
 
+" Dictionary
+au FileType * exe('setl dict+='.$VIMHOME.'/dict/'.&filetype)
+
 " LaTeX
 augroup ft_latex
-	autocmd!
-	autocmd FileType *tex setlocal makeprg=pdflatex\ -file-line-error\ % errorformat=%f:%l:\ %m
+	au!
+	au FileType *tex setlocal makeprg=pdflatex\ -file-line-error\ % errorformat=%f:%l:\ %m
 	if has("win32")
-		autocmd FileType *tex noremap <buffer> <leader>p :make<CR>:silent ! start "1" "%:r.pdf"<CR>
+		au FileType *tex noremap <buffer> <leader>p :make<CR>:silent ! start "1" "%:r.pdf"<CR>
 	else
-		autocmd FileType *tex noremap <buffer> <leader>p :silent !start evince %:r.pdf &<CR>
+		au FileType *tex noremap <buffer> <leader>p :silent !start evince %:r.pdf &<CR>
 	endif
 augroup END
 
 " Ruby
 augroup ft_ruby
-	autocmd!
-	autocmd FileType ruby,haml setlocal formatoptions=ql
-	autocmd FileType ruby setlocal makeprg=ruby\ -c\ $* errorformat=
+	au!
+	au FileType ruby,haml setlocal formatoptions=ql
+	au FileType ruby setlocal makeprg=ruby\ -c\ $* errorformat=
 		\%+E%f:%l:\ parse\ error,
 		\%W%f:%l:\ warning:\ %m,
 		\%E%f:%l:in\ %*[^:]:\ %m,
@@ -510,40 +507,43 @@ augroup ft_ruby
 		\%-Z%p^,
 		\%-G%.%#
 	" Expand <Ctrl-E> into #{_}
-	autocmd FileType ruby,haml inoremap <buffer>  #{}<left>
-	"autocmd FileType ruby let g:rubycomplete_buffer_loading = 1
-	autocmd FileType ruby let g:rubycomplete_rails = 1
-	autocmd FileType yaml,haml setlocal foldmethod=expr 
+	au FileType ruby,haml inoremap <buffer>  #{}<left>
+	"au FileType ruby let g:rubycomplete_buffer_loading = 1
+	au FileType ruby let g:rubycomplete_rails = 1
+	au FileType yaml,haml setlocal foldmethod=expr 
 		\ foldexpr=IndentationFoldExpr(v:lnum)
 augroup END
 
 " HTML
 augroup ft_html
-	autocmd!
-	autocmd FileType *html call SuperTabSetDefaultCompletionType("<c-x><c-o>")
-	autocmd FileType *html let b:SuperTabNoCompleteAfter = []
+	au!
+	au FileType *html call SuperTabSetDefaultCompletionType("<c-x><c-o>")
+	au FileType *html let b:SuperTabNoCompleteAfter = []
 augroup END
 
 " C++
 augroup ft_cpp
-	autocmd!
-	autocmd FileType cpp setlocal foldmarker={,}
+	au!
+	au FileType cpp setlocal foldmarker={,}
 	if has("win32")
-		autocmd FileType cpp,h setlocal makeprg=mingw32-make
+		au FileType cpp,h setlocal makeprg=mingw32-make
 	else
-		autocmd FileType cpp,h setlocal makeprg=make
+		au FileType cpp,h setlocal makeprg=make
 	endif
 augroup END
 
 " Lua
-autocmd FileType lua setlocal tabstop=2 shiftwidth=2
+au FileType lua setlocal tabstop=2 shiftwidth=2
 
 " Java
-autocmd FileType java setlocal makeprg=ant\ -e\ -find
-autocmd FileType java iabbrev <silent> <buffer> syso System.out.println
-autocmd FileType java iabbrev <silent> <buffer> syse System.err.println
+augroup ft_java
+	au!
+	au FileType java setlocal makeprg=ant\ -e\ -find
+	au FileType java iabbrev <silent> <buffer> syso System.out.println()<left>
+	au FileType java iabbrev <silent> <buffer> syse System.err.println()<left>
+augroup END
 
 " Help files
-autocmd FileType help nmap <buffer> <CR> <C-]>
+au FileType help nmap <buffer> <CR> <C-]>
 
 " }}}
