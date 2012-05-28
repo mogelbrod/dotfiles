@@ -363,8 +363,9 @@ set complete+=k
 map  :CtrlP<CR>
 
 " Snipmate-plus (comment out mappings in snipmate-plus/after/plugin)
-ino <silent> <C-s> <c-r>=TriggerSnippet()<cr>
-snor <silent> <c-s> <esc>i<right><c-r>=TriggerSnippet()<cr>
+inoremap <silent> <C-s> <c-r>=TriggerSnippet()<cr>
+snoremap <silent> <S-s> <esc>i<right><c-r>=TriggerSnippet()<cr>
+let g:snips_author = "Victor Hallberg"
 
 " NERDtree
 map <F4> :NERDTreeToggle<CR>
