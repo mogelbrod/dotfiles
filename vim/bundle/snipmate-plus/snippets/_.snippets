@@ -1,0 +1,27 @@
+# Global snippets
+
+# (c) holds no legal value ;)
+snippet c)
+	Copyright `&enc[:2] == "utf" ? "©" : "(c)"` `strftime("%Y")` ${1:`g:snips_author`}. All Rights Reserved.${2}
+snippet date
+	`strftime("%d/%m/%Y")`
+snippet ddate
+	`strftime("%B %d, %Y")`
+snippet '
+	'${1}'${2}
+snippet "
+	"${1}"${2}
+snippet )
+	${1})${2}
+snippet ]
+	${1}]${2}
+snippet >
+	${1}>${2}
+snippet }
+	${1}}${2}
+# encoding
+snippet enc
+	-*- coding: utf-8 -*-
+# mode line
+snippet ml
+	vim: et sts=4 sw=4
