@@ -195,8 +195,7 @@ map <leader>V :args $MYVIMRC<CR>
 map <silent> <leader>v :source $MYVIMRC<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>
 
 " Map Ctrl-< (lt) to surround plugin
-" Surround plugin also allows <C-s><CR>< to create multi-line tag
-imap <silent>  <C-s><
+imap <silent>  <Plug>Isurround
 
 " Ctrl-L inserts =>
 imap  <space>=><space>
