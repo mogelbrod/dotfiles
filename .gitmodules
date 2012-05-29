@@ -38,4 +38,7 @@
 	path = vim/bundle/syntastic
 	url = https://github.com/scrooloose/syntastic.git
 	ignore = untracked
-
+[submodule "vim/bundle/autoclose"]
+	path = vim/bundle/autoclose
+	url = https://github.com/Townk/vim-autoclose.git
+	ignore = untracked
