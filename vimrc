@@ -25,8 +25,6 @@ endif
 
 colorscheme mogelbrod
 
-set autowrite " autosave before making
-
 " {{{ Basic settings
 
 " Language settings
@@ -84,6 +82,12 @@ set statusline=%<\ %-f\ \ %m%r%h%w\ %=%y\ %4(%v%)\ %10(%l/%L%)\ \ %P
 
 " Shorten various messages in vim
 set shortmess=filnxoOtTI
+
+" Push new splits to bottom/right
+set splitbelow
+set splitright
+
+set autowrite " autosave before making
 
 " }}}
 " {{{ Buffer navigation
