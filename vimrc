@@ -181,8 +181,8 @@ nnoremap <F2> :set invpaste paste?<CR>
 noremap <F3> :set hls!<CR>
 
 " Fold navigation
-map <silent> <Leader><Up> zk
-map <silent> <Leader><Down> zj
+map <silent> <Leader><Up> [z
+map <silent> <Leader><Down> ]z
 
 " Tag jumping
 map <silent> <Leader>t <C-]>
