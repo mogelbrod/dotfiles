@@ -1,6 +1,4 @@
-filetype on
-filetype plugin on
-filetype indent on
+filetype plugin indent on
 
 " Map leader
 let mapleader = ","
@@ -152,6 +150,9 @@ let g:ctrlp_custom_ignore = {
 " }}}
 " {{{ Key behaviour & custom mappings
 
+" Write with Ctrl-S in normal mode
+nmap <C-s> :w<CR>
+
 " kj as alternative to <Esc> in insert mode
 inoremap kj <Esc>
 
@@ -184,26 +185,42 @@ nnoremap <F2> :set invpaste paste?<CR>
 " F3 toggles highlighting of search results
 noremap <F3> :set hls!<CR>
 
+" Map Ctrl-< (lt) to surround plugin
+imap <silent>  <Plug>Isurround
+
+" Ctrl+H replaces all occurences of the selected text with something else
+vnoremap <C-h> "hy<Esc>:call ReplaceSelection()<CR>
+fun! ReplaceSelection()
+	let replacement = input("Replacement for ".@h.": ")
+	exe "%s~".escape(@h, '~').'~'.replacement.'~gc'
+endfun
+
+" }}}
+" {{{ Leader mappings
+
 " Fold navigation
 map <silent> <Leader><Up> [z
 map <silent> <Leader><Down> ]z
 
-" Tag jumping
 map <silent> <Leader>t <C-]>
 
+nmap <silent> <leader>i <Plug>IndentGuidesToggle
+
+" Expand tabs to spaces in selection
+vmap <leader>e :s#\t#\=repeat(" ", &l:ts)#g<CR>
+
+" Search for selection and replace with input() in all open buffers
+vmap <leader>h "hy:bufdo! %s~\V<C-r>h~~ge<left><left><left>
+
+noremap <leader>m :Make<space>
+noremap <leader>c :Make<CR>
+
 " Change directory to current buffer path
-noremap <leader>d :cd %:p:h<CR>
+nmap <leader>d :cd %:p:h<CR>
 
-" Bindings to open vimrc and to reload vimrc
-map <leader>V :args $MYVIMRC<CR>
-map <silent> <leader>v :source $MYVIMRC<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>
-
-" Map Ctrl-< (lt) to surround plugin
-imap <silent>  <Plug>Isurround
-
-" Ctrl-L inserts =>
-imap  <space>=><space>
-imap <C-L> <space>=><space>
+" Open / reload vimrc
+nmap <silent> <leader>V :e $MYVIMRC<CR>:filetype detect<CR>
+nmap <silent> <leader>v :source $MYVIMRC<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>
 
 " }}}
 " {{{ Folding
@@ -301,28 +318,12 @@ vmap <Tab> >gv
 vmap <S-Tab> <gv
 vmap [Z <gv
 
-" Expand tabs to spaces in selection
-vmap <leader>e :s#\t#\=repeat(" ", &l:ts)#g<CR>
-
 " Formatting options (disable autocommenting)
 set formatoptions-=cro
 autocmd FileType * setlocal formatoptions-=cro
 
 " Do not reindent lines with a comment sign (removed 0#)
 autocmd FileType * setlocal cinkeys=0{,0},0),:,!^F,o,O,e
-
-" }}}
-" {{{ Search and replace
-
-" Ctrl+H replaces all occurences of the selected text with something else
-vnoremap <C-h> "hy<Esc>:call ReplaceSelection()<CR>
-fun! ReplaceSelection()
-	let replacement = input("Replacement for ".@h.": ")
-	exe "%s~".escape(@h, '~').'~'.replacement.'~gc'
-endfun
-
-" Search for <cword> and replace with input() in all open buffers
-map <leader>h "hy:bufdo! %s~\V<C-r>h~~ge<left><left><left>
 
 " }}}
 " {{{ Completion
@@ -403,7 +404,6 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_loc_list_height = 4
 
 " Indent guides
-nmap <silent> <leader>i <Plug>IndentGuidesToggle
 let g:indent_guides_start_level = 2
 let g:indent_guides_guide_size = 1
 let g:indent_guides_color_change_percent = 5
@@ -442,8 +442,6 @@ au filetype ruby vn <buffer> K "xy<Esc>:call<space>RI_lookup(@x)<CR>
 
 " Make
 command! -nargs=* Make make <args> | cwindow 5
-noremap <leader>m :Make<space>
-noremap <leader>c :Make<CR>
 
 " }}}
 " {{{ GUI settings/overwrites
@@ -510,6 +508,7 @@ augroup END
 " Ruby
 augroup ft_ruby
 	au!
+	au FileType ruby,haml inoremap <buffer> <C-L> <space>=><space>
 	au FileType ruby,haml setlocal formatoptions=ql
 	au FileType ruby setlocal makeprg=ruby\ -c\ $* errorformat=
 		\%+E%f:%l:\ parse\ error,
@@ -520,8 +519,6 @@ augroup ft_ruby
 		\%-Z%\tfrom\ %f:%l,
 		\%-Z%p^,
 		\%-G%.%#
-	" Expand <Ctrl-E> into #{_}
-	au FileType ruby,haml inoremap <buffer>  #{}<left>
 	"au FileType ruby let g:rubycomplete_buffer_loading = 1
 	au FileType ruby let g:rubycomplete_rails = 1
 	au FileType yaml,haml setlocal foldmethod=expr 
