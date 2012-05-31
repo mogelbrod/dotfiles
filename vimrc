@@ -118,8 +118,7 @@ let g:selBufUseVerticalSplit = 1
 " {{{ Command mode 
 
 " Quick shortcut for entering command mode
-nnoremap - :
-vnoremap - :
+noremap - :
 
 " Usable bindings
 cnoremap <C-A> <Home>
@@ -157,10 +156,14 @@ nmap <C-s> :w<CR>
 inoremap kj <Esc>
 
 " Navigate through displayed lines, not physical
-imap <silent> <Down> <C-o>gj
-imap <silent> <Up> <C-o>gk
-nmap <silent> <Down> gj
-nmap <silent> <Up> gk
+" imap <silent> <Down> <C-o>gj
+" imap <silent> <Up> <C-o>gk
+" nmap <silent> <Down> gj
+" nmap <silent> <Up> gk
+map <silent> <Up> <nop>
+map <silent> <Down> <nop>
+map <silent> <Left> <nop>
+map <silent> <Right> <nop>
 
 " Scroll screen with <C-arrows>
 nmap <silent> <C-Down> <C-e>
