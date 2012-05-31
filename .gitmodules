@@ -42,3 +42,7 @@
 	path = vim/bundle/autoclose
 	url = https://github.com/Townk/vim-autoclose.git
 	ignore = untracked
+[submodule "vim/bundle/indent-guides"]
+	path = vim/bundle/indent-guides
+	url = git://github.com/nathanaelkane/vim-indent-guides.git
+	ignore = untracked

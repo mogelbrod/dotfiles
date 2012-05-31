@@ -402,6 +402,12 @@ let g:syntastic_auto_jump = 0
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_loc_list_height = 4
 
+" Indent guides
+nmap <silent> <leader>i <Plug>IndentGuidesToggle
+let g:indent_guides_start_level = 2
+let g:indent_guides_guide_size = 1
+let g:indent_guides_color_change_percent = 5
+
 " }}}
 " {{{ Custom functions
 
@@ -423,8 +429,8 @@ function! RI_lookup(ruby_entity) " {{{
 		echo '---------------------------------------------------------'
 		let s:user_selection = input('Specify choice by number: ')
 
-		:redraw
-		:call RI_lookup(s:result_as_list[str2nr(s:user_selection)])
+		redraw
+		call RI_lookup(s:result_as_list[str2nr(s:user_selection)])
 	else
 		echo s:ri_result
 	endif
