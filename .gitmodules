@@ -46,3 +46,7 @@
 	path = vim/bundle/indent-guides
 	url = git://github.com/nathanaelkane/vim-indent-guides.git
 	ignore = untracked
+[submodule "vim/bundle/javacomplete"]
+	path = vim/bundle/javacomplete
+	url = https://github.com/vim-scripts/javacomplete.git
+	ignore = untracked

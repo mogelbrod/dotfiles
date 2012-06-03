@@ -553,9 +553,12 @@ au FileType lua setlocal tabstop=2 shiftwidth=2
 augroup ft_java
 	au!
 	au FileType java setlocal makeprg=ant\ -e\ -find
+	au FileType java setlocal omnifunc=javacomplete#Complete
+	au FileType java setlocal completefunc=javacomplete#CompleteParamsInfo
 	au FileType java iabbrev <silent> <buffer> syso System.out.println()<left>
 	au FileType java iabbrev <silent> <buffer> syse System.err.println()<left>
 augroup END
+let java_highlight_functions="style"
 
 " Help files
 au FileType help nmap <buffer> <CR> <C-]>
