@@ -278,7 +278,7 @@ function! CustomFoldText(...) " {{{
 	let line = substitute(line, '^\s*\(.\{-}\)\s*$', '\1', '') . ' '
 
 	" Reapply indentation
-	let line = indentation . line
+	let line = indentation . line . ' '
 
 	" Line count
 	if linecount == -1
@@ -286,9 +286,11 @@ function! CustomFoldText(...) " {{{
 	else
 		let linecount = ' '. linecount .  ' lines | ' . v:foldlevel
 	end
+	
+	let cols = &columns - (&nu ? &numberwidth : 0)
 
-	let fill = repeat('-', &columns - strlen(line) - strlen(linecount))
-	let line = strpart(line, 0, &columns - strlen(linecount)) . fill . linecount
+	let fill = repeat('-', cols - strlen(line) - strlen(linecount))
+	let line = strpart(line, 0, cols - strlen(linecount)) . fill . linecount
 
 	return line
 endfunction " }}}
