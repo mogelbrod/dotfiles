@@ -7,9 +7,10 @@ let mapleader = ","
 if has('win32') || has ('win64')
 	let $VIMHOME = $VIMRUNTIME
 	set noswapfile
+	" Required to be able to save to windows hardlinks
+	set nobackup nowritebackup
 else
 	let $VIMHOME = $HOME."/.vim"
-	set backupdir=~/.vim/backup
 	set directory=~/.vim/swap
 endif
 
