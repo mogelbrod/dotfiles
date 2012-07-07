@@ -7,9 +7,10 @@ let mapleader = ","
 if has('win32') || has ('win64')
 	let $VIMHOME = $VIMRUNTIME
 	set noswapfile
+	" Required to be able to save to windows hardlinks
+	set nobackup nowritebackup
 else
 	let $VIMHOME = $HOME."/.vim"
-	set backupdir=~/.vim/backup
 	set directory=~/.vim/swap
 endif
 
@@ -279,7 +280,7 @@ function! CustomFoldText(...) " {{{
 	let line = substitute(line, '^\s*\(.\{-}\)\s*$', '\1', '') . ' '
 
 	" Reapply indentation
-	let line = indentation . line
+	let line = indentation . line . ' '
 
 	" Line count
 	if linecount == -1
@@ -287,9 +288,11 @@ function! CustomFoldText(...) " {{{
 	else
 		let linecount = ' '. linecount .  ' lines | ' . v:foldlevel
 	end
+	
+	let cols = &columns - (&nu ? &numberwidth : 0)
 
-	let fill = repeat('-', &columns - strlen(line) - strlen(linecount))
-	let line = strpart(line, 0, &columns - strlen(linecount)) . fill . linecount
+	let fill = repeat('-', cols - strlen(line) - strlen(linecount))
+	let line = strpart(line, 0, cols - strlen(linecount)) . fill . linecount
 
 	return line
 endfunction " }}}
@@ -558,8 +561,6 @@ au FileType lua setlocal tabstop=2 shiftwidth=2
 augroup ft_java
 	au!
 	au FileType java setlocal makeprg=ant\ -e\ -find
-	au FileType java setlocal omnifunc=javacomplete#Complete
-	au FileType java setlocal completefunc=javacomplete#CompleteParamsInfo
 	au FileType java iabbrev <silent> <buffer> syso System.out.println()<left>
 	au FileType java iabbrev <silent> <buffer> syse System.err.println()<left>
 augroup END
