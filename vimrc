@@ -156,6 +156,8 @@ nmap <C-s> :w<CR>
 inoremap kj <Esc>
 
 " Navigate through displayed lines, not physical
+nmap <silent> j gj
+nmap <silent> k gk
 " imap <silent> <Down> <C-o>gj
 " imap <silent> <Up> <C-o>gk
 " nmap <silent> <Down> gj
@@ -535,6 +537,9 @@ augroup ft_html
 	au FileType *html let b:SuperTabNoCompleteAfter = []
 augroup END
 
+" XML
+au FileType xml setlocal foldmethod=expr foldexpr=IndentationFoldExpr(v:lnum)
+
 " C++
 augroup ft_cpp
 	au!
@@ -562,5 +567,8 @@ let java_highlight_functions="style"
 
 " Help files
 au FileType help nmap <buffer> <CR> <C-]>
+
+" XQuery
+au FileType xquery setlocal makeprg=xqilla\ %
 
 " }}}
