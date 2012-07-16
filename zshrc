@@ -148,6 +148,9 @@ ${PR_BLUE}%(!.#.$) ${PR_RESET}"
 	alias -g L="| less"
 	alias -g G='| grep'
 
+	# Other useful aliases
+	alias rails_routes='rake routes | vim - -c ":set nowrap buftype=nofile"'
+
 #}}}
 #{{{ File associations
 
