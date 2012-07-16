@@ -540,6 +540,13 @@ augroup ft_html
 	au FileType *html let b:SuperTabNoCompleteAfter = []
 augroup END
 
+" CSS
+augroup ft_css
+	au!
+	" Split definitions into separate lines with ,j (inverse of J)
+	au FileType css vmap <buffer> <leader>j :s/\([{;]\)\s*\n\?\s*/\1\r  /ge<BAR>:nohl<CR><<
+augroup END
+
 " XML
 au FileType xml setlocal foldmethod=expr foldexpr=IndentationFoldExpr(v:lnum)
 
