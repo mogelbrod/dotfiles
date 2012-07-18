@@ -201,6 +201,9 @@ fun! ReplaceSelection()
 	exe "%s~".escape(@h, '~').'~'.replacement.'~gc'
 endfun
 
+" Map P to replace selection without overwriting any registers
+vnoremap P "_dP
+
 " }}}
 " {{{ Leader mappings
 
