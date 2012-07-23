@@ -569,6 +569,11 @@ augroup END
 " XML
 au FileType xml setlocal foldmethod=expr foldexpr=IndentationFoldExpr(v:lnum)
 
+augroup ft_md
+  au!
+  au FileType markdown setlocal expandtab
+augroup END
+
 " C++
 augroup ft_cpp
 	au!
