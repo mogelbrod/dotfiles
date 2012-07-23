@@ -396,7 +396,7 @@ map  :CtrlP<CR>
 
 " Snipmate-plus (comment out mappings in snipmate-plus/after/plugin)
 inoremap <silent> <C-s> <c-r>=TriggerSnippet()<cr>
-snoremap <silent> <S-s> <esc>i<right><c-r>=TriggerSnippet()<cr>
+snoremap <silent> <C-s> <esc>i<right><c-r>=TriggerSnippet()<cr>
 let g:snips_author = "Victor Hallberg"
 
 " NERDtree
