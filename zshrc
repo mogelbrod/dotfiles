@@ -56,10 +56,9 @@
 		case $HOST in
 			mogelserv) host_color=$PR_BRIGHT_BLUE ;;
 			hallberg)  host_color=$PR_GREEN ;;
-			*)         host_color=$PR_CYAN ;;
 		esac
 
-		local user_host="${faded}[${PR_RESET}${user_host}${user_color}%n${faded}@${host_color}%m${faded}:%l]"
+		local user_host="${faded}[${PR_RESET}${user_color}%n${faded}@${PR_RESET}${host_color}%m${faded}:%l]"
 		local padded_cwd="${PR_RESET}${PR_YELLOW}%$pwdsize<...<%~%<<${(r:$pwdpad:: :::)}"
 		local now="${faded}[%D{%H:%M:%S}]${PR_RESET}"
 		local error_num="%(?::${faded}${PR_BRIGHT_RED}%?${PR_RESET}${faded}]${PR_RESET} )"
