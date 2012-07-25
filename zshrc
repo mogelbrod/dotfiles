@@ -50,12 +50,12 @@
 		local faded="${PR_BRIGHT_BLACK}"
 
 		# User / host colorization
-		local user_color=$PR_GREEN
+		local user_color=$PR_BRIGHT_BLUE
 		[[ "$USER" == "root" ]] && user_color=$PR_BRIGHT_RED
 		local host_color=$PR_CYAN
 		case $HOST in
-			mogelserv) host_color=$PR_BRIGHT_GREEN ;;
-			hallberg)  host_color=$PR_BRIGHT_BLUE ;;
+			mogelserv) host_color=$PR_BRIGHT_BLUE ;;
+			hallberg)  host_color=$PR_BRIGHT_GREEN ;;
 		esac
 
 		local user_host="${faded}[${PR_RESET}${user_host}${user_color}%n${faded}@${host_color}%m${faded}:%l]"
