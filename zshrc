@@ -11,7 +11,9 @@
 			export PATH="$HOME/bin:$PATH"
 	fi
 
-	#{{{ Colors
+#}}}
+#{{{ Colors
+
 	autoload colors zsh/terminfo
 	colors
 	for COLOR in RED GREEN YELLOW BLUE MAGENTA CYAN WHITE BLACK; do
@@ -24,9 +26,10 @@
 	#zstyle ':completion:*' list-colors ''
 	#zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 	zmodload zsh/complist
-	#}}}
 
-	#{{{ Prompt
+#}}}
+#{{{ Prompt
+
 	setopt prompt_subst
 
 	precmd() {
@@ -44,19 +47,29 @@
 			pwdpad=0;
 		fi
 
-		HCOLOR=$PR_GREEN
-		[[ -n "${SSH_CONNECTION}" ]] && HCOLOR=$PR_CYAN
+		local faded="${PR_BRIGHT_BLACK}"
 
-PROMPT="${PR_BRIGHT_BLACK}[${PR_RESET}${HCOLOR}%n@%m${PR_BRIGHT_BLACK}:%l]\
-${PR_RESET} ${PR_YELLOW}\
-%$pwdsize<...<%~%<<${(r:$pwdpad:: :::)} \
-${PR_BRIGHT_BLACK}[%D{%H:%M:%S}]${PR_RESET}
-%(?::${PR_BRIGHT_BLACK}[${PR_BRIGHT_RED}%?${PR_RESET}${PR_BRIGHT_BLACK}]${PR_RESET} )\
-${PR_BLUE}%(!.#.$) ${PR_RESET}"
+		# User / host colorization
+		local user_color=$PR_BRIGHT_BLUE
+		[[ "$USER" == "root" ]] && user_color=$PR_BRIGHT_RED
+		local host_color=$PR_CYAN
+		case $HOST in
+			mogelserv) host_color=$PR_BRIGHT_BLUE ;;
+			hallberg)  host_color=$PR_GREEN ;;
+		esac
+
+		local user_host="${faded}[${PR_RESET}${user_color}%n${faded}@${PR_RESET}${host_color}%m${faded}:%l]"
+		local padded_cwd="${PR_RESET}${PR_YELLOW}%$pwdsize<...<%~%<<${(r:$pwdpad:: :::)}"
+		local now="${faded}[%D{%H:%M:%S}]${PR_RESET}"
+		local error_num="%(?::${faded}${PR_BRIGHT_RED}%?${PR_RESET}${faded}]${PR_RESET} )"
+		local pr="${PR_BLUE}%(!.#.$) ${PR_RESET}"
+
+		PROMPT="${user_host} ${padded_cwd} ${now}${error_num}${pr}"
 	}
-	#}}}
 
-	#{{{ Completion
+#}}}
+#{{{ Completion
+
 	zstyle ':completion:*' special-dirs true
 	zstyle ':completion:*' completer _expand _complete _ignored #_approximate
 	#zstyle ':completion:*' matcher-list 'm:{[:lower:]}={[:upper:]}'
@@ -67,15 +80,15 @@ ${PR_BLUE}%(!.#.$) ${PR_RESET}"
 
 	setopt complete_in_word
 	setopt auto_param_slash auto_param_keys
-	#}}}
 
-	#{{{ History
+#}}}
+#{{{ History
+
 	HISTFILE=~/.histfile
 	HISTSIZE=5000
 	SAVEHIST=1000
 	setopt append_history hist_reduce_blanks
 	setopt inc_append_history share_history
-	#}}}
 
 #}}}
 #{{{ Bindings
