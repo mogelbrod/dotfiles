@@ -70,6 +70,7 @@ set scrolloff=3
 set tabstop=2
 set shiftwidth=2
 set shiftround
+set expandtab
 
 " Highlighting of matching braces
 set matchpairs=(:),{:},[:]
