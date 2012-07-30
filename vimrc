@@ -52,7 +52,7 @@ set hidden
 set wrap linebreak " word wrap
 
 set list
-set listchars=tab:·\ ,trail:° " whitespace visible on :set list
+set listchars=tab:°\ ,trail:· " whitespace visible on :set list
 set diffopt+=iwhite " ignore whitespace when diffing
 
 set incsearch " Show search results while being typed
