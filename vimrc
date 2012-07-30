@@ -51,7 +51,7 @@ set hidden
 
 set wrap linebreak " word wrap
 
-set list
+"set list
 set listchars=tab:°\ ,trail:· " whitespace visible on :set list
 set diffopt+=iwhite " ignore whitespace when diffing
 
@@ -219,6 +219,7 @@ nmap <silent> <leader>i <Plug>IndentGuidesToggle
 
 " Expand tabs to spaces in selection
 vmap <leader>e :s#\t#\=repeat(" ", &l:ts)#g<CR>
+nmap <leader>e :%s#\t#\=repeat(" ", &l:ts)#g<CR>
 
 " Search for selection and replace with input() in all open buffers
 vmap <leader>h "hy:bufdo! %s~\V<C-r>h~~ge<left><left><left>
