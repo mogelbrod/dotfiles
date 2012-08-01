@@ -68,10 +68,7 @@ set display=lastline
 set scrolloff=3
 
 " Tabs
-set tabstop=2
-set shiftwidth=2
-set shiftround
-set expandtab
+set tabstop=2 shiftwidth=2 softtabstop=2 expandtab shiftround
 
 " Highlighting of matching braces
 set matchpairs=(:),{:},[:]
@@ -87,6 +84,8 @@ set shortmess=filnxoOtTI
 " Push new splits to bottom/right
 set splitbelow
 set splitright
+
+set noballooneval " disable annoying window popups
 
 set autowrite " autosave before making
 
