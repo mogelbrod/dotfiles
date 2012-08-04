@@ -361,9 +361,8 @@ endfunction
 set completeopt=longest,menu ",menuone
 
 " Add some expected functionality to some keys when the completion menu is visible
-inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"
-inoremap <expr> <Down> pumvisible() ? "\<C-n>" : "\<Down>"
-inoremap <expr> <Up> pumvisible() ? "\<C-p>" : "\<Up>"
+" Do it through AutoClose to avoid strange behavior
+let g:AutoClosePumvisible = { "ESC": "\<C-e>", "ENTER": "\<C-y>", "UP": "<C-p>", "DOWN": "<C-n>" }
 " SuperTab already does the above, disable with the following line
 let g:SuperTabCrMapping = 0
 
