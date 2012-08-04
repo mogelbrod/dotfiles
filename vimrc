@@ -361,10 +361,11 @@ endfunction
 set completeopt=longest,menu ",menuone
 
 " Add some expected functionality to some keys when the completion menu is visible
-" SuperTab already does this
-"inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"
-"inoremap <expr> <Down> pumvisible() ? "\<C-n>" : "\<Down>"
-"inoremap <expr> <Up> pumvisible() ? "\<C-p>" : "\<Up>"
+inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"
+inoremap <expr> <Down> pumvisible() ? "\<C-n>" : "\<Down>"
+inoremap <expr> <Up> pumvisible() ? "\<C-p>" : "\<Up>"
+" SuperTab already does the above, disable with the following line
+let g:SuperTabCrMapping = 0
 
 " SuperTab mappings
 if has("gui_running")
@@ -379,7 +380,6 @@ end
 let g:SuperTabDefaultCompletionType = "context"
 let g:SuperTabContextDefaultCompletionType = "<C-n>"
 let g:SuperTabLongestHighlight = 1
-"let g:SuperTabCrMapping = 0
 
 " Completion shortcuts
 inoremap <silent> <C-Space> <C-x><C-o>
