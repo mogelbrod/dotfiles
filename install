@@ -5,6 +5,8 @@
 
 home = File.expand_path('~')
 
+puts "Create symlinks ..."
+
 Dir['*'].each do |file|
   next if file =~ /install/
   if file =~ /fish/
@@ -12,7 +14,7 @@ Dir['*'].each do |file|
   else
     target = File.join(home, ".#{file}")
   end
-  
+
   if File.exists?(target)
     puts " - #{file} (#{target}) already exists, skipping."
   else
@@ -26,5 +28,13 @@ Dir['*'].each do |file|
 end
 
 # git push on commit
+puts "Tell git to push on commits ..."
 `echo 'git push' > .git/hooks/post-commit`
 `chmod 755 .git/hooks/post-commit`
+
+# initialize git submodules
+puts "Initialize git submodules ..."
+`git submodule init`
+`git submodule update`
+
+puts "All done!"
