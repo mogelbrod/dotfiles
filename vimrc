@@ -56,7 +56,7 @@ set diffopt+=iwhite " ignore whitespace when diffing
 
 set incsearch " Show search results while being typed
 set hlsearch " Highlight matches
-set ignorecase "smartcase "noignorecase
+set smartcase "noignorecase
 
 set showcmd " show incomplete commands
 set history=50 " command line history length
@@ -67,9 +67,7 @@ set display=lastline
 set scrolloff=3
 
 " Tabs
-set tabstop=2
-set shiftwidth=2
-set shiftround
+set tabstop=2 shiftwidth=2 shiftround expandtab softtabstop=2
 
 " Highlighting of matching braces
 set matchpairs=(:),{:},[:]
@@ -98,15 +96,6 @@ noremap [D :bprevious<CR>
 noremap [C :bnext<CR>
 noremap [1;5D :bprevious<CR>
 noremap [1;5C :bnext<CR>
-
-" CtrlP plugin
-" search for both files, buffers and MRUs
-let g:ctrlp_cmd = 'CtrlPMixed'
-let g:ctrlp_switch_buffer = 1 " jump to existing buffers in same tab
-let g:ctrlp_max_depth = 10
-let g:ctrlp_open_new_file = 'r'
-let g:ctrlp_mruf_max = 50
-let g:ctrlp_extensions = ['mixed']
 
 " SelectBuf plugin
 "nmap <silent> <C-Tab> <Plug>SelectBuf
@@ -142,10 +131,6 @@ set wildmode=longest,list,full
 set wildignore=*.o,*.bak,*.swc,*.swp,.git/*,.gitkeep
 set wildignore+=*/tmp/*,*.so,*.zip
 set wildignore+=tmp\*,*.zip,*.exe
-let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\.git$\|\.hg$\|\.svn$',
-  \ 'file': '\.exe$\|\.so$\|\.dll$'
-	\ }
 
 " }}}
 " {{{ Key behaviour & custom mappings
@@ -159,20 +144,24 @@ inoremap kj <Esc>
 " Navigate through displayed lines, not physical
 nmap <silent> j gj
 nmap <silent> k gk
-" imap <silent> <Down> <C-o>gj
-" imap <silent> <Up> <C-o>gk
-" nmap <silent> <Down> gj
-" nmap <silent> <Up> gk
-map <silent> <Up> <nop>
-map <silent> <Down> <nop>
-map <silent> <Left> <nop>
-map <silent> <Right> <nop>
+imap <silent> <Down> <C-o>gj
+imap <silent> <Up> <C-o>gk
+nmap <silent> <Down> gj
+nmap <silent> <Up> gk
+"map <silent> <Up> <nop>
+"map <silent> <Down> <nop>
+"map <silent> <Left> <nop>
+"map <silent> <Right> <nop>
 
 " Scroll screen with <C-arrows>
 nmap <silent> <C-Down> <C-e>
 nmap <silent> <C-Up> <C-y>
 imap <silent> <C-Down> <C-x><C-e>
 imap <silent> <C-Up> <C-x><C-y>
+nmap <silent> [B <C-e>
+nmap <silent> [A <C-y>
+imap <silent> [B <C-x><C-e>
+imap <silent> [A <C-x><C-y>
 
 " Scroll with Space in normal mode
 noremap <S-space> <C-b>
@@ -393,6 +382,20 @@ set complete+=k
 
 " Ctrl-P
 map  :CtrlP<CR>
+
+" CtrlP plugin
+" search for both files, buffers and MRUs
+let g:ctrlp_cmd = 'CtrlPMixed'
+let g:ctrlp_switch_buffer = 1 " jump to existing buffers in same tab
+let g:ctrlp_max_depth = 10
+let g:ctrlp_open_new_file = 'r'
+let g:ctrlp_mruf_max = 50
+let g:ctrlp_extensions = ['mixed']
+
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\.git$\|\.hg$\|\.svn$',
+  \ 'file': '\.exe$\|\.so$\|\.dll$'
+	\ }
 
 " Snipmate-plus (comment out mappings in snipmate-plus/after/plugin)
 inoremap <silent> <C-s> <c-r>=TriggerSnippet()<cr>
