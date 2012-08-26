@@ -37,7 +37,7 @@ set encoding=utf-8
 set fileformat=unix
 
 " Tabs
-set tabstop=2 shiftwidth=2 shiftround expandtab softtabstop=2
+set tabstop=2 shiftwidth=2 softtabstop=2 expandtab shiftround
 
 " Tags file
 set tags=./.tags,.tags,./tags,tags
@@ -58,7 +58,8 @@ set hidden
 
 set wrap linebreak " word wrap
 
-set listchars=tab:·\ ,trail:° " whitespace visible on :set list
+"set list
+set listchars=tab:°\ ,trail:· " whitespace visible on :set list
 set diffopt+=iwhite " ignore whitespace when diffing
 
 set incsearch " Show search results while being typed
@@ -87,6 +88,10 @@ set shortmess=filnxoOtTI
 " Push new splits to bottom/right
 set splitbelow
 set splitright
+
+if has("balloon_eval")
+  set noballooneval " disable annoying window popups
+endif
 
 set autowrite " autosave before making
 
@@ -210,6 +215,7 @@ nmap <silent> <leader>i <Plug>IndentGuidesToggle
 
 " Expand tabs to spaces in selection
 vmap <leader>e :s#\t#\=repeat(" ", &l:ts)#g<CR>
+nmap <leader>e :%s#\t#\=repeat(" ", &l:ts)#g<CR>
 
 " Search for selection and replace with input() in all open buffers
 vmap <leader>h "hy:bufdo! %s~\V<C-r>h~~ge<left><left><left>
@@ -358,10 +364,10 @@ set complete=.,w,b,u,k,i,t
 set completeopt=longest,menu ",menuone
 
 " Add some expected functionality to some keys when the completion menu is visible
-" SuperTab already does this
-"inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"
-"inoremap <expr> <Down> pumvisible() ? "\<C-n>" : "\<Down>"
-"inoremap <expr> <Up> pumvisible() ? "\<C-p>" : "\<Up>"
+" Do it through AutoClose to avoid strange behavior
+let g:AutoClosePumvisible = { "ESC": "\<C-e>", "ENTER": "\<C-y>", "UP": "<C-p>", "DOWN": "<C-n>" }
+" SuperTab already does the above, disable with the following line
+let g:SuperTabCrMapping = 0
 
 " SuperTab mappings
 if has("gui_running")
@@ -376,7 +382,6 @@ end
 let g:SuperTabDefaultCompletionType = "context"
 let g:SuperTabContextDefaultCompletionType = "<C-n>"
 let g:SuperTabLongestHighlight = 1
-"let g:SuperTabCrMapping = 0
 
 " Completion shortcuts
 inoremap <silent> <C-Space> <C-x><C-o>
