@@ -36,7 +36,14 @@ set termencoding=utf-8
 set encoding=utf-8
 set fileformat=unix
 
+" Tabs
+set tabstop=2 shiftwidth=2 shiftround expandtab softtabstop=2
+
+" Tags file
+set tags=./.tags,.tags,./tags,tags
+
 set clipboard=unnamed " yank to system clipboard
+
 set autoindent
 
 " Display guides & line numbers
@@ -66,9 +73,6 @@ set display=lastline
 " Minimum number of lines surrounding cursor
 set scrolloff=3
 
-" Tabs
-set tabstop=2 shiftwidth=2 shiftround expandtab softtabstop=2
-
 " Highlighting of matching braces
 set matchpairs=(:),{:},[:]
 
@@ -85,6 +89,8 @@ set splitbelow
 set splitright
 
 set autowrite " autosave before making
+
+set shellslash " always use forward slashes, even on windows
 
 " }}}
 " {{{ Buffer navigation
@@ -127,7 +133,7 @@ cmap w!! %!sudo tee > /dev/null %
 
 " Completion
 set wildmenu
-set wildmode=longest,list,full
+set wildmode=list:longest,full
 set wildignore=*.o,*.bak,*.swc,*.swp,.git/*,.gitkeep
 set wildignore+=*/tmp/*,*.so,*.zip
 set wildignore+=tmp\*,*.zip,*.exe
@@ -163,10 +169,6 @@ nmap <silent> [A <C-y>
 imap <silent> [B <C-x><C-e>
 imap <silent> [A <C-x><C-y>
 
-" Scroll with Space in normal mode
-noremap <S-space> <C-b>
-noremap <space> <C-f>
-
 " Allow backspacing over everything
 set backspace=indent,eol,start
 
@@ -192,6 +194,8 @@ endfun
 
 " Map P to replace selection without overwriting any registers
 vnoremap P "_dP
+
+noremap § <C-]>
 
 " }}}
 " {{{ Leader mappings
@@ -225,6 +229,9 @@ nmap <silent> <leader>v :source $MYVIMRC<CR>:filetype detect<CR>:exe ":echo 'vim
 
 " Folding (by braces)
 set foldmethod=marker foldmarker={{{,}}}
+
+" What actions should cause folds to open?
+set foldopen=insert,hor,block,hor,mark,percent,quickfix,search,tag,undo
 
 " Fold text (title)
 function! CustomFoldText(...) " {{{
@@ -343,6 +350,9 @@ endfunction
 
 " }}}
 " {{{ Completion
+
+" What to scan for insert mode completion
+set complete=.,w,b,u,k,i,t
 
 " Insert the longest common text, show menu for one result too
 set completeopt=longest,menu ",menuone
@@ -572,6 +582,7 @@ augroup END
 " XML
 au FileType xml setlocal foldmethod=expr foldexpr=IndentationFoldExpr(v:lnum)
 
+" Markdown
 augroup ft_md
   au!
   au FileType markdown setlocal expandtab
