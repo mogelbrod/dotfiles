@@ -163,7 +163,7 @@
 
 	# Other useful aliases
 	alias rails_routes='rake routes | vim - -c ":set nowrap buftype=nofile"'
-  alias tags='ctags -f .tags -R .'
+  alias tags='ctags -f .tags --exclude=.git --exclude=log -R .'
 
 #}}}
 #{{{ File associations
