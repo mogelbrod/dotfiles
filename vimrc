@@ -69,7 +69,7 @@ set hlsearch " Highlight matches
 set smartcase "noignorecase
 
 set showcmd " show incomplete commands
-set history=50 " command line history length
+set history=100 " command line history length
 
 " Show as much as possible of the last line instead of @-lines
 set display=lastline
@@ -206,6 +206,9 @@ noremap § <C-]>
 
 " }}}
 " {{{ Leader mappings
+
+" Copy buffer contents to clipboard
+map <silent> <leader>y ggVG"+y''
 
 " Fold navigation
 map <silent> <Leader><Up> [z
@@ -470,16 +473,15 @@ if has("gui_running")
 		set guifont=ProFontWindows:h9
 		map <leader>0 :set guifont=ProFontWindows:h9<CR>
 		map <leader>+ :set guifont=ProFontWindows:h16<CR>
-
-		" Ctrl-C copies
-		vmap <C-c> "+y
 	endif
 
-	" Toolbar
-	set guioptions-=T
+	set guioptions=egm
 
 	" Window size
-	set columns=100 lines=50
+  if !exists("g:gui_window_size_applied")
+    set columns=100 lines=50
+    let g:gui_window_size_applied = 1
+  endif
 
 	" Line numbers
 	set number numberwidth=5
