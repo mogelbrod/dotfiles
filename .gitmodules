@@ -46,6 +46,3 @@
 	path = vim/bundle/indent-guides
 	url = git://github.com/nathanaelkane/vim-indent-guides.git
 	ignore = untracked
-[submodule "vim/bundle/ri.vim"]
-	path = vim/bundle/ri.vim
-	url = https://github.com/danchoi/ri.vim.git
