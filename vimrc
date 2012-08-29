@@ -136,7 +136,7 @@ cnoremap [C <S-Right>
 cnoreabbrev W w
 
 " Add :w!! command which will write file as sudo
-cmap w!! %!sudo tee > /dev/null %
+cnoreabbrev w!! %!sudo tee > /dev/null %
 
 " Completion
 set wildmenu
