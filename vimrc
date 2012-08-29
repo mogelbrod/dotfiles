@@ -458,35 +458,6 @@ let g:indent_guides_color_change_percent = 5
 " }}}
 " {{{ Custom functions
 
-function! RI_lookup(ruby_entity) " {{{
-	let s:ri_result = system('ri "' . a:ruby_entity . '"')
-	if match(s:ri_result, "More than one") != -1
-		let s:header_and_result = split(s:ri_result, '\n\n')
-		let s:result_as_list = split(substitute(substitute(s:header_and_result[1], '\n', '', 'g'), ' ', '', 'g'), ',')
-
-		echo s:header_and_result[0]
-		echo '---------------------------------------------------------'
-
-		let s:index = 0
-		for item in s:result_as_list
-			echo '' . s:index . '  -  ' . item
-			let s:index += 1
-		endfor
-
-		echo '---------------------------------------------------------'
-		let s:user_selection = input('Specify choice by number: ')
-
-		redraw
-		call RI_lookup(s:result_as_list[str2nr(s:user_selection)])
-	else
-		echo s:ri_result
-	endif
-endfunction " }}}
-
-"command! -nargs=* Ri call RI_lookup(<q-args>)
-au filetype ruby nn <buffer> K <Esc>:call<space>RI_lookup(expand('<cword>'))<CR>
-au filetype ruby vn <buffer> K "xy<Esc>:call<space>RI_lookup(@x)<CR>
-
 " Make
 command! -nargs=* Make make <args> | cwindow 5
 
