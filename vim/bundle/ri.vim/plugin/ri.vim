@@ -28,7 +28,7 @@ function! RIVimStatusLine()
   if exists("g:mapleader")
     let a = g:mapleader
   endif
-  return "%<%f\ | Press ".a."? for help "."%r%=%-14.(%l,%c%V%)\ %P"
+  return "%<%f\ | ".a."r to display methods "."%r%=%-14.(%l,%c%V%)\ %P"
 endfunction
 
 " parses the first line of the doc
@@ -90,8 +90,8 @@ function! ri#OpenSearchPrompt(verticalSplit)
   resize 2
   inoremap <buffer> <cr> <Esc>:call <SID>doSearch()<cr>
   noremap <buffer> <cr> <Esc>:call <SID>doSearch()<cr>
-  noremap <buffer> <Esc> :close<cr>
-  noremap <buffer> <C-c> :close<cr>
+  noremap <buffer> <silent> <Esc> :close<cr>
+  noremap <buffer> <silent> <C-c> :close<cr>
   inoremap <buffer> <Tab> <C-x><C-u>
   call setline(1, "Search Ruby documentation (press tab to autocomplete):")
   call setline(2, line)
@@ -102,28 +102,25 @@ endfunction
 function! s:prepareDocBuffer()
   setlocal nowrap
   setlocal textwidth=0
-  noremap <buffer> <Leader><Leader>r :call <SID>selectMethod()<cr>
-  noremap <buffer> <cr> :call <SID>playTrack()<cr>
-  noremap <buffer> K :call ri#LookupNameUnderCursor()<CR>
-  noremap <buffer> <CR> :call ri#LookupNameUnderCursor()<CR>
-  noremap <buffer> <Leader>g :call <SID>openREADME()<CR>
-  noremap <buffer> <Leader>h :call <SID>openRDoc()<CR>
-  noremap <buffer> <Tab> :call <SID>upToParentClass()<CR>
-
-  " noremap <buffer> q :call <SID>closeRIVim()<cr>
-  noremap <buffer> <C-c> :call <SID>closeRIVim()<cr>
-  noremap <buffer> <Leader>q :call <SID>closeRIVim()<cr>
-  noremap <buffer> <Leader>? :call <SID>help()<CR>
   setlocal statusline=%!RIVimStatusLine()
+
+  noremap <buffer> K :call ri#LookupNameUnderCursor()<CR>
+  noremap <buffer> <silent> <Leader>r :call <SID>selectMethod()<cr>
+  noremap <buffer> <silent> <Leader>g :call <SID>openREADME()<CR>
+  noremap <buffer> <silent> <Leader>h :call <SID>openRDoc()<CR>
+  noremap <buffer> <silent> <cr> :call <SID>playTrack()<cr>
+  noremap <buffer> <silent> <CR> :call ri#LookupNameUnderCursor()<CR>
+  noremap <buffer> <silent> <Tab> :call <SID>upToParentClass()<CR>
+
+  " noremap <buffer> q :close!<cr>
+  noremap <buffer> <silent> <C-c> :close!<cr>
+  noremap <buffer> <silent> <Leader>q :close!<cr>
+  noremap <buffer> <silent> <Leader>? :call <SID>help()<CR>
 
   let s:browser_bufnr = bufnr('%')
   call s:syntaxLoad()
   setlocal nomodifiable
 endfunction
-
-function! s:closeRIVim()
-  close!
-endfunc
 
 function! RDocAutoComplete(findstart, base)
   if a:findstart
@@ -174,12 +171,14 @@ function! s:selectMethod()
   resize 2
   inoremap <buffer> <cr> <Esc>:call <SID>doSearch()<cr>
   noremap <buffer> <cr> <Esc>:call <SID>doSearch()<cr>
-  noremap <buffer> <Esc> :close<cr>
+  noremap <buffer> <silent> <Esc> :close<cr>
+  noremap <buffer> <silent> <C-c> :close<cr>
   inoremap <buffer> <Tab> <C-x><C-u>
   call setline(1, classname." > look up method (press tab to autocomplete):")
   call setline(2, line)
   normal G$
-  call feedkeys("a\<c-x>\<c-u>\<c-p>", 't')
+  call feedkeys("a", 't')
+  "call feedkeys("a\<c-x>\<c-u>\<c-p>", 't')
 endfunction
 
 function! RubyClassMethodComplete(findstart, base)
