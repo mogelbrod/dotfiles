@@ -483,7 +483,7 @@ function! RI_lookup(ruby_entity) " {{{
 	endif
 endfunction " }}}
 
-command! -nargs=* Ri call RI_lookup(<q-args>)
+"command! -nargs=* Ri call RI_lookup(<q-args>)
 au filetype ruby nn <buffer> K <Esc>:call<space>RI_lookup(expand('<cword>'))<CR>
 au filetype ruby vn <buffer> K "xy<Esc>:call<space>RI_lookup(@x)<CR>
 
