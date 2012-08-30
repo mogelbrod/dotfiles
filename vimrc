@@ -377,10 +377,10 @@ let g:SuperTabCrMapping = 0
 " SuperTab mappings
 if has("gui_running")
   let g:SuperTabMappingBackward = '<S-Tab>'
-  let g:SuperTabMappingForward  = '<Tab>'
+	let g:SuperTabMappingForward  = '<tab>'
 else
   let g:SuperTabMappingBackward = '[Z'
-  let g:SuperTabMappingForward  = '<Tab>'
+	let g:SuperTabMappingForward  = '<tab>'
 end
 
 " SuperTab options
