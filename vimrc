@@ -548,6 +548,7 @@ augroup END
 augroup ft_python
   au!
   au FileType python setlocal ts=4 sts=4 sw=4
+  au FileType python noremap <buffer> <leader>r :!python %<CR>
 augroup END
 
 " HTML
