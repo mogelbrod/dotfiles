@@ -362,9 +362,9 @@ function! s:help()
 endfunction
 
 if !hasmapto("ri#OpenSearchPrompt",'n')
-  nnoremap <silent> <leader>r :call ri#OpenSearchPrompt(0)<cr>
-  nnoremap <silent> <leader>R :call ri#OpenSearchPrompt(1)<cr>
-  nnoremap <silent> <leader>K :call ri#LookupNameUnderCursor()<cr>
+  au FileType ruby,haml nnoremap <silent> <buffer> <leader>r :call ri#OpenSearchPrompt(0)<cr>
+  au FileType ruby,haml nnoremap <silent> <buffer> <leader>R :call ri#OpenSearchPrompt(1)<cr>
+  au FileType ruby,haml nnoremap <silent> <buffer> <leader>K :call ri#LookupNameUnderCursor()<cr>
 endif
 
 au BufRead *.rivim call <SID>updateBrowserBufNrAndLoadSyntax()
