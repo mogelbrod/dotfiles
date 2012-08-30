@@ -5,13 +5,13 @@ let mapleader = ","
 
 " Home directory and swap files
 if has('win32') || has ('win64')
-	let $VIMHOME = $VIMRUNTIME
-	set noswapfile
-	" Required to be able to save to windows hardlinks
-	set nobackup nowritebackup
+  let $VIMHOME = $VIMRUNTIME
+  set noswapfile
+  " Required to be able to save to windows hardlinks
+  set nobackup nowritebackup
 else
-	let $VIMHOME = $HOME."/.vim"
-	set directory=~/.vim/swap
+  let $VIMHOME = $HOME."/.vim"
+  set directory=~/.vim/swap
 endif
 
 " Include plugins and stuff via pathogen
@@ -195,8 +195,8 @@ imap <silent>  <Plug>Isurround
 " Ctrl+H replaces all occurences of the selected text with something else
 vnoremap <C-h> "hy<Esc>:call ReplaceSelection()<CR>
 fun! ReplaceSelection()
-	let replacement = input("Replacement for ".@h.": ")
-	exe "%s~".escape(@h, '~').'~'.replacement.'~gc'
+  let replacement = input("Replacement for ".@h.": ")
+  exe "%s~".escape(@h, '~').'~'.replacement.'~gc'
 endfun
 
 " Map P to replace selection without overwriting any registers
@@ -246,83 +246,83 @@ set foldopen=insert,hor,block,hor,mark,percent,quickfix,search,tag,undo
 
 " Fold text (title)
 function! CustomFoldText(...) " {{{
-	if a:0 > 0
-		let line = a:1
-		let linecount = a:0 > 1 ? a:2 : -1
-	else
-		let line = getline(v:foldstart)
-		let linecount = v:foldend - v:foldstart + 1
-	endif
+  if a:0 > 0
+    let line = a:1
+    let linecount = a:0 > 1 ? a:2 : -1
+  else
+    let line = getline(v:foldstart)
+    let linecount = v:foldend - v:foldstart + 1
+  endif
 
-	" Store indentation and later re-apply it
-	let spaces4tab = repeat(' ', &l:ts)
-	let indentation = substitute(matchstr(line, '^\s*'), "\t", spaces4tab, 'g')
+  " Store indentation and later re-apply it
+  let spaces4tab = repeat(' ', &l:ts)
+  let indentation = substitute(matchstr(line, '^\s*'), "\t", spaces4tab, 'g')
 
-	" Remove fold marker if present
-	let foldmarkers = split(&foldmarker, ',')
-	let line = substitute(line, '\V' . foldmarkers[0] . '\%(\d\+\)\?', '', '')
+  " Remove fold marker if present
+  let foldmarkers = split(&foldmarker, ',')
+  let line = substitute(line, '\V' . foldmarkers[0] . '\%(\d\+\)\?', '', '')
 
-	" Remove known comment strings
-	let comment = split(&commentstring, '%s')
-	if comment[0] != ''
-		let comment_begin = comment[0]
-		let comment_end = ''
-		if len(comment) > 1
-			let comment_end = comment[1]
-		end
-		let pattern = '\V' . comment_begin . '\s\*' . comment_end . '\s\*\$'
-		if line =~ pattern
-			let line = substitute(line, pattern, '', '')
-		else
-			let line = substitute(line, '\V' . comment_begin, '', '')
-			if comment_end != ''
-				let line = substitute(line, '\V' . comment_end, '', '')
-			endif
-		endif
-	endif
+  " Remove known comment strings
+  let comment = split(&commentstring, '%s')
+  if comment[0] != ''
+    let comment_begin = comment[0]
+    let comment_end = ''
+    if len(comment) > 1
+      let comment_end = comment[1]
+    end
+    let pattern = '\V' . comment_begin . '\s\*' . comment_end . '\s\*\$'
+    if line =~ pattern
+      let line = substitute(line, pattern, '', '')
+    else
+      let line = substitute(line, '\V' . comment_begin, '', '')
+      if comment_end != ''
+        let line = substitute(line, '\V' . comment_end, '', '')
+      endif
+    endif
+  endif
 
-	" Remove additional comment prefixes
-	if &ft=='cpp' || &ft=='php'
-		let line = substitute(line, '\V//', '', '')
-	endif
+  " Remove additional comment prefixes
+  if &ft=='cpp' || &ft=='php'
+    let line = substitute(line, '\V//', '', '')
+  endif
 
-	" Remove any remaining leading/trailing whitespace
-	let line = substitute(line, '^\s*\(.\{-}\)\s*$', '\1', '') . ' '
+  " Remove any remaining leading/trailing whitespace
+  let line = substitute(line, '^\s*\(.\{-}\)\s*$', '\1', '') . ' '
 
-	" Reapply indentation
-	let line = indentation . line . ' '
+  " Reapply indentation
+  let line = indentation . line . ' '
 
-	" Line count
-	if linecount == -1
-		let linecount = ''
-	else
-		let linecount = ' '. linecount .  ' lines | ' . v:foldlevel
-	end
-	
-	let cols = &columns - (&nu ? &numberwidth : 0)
+  " Line count
+  if linecount == -1
+    let linecount = ''
+  else
+    let linecount = ' '. linecount .  ' lines | ' . v:foldlevel
+  end
+  
+  let cols = &columns - (&nu ? &numberwidth : 0)
 
-	let fill = repeat('-', cols - strlen(line) - strlen(linecount))
-	let line = strpart(line, 0, cols - strlen(linecount)) . fill . linecount
+  let fill = repeat('-', cols - strlen(line) - strlen(linecount))
+  let line = strpart(line, 0, cols - strlen(linecount)) . fill . linecount
 
-	return line
+  return line
 endfunction " }}}
 set foldtext=CustomFoldText()
 
 function! IndentationFoldExpr(ln) " {{{
-	let line = getline(a:ln)
+  let line = getline(a:ln)
 
-	if line =~ '^\s*$'
-		return '-1' "'='
-	end
+  if line =~ '^\s*$'
+    return '-1' "'='
+  end
 
-	let ind = indent(a:ln) / &sw
-	let ind_next = indent(nextnonblank(a:ln+1)) / &sw
+  let ind = indent(a:ln) / &sw
+  let ind_next = indent(nextnonblank(a:ln+1)) / &sw
 
-	if ind_next <= ind
-		return ind
-	elseif ind_next > ind
-		return '>'.ind_next
-	end
+  if ind_next <= ind
+    return ind
+  elseif ind_next > ind
+    return '>'.ind_next
+  end
 endfunction " }}}
 
 " }}}
@@ -376,11 +376,11 @@ let g:SuperTabCrMapping = 0
 
 " SuperTab mappings
 if has("gui_running")
-	let g:SuperTabMappingBackward = '<S-Tab>'
-	let g:SuperTabMappingForward  = '<Tab>'
+  let g:SuperTabMappingBackward = '<S-Tab>'
+  let g:SuperTabMappingForward  = '<Tab>'
 else
-	let g:SuperTabMappingBackward = '[Z'
-	let g:SuperTabMappingForward  = '<Tab>'
+  let g:SuperTabMappingBackward = '[Z'
+  let g:SuperTabMappingForward  = '<Tab>'
 end
 
 " SuperTab options
@@ -415,7 +415,7 @@ let g:ctrlp_extensions = ['mixed']
 let g:ctrlp_custom_ignore = {
   \ 'dir':  '\.git$\|\.hg$\|\.svn$',
   \ 'file': '\.exe$\|\.so$\|\.dll$'
-	\ }
+  \ }
 
 " Snipmate-plus (comment out mappings in snipmate-plus/after/plugin)
 inoremap <silent> <C-s> <c-r>=TriggerSnippet()<cr>
@@ -438,10 +438,10 @@ let Tlist_Highlight_Tag_On_BufEnter = 0
 let Tlist_Use_Right_Window = 1
 
 if !has("gui_running")
-	" Do not resize window when toggling tag list split
-	let Tlist_Inc_Winwidth = 0
-	" Fix bug introduced by AutoClose (arrow keys mapping to ABCD)
-	let g:AutoClosePreservDotReg = 0
+  " Do not resize window when toggling tag list split
+  let Tlist_Inc_Winwidth = 0
+  " Fix bug introduced by AutoClose (arrow keys mapping to ABCD)
+  let g:AutoClosePreservDotReg = 0
 endif
 
 " Syntastic
@@ -468,41 +468,41 @@ command! -nargs=* Make silent! make <args> | redraw! | botright cwindow 5
 " {{{ GUI settings/overwrites
 
 if has("gui_running")
-	if has("win32")
-		" Editor font
-		set guifont=ProFontWindows:h9
-		map <leader>0 :set guifont=ProFontWindows:h9<CR>
-		map <leader>+ :set guifont=ProFontWindows:h16<CR>
-	endif
+  if has("win32")
+    " Editor font
+    set guifont=ProFontWindows:h9
+    map <leader>0 :set guifont=ProFontWindows:h9<CR>
+    map <leader>+ :set guifont=ProFontWindows:h16<CR>
+  endif
 
-	set guioptions=egm
+  set guioptions=egm
 
-	" Window size
+  " Window size
   if !exists("g:gui_window_size_applied")
     set columns=100 lines=50
     let g:gui_window_size_applied = 1
   endif
 
-	" Line numbers
-	set number numberwidth=5
+  " Line numbers
+  set number numberwidth=5
 
-	" Highlight current line
-	set cursorline
-	autocmd WinEnter * setlocal cursorline
-	autocmd WinLeave * setlocal nocursorline
+  " Highlight current line
+  set cursorline
+  autocmd WinEnter * setlocal cursorline
+  autocmd WinLeave * setlocal nocursorline
 
-	" Cursor settings
-	set guicursor=n-v-c-r:block-Cursor/lCursor-blinkon0
-	set guicursor+=i-ci:ver25
-	set guicursor+=r-i-ci:blinkwait900-blinkon600-blinkoff300
-	set guicursor+=n:blinkwait900-blinkon600-blinkoff300
+  " Cursor settings
+  set guicursor=n-v-c-r:block-Cursor/lCursor-blinkon0
+  set guicursor+=i-ci:ver25
+  set guicursor+=r-i-ci:blinkwait900-blinkon600-blinkoff300
+  set guicursor+=n:blinkwait900-blinkon600-blinkoff300
 
-	set nomousehide
+  set nomousehide
 endif
 
 " Enable mouse actions if possible
 if has('mouse')
-	set mouse=a
+  set mouse=a
 endif
 
 " }}}
@@ -516,47 +516,47 @@ au FileType * exe('setl dict+='.$VIMHOME.'/dict/'.&filetype)
 
 " LaTeX
 augroup ft_latex
-	au!
-	au FileType *tex setlocal makeprg=pdflatex\ -file-line-error\ % errorformat=%f:%l:\ %m
-	if has("win32")
-		au FileType *tex noremap <buffer> <leader>p :make<CR>:silent ! start "1" "%:r.pdf"<CR>
-	else
-		au FileType *tex noremap <buffer> <leader>p :silent !start evince %:r.pdf &<CR>
-	endif
+  au!
+  au FileType *tex setlocal makeprg=pdflatex\ -file-line-error\ % errorformat=%f:%l:\ %m
+  if has("win32")
+    au FileType *tex noremap <buffer> <leader>p :make<CR>:silent ! start "1" "%:r.pdf"<CR>
+  else
+    au FileType *tex noremap <buffer> <leader>p :silent !start evince %:r.pdf &<CR>
+  endif
 augroup END
 
 " Ruby
 augroup ft_ruby
-	au!
-	au FileType ruby,haml inoremap <buffer> <C-L> <space>=><space>
-	au FileType ruby,haml setlocal formatoptions=ql
-	au FileType ruby setlocal makeprg=ruby\ -c\ $* errorformat=
-		\%+E%f:%l:\ parse\ error,
-		\%W%f:%l:\ warning:\ %m,
-		\%E%f:%l:in\ %*[^:]:\ %m,
-		\%E%f:%l:\ %m,
-		\%-C%\tfrom\ %f:%l:in\ %.%#,
-		\%-Z%\tfrom\ %f:%l,
-		\%-Z%p^,
-		\%-G%.%#
-	"au FileType ruby let g:rubycomplete_buffer_loading = 1
-	au FileType ruby let g:rubycomplete_rails = 1
-	au FileType yaml,haml setlocal foldmethod=expr 
-		\ foldexpr=IndentationFoldExpr(v:lnum)
+  au!
+  au FileType ruby,haml inoremap <buffer> <C-L> <space>=><space>
+  au FileType ruby,haml setlocal formatoptions=ql
+  au FileType ruby setlocal makeprg=ruby\ -c\ $* errorformat=
+    \%+E%f:%l:\ parse\ error,
+    \%W%f:%l:\ warning:\ %m,
+    \%E%f:%l:in\ %*[^:]:\ %m,
+    \%E%f:%l:\ %m,
+    \%-C%\tfrom\ %f:%l:in\ %.%#,
+    \%-Z%\tfrom\ %f:%l,
+    \%-Z%p^,
+    \%-G%.%#
+  "au FileType ruby let g:rubycomplete_buffer_loading = 1
+  au FileType ruby let g:rubycomplete_rails = 1
+  au FileType yaml,haml setlocal foldmethod=expr 
+    \ foldexpr=IndentationFoldExpr(v:lnum)
 augroup END
 
 " HTML
 augroup ft_html
-	au!
-	au FileType *html call SuperTabSetDefaultCompletionType("<c-x><c-o>")
-	au FileType *html let b:SuperTabNoCompleteAfter = []
+  au!
+  au FileType *html call SuperTabSetDefaultCompletionType("<c-x><c-o>")
+  au FileType *html let b:SuperTabNoCompleteAfter = []
 augroup END
 
 " CSS
 augroup ft_css
-	au!
-	" Split definitions into separate lines with ,j (inverse of J)
-	au FileType css vmap <buffer> <leader>j :s/\([{;]\)\s*\n\?\s*/\1\r  /ge<BAR>:nohl<CR><<
+  au!
+  " Split definitions into separate lines with ,j (inverse of J)
+  au FileType css vmap <buffer> <leader>j :s/\([{;]\)\s*\n\?\s*/\1\r  /ge<BAR>:nohl<CR><<
 augroup END
 
 " XML
@@ -570,13 +570,13 @@ augroup END
 
 " C++
 augroup ft_cpp
-	au!
-	au FileType cpp setlocal foldmarker={,}
-	if has("win32")
-		au FileType cpp,h setlocal makeprg=mingw32-make
-	else
-		au FileType cpp,h setlocal makeprg=make
-	endif
+  au!
+  au FileType cpp setlocal foldmarker={,}
+  if has("win32")
+    au FileType cpp,h setlocal makeprg=mingw32-make
+  else
+    au FileType cpp,h setlocal makeprg=make
+  endif
 augroup END
 
 " Lua
@@ -584,10 +584,10 @@ au FileType lua setlocal tabstop=2 shiftwidth=2
 
 " Java
 augroup ft_java
-	au!
-	au FileType java setlocal makeprg=ant\ -e\ -find
-	au FileType java iabbrev <silent> <buffer> syso System.out.println()<left>
-	au FileType java iabbrev <silent> <buffer> syse System.err.println()<left>
+  au!
+  au FileType java setlocal makeprg=ant\ -e\ -find
+  au FileType java iabbrev <silent> <buffer> syso System.out.println()<left>
+  au FileType java iabbrev <silent> <buffer> syse System.err.println()<left>
 augroup END
 let java_highlight_functions="style"
 
