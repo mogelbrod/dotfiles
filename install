@@ -4,6 +4,8 @@
 # with edits by mogelbrod <http://github.com/mogelbrod>
 
 home = File.expand_path('~')
+dir = File.dirname(__FILE__)
+`cd #{dir}`
 
 puts "Create symlinks ..."
 
@@ -29,12 +31,15 @@ end
 
 # git push on commit
 puts "Tell git to push on commits ..."
-`echo 'git push' > .git/hooks/post-commit`
-`chmod 755 .git/hooks/post-commit`
+`echo 'git push' > #{dir}/.git/hooks/post-commit`
+`chmod 755 #{dir}/.git/hooks/post-commit`
 
 # initialize git submodules
 puts "Initialize git submodules ..."
 `git submodule init`
 `git submodule update`
+
+puts "Update (pull) git submodules ..."
+`git submodule foreach git pull origin master`
 
 puts "All done!"
