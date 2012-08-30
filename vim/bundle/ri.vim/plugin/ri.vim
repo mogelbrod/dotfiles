@@ -3,7 +3,7 @@
 " License: MIT License (c) 2012 Daniel Choi
 
 let s:plugin_path = expand("<sfile>:p:h")
-let s:ruby_script_path = s:plugin_path . "/ri_vim.rb "
+let s:ruby_script_path = "ruby ".s:plugin_path . "/ri_vim.rb "
 let s:selectionPrompt = ""
 let s:cacheDir = $HOME."/.ri_vim/cache"
 let s:verticalSplit = 0
