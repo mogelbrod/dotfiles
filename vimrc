@@ -462,7 +462,7 @@ let g:indent_guides_color_change_percent = 5
 " {{{ Custom functions
 
 " Make
-command! -nargs=* Make make <args> | cwindow 5
+command! -nargs=* Make silent! make <args> | redraw! | botright cwindow 5
 
 " }}}
 " {{{ GUI settings/overwrites
