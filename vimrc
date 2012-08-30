@@ -545,6 +545,11 @@ augroup ft_ruby
     \ foldexpr=IndentationFoldExpr(v:lnum)
 augroup END
 
+augroup ft_python
+  au!
+  au FileType python setlocal ts=4 sts=4 sw=4
+augroup END
+
 " HTML
 augroup ft_html
   au!
@@ -580,7 +585,7 @@ augroup ft_cpp
 augroup END
 
 " Lua
-au FileType lua setlocal tabstop=2 shiftwidth=2
+"au FileType lua setlocal tabstop=2 shiftwidth=2
 
 " Java
 augroup ft_java
