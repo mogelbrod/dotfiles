@@ -214,7 +214,7 @@ map <silent> <leader>y ggVG"+y''
 map <silent> <Leader><Up> [z
 map <silent> <Leader><Down> ]z
 
-map <silent> <Leader>t <C-]>
+map <silent> <Leader>t !ctags -f .tags --exclude=.git --exclude=log -R .<CR>
 
 nmap <silent> <leader>i <Plug>IndentGuidesToggle
 
