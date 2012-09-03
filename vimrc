@@ -463,6 +463,29 @@ let g:indent_guides_color_change_percent = 5
 " Make
 command! -nargs=* Make silent! make <args> | redraw! | botright cwindow 5
 
+" Display hex color under cursor as RGB combo
+map <leader>sh <Esc>:call HexToRGB()<CR>
+function! HexToRGB(...)
+  if a:0 > 0
+    let str = a:1
+  else
+    let str = expand("<cword>")
+  endif
+
+  let parts = matchlist(str, '\v#?([0-9a-f]{2})([0-9a-f]{2})([0-9a-f]{2})')
+  if len(parts) < 1
+    echo "Word under cursor does not appear to be a hexcolor"
+    return
+  endif
+
+  let out = "RGB[ "
+  for i in range(1, 3)
+    let out = out . printf("%d ", "0x" . parts[i])
+  endfor
+
+  echo out . "]"
+endfunction
+
 " }}}
 " {{{ GUI settings/overwrites
 
