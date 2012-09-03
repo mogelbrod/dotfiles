@@ -11,6 +11,17 @@
 			export PATH="$HOME/bin:$PATH"
 	fi
 
+  # Add current directory to PATH
+  export PATH=.:$PATH
+
+  # Auto push dir when CDing
+  setopt auto_pushd pushd_silent pushd_ignore_dups
+
+  set nomatch # error when filename patterns does not match anything
+
+  # Allow short styled loops: for i (*.c) echo $i
+  set short_loops
+
 #}}}
 #{{{ Colors
 
