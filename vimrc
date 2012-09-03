@@ -472,7 +472,7 @@ function! HexToRGB(...)
     let str = expand("<cword>")
   endif
 
-  let parts = matchlist(str, '\v#?([0-9a-f]{2})([0-9a-f]{2})([0-9a-f]{2})')
+  let parts = matchlist(str, '\c\v#?([0-9a-f]{2})([0-9a-f]{2})([0-9a-f]{2})')
   if len(parts) < 1
     echo "Word under cursor does not appear to be a hexcolor"
     return
