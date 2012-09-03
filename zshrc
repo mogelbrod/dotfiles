@@ -61,7 +61,7 @@
 		local user_host="${faded}[${PR_RESET}${user_color}%n${faded}@${PR_RESET}${host_color}%m${faded}:%l]"
 		local padded_cwd="${PR_RESET}${PR_YELLOW}%$pwdsize<...<%~%<<${(r:$pwdpad:: :::)}"
 		local now="${faded}[%D{%H:%M:%S}]${PR_RESET}"
-		local error_num="%(?::${faded}${PR_BRIGHT_RED}%?${PR_RESET}${faded}]${PR_RESET} )"
+		local error_num="%(?::${faded}[${PR_BRIGHT_RED}%?${PR_RESET}${faded}]${PR_RESET} )"
 		local pr="${PR_BLUE}%(!.#.$) ${PR_RESET}"
 
 		PROMPT="${user_host} ${padded_cwd} ${now}${error_num}${pr}"
