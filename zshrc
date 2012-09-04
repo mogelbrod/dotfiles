@@ -113,31 +113,27 @@
 
 	# Word moving
 	# Ctrl+left/right
-	#bindkey "\e[1;5D" backward-word
-	#bindkey "\e[1;5C" forward-word
+  bindkey "\e[1;5D" backward-word 
+  bindkey "\e[1;5C" forward-word
 	# Alt+left/right
-	bindkey '[D' backward-word
-	bindkey '[C' forward-word
-	#bindkey "\e[1;3D" backward-word
-	#bindkey "\e[1;3C" forward-word
+	bindkey "\e[1;3D" backward-word
+	bindkey "\e[1;3C" forward-word
 
-	bindkey "\e[3;5~" backward-kill-word
-	bindkey "\e[3;3~" kill-word
-	bindkey "[3~" kill-word # alt-delete
+  # Word deletion
+  bindkey "\e[3;5~" kill-word # Ctrl-Delete
 
 	# Page up/down
 	#bindkey "\e[5~" backward-word
 	#bindkey "\e[6~" forward-word
-	bindkey "\e[5;5~" backward-kill-word
-	bindkey "\e[6;5~" kill-word
 
 	# Ctrl-D clears line
 	bindkey "\C-d" kill-whole-line
 
-	# Alt-S inserts sudo at beginning of line
+	# Ctrl-S/Alt-S inserts sudo at beginning of line
 	insert_sudo () { zle beginning-of-line; zle -U "sudo " }
 	zle -N insert-sudo insert_sudo
 	bindkey "^[s" insert-sudo
+	bindkey "^S" insert-sudo
 
 #}}}
 #{{{ Aliases
