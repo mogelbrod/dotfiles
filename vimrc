@@ -221,6 +221,10 @@ nmap <silent> <leader>i <Plug>IndentGuidesToggle
 vmap <leader>e :s#\t#\=repeat(" ", &l:ts)#g<CR>
 nmap <leader>e :%s#\t#\=repeat(" ", &l:ts)#g<CR>
 
+" Tabular plugin map
+nmap <leader>t :Tabularize /
+vmap <leader>t :Tabularize /
+
 " Search for selection and replace with input() in all open buffers
 vmap <leader>h "hy:bufdo! %s~\V<C-r>h~~ge<left><left><left>
 
