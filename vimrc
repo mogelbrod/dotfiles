@@ -215,7 +215,11 @@ map <silent> <Leader><Down> ]z
 
 map <silent> <Leader>t !ctags -f .tags --exclude=.git --exclude=log -R .<CR>
 
+" Toggle Indent guides
 nmap <silent> <leader>i <Plug>IndentGuidesToggle
+
+" Join visual selection lines with commas
+vmap <silent> <leader>j y:let @0=join(split(@y, "\n"), ", ")<CR>gv"0p
 
 " Expand tabs to spaces in selection
 vmap <leader>e :s#\t#\=repeat(" ", &l:ts)#g<CR>
@@ -597,7 +601,9 @@ au FileType xml setlocal foldmethod=expr foldexpr=IndentationFoldExpr(v:lnum)
 " Markdown
 augroup ft_md
   au!
-  au FileType markdown setlocal expandtab
+  if has("unix")
+    au FileType markdown setlocal dictionary+=/usr/share/dict/words
+  endif
 augroup END
 
 " C++
