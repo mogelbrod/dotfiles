@@ -219,7 +219,7 @@ map <silent> <Leader>t !ctags -f .tags --exclude=.git --exclude=log -R .<CR>
 nmap <silent> <leader>i <Plug>IndentGuidesToggle
 
 " Join visual selection lines with commas
-vmap <silent> <leader>j y:let @0=join(split(@y, "\n"), ", ")<CR>gv"0p
+vmap <silent> <leader>j "hy:let @h=join(split(@h, "\n"), ", ")<CR>gv"hp
 
 " Expand tabs to spaces in selection
 vmap <leader>e :s#\t#\=repeat(" ", &l:ts)#g<CR>
