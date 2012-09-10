@@ -11,6 +11,7 @@ if has('win32') || has ('win64')
   set nobackup nowritebackup
 else
   let $VIMHOME = $HOME."/.vim"
+  set directory="$VIMHOME/swap//,."
 endif
 
 " Include plugins and stuff via pathogen
