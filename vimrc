@@ -8,10 +8,10 @@ if has('win32') || has ('win64')
   let $VIMHOME = $VIMRUNTIME
   set noswapfile
   " Required to be able to save to windows hardlinks
-  set nobackup nowritebackup
 else
   let $VIMHOME = $HOME."/.vim"
   set directory="$VIMHOME/swap//,."
+  set backupdir="$VIMHOME/backup//,."
 endif
 
 " Include plugins and stuff via pathogen
@@ -43,6 +43,9 @@ set tabstop=2 shiftwidth=2 softtabstop=2 expandtab shiftround
 set tags=./.tags,.tags,./tags,tags
 
 set clipboard=unnamed " yank to system clipboard
+
+" Do not create backups when writing to files
+set nobackup nowritebackup
 
 set autoindent
 
