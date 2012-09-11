@@ -379,12 +379,9 @@ set complete=.,w,b,u,k,i,t
 " Insert the longest common text, show menu for one result too
 set completeopt=longest,menu ",menuone
 
-" Add some expected functionality to some keys when the completion menu is visible
-" Do it through AutoClose to avoid strange behavior
-"let g:AutoClosePumvisible = { "ESC": "\<C-e>", "ENTER": "\<C-y>", "UP": "<C-p>", "DOWN": "<C-n>" }
-" SuperTab already does the above, disable with the following line
-"let g:SuperTabCrMapping = 0
+" Fix compatibility between AutoClose, Endwise and SuperTab
 let g:AutoCloseExpandEnterOn = ""
+"let g:AutoClosePumvisible = { "ESC": "\<C-e>", "ENTER": "\<C-y>", "UP": "<C-p>", "DOWN": "<C-n>" }
 
 " SuperTab mappings
 if has("gui_running")
