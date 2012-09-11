@@ -29,6 +29,12 @@ Dir['*'].each do |file|
   end
 end
 
+if RUBY_PLATFORM =~ /mingw|mswin/i
+  puts "Create vim swap directory ..."
+  FileUtils.mkdir_p "~/.vim/swap"
+  FileUtils.mkdir_p "~/.vim/backup"
+end
+
 # git push on commit
 puts "Tell git to push on commits ..."
 `echo 'git push' > #{dir}/.git/hooks/post-commit`

@@ -10,8 +10,8 @@ if has('win32') || has ('win64')
   " Required to be able to save to windows hardlinks
 else
   let $VIMHOME = $HOME."/.vim"
-  set directory="$VIMHOME/swap//,."
-  set backupdir="$VIMHOME/backup//,."
+  set directory=~/.vim/swap//,.
+  set backupdir=~/.vim/backup//,.
 endif
 
 " Include plugins and stuff via pathogen
@@ -381,9 +381,10 @@ set completeopt=longest,menu ",menuone
 
 " Add some expected functionality to some keys when the completion menu is visible
 " Do it through AutoClose to avoid strange behavior
-let g:AutoClosePumvisible = { "ESC": "\<C-e>", "ENTER": "\<C-y>", "UP": "<C-p>", "DOWN": "<C-n>" }
+"let g:AutoClosePumvisible = { "ESC": "\<C-e>", "ENTER": "\<C-y>", "UP": "<C-p>", "DOWN": "<C-n>" }
 " SuperTab already does the above, disable with the following line
-let g:SuperTabCrMapping = 0
+"let g:SuperTabCrMapping = 0
+let g:AutoCloseExpandEnterOn = ""
 
 " SuperTab mappings
 if has("gui_running")
