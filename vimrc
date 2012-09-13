@@ -405,6 +405,7 @@ set complete+=k
 
 " Ctrl-P
 map  :CtrlP<CR>
+map <leader>p :CtrlP expand('%:p:h')<CR>
 
 " CtrlP plugin
 " search for both files, buffers and MRUs
