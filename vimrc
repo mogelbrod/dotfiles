@@ -1,28 +1,22 @@
-filetype plugin indent on
-
-" Map leader
-let mapleader = ","
-
 " Home directory and swap files
 if has('win32') || has ('win64')
-  let $VIMHOME = $VIMRUNTIME
+  let $VIMHOME = $HOME."\\vimfiles"
   set noswapfile
   " Required to be able to save to windows hardlinks
+  set nobackup nowritebackup
 else
   let $VIMHOME = $HOME."/.vim"
-  set directory=~/.vim/swap//,.
-  set backupdir=~/.vim/backup//,.
+  set directory=$VIMHOME/swap//,.
+  set backupdir=$VIMHOME/backup//,.
 endif
 
 " Include plugins and stuff via pathogen
 call pathogen#infect()
 
-" Enable syntax highlighting
-if &t_Co > 2 || has("gui_running")
-  syntax on
-endif
-
+filetype plugin indent on
+syntax on
 colorscheme mogelbrod
+let mapleader = ","
 
 " {{{ Basic settings
 
@@ -211,7 +205,7 @@ noremap § <C-]>
 " {{{ Leader mappings
 
 " Copy buffer contents to clipboard
-map <silent> <leader>y ggVG"+y''
+map <silent> <leader>ya ggVG"+y''
 
 " Fold navigation
 map <silent> <Leader><Up> [z
@@ -494,6 +488,20 @@ function! HexToRGB(...)
   endfor
 
   echo out . "]"
+endfunction
+
+" Copy everything on current side of equals sign (=)
+map <silent> <leader>ys <Esc>:call YankSide()<CR>
+function! YankSide()
+  let line = getline('.')
+  let cur_col = col('.') " cursor column
+  let eq_col = match(line, '=') " equal sign column
+  if eq_col < cur_col " we are on the right side
+    let line = substitute(line, '^[^=]\+=\s*', '', '')
+  elseif eq_col > cur_col " we are on the left side
+    let line = substitute(line, '\s*=.\+', '', '')
+  endif
+  call setreg(&clipboard == 'unnamed' ? '*' : '"', line)
 endfunction
 
 " }}}
