@@ -3,6 +3,8 @@
 # <http://errtheblog.com/posts/89-huba-huba>
 # with edits by mogelbrod <http://github.com/mogelbrod>
 
+require 'fileutils'
+
 home = File.expand_path('~')
 dir = File.dirname(__FILE__)
 `cd #{dir}` unless dir == '.'
@@ -29,7 +31,7 @@ Dir['*'].each do |file|
   end
 end
 
-if RUBY_PLATFORM =~ /mingw|mswin/i
+unless RUBY_PLATFORM =~ /mingw|mswin/i
   puts "Create vim swap directory ..."
   FileUtils.mkdir_p "~/.vim/swap"
   FileUtils.mkdir_p "~/.vim/backup"
