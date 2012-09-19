@@ -590,6 +590,8 @@ augroup ft_python
   au!
   au FileType python setlocal ts=4 sts=4 sw=4
   au FileType python noremap <buffer> <leader>r :!python %<CR>
+  au FileType python setlocal makeprg=python\ %
+  au FileType python setlocal efm=%C\ %.%#,%A\ \ File\ \"%f\"\\,\ line\ %l%.%#,%Z%[%^\ ]%\\@=%m
 augroup END
 
 " HTML
