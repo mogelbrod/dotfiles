@@ -34,6 +34,7 @@ hi MatchParen   ctermfg=White  ctermbg=Black  cterm=bold   guifg=#ffffff  guibg=
 
 " Window Elements
 hi LineNr       ctermfg=Gray   ctermbg=Black cterm=none    guifg=#626262  guibg=#141414  gui=none
+hi CursorLineNr ctermfg=Gray   ctermbg=Black cterm=none    guifg=#6a6a6a  guibg=#0b0b0b  gui=none
 hi StatusLine   ctermfg=Black  ctermbg=Grey  cterm=none    guifg=#ffffff  guibg=#0a0a0a  gui=none
 hi StatusLineNC ctermfg=Black  ctermbg=Grey  cterm=bold    guifg=#a6a6a6  guibg=#0a0a0a  gui=none
 hi VertSplit    ctermfg=Black  ctermbg=Grey  cterm=none    guifg=#ffffff  guibg=#0a0a0a  gui=none

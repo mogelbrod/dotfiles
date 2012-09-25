@@ -617,6 +617,7 @@ augroup ft_md
   if has("unix")
     au FileType markdown setlocal dictionary+=/usr/share/dict/words
   endif
+  au FileType markdown setlocal infercase
 augroup END
 
 " C++
