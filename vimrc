@@ -245,6 +245,9 @@ set foldmethod=marker foldmarker={{{,}}}
 " What actions should cause folds to open?
 set foldopen=insert,hor,block,hor,mark,percent,quickfix,search,tag,undo
 
+" Control fold open/closed with <Space>
+nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
+
 " Fold text (title)
 function! CustomFoldText(...) " {{{
   if a:0 > 0
