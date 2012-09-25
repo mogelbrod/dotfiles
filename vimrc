@@ -107,13 +107,6 @@ noremap [C :bnext<CR>
 noremap [1;5D :bprevious<CR>
 noremap [1;5C :bnext<CR>
 
-" SelectBuf plugin
-"nmap <silent> <C-Tab> <Plug>SelectBuf
-"imap <silent> <C-Tab> <ESC><Plug>SelectBuf
-nmap <F5> <Plug>SelectBuf
-imap <F5> <ESC><Plug>SelectBuf
-let g:selBufUseVerticalSplit = 1
-
 " }}}
 " {{{ Command mode 
 
