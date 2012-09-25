@@ -172,9 +172,12 @@ set backspace=indent,eol,start
 " Have the cursor keys wrap between lines (like <Space> and <BkSpc> do)
 set whichwrap=h,l,<,>,[,]
 
+"nnoremap <F2> :set invpaste paste?<CR>
+nnoremap <F2> :set paste<CR>i
 " F2 toggles pasting mode
 set pastetoggle=<F2>
-nnoremap <F2> :set invpaste paste?<CR>
+" Disable paste after leaving insert mode
+au InsertLeave * set nopaste
 
 " F3 toggles highlighting of search results
 noremap <F3> :set hls!<CR>
@@ -541,9 +544,6 @@ endif
 
 " }}}
 " {{{ Auto commands and file type specific options
-
-" Disable paste after leaving insert mode
-au InsertLeave * set nopaste
 
 " Dictionary
 au FileType * exe('setl dict+='.$VIMHOME.'/dict/'.&filetype)
