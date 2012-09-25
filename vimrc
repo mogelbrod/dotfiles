@@ -420,7 +420,7 @@ snoremap <silent> <C-s> <esc>i<right><c-r>=TriggerSnippet()<cr>
 let g:snips_author = "Victor Hallberg"
 
 " NERDtree
-map <F4> :NERDTreeToggle<CR>
+map <F5> :NERDTreeToggle<CR>
 let NERDTreeWinSize=26
 let NERDTreeMinimalUI=1
 
