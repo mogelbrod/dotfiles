@@ -1,0 +1,58 @@
+[global_config]
+  window_state = maximise
+  handle_size = 4
+  title_hide_sizetext = True
+  title_transmit_fg_color = "#87bcff"
+  title_inactive_fg_color = "#d9b48e"
+  enabled_plugins = APTURLHandler,
+  title_receive_bg_color = "#388175"
+  title_transmit_bg_color = "#083b7c"
+  title_inactive_bg_color = "#40372e"
+[keybindings]
+  cycle_prev = None
+  group_tab = None
+  resize_left = None
+  reset_clear = <Primary><Shift>g
+  go_right = <Control><Shift>Right
+  new_tab = None
+  resize_right = None
+  group_all = None
+  toggle_zoom = None
+  scaled_zoom = None
+  resize_down = None
+  full_screen = None
+  cycle_next = None
+  ungroup_all = None
+  split_vert = <Control><Shift>s
+  ungroup_tab = None
+  new_terminator = None
+  go_left = <Control><Shift>Left
+  hide_window = None
+  reset = <Control><Shift>l
+  go_up = <Control><Shift>Up
+  resize_up = None
+  split_horiz = <Control><Shift>t
+  go_down = <Control><Shift>Down
+  toggle_scrollbar = None
+[profiles]
+  [[default]]
+    palette = "#000000:#f05050:#78dc1e:#e6aa37:#7373e6:#e63ce6:#3cb9e6:#dcdcdc:#5a5a5a:#ff6e6e:#82ff64:#ffc864:#8787ff:#e664e6:#78c8e6:#ffffff"
+    visible_bell = True
+    scrollback_lines = 5000
+    scrollbar_position = hidden
+    foreground_color = "#c8c8c8"
+    scroll_on_output = False
+    icon_bell = False
+    background_color = "#1e1e1e"
+    allow_bold = False
+    audible_bell = True
+[layouts]
+  [[default]]
+    [[[child1]]]
+      type = Terminal
+      parent = window0
+      profile = default
+    [[[window0]]]
+      type = Window
+      parent = ""
+[plugins]
