@@ -12,7 +12,7 @@
   cycle_prev = None
   group_tab = None
   resize_left = None
-  reset_clear = <Primary><Shift>g
+  reset_clear = <Control><Shift>g
   go_right = <Control><Shift>Right
   new_tab = None
   resize_right = None
@@ -23,7 +23,7 @@
   full_screen = None
   cycle_next = None
   ungroup_all = None
-  split_vert = <Control><Shift>s
+  split_vert = <Control><Shift>t
   ungroup_tab = None
   new_terminator = None
   go_left = <Control><Shift>Left
@@ -31,7 +31,7 @@
   reset = <Control><Shift>l
   go_up = <Control><Shift>Up
   resize_up = None
-  split_horiz = <Control><Shift>t
+  split_horiz = <Control><Shift>s
   go_down = <Control><Shift>Down
   toggle_scrollbar = None
 [profiles]
