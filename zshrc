@@ -139,6 +139,7 @@
 #{{{ Aliases
 
 	alias rc='source ~/.zshrc'
+
 	alias cls=clear
 	alias quit=exit
 
@@ -173,12 +174,6 @@
   alias tags='ctags -f .tags --exclude=.git --exclude=log -R .'
 
 #}}}
-#{{{ File associations
-
-	alias -s tex=$EDITOR txt=$EDITOR css=$EDITOR js=$EDITOR conf=$EDITOR
-	alias -s htm=$BROWSER html=$BROWSER
-
-#}}}
 #{{{ Git specific
 
 	alias gs='git status'
@@ -204,5 +199,24 @@
 	alias gds='git diff --color --staged'
 
 	alias gl='git log --color --name-status --pretty=format:"%Cred[%h] %an %Cblue(%ar)%n%Cgreen%s%n%b%Creset"'
+
+#}}}
+#{{{ File associations
+
+	alias -s tex=$EDITOR txt=$EDITOR css=$EDITOR js=$EDITOR conf=$EDITOR
+	alias -s htm=$BROWSER html=$BROWSER
+#}}}
+#{{{ Platform specific
+
+  if [ "$TERM" = "cygwin" ] ; then
+		vim() { # use graphical vim
+			`D:\\\Programs\\\vim\\\vim73\\\gvim.exe $*` & 
+		}
+  fi
+
+  # TODO: Better detection
+  if [ "$GDMSESSION" = "ubuntu" ] ; then
+    alias o='gnome-open'
+  fi
 
 #}}}

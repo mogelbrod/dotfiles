@@ -51,6 +51,10 @@
 	# Nicely formatted date
 	alias datex='date +"%Y-%m-%d (%A) @ %H:%M:%S"'
 
+	# Other useful aliases
+	alias rails_routes='rake routes | vim - -c ":set nowrap buftype=nofile"'
+  alias tags='ctags -f .tags --exclude=.git --exclude=log -R .'
+
 #}}}
 #{{{ Git specific
 
@@ -79,12 +83,17 @@
 	alias gl='git log --color --name-status --pretty=format:"%Cred[%h] %an %Cblue(%ar)%n%Cgreen%s%n%b%Creset"'
 
 #}}}
-#{{{ Cygwin / Windows
-  if [ "$TERM" = "cygwin" ] ; then
+#{{{ Platform specific
 
+  if [ "$TERM" = "cygwin" ] ; then
 		vim() { # use graphical vim
 			`D:\\\Programs\\\vim\\\vim73\\\gvim.exe $*` & 
 		}
-
   fi
+
+  # TODO: Better detection
+  if [ "$GDMSESSION" = "ubuntu" ] ; then
+    alias o='gnome-open'
+  fi
+
 #}}}
