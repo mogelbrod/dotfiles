@@ -186,6 +186,7 @@ au InsertLeave * set nopaste
 
 " F3 toggles highlighting of search results
 noremap <F3> :set hls!<CR>
+inoremap <F3> <C-o>:set hls!<CR>
 
 " Map Ctrl-< (lt) to surround plugin
 imap <silent>  <Plug>Isurround
