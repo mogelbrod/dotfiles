@@ -36,7 +36,12 @@ set tabstop=2 shiftwidth=2 softtabstop=2 expandtab shiftround
 " Tags file
 set tags=./.tags,.tags,./tags,tags
 
-set clipboard=unnamed " yank to system clipboard
+" Clipboard yanking
+if has('unnamedplus')
+  set clipboard=unnamedplus
+else
+  set clipboard=unnamed
+end
 
 " Do not create backups when writing to files
 set nobackup nowritebackup
