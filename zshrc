@@ -214,8 +214,9 @@
 		}
   fi
 
-  # TODO: Better detection
-  if [ "$GDMSESSION" = "ubuntu" ] ; then
+  linux_platform=`lsb_release -s -i``
+
+  if [ "$linux_platform" = "Ubuntu" ] ; then
     alias o='gnome-open'
   fi
 
