@@ -4,8 +4,8 @@
   title_hide_sizetext = True
   title_transmit_fg_color = "#87bcff"
   title_inactive_fg_color = "#d9b48e"
-  enabled_plugins = APTURLHandler,
-  title_receive_bg_color = "#388175"
+  enabled_plugins = TerminalShot, APTURLHandler
+  title_receive_bg_color = "#087c3e"
   title_transmit_bg_color = "#083b7c"
   title_inactive_bg_color = "#40372e"
 [keybindings]
@@ -56,3 +56,8 @@
       type = Window
       parent = ""
 [plugins]
+  [[CustomCommandsMenu]]
+    [[[apt-upgrade]]]
+      command = sudo apt-get update && sudo apt-get upgrade && sudo apt-get
+      enabled = True
+      name = apt-upgrade
