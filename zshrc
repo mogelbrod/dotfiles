@@ -214,7 +214,7 @@
 		}
   fi
 
-  linux_platform=`lsb_release -s -i``
+  linux_platform=`lsb_release -s -i`
 
   if [ "$linux_platform" = "Ubuntu" ] ; then
     alias o='gnome-open'
