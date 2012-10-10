@@ -50,9 +50,9 @@ endfunction
 function! s:focusBrowserWindow()
   if !exists("s:browser_bufnr")
     if s:verticalSplit 
-      rightbelow vsplit 
+      leftabove vsplit 
     else
-      rightbelow split 
+      leftabove split 
     endif
     return
   endif
@@ -63,9 +63,9 @@ function! s:focusBrowserWindow()
   if winnr == -1
     " create window
     if s:verticalSplit 
-      rightbelow vsplit 
+      leftabove vsplit 
     else
-      rightbelow split 
+      leftabove split 
     endif
   else
     exec winnr . "wincmd w"
