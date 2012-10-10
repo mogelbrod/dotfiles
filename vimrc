@@ -414,7 +414,7 @@ let g:ctrlp_switch_buffer = 1 " jump to existing buffers in same tab
 let g:ctrlp_max_depth = 10
 let g:ctrlp_open_new_file = 'r'
 let g:ctrlp_mruf_max = 50
-let g:ctrlp_extensions = ['mixed']
+let g:ctrlp_extensions = ['mixed', 'tag']
 
 let g:ctrlp_custom_ignore = {
   \ 'dir':  '\.git$\|\.hg$\|\.svn$',
