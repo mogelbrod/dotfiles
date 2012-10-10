@@ -18,7 +18,12 @@ Dir['*'].each do |origin|
   file = ".#{origin}"
 
   # Special cases
-  file = 'vimfiles' if origin == 'vim' && IS_WINDOWS
+  if origin == 'vim' && IS_WINDOWS
+    file = 'vimfiles' 
+  elsif %w(terminator).include? origin
+    FileUtils.mkdir_p('.config') unless File.exists?('.config')
+    file = File.join('.config', origin)
+  end
 
   target = File.join(home, file)
 

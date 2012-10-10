@@ -36,7 +36,12 @@ set tabstop=2 shiftwidth=2 softtabstop=2 expandtab shiftround
 " Tags file
 set tags=./.tags,.tags,./tags,tags
 
-set clipboard=unnamed " yank to system clipboard
+" Clipboard yanking
+if has('unnamedplus')
+  set clipboard=unnamedplus
+else
+  set clipboard=unnamed
+end
 
 " Do not create backups when writing to files
 set nobackup nowritebackup
@@ -107,13 +112,6 @@ noremap [C :bnext<CR>
 noremap [1;5D :bprevious<CR>
 noremap [1;5C :bnext<CR>
 
-" SelectBuf plugin
-"nmap <silent> <C-Tab> <Plug>SelectBuf
-"imap <silent> <C-Tab> <ESC><Plug>SelectBuf
-nmap <F5> <Plug>SelectBuf
-imap <F5> <ESC><Plug>SelectBuf
-let g:selBufUseVerticalSplit = 1
-
 " }}}
 " {{{ Command mode 
 
@@ -179,12 +177,16 @@ set backspace=indent,eol,start
 " Have the cursor keys wrap between lines (like <Space> and <BkSpc> do)
 set whichwrap=h,l,<,>,[,]
 
+"nnoremap <F2> :set invpaste paste?<CR>
+nnoremap <F2> :set paste<CR>i
 " F2 toggles pasting mode
 set pastetoggle=<F2>
-nnoremap <F2> :set invpaste paste?<CR>
+" Disable paste after leaving insert mode
+au InsertLeave * set nopaste
 
 " F3 toggles highlighting of search results
 noremap <F3> :set hls!<CR>
+inoremap <F3> <C-o>:set hls!<CR>
 
 " Map Ctrl-< (lt) to surround plugin
 imap <silent>  <Plug>Isurround
@@ -248,6 +250,9 @@ set foldmethod=marker foldmarker={{{,}}}
 
 " What actions should cause folds to open?
 set foldopen=insert,hor,block,hor,mark,percent,quickfix,search,tag,undo
+
+" Control fold open/closed with <Space>
+nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
 
 " Fold text (title)
 function! CustomFoldText(...) " {{{
@@ -427,7 +432,7 @@ snoremap <silent> <C-s> <esc>i<right><c-r>=TriggerSnippet()<cr>
 let g:snips_author = "Victor Hallberg"
 
 " NERDtree
-map <F4> :NERDTreeToggle<CR>
+map <F5> :NERDTreeToggle<CR>
 let NERDTreeWinSize=26
 let NERDTreeMinimalUI=1
 
@@ -549,9 +554,6 @@ endif
 " }}}
 " {{{ Auto commands and file type specific options
 
-" Disable paste after leaving insert mode
-au InsertLeave * set nopaste
-
 " Dictionary
 au FileType * exe('setl dict+='.$VIMHOME.'/dict/'.&filetype)
 
@@ -590,6 +592,8 @@ augroup ft_python
   au!
   au FileType python setlocal ts=4 sts=4 sw=4
   au FileType python noremap <buffer> <leader>r :!python %<CR>
+  au FileType python setlocal makeprg=python\ %
+  au FileType python setlocal efm=%C\ %.%#,%A\ \ File\ \"%f\"\\,\ line\ %l%.%#,%Z%[%^\ ]%\\@=%m
 augroup END
 
 " HTML
@@ -615,6 +619,7 @@ augroup ft_md
   if has("unix")
     au FileType markdown setlocal dictionary+=/usr/share/dict/words
   endif
+  au FileType markdown setlocal infercase
 augroup END
 
 " C++
