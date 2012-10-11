@@ -594,6 +594,7 @@ augroup ft_python
   au FileType python noremap <buffer> <leader>r :!python %<CR>
   au FileType python setlocal makeprg=python\ %
   au FileType python setlocal efm=%C\ %.%#,%A\ \ File\ \"%f\"\\,\ line\ %l%.%#,%Z%[%^\ ]%\\@=%m
+  au FileType python call SuperTabSetDefaultCompletionType("<c-x><c-o>")
 augroup END
 
 " HTML
