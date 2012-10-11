@@ -20,21 +20,12 @@ let mapleader = ","
 
 " {{{ Basic settings
 
+" Use Unicode and Unix linebreaks
+set termencoding=utf-8 encoding=utf-8 fileformat=unix
+
 " Language settings
 let $LANG='en'
-set langmenu=en
-set helplang=en
-
-" Use Unicode and Unix linebreaks
-set termencoding=utf-8
-set encoding=utf-8
-set fileformat=unix
-
-" Tabs
-set tabstop=2 shiftwidth=2 softtabstop=2 expandtab shiftround
-
-" Tags file
-set tags=./.tags,.tags,./tags,tags
+set langmenu=en helplang=en
 
 " Clipboard yanking
 if has('unnamedplus')
@@ -43,45 +34,32 @@ else
   set clipboard=unnamed
 end
 
-" Do not create backups when writing to files
-set nobackup nowritebackup
-
+set tabstop=2 shiftwidth=2 softtabstop=2 expandtab shiftround
+set tags=./.tags,.tags,./tags,tags " tag files
+set nobackup nowritebackup " do not create backups when writing to files
+set autoread " automatically reload file after external write
 set autoindent
-
-" Display guides & line numbers
 set ruler
 set nocursorline nocursorcolumn
 set nonumber
-
-set lazyredraw
-
-" Allow switching of buffers without saving them first
-set hidden
-
 set wrap linebreak " word wrap
-
 set nojoinspaces
-
-"set list
 set listchars=tab:°\ ,trail:· " whitespace visible on :set list
 set diffopt+=iwhite " ignore whitespace when diffing
-
-set incsearch " Show search results while being typed
-set hlsearch " Highlight matches
+set incsearch " show search results while being typed
+set hlsearch " highlight matches
 set smartcase "noignorecase
-
+set laststatus=2 " always show status line
 set showcmd " show incomplete commands
 set history=100 " command line history length
-
-" Show as much as possible of the last line instead of @-lines
-set display=lastline
-" Minimum number of lines surrounding cursor
-set scrolloff=3
-
-" Highlighting of matching braces
-set matchpairs=(:),{:},[:]
-
-set laststatus=2 " always show status line
+set display=lastline " show as much as possible of the last line
+set scrolloff=3 " minimum number of lines surrounding cursor
+set splitbelow splitright " push new splits to bottom/right
+set lazyredraw
+set matchpairs=(:),{:},[:] " highlighting of matching braces
+set autowrite " autosave before making
+set hidden " allow switching of buffers without saving them first
+set shellslash " always use forward slashes, even on windows
 
 " Statusline: %f(ile) [flags] {align} [%ft] %col %line/%total %percent
 set statusline=%<\ %-f\ \ %m%r%h%w\ %=%y\ %4(%v%)\ %10(%l/%L%)\ \ %P
@@ -89,17 +67,9 @@ set statusline=%<\ %-f\ \ %m%r%h%w\ %=%y\ %4(%v%)\ %10(%l/%L%)\ \ %P
 " Shorten various messages in vim
 set shortmess=filnxoOtTI
 
-" Push new splits to bottom/right
-set splitbelow
-set splitright
-
 if has("balloon_eval")
   set noballooneval " disable annoying window popups
 endif
-
-set autowrite " autosave before making
-
-set shellslash " always use forward slashes, even on windows
 
 " }}}
 " {{{ Buffer navigation
