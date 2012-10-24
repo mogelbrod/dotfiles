@@ -534,7 +534,7 @@ augroup ft_latex
   if has("win32")
     au FileType *tex noremap <buffer> <leader>p :make<CR>:silent ! start "1" "%:r.pdf"<CR>
   else
-    au FileType *tex noremap <buffer> <leader>p :silent !start evince %:r.pdf &<CR>
+    au FileType *tex noremap <buffer> <leader>p :make<CR>:silent !evince %:r.pdf &<CR>
   endif
 augroup END
 
@@ -621,5 +621,8 @@ au FileType help nmap <buffer> <CR> <C-]>
 
 " XQuery
 au FileType xquery setlocal makeprg=xqilla\ %
+
+" Matlab
+au FileType matlab setlocal makeprg=octave\ %
 
 " }}}
