@@ -596,7 +596,7 @@ augroup END
 " C++
 augroup ft_cpp
   au!
-  au FileType cpp setlocal foldmarker={,}
+  "au FileType cpp setlocal foldmarker={,}
   if has("win32")
     au FileType cpp,h setlocal makeprg=mingw32-make
   else
