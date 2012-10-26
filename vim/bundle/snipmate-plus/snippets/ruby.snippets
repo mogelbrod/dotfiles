@@ -17,7 +17,7 @@ snippet begin
 	rescue ${1:Exception} => ${2:e}
 	end
 snippet req
-	require "${1}"${2}
+	require '${1}'${2}
 snippet end
 	__END__
 snippet case
@@ -32,7 +32,11 @@ snippet def
 	def ${1:method_name}
 		${2}
 	end
-snippet deft
+snippet defs def self.
+	def self.${1:class_method_name}
+		${2}
+	end
+snippet deft def test_
 	def test_${1:case_name}
 		${2}
 	end
@@ -74,8 +78,6 @@ snippet cls class .. initialize .. end
 		def initialize(${2:args})
 			${3}
 		end
-
-
 	end
 snippet cls class .. < ParentClass .. initialize .. end
 	class ${1:`substitute(Filename(), '^.', '\u&', '')`} < ${2:ParentClass}
@@ -85,43 +87,18 @@ snippet cls class .. < ParentClass .. initialize .. end
 
 
 	end
-snippet cls ClassName = Struct .. do .. end
+snippet cls ClassName = Struct .. end
 	${1:`substitute(Filename(), '^.', '\u&', '')`} = Struct.new(:${2:attr_names}) do
-		def ${3:method_name}
-			${4}
-		end
-
-
 	end
-snippet cls class BlankSlate .. initialize .. end
-	class ${1:BlankSlate}
-		instance_methods.each { |meth| undef_method(meth) unless meth =~ /\A__/ }
 snippet cls class << self .. end
 	class << ${1:self}
 		${2}
-	end
-# class .. < DelegateClass .. initialize .. end
-snippet cls-
-	class ${1:`substitute(Filename(), '^.', '\u&', '')`} < DelegateClass(${2:ParentClass})
-		def initialize(${3:args})
-			super(${4:del_obj})
-
-			${5}
-		end
-
-
 	end
 snippet mod module .. end
 	module ${1:`substitute(Filename(), '^.', '\u&', '')`}
 		${2}
 	end
-snippet mod module .. module_function .. end
-	module ${1:`substitute(Filename(), '^.', '\u&', '')`}
-		module_function
-
-		${2}
-	end
-snippet mod module .. ClassMethods .. end
+snippet mod module .. Included .. end
 	module ${1:`substitute(Filename(), '^.', '\u&', '')`}
 		module ClassMethods
 			${2}
@@ -136,39 +113,25 @@ snippet mod module .. ClassMethods .. end
 			receiver.send :include, InstanceMethods
 		end
 	end
-# attr_reader
-snippet r
+snippet r reader
 	attr_reader :${1:attr_names}
-# attr_writer
-snippet w
+snippet w writer
 	attr_writer :${1:attr_names}
-# attr_accessor
-snippet rw
+snippet rw accessor
 	attr_accessor :${1:attr_names}
-# include Enumerable
-snippet Enum
+snippet Enum include Enumerable
 	include Enumerable
 
 	def each(&block)
 		${1}
 	end
-# include Comparable
-snippet Comp
+snippet Comp include Comparable
 	include Comparable
 
 	def <=>(other)
 		${1}
 	end
-# extend Forwardable
-snippet Forw-
-	extend Forwardable
-# def self
-snippet defs
-	def self.${1:class_method_name}
-		${2}
-	end
-# def method_missing
-snippet defmm
+snippet defmm method missing
 	def method_missing(meth, *args, &blk)
 		${1}
 	end
@@ -185,8 +148,8 @@ snippet file File.read()
 snippet Dir Dir.global() { |file| .. }
 	Dir.glob(${1:"dir/glob/*"}) { |${2:file}| ${3} }
 snippet Dir Dir[".."]
-	Dir[${1:"glob/**/*.rb"}]${2}
-snippet dir
+	Dir[${1:"**/*.rb"}]${2}
+snippet dir dirname(file)
 	Filename.dirname(__FILE__)
 snippet deli
 	delete_if { |${1:e}| ${2} }
