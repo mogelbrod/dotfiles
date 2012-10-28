@@ -1,20 +1,23 @@
+# Console log
+snippet cl
+	console.log(${1});
 # Alert
 snippet alert
-	alert("${1:message}");
+	alert("${1}");
 # Prototype
 snippet proto
-	${1:class_name}.prototype.${2:method_name} =
-	function(${3:first_argument}) {
-		${4:// body...}
+	${1:class}.prototype.${2:method} =
+	function(${3}) {
+		${4}
 	};
 # Function
 snippet fun
-	function ${1:function_name} (${2:argument}) {
-		${3:// body...}
+	function ${1:name}(${2}) {
+		${3}
 	}
 # Anonymous Function
 snippet f
-	function(${1}) {${2}};
+	function(${1}) {${2}}
 # if
 snippet if
 	if (${1:true}) {${2}}
