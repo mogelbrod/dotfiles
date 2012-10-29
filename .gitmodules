@@ -38,10 +38,6 @@
 	path = vim/bundle/syntastic
 	url = https://github.com/scrooloose/syntastic.git
 	ignore = untracked
-[submodule "vim/bundle/autoclose"]
-	path = vim/bundle/autoclose
-	url = https://github.com/Townk/vim-autoclose.git
-	ignore = untracked
 [submodule "vim/bundle/indent-guides"]
 	path = vim/bundle/indent-guides
 	url = git://github.com/nathanaelkane/vim-indent-guides.git
@@ -49,9 +45,12 @@
 [submodule "vim/bundle/tabular"]
 	path = vim/bundle/tabular
 	url = https://github.com/godlygeek/tabular.git
+	ignore = untracked
 [submodule "vim/bundle/vim-eunuch"]
 	path = vim/bundle/vim-eunuch
 	url = git://github.com/tpope/vim-eunuch.git
+	ignore = untracked
 [submodule "vim/bundle/auto-pairs"]
 	path = vim/bundle/auto-pairs
 	url = https://github.com/vim-scripts/Auto-Pairs.git
+	ignore = untracked
