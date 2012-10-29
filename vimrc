@@ -401,6 +401,9 @@ inoremap <silent> <C-s> <c-r>=TriggerSnippet()<cr>
 snoremap <silent> <C-s> <esc>i<right><c-r>=TriggerSnippet()<cr>
 let g:snips_author = "Victor Hallberg"
 
+" Auto-Pairs
+let g:AutoPairsMapSpace = 0
+
 " NERDtree
 map <F5> :NERDTreeToggle<CR>
 let NERDTreeWinSize=26
