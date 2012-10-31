@@ -403,6 +403,7 @@ let g:snips_author = "Victor Hallberg"
 
 " Auto-Pairs
 let g:AutoPairsMapSpace = 0
+let g:AutoPairsCenterLine = 0
 let g:AutoPairsShortcutFastWrap = 0 " conflicts with å character
 
 " NERDtree
