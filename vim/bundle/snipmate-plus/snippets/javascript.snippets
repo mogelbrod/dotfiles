@@ -1,6 +1,10 @@
 # Console log
-snippet cl
+snippet cl Console log
 	console.log(${1});
+snippet $ready jQuery DOM ready function
+	$(function() {
+		${1}
+	});
 # Alert
 snippet alert
 	alert("${1}");
@@ -11,13 +15,18 @@ snippet proto
 		${4}
 	};
 # Function
-snippet fun
+snippet fun Named function
 	function ${1:name}(${2}) {
 		${3}
 	}
 # Anonymous Function
-snippet f
+snippet f Anonymous function
 	function(${1}) {${2}}
+# Object Method
+snippet :f Object method
+	${1:method_name}: function(${2:attribute}) {
+		${4}
+	}${3:,}
 # if
 snippet if
 	if (${1:true}) {${2}}
@@ -69,11 +78,6 @@ snippet do
 	do {
 		${2:/* code */}
 	} while (${1:/* condition */});
-# Object Method
-snippet :f
-	${1:method_name}: function(${2:attribute}) {
-		${4}
-	}${3:,}
 # setTimeout function
 snippet timeout
 	setTimeout(function() {${3}}${2}, ${1:10};
