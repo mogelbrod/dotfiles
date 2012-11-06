@@ -404,7 +404,8 @@ let g:snips_author = "Victor Hallberg"
 " Auto-Pairs
 let g:AutoPairsMapSpace = 0
 let g:AutoPairsCenterLine = 0
-let g:AutoPairsShortcutFastWrap = 0 " conflicts with å character
+let g:AutoPairsShortcutJump = '<c-b>' " jump to matched pair
+let g:AutoPairsShortcutFastWrap = '' " conflicts with å character
 
 " NERDtree
 map <F5> :NERDTreeToggle<CR>
