@@ -195,6 +195,12 @@ vmap <silent> <leader>j "hy:let @h=join(split(@h, "\n"), ", ")<CR>gv"hp
 vmap <leader>e :s#\t#\=repeat(" ", &l:ts)#g<CR>
 nmap <leader>e :%s#\t#\=repeat(" ", &l:ts)#g<CR>
 
+" Strip trailing whitespace
+nmap <leader>$ :call Preserve("%s/\\s\\+$//e")<CR>
+
+" Re-indent file
+nmap <leader>= :call Preserve("normal gg=G")<CR>
+
 " Tabular plugin map
 nmap <leader>t :Tabularize /
 vmap <leader>t :Tabularize /
@@ -486,6 +492,18 @@ function! YankSide()
   call setreg(&clipboard == 'unnamed' ? '*' : '"', line)
 endfunction
 
+function! Preserve(command)
+  " Preparation: save last search, and cursor position.
+  let _s=@/
+  let l = line(".")
+  let c = col(".")
+  " Do the business:
+  execute a:command
+  " Clean up: restore previous search history, and cursor position
+  let @/=_s
+  call cursor(l, c)
+endfunction
+
 " }}}
 " {{{ GUI settings/overwrites
 
@@ -532,11 +550,6 @@ endif
 
 " Dictionary
 au FileType * exe('setl dict+='.$VIMHOME.'/dict/'.&filetype)
-
-" List chars should be visible outside insert mode
-set list
-autocmd InsertEnter * set nolist
-autocmd InsertLeave * set list
 
 " LaTeX
 augroup ft_latex
