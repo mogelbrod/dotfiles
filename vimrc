@@ -533,6 +533,11 @@ endif
 " Dictionary
 au FileType * exe('setl dict+='.$VIMHOME.'/dict/'.&filetype)
 
+" List chars should be visible outside insert mode
+set list
+autocmd InsertEnter * set nolist
+autocmd InsertLeave * set list
+
 " LaTeX
 augroup ft_latex
   au!
