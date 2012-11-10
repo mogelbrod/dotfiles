@@ -48,7 +48,7 @@
   precmd() {
     # Title
     if [[ $TERM == (*xterm*|rxvt); ]]; then
-      print -Pn "\e]0;[%n@%m] %~\a"
+      print -Pn "]0;[%n@%m] %~\a"
     fi
 
     local termwidth; (( termwidth = ${COLUMNS} - 1 ))
@@ -110,23 +110,23 @@
   bindkey ' ' magic-space
 
   # Up/down scrolls through history (search if possible)
-  bindkey "\e[B" history-beginning-search-forward 
-  bindkey "\e[A" history-beginning-search-backward
+  bindkey "^[OA" history-search-backward
+  bindkey "^[0B" history-search-forward
 
   # Word moving
   # Ctrl+left/right
-  bindkey "\e[1;5D" backward-word 
-  bindkey "\e[1;5C" forward-word
+  bindkey "^[[1;5D" backward-word 
+  bindkey "^[[1;5C" forward-word
   # Alt+left/right
-  bindkey "\e[1;3D" backward-word
-  bindkey "\e[1;3C" forward-word
+  bindkey "^[[1;3D" backward-word
+  bindkey "^[[1;3C" forward-word
 
   # Word deletion
-  bindkey "\e[3;5~" kill-word # Ctrl-Delete
+  bindkey "^[[3;5~" kill-word # Ctrl-Delete
 
   # Page up/down
-  #bindkey "\e[5~" backward-word
-  #bindkey "\e[6~" forward-word
+  #bindkey "^[[5~" backward-word
+  #bindkey "^[[6~" forward-word
 
   # Ctrl-D clears line
   bindkey "\C-d" kill-whole-line
