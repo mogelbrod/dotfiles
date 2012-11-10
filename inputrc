@@ -11,6 +11,8 @@ $include /etc/inputrc
 # Up/down scrolls through history (search if possible)
 "\e[B": history-search-forward
 "\e[A": history-search-backward
+"\e[0B": history-search-forward
+"\e[0A": history-search-backward
 
 # Word moving
 # Ctrl+left/right
