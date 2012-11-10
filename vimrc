@@ -106,7 +106,7 @@ cnoreabbrev w!! %!sudo tee > /dev/null %
 " Completion
 set wildmenu
 set wildmode=list:longest,full
-set wildignore=*.o,*.bak,*.swc,*.swp,.git/*,.gitkeep
+set wildignore=*.o,*.bak,*.swc,*.swp,.git/*,.gitkeep,*.class
 set wildignore+=*/tmp/*,*.so,*.zip
 set wildignore+=tmp\*,*.zip,*.exe
 
