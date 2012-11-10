@@ -1,39 +1,27 @@
 $include /etc/inputrc
 
-# Laptop rebinds
+"\eOA": history-search-backward
+"\eOB": history-search-forward
+
+# C-Left C-Right
+"\e[1;5D": backward-word
+"\e[1;5C": forward-word
+# A-Left A-right
+"\e[1;3D": backward-word
+"\e[1;3C": forward-word
+
 # Ctrl+Delete
 "\e[3;3~": kill-word
 "\e[3;5~": kill-word
 
-# Shift-Tab
-"\e[Z": menu-complete
-
-# Up/down scrolls through history (search if possible)
-"\e[B": history-search-forward
-"\e[A": history-search-backward
-"\e[0B": history-search-forward
-"\e[0A": history-search-backward
-
-# Word moving
-# Ctrl+left/right
-"\e[1;5C": forward-word
-"\e[1;5D": backward-word
-# Alt+left/right
-"\e[1;3C": forward-word
-"\e[1;3D": backward-word
-
 "\C-\b": backward-kill-word
 "\C-\d": kill-word
-
-# Page up/down inserts some keys otherwise further away
-"\e[5~": "/"
-"\e[6~": "~"
 
 # Shift+Tab cycles between completions if multiple
 "\e[Z": menu-complete
 
-# Ctrl+p loads previous command, positions cursor for typing an option
-#"\C-p": "\C-p\C-a\M-f "
+# Shift-Tab
+"\e[Z": menu-complete
 
 # Ctrl+D deletes the whole line
 "\C-d": kill-whole-line
