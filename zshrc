@@ -94,6 +94,11 @@
   setopt complete_in_word
   setopt auto_param_slash auto_param_keys
 
+  # Ignore uninteresting users
+  zstyle ':completion:*:*:*:users' ignored-patterns \
+    apache backup bin daemon dbus ftp games gnats irc landscape libuuid list lp \
+    mail man messagebus mysql news ntop ntp proxy sshd sync sys syslog uucp whoopsie
+
 #}}}
 #{{{ History
 
@@ -115,8 +120,8 @@
 
   # Word moving
   # Putty Ctrl-left/right
-  bindkey "^[[D" backward-word
-  bindkey "^[[C" forward-word
+  bindkey "^[0D" backward-word
+  bindkey "^[0C" forward-word
   # Ctrl+left/right
   bindkey "^[[1;5D" backward-word 
   bindkey "^[[1;5C" forward-word
