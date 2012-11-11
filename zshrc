@@ -114,6 +114,9 @@
   bindkey "^[0B" history-search-forward
 
   # Word moving
+  # Putty Ctrl-left/right
+  bindkey "^[[D" backward-word
+  bindkey "^[[C" forward-word
   # Ctrl+left/right
   bindkey "^[[1;5D" backward-word 
   bindkey "^[[1;5C" forward-word
@@ -130,6 +133,11 @@
 
   # Ctrl-D clears line
   bindkey "\C-d" kill-whole-line
+
+  # Ctrl-P opens previous line but deletes command
+  replace_last_command() { zle up-history; zle beginning-of-line; zle kill-word }
+  zle -N replace-last-command replace_last_command
+  bindkey "^P" replace-last-command
 
   # Ctrl-S/Alt-S inserts sudo at beginning of line
   insert_sudo () { zle beginning-of-line; zle -U "sudo " }
