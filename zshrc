@@ -90,6 +90,7 @@
   zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
   #zstyle ':completion:*' max-errors 1
   zstyle :compinstall filename '/home/mogel/.zshrc'
+
   autoload -Uz compinit && compinit
 
   setopt complete_in_word
@@ -157,39 +158,42 @@
 #}}}
 #{{{ Aliases
 
-	alias rc='source ~/.zshrc'
+  alias rc='source ~/.zshrc'
 
-	alias cls=clear
-	alias quit=exit
+  alias cls=clear
+  alias quit=exit
 
-	# Directory listing
-	alias ls='/bin/ls -b -CF --color=auto'
-	alias la='ls -a'
-	alias l='ls -lh'
-	alias ll='ls -lha'
+  # Directory listing
+  alias ls='/bin/ls -b -CF --color=auto'
+  alias la='ls -a'
+  alias l='ls -lh'
+  alias ll='ls -lha'
+  alias lg='ls -lha | grep'
 
-	# Shortcuts
-	alias ..='cd ..'
-	alias e=$EDITOR
-	alias vi='vim'
-	alias un='tar -xf'
-	alias sc='screen'
-	alias scr='screen -RdU'
-	alias du='du -hs'
+  # Shortcuts
+  alias ..='cd ..'
+  alias e=$EDITOR
+  alias vi='vim'
+  alias un='tar -xf'
+  alias sc='screen'
+  alias scr='screen -RdU'
+  alias du='du -hs'
 
-	# cd which replaces substrings in PWD
-	function scd { cd `echo $PWD | sed s/$1/$2/` }
+  # cd which replaces substrings in PWD
+  function scd { cd `echo $PWD | sed s/$1/$2/` }
 
-	# Nicely formatted date
-	alias datex='date +"%Y-%m-%d (%A) @ %H:%M:%S"'
+  # Nicely formatted date
+  alias datex='date +"%Y-%m-%d (%A) @ %H:%M:%S"'
 
-	# Global aliases
-	alias -g M='| more'
-	alias -g L="| less"
-	alias -g G='| grep'
+  alias psg='ps -A | grep'
 
-	# Other useful aliases
-	alias rails_routes='rake routes | vim - -c ":set nowrap buftype=nofile"'
+  # Global aliases
+  alias -g M='| more'
+  alias -g L="| less"
+  alias -g G='| grep'
+
+  # Other useful aliases
+  alias rails_routes='rake routes | vim - -c ":set nowrap buftype=nofile"'
   alias tags='ctags -f .tags --exclude=.git --exclude=log -R .'
 
 #}}}
@@ -222,16 +226,16 @@
 #}}}
 #{{{ File associations
 
-	alias -s tex=$EDITOR txt=$EDITOR css=$EDITOR js=$EDITOR conf=$EDITOR
-	alias -s htm=$BROWSER html=$BROWSER
+  alias -s tex=$EDITOR txt=$EDITOR css=$EDITOR js=$EDITOR conf=$EDITOR
+  alias -s htm=$BROWSER html=$BROWSER
 
 #}}}
 #{{{ Platform specific
 
   if [ "$TERM" = "cygwin" ] ; then
-		vim() { # use graphical vim
-			`D:\\\Programs\\\vim\\\vim73\\\gvim.exe $*` & 
-		}
+    vim() { # use graphical vim
+      `D:\\\Programs\\\vim\\\vim73\\\gvim.exe $*` & 
+    }
   fi
 
   linux_platform=`lsb_release -s -i`
