@@ -138,8 +138,8 @@
   bindkey "^[[3;5~" kill-word # Ctrl-Delete
 
   # Page up/down
-  #bindkey "^[[5~" backward-word
-  #bindkey "^[[6~" forward-word
+  bindkey "^[[5~" backward-word
+  bindkey "^[[6~" forward-word
 
   # Ctrl-D clears line
   bindkey "\C-d" kill-whole-line

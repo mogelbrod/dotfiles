@@ -10,6 +10,10 @@ $include /etc/inputrc
 "\e[1;3D": backward-word
 "\e[1;3C": forward-word
 
+# Page up/down
+"\e[5~": backward-word
+"\e[6~": forward-word
+
 # Ctrl+Delete
 "\e[3;3~": kill-word
 "\e[3;5~": kill-word
