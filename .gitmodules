@@ -54,3 +54,6 @@
 	path = vim/bundle/auto-pairs
 	url = https://github.com/vim-scripts/Auto-Pairs.git
 	ignore = untracked
+[submodule "vim/bundle/gundo.vim"]
+	path = vim/bundle/gundo.vim
+	url = https://github.com/sjl/gundo.vim.git

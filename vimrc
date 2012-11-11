@@ -158,6 +158,9 @@ au InsertLeave * set nopaste
 noremap <F3> :set hls!<CR>
 inoremap <F3> <C-o>:set hls!<CR>
 
+" F5 toggle Gundo plugin
+nnoremap <F4> :GundoToggle<CR>
+
 " Map Ctrl-< (lt) to surround plugin
 imap <silent>  <Plug>Isurround
 
