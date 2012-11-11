@@ -7,6 +7,7 @@
 
   # Disable flow control
   stty -ixon -ixoff
+  unsetopt flow_control
 
   # Add user bin to PATH
   if [ -d "$HOME/bin" ] ; then
@@ -117,6 +118,9 @@
   # Up/down scrolls through history (search if possible)
   bindkey "^[OA" history-search-backward
   bindkey "^[0B" history-search-forward
+  # Putty up/down
+  bindkey "^[[A" history-search-backward
+  bindkey "^[[B" history-search-forward
 
   # Word moving
   # Putty Ctrl-left/right
