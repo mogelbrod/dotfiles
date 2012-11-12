@@ -25,6 +25,9 @@
   # Allow short styled loops: for i (*.c) echo $i
   set short_loops
 
+  # Beeping/bell
+  unsetopt hist_beep list_beep beep
+
 #}}}
 #{{{ Colors
 
