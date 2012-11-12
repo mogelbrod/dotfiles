@@ -71,6 +71,10 @@ if has("balloon_eval")
   set noballooneval " disable annoying window popups
 endif
 
+" Disable bee/bell
+set noerrorbells visualbell t_vb=
+autocmd GUIEnter * set visualbell t_vb=
+
 " }}}
 " {{{ Buffer navigation
 
