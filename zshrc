@@ -241,9 +241,8 @@
     }
   fi
 
-  linux_platform=`lsb_release -s -i`
-
-  if [ "$linux_platform" = "Ubuntu" ] ; then
+  which lsb_release &>/dev/null
+  if [[ $? == 0 && `lsb_release -s -i` == "Ubuntu" ]] ; then
     alias o='gnome-open'
   fi
 
