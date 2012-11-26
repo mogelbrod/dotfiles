@@ -121,7 +121,7 @@
 
   # Up/down scrolls through history (search if possible)
   bindkey "^[OA" history-search-backward
-  bindkey "^[0B" history-search-forward
+  bindkey "^[OB" history-search-forward
   # Putty up/down
   bindkey "^[[A" history-search-backward
   bindkey "^[[B" history-search-forward
