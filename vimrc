@@ -563,9 +563,9 @@ augroup ft_latex
   au!
   au FileType *tex setlocal makeprg=pdflatex\ -file-line-error\ % errorformat=%f:%l:\ %m
   if has("win32")
-    au FileType *tex noremap <buffer> <leader>p :make<CR>:silent ! start "1" "%:r.pdf"<CR>
+    au FileType *tex noremap <buffer> <leader>o :make<CR>:silent ! start "1" "%:r.pdf"<CR>
   else
-    au FileType *tex noremap <buffer> <leader>p :make<CR>:silent !evince %:r.pdf &<CR>
+    au FileType *tex noremap <buffer> <leader>o :make<CR>:silent !evince %:r.pdf &<CR>
   endif
 augroup END
 
@@ -642,8 +642,6 @@ augroup END
 augroup ft_java
   au!
   au FileType java setlocal makeprg=ant\ -e\ -find
-  au FileType java iabbrev <silent> <buffer> syso System.out.println()<left>
-  au FileType java iabbrev <silent> <buffer> syse System.err.println()<left>
 augroup END
 let java_highlight_functions="style"
 
