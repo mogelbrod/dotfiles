@@ -338,12 +338,6 @@ set complete=.,w,b,u,t,i,k
 " Insert the longest common text, show menu for one result too
 set completeopt=longest,menu ",menuone
 
-" Completion shortcuts
-inoremap <silent> <C-Space> <C-x><C-o>
-inoremap <silent> <C-@> <C-x><C-o>
-inoremap <silent>  <C-n>
-inoremap <silent>  <C-x><C-f>
-
 " }}}
 " {{{ Plugins
 
@@ -355,6 +349,12 @@ else
   let g:SuperTabMappingBackward = '[Z'
 	let g:SuperTabMappingForward  = '<tab>'
 end
+" Alternate completion types
+imap <C-Space> <c-r>=SuperTabAlternateCompletion("\<lt>c-x>\<lt>c-o>")<CR>
+imap <C-@> <c-r>=SuperTabAlternateCompletion("\<lt>c-x>\<lt>c-o>")<CR>
+imap <C-e> <c-r>=SuperTabAlternateCompletion("\<lt>c-x>\<lt>c-o>")<CR>
+imap <C-a> <c-r>=SuperTabAlternateCompletion("\<lt>c-x>\<lt>c-l>")<CR>
+imap <C-f> <c-r>=SuperTabAlternateCompletion("\<lt>c-x>\<lt>c-f>")<CR>
 
 " SuperTab options
 let g:SuperTabDefaultCompletionType = "<C-n>"
