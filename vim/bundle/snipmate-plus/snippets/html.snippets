@@ -70,10 +70,10 @@ snippet style Inline CSS
 		${2}
 	</style>${3}
 snippet css External stylesheet
-	<link rel="stylesheet" type="text/css" href="${1:/css/style.css}" media="${2:screen}"`Close()`>${3}
+	<link rel="stylesheet" type="text/css" href="${1:/style.css}" media="${2:screen}"`Close()`>${3}
 snippet a
-	<a href="${1:href}"${2}>${3:$1}</a>
-snippet r
+	<a href="${1:href}"${2}>${3:$1}</a>${4}
+snippet br
 	<br`Close()[1:]`>
 snippet p
 	<p${1}>${2}</p>${3}
@@ -82,16 +82,16 @@ snippet pre
 snippet span
 	<span${1}>${2}</span>${3}
 snippet div
-	<div id="${1:name}"${2}>
-		${3}
-	</div><!--#$1-->${4}
+	<div${1}>
+		${2}
+	</div>${3}
 snippet ol
 	<ol${1}>
-		<li${2}>${3}</li>${4}
+		<li>${2}</li>${3}
 	</ol>
 snippet ul
 	<ul${1}>
-		<li${2}>${3}</li>
+		<li>${2}</li>${3}
 	</ul>
 snippet li
 	<li${1}>${2}</li>
@@ -100,11 +100,17 @@ snippet form
 		${3}
 	</form>
 snippet h1
-	<h1${1}>${2}</h1>
+	<h1${1}>${2}</h1>${3}
 snippet h2
-	<h2${1}>${2}</h2>
+	<h2${1}>${2}</h2>${3}
 snippet h3
-	<h3${1}>${2}</h3>
+	<h3${1}>${2}</h3>${3}
+snippet h4
+	<h4${1}>${2}</h4>${3}
+snippet h5
+	<h5${1}>${2}</h5>${3}
+snippet h6
+	<h6${1}>${2}</h6>${3}
 snippet input
 	<input type="${1:text/submit/hidden/button}" name="${2:some_name}" value="${3}"`Close()`>${4}
 snippet img
@@ -161,7 +167,9 @@ snippet footer
 		${1}
 	</footer>
 snippet section
-	<section${1}>${2}</section>
+	<section${1}>
+		${2}
+	</section>
 snippet hgroup
 	<hgroup>
 		<h${1:1}>${2}</h1>
