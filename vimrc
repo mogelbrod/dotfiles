@@ -338,10 +338,6 @@ set complete=.,w,b,u,k,i,t
 " Insert the longest common text, show menu for one result too
 set completeopt=longest,menu ",menuone
 
-" Fix compatibility between AutoClose, Endwise and SuperTab
-let g:AutoCloseExpandEnterOn = ""
-"let g:AutoClosePumvisible = { "ESC": "\<C-e>", "ENTER": "\<C-y>", "UP": "<C-p>", "DOWN": "<C-n>" }
-
 " SuperTab mappings
 if has("gui_running")
   let g:SuperTabMappingBackward = '<S-Tab>'
