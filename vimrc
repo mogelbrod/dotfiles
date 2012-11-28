@@ -350,11 +350,11 @@ else
 	let g:SuperTabMappingForward  = '<tab>'
 end
 " Alternate completion types
-imap <C-Space> <c-r>=SuperTabAlternateCompletion("\<lt>c-x>\<lt>c-o>")<CR>
-imap <C-@> <c-r>=SuperTabAlternateCompletion("\<lt>c-x>\<lt>c-o>")<CR>
-imap <C-e> <c-r>=SuperTabAlternateCompletion("\<lt>c-x>\<lt>c-o>")<CR>
-imap <C-a> <c-r>=SuperTabAlternateCompletion("\<lt>c-x>\<lt>c-l>")<CR>
-imap <C-f> <c-r>=SuperTabAlternateCompletion("\<lt>c-x>\<lt>c-f>")<CR>
+imap <C-Space> <C-r>=SuperTabAlternateCompletion("\<lt>c-x>\<lt>c-o>")<CR>
+imap <C-@> <C-r>=SuperTabAlternateCompletion("\<lt>c-x>\<lt>c-o>")<CR>
+imap <C-a> <C-r>=SuperTabAlternateCompletion("\<lt>c-x>\<lt>c-o>")<CR>
+imap <C-l> <C-r>=SuperTabAlternateCompletion("\<lt>c-x>\<lt>c-l>")<CR>
+imap <C-f> <C-r>=SuperTabAlternateCompletion("\<lt>c-x>\<lt>c-f>")<CR>
 
 " SuperTab options
 let g:SuperTabDefaultCompletionType = "<C-n>"
