@@ -333,7 +333,7 @@ autocmd FileType * setlocal cinkeys=0{,0},0),:,!^F,o,O,e
 " {{{ Completion
 
 " What to scan for insert mode completion
-set complete=.,w,b,u,k,i,t
+set complete=.,w,b,u,t,i,k
 
 " Insert the longest common text, show menu for one result too
 set completeopt=longest,menu ",menuone
