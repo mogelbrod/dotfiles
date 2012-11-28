@@ -117,9 +117,6 @@ set wildignore+=tmp\*,*.zip,*.exe
 " }}}
 " {{{ Key behaviour & custom mappings
 
-" Write with Ctrl-S in normal mode
-nmap <C-s> :w<CR>
-
 " kj as alternative to <Esc> in insert mode
 inoremap kj <Esc>
 
@@ -135,21 +132,17 @@ nmap <silent> <Up> gk
 "map <silent> <Left> <nop>
 "map <silent> <Right> <nop>
 
-" Scroll screen with <C-arrows>
-nmap <silent> <C-Down> <C-e>
-nmap <silent> <C-Up> <C-y>
-imap <silent> <C-Down> <C-x><C-e>
-imap <silent> <C-Up> <C-x><C-y>
-nmap <silent> [B <C-e>
-nmap <silent> [A <C-y>
-imap <silent> [B <C-x><C-e>
-imap <silent> [A <C-x><C-y>
+" Scroll screen with <C-j>/<C-k>
+nmap <silent> <C-k> <C-e>
+nmap <silent> <C-j> <C-y>
+imap <silent> <C-j> <C-x><C-e>
+imap <silent> <C-k> <C-x><C-y>
 
 " Allow backspacing over everything
 set backspace=indent,eol,start
 
 " Have the cursor keys wrap between lines (like <Space> and <BkSpc> do)
-set whichwrap=h,l,<,>,[,]
+set whichwrap=<,>,[,]
 
 "nnoremap <F2> :set invpaste paste?<CR>
 nnoremap <F2> :set paste<CR>i
@@ -391,11 +384,9 @@ set complete+=k
 " }}}
 " {{{ Plugins
 
-" Ctrl-P
+" CtrlP plugin
 map  :CtrlP<CR>
 map <leader>p :CtrlP <C-r>=expand('%:p:h')<CR><CR>
-
-" CtrlP plugin
 " search for both files, buffers and MRUs
 let g:ctrlp_cmd = 'CtrlPMixed'
 let g:ctrlp_switch_buffer = 1 " jump to existing buffers in same tab
@@ -417,8 +408,8 @@ let g:snips_author = "Victor Hallberg"
 " Auto-Pairs
 let g:AutoPairsMapSpace = 0
 let g:AutoPairsCenterLine = 0
-let g:AutoPairsShortcutJump = '<c-b>' " jump to matched pair
-let g:AutoPairsShortcutFastWrap = '' " conflicts with å character
+let g:AutoPairsShortcutJump = ''
+let g:AutoPairsShortcutFastWrap = '<c-b>' " default conflicts with å character
 
 " NERDtree
 map <F5> :NERDTreeToggle<CR>
