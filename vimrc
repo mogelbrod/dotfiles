@@ -344,9 +344,6 @@ inoremap <silent> <C-@> <C-x><C-o>
 inoremap <silent>  <C-n>
 inoremap <silent>  <C-x><C-f>
 
-" Enable keyword (dictionary) completion
-set complete+=k
-
 " }}}
 " {{{ Plugins
 
