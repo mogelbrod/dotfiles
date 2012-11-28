@@ -338,20 +338,6 @@ set complete=.,w,b,u,k,i,t
 " Insert the longest common text, show menu for one result too
 set completeopt=longest,menu ",menuone
 
-" SuperTab mappings
-if has("gui_running")
-  let g:SuperTabMappingBackward = '<S-Tab>'
-	let g:SuperTabMappingForward  = '<tab>'
-else
-  let g:SuperTabMappingBackward = '[Z'
-	let g:SuperTabMappingForward  = '<tab>'
-end
-
-" SuperTab options
-let g:SuperTabDefaultCompletionType = "context"
-let g:SuperTabContextDefaultCompletionType = "<C-n>"
-let g:SuperTabLongestHighlight = 1
-
 " Completion shortcuts
 inoremap <silent> <C-Space> <C-x><C-o>
 inoremap <silent> <C-@> <C-x><C-o>
@@ -363,6 +349,19 @@ set complete+=k
 
 " }}}
 " {{{ Plugins
+
+" SuperTab mappings
+if has("gui_running")
+  let g:SuperTabMappingBackward = '<S-Tab>'
+	let g:SuperTabMappingForward  = '<tab>'
+else
+  let g:SuperTabMappingBackward = '[Z'
+	let g:SuperTabMappingForward  = '<tab>'
+end
+
+" SuperTab options
+let g:SuperTabDefaultCompletionType = "<C-n>"
+let g:SuperTabLongestHighlight = 1
 
 " CtrlP plugin
 map  :CtrlP<CR>
@@ -409,8 +408,6 @@ let Tlist_Use_Right_Window = 1
 if !has("gui_running")
   " Do not resize window when toggling tag list split
   let Tlist_Inc_Winwidth = 0
-  " Fix bug introduced by AutoClose (arrow keys mapping to ABCD)
-  let g:AutoClosePreservDotReg = 0
 endif
 
 " Syntastic
