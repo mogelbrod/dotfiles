@@ -415,6 +415,9 @@ let g:syntastic_enable_highlighting = 0
 let g:syntastic_auto_jump = 0
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_loc_list_height = 4
+let g:syntastic_mode_map = { 'mode': 'active',
+      \ 'active_filetypes': [],
+      \ 'passive_filetypes': ['java'] }
 
 " Indent guides
 let g:indent_guides_start_level = 2
