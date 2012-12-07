@@ -185,6 +185,9 @@
   # cd which replaces substrings in PWD
   function scd { cd `echo $PWD | sed s/$1/$2/` }
 
+  # print a single column from stin
+  function column { awk "{print \$$1}" }
+
   # Nicely formatted date
   alias datex='date +"%Y-%m-%d (%A) @ %H:%M:%S"'
 
