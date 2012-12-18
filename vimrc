@@ -569,8 +569,6 @@ augroup END
 " HTML
 augroup ft_html
   au!
-  au FileType *html call SuperTabSetDefaultCompletionType("<c-x><c-o>")
-  au FileType *html let b:SuperTabNoCompleteAfter = []
 augroup END
 
 " CSS
