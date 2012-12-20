@@ -40,7 +40,7 @@ set nobackup nowritebackup " do not create backups when writing to files
 set autoread " automatically reload file after external write
 set autoindent
 set ruler
-set nocursorline nocursorcolumn
+set cursorline nocursorcolumn " highlight line but not column
 set nonumber
 set wrap linebreak " word wrap
 set nojoinspaces
@@ -501,11 +501,6 @@ if has("gui_running")
 
   " Line numbers
   set number numberwidth=5
-
-  " Highlight current line
-  set cursorline
-  autocmd WinEnter * setlocal cursorline
-  autocmd WinLeave * setlocal nocursorline
 
   " Cursor settings
   set guicursor=n-v-c-r:block-Cursor/lCursor-blinkon0
