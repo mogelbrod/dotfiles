@@ -283,7 +283,7 @@ function! CustomFoldText(...) " {{{
     let linecount = ' '. linecount .  ' lines | ' . v:foldlevel
   end
   
-  let cols = &columns - (&nu ? &numberwidth : 0)
+  let cols = winwidth(0) - (&nu ? &numberwidth : 0)
 
   let fill = repeat('-', cols - strlen(line) - strlen(linecount))
   let line = strpart(line, 0, cols - strlen(linecount)) . fill . linecount
