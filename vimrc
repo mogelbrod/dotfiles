@@ -183,8 +183,6 @@ map <silent> <leader>ya ggVG"+y''
 map <silent> <Leader><Up> [z
 map <silent> <Leader><Down> ]z
 
-map <silent> <Leader>t !ctags -f .tags --exclude=.git --exclude=log -R .<CR>
-
 " Toggle Indent guides
 nmap <silent> <leader>i <Plug>IndentGuidesToggle
 
@@ -429,6 +427,9 @@ let g:indent_guides_color_change_percent = 5
 
 " Make
 command! -nargs=* Make silent! make <args> | redraw! | botright cwindow 5
+
+" Update tags file using ctags executable
+command! -nargs=* Tags !ctags -f .tags --exclude=.git --exclude=log -R . <args>
 
 " Display hex color under cursor as RGB combo
 map <leader>sh <Esc>:call HexToRGB()<CR>
