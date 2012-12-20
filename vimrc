@@ -176,6 +176,17 @@ noremap § <C-]>
 " }}}
 " {{{ Leader mappings
 
+" Tab switching with <leader>number
+map <silent> <leader>1 1gt
+map <silent> <leader>2 2gt
+map <silent> <leader>3 3gt
+map <silent> <leader>4 4gt
+map <silent> <leader>5 5gt
+map <silent> <leader>6 6gt
+map <silent> <leader>7 7gt
+map <silent> <leader>8 8gt
+map <silent> <leader>9 9gt
+
 " Copy buffer contents to clipboard
 map <silent> <leader>ya ggVG"+y''
 
@@ -308,6 +319,61 @@ function! IndentationFoldExpr(ln) " {{{
     return '>'.ind_next
   end
 endfunction " }}}
+
+" }}}
+" {{{ Tabs
+
+if has('gui')
+  set guioptions-=e
+endif
+if exists('+showtabline')
+  function! MyTabLine()
+    let s = ''
+    let t = tabpagenr()
+    let i = 1
+    while i <= tabpagenr('$')
+      let buflist = tabpagebuflist(i)
+      let winnr = tabpagewinnr(i)
+      let bufnr = buflist[winnr - 1]
+      let file = bufname(bufnr)
+      let buftype = getbufvar(bufnr, 'buftype')
+
+      let s .= '%' . i . 'T' " tells vim which tab to show if clicked
+      let s .= (i == t ? '%1*%#TabNumSel#' : '%2*%#TabNum#')
+      let s .= ' ' . i " tab number
+
+      if getbufvar(bufnr, '&modified')
+        let s .= '+' " tab has modified contents
+      endif
+      let s .= ' %*'
+
+      " Tab name
+      let s .= (i == t ? '%#TabLineSel#' : '%#TabLine#') " highlight group
+      if buftype == 'nofile'
+        if file =~ '\/.'
+          let file = substitute(file, '.*\/\ze.', '', '')
+        endif
+      else
+        let file = fnamemodify(file, ':p:t')
+      endif
+      if file == ''
+        let file = '[NoName]'
+      endif
+      let s .= file
+
+      let i = i + 1
+    endwhile
+
+    let s .= '%T%#TabLineFill#%='
+    let s .= (tabpagenr('$') > 1 ? '%999XX' : 'X')
+
+    return s
+  endfunction
+
+  set tabline=%!MyTabLine()
+  set showtabline=1
+endif
+
 
 " }}}
 " {{{ (Re)formatting
