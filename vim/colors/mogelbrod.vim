@@ -1,6 +1,6 @@
-" mogelbrod2 vim color scheme
+" mogelbrod3 vim color scheme
 " author: Victor Hallberg [ vigge19@gmail.com ]
-" date: 2010-04-04
+" date: 2012-12-20
 " test with :source $VIMRUNTIME/syntax/colortest.vim
 
 let g:colors_name = "mogelbrod"
@@ -33,15 +33,15 @@ hi IncSearch    ctermfg=Black  ctermbg=Brown  cterm=bold   guifg=#141414  guibg=
 hi MatchParen   ctermfg=White  ctermbg=Black  cterm=bold   guifg=#ffffff  guibg=#334455  gui=none
 
 " Window Elements
-hi LineNr       ctermfg=Gray   ctermbg=Black cterm=none    guifg=#626262  guibg=#141414  gui=none
-hi CursorLineNr ctermfg=Gray   ctermbg=Black cterm=none    guifg=#6a6a6a  guibg=#0b0b0b  gui=none
-hi StatusLine   ctermfg=Black  ctermbg=Grey  cterm=none    guifg=#ffffff  guibg=#0a0a0a  gui=none
-hi StatusLineNC ctermfg=Black  ctermbg=Grey  cterm=bold    guifg=#a6a6a6  guibg=#0a0a0a  gui=none
-hi VertSplit    ctermfg=Black  ctermbg=Grey  cterm=none    guifg=#ffffff  guibg=#0a0a0a  gui=none
-hi Folded       ctermfg=Cyan   ctermbg=Black cterm=none    guifg=#3cb9e6  guibg=#151515  gui=none
-hi FoldColumn   ctermfg=Cyan   ctermbg=Black cterm=none    guifg=#3cb9e6  guibg=#1e1e1e  gui=none
+hi LineNr       ctermfg=Black  ctermbg=Black cterm=bold    guifg=#626262  guibg=#141414  gui=none
+hi CursorLineNr ctermfg=Red    ctermbg=Black cterm=none    guifg=#6a6a6a  guibg=#0b0b0b  gui=none
+hi StatusLine   ctermfg=Red    ctermbg=Black cterm=none    guifg=#3cb9e6  guibg=#151515  gui=none
+hi StatusLineNC ctermfg=Brown  ctermbg=Black cterm=none    guifg=#3cb9e6  guibg=#151515  gui=none
+hi VertSplit    ctermfg=Black  ctermbg=Black cterm=none    guifg=#ffffff  guibg=#151515  gui=none
+hi Folded       ctermfg=White  ctermbg=Black cterm=none    guifg=#ffffff  guibg=#0a0a0a  gui=none
 hi Visual       ctermfg=Black  ctermbg=Grey  cterm=none    guifg=#f0f0f0  guibg=#464646  gui=none
 hi VisualNOS    ctermfg=White  ctermbg=none  cterm=none    guifg=#f0f0f0  gui=none
+"hi FoldColumn   ctermfg=Gray   ctermbg=Black cterm=bold   guifg=#a6a6a6  guibg=#0a0a0a  gui=none
 
 " Popup menu
 hi Pmenu        ctermfg=White  ctermbg=Black  cterm=none    guifg=#cacaca  guibg=#0b0b0b  gui=none
@@ -58,16 +58,24 @@ hi ErrorMsg     guifg=#ffffff  guibg=#f03a3a  gui=none
 hi DiffText     guifg=#ffffff  guibg=#f03a3a  gui=none
 hi MoreMsg      guifg=#78dc1e  gui=none
 hi Question     guifg=#78dc1e  gui=none
-hi TabLineSel   gui=none
 hi ModeSel      gui=none
 hi ModeMsg      gui=none
 
+" Tabs
+hi TabNum       ctermfg=Black   ctermbg=Black  cterm=bold    guifg=#ffffff  guibg=#0a0a0a  gui=none
+hi TabNumSel    ctermfg=Brown   ctermbg=Black  cterm=none    guifg=#ffffff  guibg=#0a0a0a  gui=none
+hi TabLine      ctermfg=Blue    ctermbg=Black  cterm=none    guifg=#ffffff  guibg=#0a0a0a  gui=none
+hi TabLineSel   ctermfg=Red     ctermbg=Black  cterm=none    guifg=#ffffff  guibg=#0a0a0a  gui=none
+hi TabLineFill  ctermfg=White   ctermbg=Black  cterm=none    guifg=#ffffff  guibg=#0a0a0a  gui=none
+
 " }}}
 " {{{ VimDiff
+
 hi DiffAdd      ctermfg=Black ctermbg=Green   cterm=none
 hi DiffDelete   ctermfg=Black ctermbg=Red     cterm=none
 hi DiffChange   ctermfg=Black ctermbg=Yellow  cterm=none
 hi DiffText     ctermfg=Black ctermbg=Yellow  cterm=none
+
 " }}}
 " {{{ Basic syntax
 
