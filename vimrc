@@ -323,9 +323,6 @@ endfunction " }}}
 " }}}
 " {{{ Tabs
 
-if has('gui')
-  set guioptions-=e
-endif
 if exists('+showtabline')
   function! MyTabLine()
     let s = ''
@@ -557,7 +554,7 @@ if has("gui_running")
     map <leader>+ :set guifont=ProFontWindows:h16<CR>
   endif
 
-  set guioptions=egm
+  set guioptions=
 
   " Window size
   if !exists("g:gui_window_size_applied")
