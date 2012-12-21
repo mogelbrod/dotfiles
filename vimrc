@@ -356,7 +356,7 @@ if exists('+showtabline')
       if file == ''
         let file = '[NoName]'
       endif
-      let s .= file
+      let s .= file . ' '
 
       let i = i + 1
     endwhile
