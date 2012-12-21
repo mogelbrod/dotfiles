@@ -24,8 +24,9 @@ hi NonText      ctermfg=Black  ctermbg=none  cterm=bold    guifg=#828282  guibg=
 " Cursor
 hi Cursor       ctermfg=Black  ctermbg=White cterm=reverse guifg=#ffffff  guibg=#5082a0  gui=none
 hi lCursor      ctermfg=none   ctermbg=none  cterm=none    guifg=#ffffff  guibg=#5082a0  gui=none
-hi CursorLine   ctermfg=none   ctermbg=none  cterm=none    guibg=#1b1b1b  gui=none
-hi CursorColumn ctermfg=none   ctermbg=none  cterm=none    guibg=#1b1b1b  gui=none
+hi CursorLine   ctermfg=none   ctermbg=none  cterm=none    guibg=#1a1a1a  gui=none
+hi CursorColumn ctermfg=none   ctermbg=none  cterm=none    guibg=#1a1a1a  gui=none
+hi CursorLineNr ctermfg=Red    ctermbg=Black cterm=none    guifg=#f05050  guibg=#0b0b0b  gui=none
 
 " Search
 hi Search       ctermfg=Black  ctermbg=Brown  cterm=none   guifg=#141414  guibg=#f0b43c  gui=none
@@ -33,15 +34,21 @@ hi IncSearch    ctermfg=Black  ctermbg=Brown  cterm=bold   guifg=#141414  guibg=
 hi MatchParen   ctermfg=White  ctermbg=Black  cterm=bold   guifg=#ffffff  guibg=#334455  gui=none
 
 " Window Elements
-hi LineNr       ctermfg=Black  ctermbg=Black cterm=bold    guifg=#626262  guibg=#141414  gui=none
-hi CursorLineNr ctermfg=Red    ctermbg=Black cterm=none    guifg=#6a6a6a  guibg=#0b0b0b  gui=none
-hi StatusLine   ctermfg=Red    ctermbg=Black cterm=none    guifg=#3cb9e6  guibg=#151515  gui=none
-hi StatusLineNC ctermfg=Brown  ctermbg=Black cterm=none    guifg=#3cb9e6  guibg=#151515  gui=none
-hi VertSplit    ctermfg=Black  ctermbg=Black cterm=none    guifg=#ffffff  guibg=#151515  gui=none
-hi Folded       ctermfg=White  ctermbg=Black cterm=none    guifg=#ffffff  guibg=#0a0a0a  gui=none
-hi Visual       ctermfg=Black  ctermbg=Grey  cterm=none    guifg=#f0f0f0  guibg=#464646  gui=none
+hi LineNr       ctermfg=Black  ctermbg=Black cterm=bold    guifg=#555555  guibg=#141414  gui=none
+hi StatusLine   ctermfg=Red    ctermbg=Black cterm=none    guifg=#f05050  guibg=#151515  gui=none
+hi StatusLineNC ctermfg=Brown  ctermbg=Black cterm=none    guifg=#e6aa37  guibg=#151515  gui=none
+hi VertSplit    ctermfg=Black  ctermbg=Black cterm=none    guifg=#151515  guibg=#151515  gui=none
+hi Folded       ctermfg=White  ctermbg=Black cterm=none    guifg=#dddddd  guibg=#151515  gui=none
+hi Visual       ctermfg=Black  ctermbg=White cterm=none    guifg=#f0f0f0  guibg=#464646  gui=none
 hi VisualNOS    ctermfg=White  ctermbg=none  cterm=none    guifg=#f0f0f0  gui=none
 "hi FoldColumn   ctermfg=Gray   ctermbg=Black cterm=bold   guifg=#a6a6a6  guibg=#0a0a0a  gui=none
+
+" Tabs
+hi TabNum       ctermfg=Black   ctermbg=Black  cterm=bold    guifg=#bb9988  guibg=#0a0a0a  gui=none
+hi TabNumSel    ctermfg=Brown   ctermbg=Black  cterm=none    guifg=#ffcd64  guibg=#0a0a0a  gui=none
+hi TabLine      ctermfg=Blue    ctermbg=Black  cterm=bold    guifg=#8787ff  guibg=#0a0a0a  gui=none
+hi TabLineSel   ctermfg=Red     ctermbg=Black  cterm=bold    guifg=#ff6e6e  guibg=#0a0a0a  gui=none
+hi TabLineFill  ctermfg=White   ctermbg=Black  cterm=none    guifg=#828282  guibg=#0a0a0a  gui=none
 
 " Popup menu
 hi Pmenu        ctermfg=White  ctermbg=Black  cterm=none    guifg=#cacaca  guibg=#0b0b0b  gui=none
@@ -60,13 +67,6 @@ hi MoreMsg      guifg=#78dc1e  gui=none
 hi Question     guifg=#78dc1e  gui=none
 hi ModeSel      gui=none
 hi ModeMsg      gui=none
-
-" Tabs
-hi TabNum       ctermfg=Black   ctermbg=Black  cterm=bold    guifg=#ffffff  guibg=#0a0a0a  gui=none
-hi TabNumSel    ctermfg=Brown   ctermbg=Black  cterm=none    guifg=#ffffff  guibg=#0a0a0a  gui=none
-hi TabLine      ctermfg=Blue    ctermbg=Black  cterm=none    guifg=#ffffff  guibg=#0a0a0a  gui=none
-hi TabLineSel   ctermfg=Red     ctermbg=Black  cterm=none    guifg=#ffffff  guibg=#0a0a0a  gui=none
-hi TabLineFill  ctermfg=White   ctermbg=Black  cterm=none    guifg=#ffffff  guibg=#0a0a0a  gui=none
 
 " }}}
 " {{{ VimDiff
