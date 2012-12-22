@@ -5,7 +5,19 @@
 
 require 'fileutils'
 
-IS_WINDOWS = (RUBY_PLATFORM =~ /mingw|mswin/i)
+IS_WINDOWS = (RUBY_PLATFORM =~ /mingw|mswin|cygwin/i)
+
+# Creates a symlink to a file or directory.
+def link(origin, target)
+  if IS_WINDOWS
+    flag = File.directory?(origin) ? ' /J' : ''
+    origin = File.expand_path(origin).gsub!('/', '\\')
+    target = File.expand_path(target).gsub('/', '\\')
+    `cmd.exe /c \"mklink#{flag} #{target} #{origin}\""`
+  else
+    `ln -s #{File.expand_path origin} #{target}`
+  end
+end
 
 home = File.expand_path('~')
 dir = File.dirname(__FILE__)
@@ -14,7 +26,7 @@ dir = File.dirname(__FILE__)
 puts "Create symlinks ..."
 
 Dir['*'].each do |origin|
-  next if origin == 'install'
+  next if origin =~ /\Ainstall/
   file = ".#{origin}"
 
   # Special cases
@@ -30,8 +42,7 @@ Dir['*'].each do |origin|
   if File.exists?(target)
     puts " - #{file} (#{target}) already exists, skipping."
   else
-    res = `ln -s #{File.expand_path origin} #{target}`
-    if $?.exitstatus != 0
+    if link(origin, target)
       puts " ! #{target} could not be linked."
     else
       puts " + #{file} => #{target} has been linked."
@@ -45,17 +56,14 @@ unless IS_WINDOWS
   FileUtils.mkdir_p "~/.vim/backup"
 end
 
-# git push on commit
-puts "Tell git to push on commits ..."
-`echo 'git push' > #{dir}/.git/hooks/post-commit`
-`chmod 755 #{dir}/.git/hooks/post-commit`
-
 # initialize git submodules
 puts "Initialize git submodules ..."
 `git submodule init`
 `git submodule update`
 
-puts "Update (pull) git submodules ..."
-`git submodule foreach git pull origin master`
+if ARGV.include? 'update'
+  puts "Update (pull) git submodules ..."
+  `git submodule foreach git pull origin master`
+end
 
 puts "All done!"
