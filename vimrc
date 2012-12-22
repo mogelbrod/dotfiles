@@ -403,12 +403,11 @@ set completeopt=longest,menu ",menuone
 " {{{ Plugins
 
 " SuperTab mappings
+let g:SuperTabMappingForward  = '<tab>'
 if has("gui_running")
-  let g:SuperTabMappingBackward = '<S-Tab>'
-	let g:SuperTabMappingForward  = '<tab>'
+  let g:SuperTabMappingBackward = '<s-tab>'
 else
   let g:SuperTabMappingBackward = '[Z'
-	let g:SuperTabMappingForward  = '<tab>'
 end
 " Alternate completion types
 imap <C-Space> <C-r>=SuperTabAlternateCompletion("\<lt>c-x>\<lt>c-o>")<CR>
@@ -420,6 +419,11 @@ imap <C-f> <C-r>=SuperTabAlternateCompletion("\<lt>c-x>\<lt>c-f>")<CR>
 " SuperTab options
 let g:SuperTabDefaultCompletionType = "<C-n>"
 let g:SuperTabLongestHighlight = 1
+
+" Snipmate-plus (comment out mappings in snipmate-plus/after/plugin)
+"inoremap <silent> <C-s> <c-r>=TriggerSnippet()<cr>
+"snoremap <silent> <C-s> <esc>i<right><c-r>=TriggerSnippet()<cr>
+let g:snips_author = "Victor Hallberg"
 
 " CtrlP plugin
 map  :CtrlP<CR>
@@ -436,11 +440,6 @@ let g:ctrlp_custom_ignore = {
   \ 'dir':  '\.git$\|\.hg$\|\.svn$',
   \ 'file': '\.exe$\|\.so$\|\.dll$'
   \ }
-
-" Snipmate-plus (comment out mappings in snipmate-plus/after/plugin)
-inoremap <silent> <C-s> <c-r>=TriggerSnippet()<cr>
-snoremap <silent> <C-s> <esc>i<right><c-r>=TriggerSnippet()<cr>
-let g:snips_author = "Victor Hallberg"
 
 " Auto-Pairs
 let g:AutoPairsMapSpace = 0
