@@ -189,6 +189,8 @@ map <silent> <leader>9 9gt
 
 " Copy buffer contents to clipboard
 map <silent> <leader>ya ggVG"+y''
+" Yank everything on the current side of a = character
+map <silent> <leader>ys <Esc>:call YankSide()<CR>
 
 " Fold navigation
 map <silent> <Leader><Up> [z
@@ -210,6 +212,8 @@ nmap <leader>$ :call Preserve("%s/\\s\\+$//e")<CR>
 " Re-indent file
 nmap <leader>= :call Preserve("normal gg=G")<CR>
 
+nmap <leader>p :CtrlP <C-r>=expand('%:p:h')<CR><CR>
+
 " Tabular plugin map
 nmap <leader>t :Tabularize /
 vmap <leader>t :Tabularize /
@@ -222,6 +226,8 @@ noremap <leader>c :Make<CR>
 
 " Change directory to current buffer path
 nmap <leader>d :cd %:p:h<CR>
+
+map <leader>sh <Esc>:call HexToRGB()<CR>
 
 " Open / reload vimrc
 nmap <silent> <leader>V :e $MYVIMRC<CR>:filetype detect<CR>
@@ -427,7 +433,6 @@ let g:snips_author = "Victor Hallberg"
 
 " CtrlP plugin
 map  :CtrlP<CR>
-map <leader>p :CtrlP <C-r>=expand('%:p:h')<CR><CR>
 " search for both files, buffers and MRUs
 let g:ctrlp_cmd = 'CtrlPMixed'
 let g:ctrlp_switch_buffer = 1 " jump to existing buffers in same tab
@@ -494,7 +499,6 @@ command! -nargs=* Make silent! make <args> | redraw! | botright cwindow 5
 command! -nargs=* Tags !ctags -f .tags --exclude=.git --exclude=log -R . <args>
 
 " Display hex color under cursor as RGB combo
-map <leader>sh <Esc>:call HexToRGB()<CR>
 function! HexToRGB(...)
   if a:0 > 0
     let str = a:1
@@ -517,7 +521,6 @@ function! HexToRGB(...)
 endfunction
 
 " Copy everything on current side of equals sign (=)
-map <silent> <leader>ys <Esc>:call YankSide()<CR>
 function! YankSide()
   let line = getline('.')
   let cur_col = col('.') " cursor column
@@ -617,7 +620,7 @@ augroup END
 augroup ft_python
   au!
   au FileType python setlocal ts=4 sts=4 sw=4
-  au FileType python noremap <buffer> <leader>r :!python %<CR>
+  au FileType python noremap <buffer> <leader>o :!python %<CR>
   au FileType python setlocal makeprg=python\ %
   au FileType python setlocal efm=%C\ %.%#,%A\ \ File\ \"%f\"\\,\ line\ %l%.%#,%Z%[%^\ ]%\\@=%m
   au FileType python call SuperTabSetDefaultCompletionType("<c-x><c-o>")
