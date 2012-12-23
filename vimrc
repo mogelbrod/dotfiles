@@ -598,7 +598,6 @@ augroup END
 " Ruby
 augroup ft_ruby
   au!
-  au FileType ruby,haml inoremap <buffer> <C-L> <space>=><space>
   au FileType ruby,haml setlocal formatoptions=ql
   au FileType ruby setlocal makeprg=ruby\ -c\ $* errorformat=
     \%+E%f:%l:\ parse\ error,
