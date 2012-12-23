@@ -444,7 +444,7 @@ let g:ctrlp_custom_ignore = {
 " Auto-Pairs
 let g:AutoPairsMapSpace = 0
 let g:AutoPairsCenterLine = 0
-let g:AutoPairsShortcutJump = ''
+let g:AutoPairsShortcutJump = '<c-s>'
 let g:AutoPairsShortcutFastWrap = '<c-b>' " default conflicts with å character
 
 " NERDtree
