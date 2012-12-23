@@ -437,8 +437,8 @@ let g:ctrlp_mruf_max = 50
 let g:ctrlp_extensions = ['mixed', 'tag']
 
 let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\.git$\|\.hg$\|\.svn$',
-  \ 'file': '\.exe$\|\.so$\|\.dll$'
+  \ 'dir':  '\v\.(git|hg|svn)$',
+  \ 'file': '\v\.(exe|so|dll|tar|bz2|gz|zip|jar|deb|jpe?g|png|gif|bmp|mp3|avi|mp4|mov|mpe?g|mkv|pdf)$'
   \ }
 
 " Auto-Pairs
