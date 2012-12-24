@@ -1,0 +1,29 @@
+snippet t I18n translate
+	t("${1}")${2}
+snippet table Table (thead+tbody)
+	%table
+		%thead
+			%tr
+				${1:%th Header}
+		%tbody
+			%tr
+				${2:%td Cell}
+snippet rp render partial
+	= render partial: '${1:form}'${2}
+snippet rpl render partial + locals
+	= render partial: '${1:form}', locals: { ${2} }${3}
+snippet rflash Render flash partial
+	= render partial: '${1:/flash}', locals: { flash: flash }${2}
+snippet doc Document boilerplate
+	!!! Strict
+	%html(xmlns="http://www.w3.org/1999/xhtml"){ lang: ${1:I18n.locale} }
+		%head
+			%title ${2:Site title}
+			%meta(http-equiv='Content-Type' content='text/html;charset=UTF-8')/
+			= yield :head
+		%body
+			${3:= yield}
+snippet flash Flash messages
+	- [${1::alert, :warning, :notice}].each do |key|
+		- if flash[key]
+			%p.flash{ class: ${2:key} }!= flash[key]${3}
