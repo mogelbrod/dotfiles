@@ -189,6 +189,9 @@
 " }}}
 " {{{ Leader mappings
 
+  " Tab manipulation
+  map <silent> <leader>tn :tabnew<CR>
+  map <silent> <leader>tc :tabclose<CR>
   " Tab switching with <leader>number
   map <silent> <leader>1 1gt
   map <silent> <leader>2 2gt
@@ -228,8 +231,8 @@
   nmap <leader>p :CtrlP <C-r>=expand('%:p:h')<CR><CR>
 
   " Tabular plugin map
-  nmap <leader>t :Tabularize /
-  vmap <leader>t :Tabularize /
+  nmap <leader><space> :Tabularize /
+  vmap <leader><space> :Tabularize /
 
   " Search for selection and replace with input() in all open buffers
   vmap <leader>h "hy:bufdo! %s~\V<C-r>h~~ge<left><left><left>
