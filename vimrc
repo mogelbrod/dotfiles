@@ -3,8 +3,6 @@
   if has('win32') || has ('win64')
     let $VIMHOME = $HOME."\\vimfiles"
     set noswapfile
-    " Required to be able to save to windows hardlinks
-    set nobackup nowritebackup
   else
     let $VIMHOME = $HOME."/.vim"
     set directory=$VIMHOME/swap//,.
@@ -36,34 +34,54 @@
     set clipboard=unnamed
   end
 
+  " Tabs expand to 2 spaces
   set tabstop=2 shiftwidth=2 softtabstop=2 expandtab shiftround
+
   set tags=./.tags,.tags,./tags,tags " tag files
+
+  " Buffer saving/reading
   set nobackup nowritebackup " do not create backups when writing to files
   set autoread " automatically reload file after external write
+  set autowrite " autosave before making
+  set hidden " allow switching of buffers without saving them first
+
+  " UI elements / text appearance
+  set lazyredraw
   set autoindent
-  set ruler
   set cursorline nocursorcolumn " highlight line but not column
   set nonumber
   set wrap linebreak " word wrap
-  set nojoinspaces
+  set display=lastline " show as much as possible of the last line
+  set scrolloff=3 " minimum number of lines surrounding cursor
   set listchars=tab:°\ ,trail:· " whitespace visible on :set list
   set diffopt+=iwhite " ignore whitespace when diffing
+  set splitbelow splitright " push new splits to bottom/right
+
+  " Search / highlight / replace
+  set nojoinspaces
   set incsearch " show search results while being typed
   set hlsearch " highlight matches
   set smartcase "noignorecase
+  set shellslash " always use forward slashes, even on windows
+
+  " Command line
   set laststatus=2 " always show status line
   set showcmd " show incomplete commands
   set history=100 " command line history length
-  set display=lastline " show as much as possible of the last line
-  set scrolloff=3 " minimum number of lines surrounding cursor
-  set splitbelow splitright " push new splits to bottom/right
-  set lazyredraw
-  set matchpairs=(:),{:},[:] " highlighting of matching braces
-  set autowrite " autosave before making
-  set hidden " allow switching of buffers without saving them first
   set shellslash " always use forward slashes, even on windows
+  set wildmenu
+  set wildmode=list:longest,full
+  set wildignore=*.o,*.bak,*.swc,*.swp,.git/*,.gitkeep,*.class
+  set wildignore+=*/tmp/*,*.so,*.zip
+  set wildignore+=tmp\*,*.zip,*.exe
+
+  " What to scan for in insert mode completion
+  set complete=.,w,b,u,t,i,k
+  " Insert the longest common text, show menu for one result too
+  set completeopt=longest,menu ",menuone
 
   " Statusline: %f(ile) [flags] {align} [%ft] %col %line/%total %percent
+  "set ruler " overwritten below
   set statusline=%<\ %-f\ \ %m%r%h%w\ %=%y\ %4(%v%)\ %10(%l/%L%)\ \ %P
 
   " Shorten various messages in vim
@@ -108,13 +126,6 @@
 
   " Add :w!! command which will write file as sudo
   cnoreabbrev w!! %!sudo tee > /dev/null %
-
-  " Completion
-  set wildmenu
-  set wildmode=list:longest,full
-  set wildignore=*.o,*.bak,*.swc,*.swp,.git/*,.gitkeep,*.class
-  set wildignore+=*/tmp/*,*.so,*.zip
-  set wildignore+=tmp\*,*.zip,*.exe
 
 " }}}
 " {{{ Key behaviour & custom mappings
@@ -396,15 +407,6 @@
 
   " Do not reindent lines with a comment sign (removed 0#)
   autocmd FileType * setlocal cinkeys=0{,0},0),:,!^F,o,O,e
-
-" }}}
-" {{{ Completion
-
-  " What to scan for insert mode completion
-  set complete=.,w,b,u,t,i,k
-
-  " Insert the longest common text, show menu for one result too
-  set completeopt=longest,menu ",menuone
 
 " }}}
 " {{{ Plugins
