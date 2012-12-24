@@ -280,3 +280,25 @@ snippet defdestroy Destroy action
 		@$1.destroy
 		respond_with @$1${4}
 	end
+snippet flash
+	flash[:${1:alert}] = "${2}"
+snippet pa params[:..]
+	params[:${1:id}]${2}
+snippet t I18n translate
+	I18n.t('${1}')${2}
+snippet scope Scope with lambda
+	scope ${1:name}, lambda { ${2} }${3}
+snippet validates validates :attr
+	validates :${1:attr}, ${2}
+snippet bf before_filter
+	before_filter :${1}
+snippet bs before_save
+	before_save :${1}
+snippet bt belongs_to
+	belongs_to :${1}
+snippet hm has_many
+	has_many :${1}
+snippet ho has_one
+	has_one :${1}
+snippet habtm has_and_belongs_to_many
+	has_and_belongs_to_many :${1}
