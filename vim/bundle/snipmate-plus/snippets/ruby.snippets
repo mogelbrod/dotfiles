@@ -164,9 +164,9 @@ snippet times
 snippet upto
 	upto(${1:1.0/0.0}) { |${2:n}| ${3} }
 snippet each
-	each { |${1:e}| ${2} }
+	each { |${1:x}| ${2} }
 snippet eachd
-	each do |${1:e}|
+	each do |${1:x}|
 		${2}
 	end	
 snippet eak
@@ -176,13 +176,13 @@ snippet reveach
 snippet inj
 	inject(${1:init}) { |${2:mem}, ${3:var}| ${4} }
 snippet injd
-	inject(${1:init}) do |${2:mem}, ${3:var}|
+	inject(${1:init}) do |${2:x}, ${3:y}|
 		${4}
 	end		
 snippet map
 	map { |${1:e}| ${2} }
 snippet mapd
-	map do |${1:e}| 
+	map do |${1:x}|
 		${2}
 	end		
 snippet sort
@@ -196,13 +196,13 @@ snippet any
 snippet col
 	collect { |${1:e}| ${2} }
 snippet cold
-	collect do |${1:e}|
+	collect do |${1:x}|
 		${2}
 	end
 snippet find
 	find { |${1:e}| ${2} }
 snippet findd
-	find do |${1:e}|
+	find do |${1:x}|
 		${2}
 	end		
 snippet grep
@@ -212,7 +212,7 @@ snippet sub
 snippet scan
 	scan(${1:/pattern/}) { |${2:match}| ${3} }
 snippet scand
-	scan(${1:/pattern/}) do |${2:match}|
+	scan(${1:/pattern/}) do |${2:m}|
 		${3}
 	end		
 snippet max
@@ -222,19 +222,19 @@ snippet min
 snippet rej
 	reject { |${1:e}| ${2} }
 snippet rejd
-	reject do |${1:e}|
+	reject do |${1:x}|
 		${2}
 	end
 snippet sel
 	select { |${1:e}| ${2} }
 snippet seld
-	select do |${1:e}|
+	select do |${1:x}|
 		${2}
 	end		
 snippet lam
 	lambda { |${1:args}| ${2} }
 snippet do
-	do |${1:variable}|
+	do |${1:x}|
 		${2}
 	end
 snippet :
