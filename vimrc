@@ -687,4 +687,7 @@
   " Matlab
   au FileType matlab setlocal makeprg=octave\ %
 
+  " Snippets
+  au FileType snippet setlocal noexpandtab
+
 " }}}
