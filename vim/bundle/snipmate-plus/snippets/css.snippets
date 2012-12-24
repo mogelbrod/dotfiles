@@ -1,0 +1,28 @@
+snippet font font shorthand
+	font: ${1:normal} ${2:13px}/${3:1.5} ${4:sans-serif};
+snippet br border-radius
+	-webkit-border-radius: ${1};
+	-moz-border-radius: ${1:4px};
+	border-radius: ${1};${2}
+snippet bgsprite background shorthand
+	background: url(${1:sprites.png}) no-repeat 0 0;${2}
+snippet reset css reset
+	html, body, div, span, applet, object, iframe,
+	h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+	a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd,
+	q, s, samp, small, strike, strong, sub, sup, tt, var, dl, dt, dd, ol, ul, li,
+	form, fieldset, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {
+		margin: 0;
+		padding: 0;
+		border: 0;
+		outline: 0;
+		font-size: 100%;
+		font: inherit;
+		vertical-align: baseline;
+	} 
+	ol, ul { list-style: none; }
+	blockquote, q { quotes: none; }
+	blockquote:before, blockquote:after, q:before, q:after {
+		content: '';
+		content: none;
+	}
