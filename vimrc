@@ -504,6 +504,8 @@
   " Update tags file using ctags executable
   command! -nargs=* Tags !ctags -f .tags --exclude=.git --exclude=log -R . <args>
 
+  command! -nargs=* IndentationFolds setlocal foldmethod=expr foldexpr=IndentationFoldExpr(v:lnum)
+
   " Display hex color under cursor as RGB combo
   function! HexToRGB(...)
     if a:0 > 0
@@ -619,8 +621,7 @@
       \%-G%.%#
     "au FileType ruby let g:rubycomplete_buffer_loading = 1
     au FileType ruby let g:rubycomplete_rails = 1
-    au FileType yaml,haml setlocal foldmethod=expr 
-      \ foldexpr=IndentationFoldExpr(v:lnum)
+    au FileType yaml,haml IndentationFolds
   augroup END
 
   augroup ft_python
@@ -645,7 +646,7 @@
   augroup END
 
   " XML
-  au FileType xml setlocal foldmethod=expr foldexpr=IndentationFoldExpr(v:lnum)
+  au FileType xml IndentationFolds
 
   " Markdown
   augroup ft_md
