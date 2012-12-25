@@ -504,7 +504,9 @@
   " Update tags file using ctags executable
   command! -nargs=* Tags !ctags -f .tags --exclude=.git --exclude=log -R . <args>
 
-  command! -nargs=* IndentationFolds setlocal foldmethod=expr foldexpr=IndentationFoldExpr(v:lnum)
+  command! -nargs=* IndentFolds setlocal foldmethod=expr foldexpr=IndentationFoldExpr(v:lnum)
+
+  command! -nargs=0 SnippetFile exe "sp $VIMHOME/bundle/snipmate-plus/snippets/".&ft.".snippets"
 
   " Display hex color under cursor as RGB combo
   function! HexToRGB(...)
@@ -621,7 +623,7 @@
       \%-G%.%#
     "au FileType ruby let g:rubycomplete_buffer_loading = 1
     au FileType ruby let g:rubycomplete_rails = 1
-    au FileType yaml,haml IndentationFolds
+    au FileType yaml,haml IndentFolds
   augroup END
 
   augroup ft_python
@@ -646,7 +648,7 @@
   augroup END
 
   " XML
-  au FileType xml IndentationFolds
+  au FileType xml IndentFolds
 
   " Markdown
   augroup ft_md
