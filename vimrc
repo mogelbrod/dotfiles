@@ -130,9 +130,6 @@
 " }}}
 " {{{ Key behaviour & custom mappings
 
-  " kj as alternative to <Esc> in insert mode
-  inoremap kj <Esc>
-
   " Navigate through displayed lines, not physical
   nmap <silent> j gj
   nmap <silent> k gk
