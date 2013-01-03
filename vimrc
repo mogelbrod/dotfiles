@@ -499,11 +499,24 @@
   command! -nargs=* Make silent! make <args> | redraw! | botright cwindow 5
 
   " Update tags file using ctags executable
-  command! -nargs=* Tags !ctags -f .tags --exclude=.git --exclude=log -R . <args>
+  command! -nargs=? Tags call GenerateTags(<args>)
 
   command! -nargs=* IndentFolds setlocal foldmethod=expr foldexpr=IndentationFoldExpr(v:lnum)
 
   command! -nargs=0 SnippetFile exe "sp $VIMHOME/bundle/snipmate-plus/snippets/".&ft.".snippets"
+
+  " Generate new tags file recursively from cwd or a specific path
+  function! GenerateTags(...)
+    let path = a:0 > 0 ? a:1 : getcwd()
+    let path .= has("win32") ? "\\" : "/"
+    let cmd = "ctags -f ".path.".tags -R --tag-relative=yes --exclude=.git --exclude=.svn"
+    let langs = &ft
+		if &ft == 'haml'
+			let langs = 'ruby'
+    endif
+		call system(cmd . " --languages=" . langs . " " . path)
+    echo "tags file generated at: " . path . ".tags"
+  endfunction
 
   " Display hex color under cursor as RGB combo
   function! HexToRGB(...)
