@@ -2,7 +2,7 @@ snippet php
 	<?php
 	${1}
 	?>
-snippet ec
+snippet e
 	echo "${1:string}"${2};
 snippet inc
 	include '${1:file}';${2}
@@ -12,9 +12,8 @@ snippet req
 	require '${1:file}';${2}
 snippet req1
 	require_once '${1:file}';${2}
-# $GLOBALS['...']
-snippet globals
-	$GLOBALS['${1:variable}']${2: = }${3:something}${4:;}${5}
+snippet globals $GLOBALS['...']
+	$GLOBALS['${1:var}']${2}
 snippet $_ COOKIE['...']
 	$_COOKIE['${1:variable}']${2}
 snippet $_ ENV['...']
@@ -31,12 +30,10 @@ snippet $_ SERVER['...']
 	$_SERVER['${1:variable}']${2}
 snippet $_ SESSION['...']
 	$_SESSION['${1:variable}']${2}
-# Start Docblock
-snippet /*
+snippet /* docblock
 	/**
 	 * ${1}
 	 **/
-# Class - post doc
 snippet doc_cp
 	/**
 	 * ${1:undocumented class}
@@ -44,14 +41,12 @@ snippet doc_cp
 	 * @package ${2:default}
 	 * @author ${3:`g:snips_author`}
 	**/${4}
-# Class Variable - post doc
 snippet doc_vp
 	/**
 	 * ${1:undocumented class variable}
 	 *
 	 * @var ${2:string}
 	 **/${3}
-# Class Variable
 snippet doc_v
 	/**
 	 * ${3:undocumented class variable}
@@ -59,7 +54,6 @@ snippet doc_v
 	 * @var ${4:string}
 	 **/
 	${1:var} $${2};${5}
-# Class
 snippet doc_c
 	/**
 	 * ${3:undocumented class}
@@ -70,18 +64,15 @@ snippet doc_c
 	${1:}class ${2:}
 	{${6}
 	} // END $1class $2
-# Constant Definition - post doc
 snippet doc_dp
 	/**
 	 * ${1:undocumented constant}
 	 **/${2}
-# Constant Definition
 snippet doc_d
 	/**
 	 * ${3:undocumented constant}
 	 **/
 	define(${1}, ${2});${4}
-# Function - post doc
 snippet doc_fp
 	/**
 	 * ${1:undocumented function}
@@ -89,7 +80,6 @@ snippet doc_fp
 	 * @return ${2:void}
 	 * @author ${3:`g:snips_author`}
 	 **/${4}
-# Function signature
 snippet doc_s
 	/**
 	 * ${4:undocumented function}
@@ -98,7 +88,6 @@ snippet doc_s
 	 * @author ${6:`g:snips_author`}
 	 **/
 	${1}function ${2}(${3});${7}
-# Function
 snippet doc_f
 	/**
 	 * ${4:undocumented function}
@@ -109,7 +98,6 @@ snippet doc_f
 	${1}function ${2}(${3})
 	{${7}
 	}
-# Header
 snippet doc_h
 	/**
 	 * ${1}
@@ -123,7 +111,6 @@ snippet doc_h
 	/**
 	 * Define DocBlock
 	 *//
-# Interface
 snippet doc_i
 	/**
 	 * ${2:undocumented class}
@@ -134,7 +121,6 @@ snippet doc_i
 	interface ${1:}
 	{${5}
 	} // END interface $1
-# class ...
 snippet class
 	/**
 	 * ${1}
@@ -144,73 +130,120 @@ snippet class
 		${3}
 		function ${4:__construct}(${5:argument})
 		{
-			${6:// code...}
+			${6}
 		}
 	}
-# define(...)
-snippet def
+snippet def define(...)
 	define('${1}'${2});${3}
-# defined(...)
-snippet def?
+snippet def? defined(...)
 	${1}defined('${2}')${3}
-snippet wh
-	while (${1:/* condition */}) {
-		${2:// code...}
+snippet wh while
+	while (${1}) {
+		${2}
 	}
-# do ... while
-snippet do
+snippet do do ... while
 	do {
-		${2:// code... }
-	} while (${1:/* condition */});
+		${2}
+	} while (${1});
 snippet if
-	if (${1:/* condition */}) {
-		${2:// code...}
+	if (${1}) {
+		${2}
 	}
 snippet ife
-	if (${1:/* condition */}) {
-		${2:// code...}
+	if (${1}) {
+		${2}
 	} else {
-		${3:// code...}
+		${3}
 	}
 	${4}
 snippet else
 	else {
-		${1:// code...}
+		${1}
 	}
 snippet elseif
-	elseif (${1:/* condition */}) {
-		${2:// code...}
+	elseif (${1}) {
+		${2}
 	}
-# Tertiary conditional
-snippet t
+snippet t ?: assignment
 	$${1:retVal} = (${2:condition}) ? ${3:a} : ${4:b};${5}
 snippet switch
 	switch ($${1:variable}) {
 		case '${2:value}':
-			${3:// code...}
+			${3}
 			break;
 		${5}
 		default:
-			${4:// code...}
+			${4}
 			break;
 	}
 snippet case
 	case '${1:value}':
-		${2:// code...}
+		${2}
 		break;${3}
 snippet for
 	for ($${2:i} = 0; $$2 < ${1:count}; $$2${3:++}) {
-		${4: // code...}
+		${4}
 	}
 snippet foreach
 	foreach ($${1:variable} as $${2:key}) {
-		${3:// code...}
+		${3}
 	}
 snippet fun
-	${1:public }function ${2:FunctionName}(${3})
-	{
-		${4:// code...}
+	${1:public }function ${2:FunctionName}(${3}) {
+		${4}
 	}
-# $... = array (...)
-snippet array
+snippet a
+	array(${1})${2}
+snippet array $... = array (...)
 	$${1:arrayName} = array('${2}' => ${3});${4}
+# Built-in functions
+snippet isset
+	isset(${1:$var})${2}
+snippet empty
+	empty(${1:$var})${2}
+snippet sub Replace (PCRE)
+	preg_replace(${1:'//i'}, ${2:$replacement}), ${3:$string})${4}
+snippet subcb Replace with callback(PCRE)
+	preg_replace_callback(${1:'//i'}, ${2:'callback_function'}), ${3:$string})${4}
+snippet match Match one (PCRE)
+	preg_match(${1:'//i'}, ${2:$string}${3:, &$matches})${4}
+snippet match Match all (PCRE)
+	preg_match_all(${1:'//i'}, ${2:$string}${3:, &$matches})${4}
+snippet split Split (PCRE)
+	preg_split(${1:'//i'}, ${2:$string})${3}
+snippet replace Replace (String)
+	str_replace(${1:$search}, ${2:$replace}, ${3:$string})${4}
+snippet substr Substring (unsafe)
+	substr(${1:$string}, ${2:$start}${3:, $length})${4}
+snippet len String length (unsafe)
+	strlen(${1:$string})${2}
+snippet trim Trim whitespace
+	trim(${1:$string})${2}
+snippet cap
+	ucfirst(${1:$string})${2}
+snippet lower
+	strtolower(${1:$string})${2}
+snippet upper
+	strtoupper(${1:$string})${2}
+snippet entities Convert all chars to entities
+	htmlentities(${1:$string})${2}
+snippet specialchars Escape unsafe characters
+	htmlspecialchars(${1:$string})${2}
+snippet explode Split string into array
+	explode(${1:','}, ${2:$string})${3}
+snippet join Join array into string
+	join(${1:', '}, ${2:$array})${3}
+snippet count Count elements in object
+	count(${1:$array})${2}
+snippet in In array?
+	in_array(${1:$search}, ${2:$array})${3}
+snippet keys Array keys
+	array_keys(${1:$array})${2}
+snippet values Array values
+	array_values(${1:$array})${2}
+snippet merge Merge arrays
+	array_merge(${1:$x}, ${2:$y})${3}
+snippet uniq Unique array elements
+	array_unique(${1:$array})${2}
+snippet dump
+	var_dump(${1:$var})${2:;}
