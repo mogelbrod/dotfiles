@@ -182,6 +182,7 @@
   vnoremap P "_dP
 
   noremap § <C-]>
+  noremap <C-w>§ <C-w>}
 
 " }}}
 " {{{ Leader mappings
