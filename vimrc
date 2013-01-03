@@ -509,13 +509,22 @@
   function! GenerateTags(...)
     let path = a:0 > 0 ? a:1 : getcwd()
     let path .= has("win32") ? "\\" : "/"
-    let cmd = "ctags -f ".path.".tags -R --tag-relative=yes --exclude=.git --exclude=.svn"
+    let cmd = "ctags -f ".path.".tags --tag-relative=yes --exclude=.git --exclude=.svn"
     let langs = &ft
+    let extra = ''
+
 		if &ft == 'haml'
 			let langs = 'ruby'
+    elseif &ft == 'php'
+      let extra = " --PHP-kinds=+ivcf \\
+        \ --regex-PHP='/(abstract)?\\s+class\\s+([^ ]+)/\\2/c/' \\
+        \ --regex-PHP='/(static|abstract|public|protected|private)\\s+function\\s+(\\&\\s+)?([^ (]+)/\\3/f/' \\
+        \ --regex-PHP='/interface\\s+([^ ]+)/\\1/i/' \\
+        \ --regex-PHP='/\\$([a-zA-Z_][a-zA-Z0-9_]*)/\\1/v/'"
     endif
-		call system(cmd . " --languages=" . langs . " " . path)
-    echo "tags file generated at: " . path . ".tags"
+
+		call system(cmd . " --languages=".langs . " -R ".path . extra)
+    echo "Tags file generated at: " . path.".tags"
   endfunction
 
   " Display hex color under cursor as RGB combo
@@ -684,6 +693,7 @@
   augroup ft_php
     au!
     au FileType php setlocal sts=2 ts=2 sw=2 noexpandtab
+    au FileType php setlocal omnifunc=phpcomplete#CompletePHP
   augroup END
 
   " Lua
