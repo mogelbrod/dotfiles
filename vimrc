@@ -645,6 +645,7 @@
     au!
     " Split definitions into separate lines with ,j (inverse of J)
     au FileType css vmap <buffer> <leader>j :s/\([{;]\)\s*\n\?\s*/\1\r  /ge<BAR>:nohl<CR><<
+    au FileType css setlocal sts=2 ts=2 sw=2 noexpandtab
   augroup END
 
   " XML
@@ -668,6 +669,11 @@
     else
       au FileType cpp,h setlocal makeprg=make
     endif
+  augroup END
+
+  augroup ft_php
+    au!
+    au FileType php setlocal sts=2 ts=2 sw=2 noexpandtab
   augroup END
 
   " Lua
