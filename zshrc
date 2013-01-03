@@ -1,9 +1,10 @@
 #{{{ Environment
 
   export LC_ALL=en_US.UTF-8
+  export WORDCHARS="_-~"
 
   export EDITOR=vim PAGER=less BROWSER=w3m
-  export WORDCHARS="_-~"
+  export MANPAGER="/bin/sh -c \"col -b | vim -c 'set ft=man ts=8 nomod nolist nonu noma' -\""
 
   # Disable flow control
   stty -ixon -ixoff
