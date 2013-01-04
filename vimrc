@@ -37,7 +37,7 @@
   " Tabs expand to 2 spaces
   set tabstop=2 shiftwidth=2 softtabstop=2 expandtab shiftround
 
-  set tags=./.tags,.tags,./tags,tags " tag files
+  set tags=./.tags;/,.tags,./tags,tags " tag files
 
   " Buffer saving/reading
   set nobackup nowritebackup " do not create backups when writing to files
