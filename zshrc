@@ -50,14 +50,26 @@
 
   setopt prompt_subst
 
+  git_prompt_info() {
+    [[ $(git symbolic-ref HEAD 2>&1) =~ "fatal: Not a git repository" ]] && return
+    if [[ $(git branch) =~ "\* ([^(]+)" ]]; then
+      echo " (${match[1]})"
+    else
+      echo " (:$(git rev-parse --short HEAD))"
+    fi
+  }
+
   precmd() {
     # Title
     if [[ $TERM == (*xterm*|rxvt); ]]; then
       print -Pn "]0;[%n@%m] %~\a"
     fi
 
+    # Git info
+    local git_info="$(git_prompt_info)"
+
     local termwidth; (( termwidth = ${COLUMNS} - 1 ))
-    local promptlen=${#${(%):-[%n@%m:%l] [%D{%H:%M:%S}]}}
+    local promptlen=${#${(%):-[%n@%m:%l]${git_info} [%D{%H:%M:%S}]}}
     local pwdlen=${#${(%):-%~}}
     local pwdsize; (( pwdsize = $termwidth - $promptlen))
     local pwdpad=0; (( pwdpad = $pwdsize - $pwdlen))
@@ -82,7 +94,7 @@
     local error_num="%(?::${faded}[${PR_BRIGHT_RED}%?${PR_RESET}${faded}]${PR_RESET} )"
     local pr="${PR_BLUE}%(!.#.$) ${PR_RESET}"
 
-    PROMPT="${user_host} ${padded_cwd} ${now}${error_num}${pr}"
+    PROMPT="${user_host}${PR_GREEN}${git_info} ${padded_cwd} ${now}${error_num}${pr}"
   }
 
 #}}}
