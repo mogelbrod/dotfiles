@@ -693,8 +693,9 @@
 
   augroup ft_php
     au!
-    au FileType php setlocal sts=2 ts=2 sw=2 noexpandtab
-    au FileType php setlocal omnifunc=phpcomplete#CompletePHP
+    au BufRead,BufNewFile *.php,*.inc set ft=php.html
+    au FileType php.html setlocal sts=2 ts=2 sw=2 noexpandtab
+    au FileType php.html setlocal omnifunc=phpcomplete#CompletePHP
   augroup END
 
   " Lua

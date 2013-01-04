@@ -77,10 +77,10 @@ function! s:Init()
   imap <buffer> <C-e><C-_> <C-e>/
   imap <buffer> <SID>ragtagOopen    <C-e><Lt><Space>
   imap <buffer> <SID>ragtagOclose   <Space><C-e>><Left><Left>
-  if &ft == "php"
+  if &ft =~ "php"
     inoremap <buffer> <C-e><Lt> <?php
     inoremap <buffer> <C-e>>    ?>
-    inoremap <buffer> <SID>ragtagOopen    <?php<Space>print<Space>
+    inoremap <buffer> <SID>ragtagOopen    <?php<Space>echo<Space>
     let b:surround_45 = "<?php \r ?>"
     let b:surround_61 = "<?php print \r ?>"
   elseif &ft == "htmltt" || &ft == "tt2html"
