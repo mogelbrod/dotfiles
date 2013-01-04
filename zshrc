@@ -52,7 +52,7 @@
 
   git_prompt_info() {
     [[ $(git symbolic-ref HEAD 2>&1) =~ "fatal: Not a git repository" ]] && return
-    if [[ $(git branch) =~ "\* ([^(]+)" ]]; then
+    if [[ $(git branch) =~ "\* ([a-z0-9._/-]+)" ]]; then
       echo " (${match[1]})"
     else
       echo " (:$(git rev-parse --short HEAD))"
