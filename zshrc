@@ -240,8 +240,8 @@
 
   alias gca='git commit --amend'
 
-  alias gd='git diff --color'
-  alias gds='git diff --color --staged'
+  alias gd='git diff --color -b'
+  alias gds='git diff --color -b --staged'
 
   alias gl='git log --color --name-status --pretty=format:"%Cred[%h] %an %Cblue(%ar)%n%Cgreen%s%n%b%Creset"'
 
