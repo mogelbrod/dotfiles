@@ -213,7 +213,10 @@
 
   # Other useful aliases
   alias vims='vim - -c ":set nowrap buftype=nofile"'
-  alias tags='ctags -f .tags --exclude=.git --exclude=log -R .'
+
+  function tags {
+    ctags -f .tags --exclude=.git ${1:+--languages=$1} -R .
+  }
 
 #}}}
 #{{{ Git specific
