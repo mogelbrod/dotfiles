@@ -458,6 +458,18 @@
   let g:AutoPairsShortcutJump = '<c-s>'
   let g:AutoPairsShortcutFastWrap = '<c-b>' " default conflicts with å character
 
+  " ZenCoding
+  let g:user_zen_expandabbr_key = '<C-y><cr>'
+  let g:user_zen_next_key = '<C-y>n'
+  let g:user_zen_prev_key = '<C-y>p'
+  let g:user_zen_balancetaginward_key = '<C-y>i'
+  let g:user_zen_balancetagoutward_key = '<C-y>a'
+  let g:user_zen_removetag_key = '<C-y>d'
+  let g:user_zen_togglecomment_key = '<C-y>c'
+  let g:user_zen_codepretty_keya = '<C-y>C'
+  let g:user_zen_anchorizeurl_key = '<C-y>l'
+  let g:user_zen_anchorizesummary_key = '<C-y>L'
+
   " NERDtree
   map <F5> :NERDTreeToggle<CR>
   let NERDTreeWinSize=26
