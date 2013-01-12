@@ -436,7 +436,8 @@
   let g:snips_author = "Victor Hallberg"
 
   " CtrlP plugin
-  map  :CtrlP<CR>
+  map <C-p> :CtrlP<CR>
+  map <C-b> :CtrlPBuffer<CR>
   " search for both files, buffers and MRUs
   let g:ctrlp_cmd = 'CtrlPMixed'
   let g:ctrlp_switch_buffer = 1 " jump to existing buffers in same tab
