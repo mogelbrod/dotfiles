@@ -218,6 +218,11 @@
     ctags -f .tags --exclude=.git ${1:+--languages=$1} -R .
   }
 
+  # Use BC to calculate stuff
+  function c {
+    echo "scale=6; $*" | bc
+  }
+
 #}}}
 #{{{ Git specific
 
