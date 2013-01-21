@@ -1,4 +1,3 @@
-# main()
 snippet main
 	int main(int argc, const char *argv[]) {
 		${1}
@@ -9,137 +8,80 @@ snippet mainn
 		${1}
 		return 0;
 	}
-# #include <...>
-snippet inc
+snippet inc #include <...>
 	#include <${1:stdio}.h>${2}
-# #include "..."
-snippet Inc
+snippet Inc #include "..."
 	#include "${1:`Filename("$1.h")`}"${2}
-# #ifndef ... #define ... #endif
-snippet Def
+snippet Def #ifndef ... #define ... #endif
 	#ifndef $1
 	#define ${1:SYMBOL} ${2:value}
 	#endif${3}
 snippet def
-	#define
+	#define ${1}
 snippet ifdef
 	#ifdef ${1:FOO}
-		${2:#define }
+		${2:#define }${3}
 	#endif
 snippet #if
 	#if ${1:FOO}
 		${2}
 	#endif
-# Header Include-Guard
-snippet once
+snippet once Header Include-Guard
 	#ifndef ${1:`substitute(toupper(Filename('__$1_H__', '__UNTITLED_H__')), '-', '_', 'g')`}
 	#define $1
 
 	${2}
 
 	#endif /* end of include guard: $1 */
-# If Condition
 snippet if
-	if (${1:/* condition */}) {
-		${2:/* code */}
+	if (${1}) {
+		${2}
 	}
 snippet el
 	else {
 		${1}
 	}
-# Ternary conditional
 snippet t
-	${1:/* condition */} ? ${2:a} : ${3:b}
-# Do While Loop
+	${1} ? ${2:a} : ${3:b}
 snippet do
 	do {
-		${2:/* code */}
-	} while (${1:/* condition */});
-# While Loop
+		${2}
+	} while (${1});
 snippet wh
-	while (${1:/* condition */}) {
-		${2:/* code */}
+	while (${1}) {
+		${2}
 	}
-# For Loop
 snippet for
 	for (${2:i} = 0; $2 < ${1:count}; ${3:++}$2) {
-		${4:/* code */}
+		${4}
 	}
-# Custom For Loop
 snippet forr
 	for (${1:i} = ${2:0}; $1 ${3:<} ${4:count}; ${5:++}$1) {
-		${6:/* code */}
+		${6}
 	}
-# Function
 snippet fun
-	${1:void} ${2:function_name}(${3})
-	{
-		${4:/* code */}
+	${1:void} ${2:function_name}(${3}) {
+		${4}
 	}
-# Function Declaration
 snippet fund
 	${1:void} ${2:function_name}(${3});${4}
-# Typedef
-snippet td
+snippet td Typedef
 	typedef ${1:int} ${2:MyCustomType};${3}
-# Struct
-snippet st
+snippet struct Struct
 	struct ${1:`Filename('$1_t', 'name')`} {
-		${2:/* data */}
-	}${3: /* optional variable list */};${4}
-# Typedef struct
-snippet tds
+		${2}
+	}${3};${4}
+snippet tds Typedef struct
 	typedef struct ${2:_$1 }{
-		${3:/* data */}
+		${3}
 	} ${1:`Filename('$1_t', 'name')`};
-# Typdef enum
-snippet tde
+snippet tde Typdef enum
 	typedef enum {
-		${1:/* data */}
+		${1}
 	} ${2:foo};
-# printf
-# unfortunately version this isn't as nice as TextMates's, given the lack of a
-# dynamic `...`
-snippet pr
+snippet pr printf
 	printf("${1:%s}\n"${2});${3}
-# fprintf (again, this isn't as nice as TextMate's version, but it works)
-snippet fpr
+snippet fpr fprintf
 	fprintf(${1:stderr}, "${2:%s}\n"${3});${4}
-# This is kind of convenient
-snippet .
+snippet . [..]
 	[${1}]${2}
-# gobject utility macros
-snippet macros
-	#define ${1:`GObjectNS()`}_TYPE_${2:`GObjectMO()`}             \
-		(${3:`GObjectNsm()`}_get_type())
-	#define $1_$2(obj)             \
-		(G_TYPE_CHECK_INSTANCE_CAST ((obj), $1_TYPE_$2, ${4:`GObjectNs()`}${5:`GObjectMo()`}))
-	#define $1_$2_CLASS(klass)     \
-		(G_TYPE_CHECK_CLASS_CAST ((klass), $1_TYPE_$2, $4$5Class))
-	#define $1_IS_$2(obj)          \
-		(G_TYPE_CHECK_INSTANCE_TYPE ((obj), $1_TYPE_$2))
-	#define $1_IS_$2_CLASS(klass)  \
-		(G_TYPE_CHECK_CLASS_TYPE ((klass), $1_TYPE_$2))
-	#define $1_$2_GET_CLASS(obj)   \
-		(G_TYPE_INSTANCE_GET_CLASS ((obj), $1_TYPE_$2, $4$5Class))
-	
-	G_BEGIN_DECLS
-
-	typedef struct {
-		GObject parent_instance;
-
-		/* instance members */${6}
-	} $4$5;
-
-	typedef struct {
-		GObjectClass parent_class;
-		/* class members*/${7}
-	} $4$5Class;
-
-	G_DEFINE_TYPE ($4$5, $3, G_TYPE_OBJECT)
-
-	GType				$3_get_type		(void);
-	$4$5		*$3_new			(void);
-	
-	
-	G_END_DECLS
