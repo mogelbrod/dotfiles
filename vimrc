@@ -181,6 +181,9 @@
   " Map P to replace selection without overwriting any registers
   vnoremap P "_dP
 
+  " Map gp to select the last pasted (or changed) text
+  nnoremap <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'
+
   noremap § <C-]>
   noremap <C-w>§ <C-w>}
 
