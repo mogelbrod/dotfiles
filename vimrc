@@ -191,18 +191,19 @@
 " {{{ Leader mappings
 
   " Tab manipulation
-  map <silent> <leader>tn :tabnew<CR>
-  map <silent> <leader>tc :tabclose<CR>
+  noremap <silent> <leader>tn :tabnew<CR>
+  noremap <silent> <leader>tc :tabclose<CR>
+  noremap <silent> <leader>tm :tabmove<Space><C-r>=Input("New position")<CR><CR>
   " Tab switching with <leader>number
-  map <silent> <leader>1 1gt
-  map <silent> <leader>2 2gt
-  map <silent> <leader>3 3gt
-  map <silent> <leader>4 4gt
-  map <silent> <leader>5 5gt
-  map <silent> <leader>6 6gt
-  map <silent> <leader>7 7gt
-  map <silent> <leader>8 8gt
-  map <silent> <leader>9 9gt
+  noremap <silent> <leader>1 1gt
+  noremap <silent> <leader>2 2gt
+  noremap <silent> <leader>3 3gt
+  noremap <silent> <leader>4 4gt
+  noremap <silent> <leader>5 5gt
+  noremap <silent> <leader>6 6gt
+  noremap <silent> <leader>7 7gt
+  noremap <silent> <leader>8 8gt
+  noremap <silent> <leader>9 9gt
 
   " Copy buffer contents to clipboard
   map <silent> <leader>ya ggVG"+y''
@@ -523,6 +524,15 @@
   command! -nargs=* IndentFolds setlocal foldmethod=expr foldexpr=IndentationFoldExpr(v:lnum)
 
   command! -nargs=0 SnippetFile exe "sp $VIMHOME/bundle/snipmate-plus/snippets/".&ft.".snippets"
+
+  " Helper function which can be used to prompt for input in mappings and macros
+  " (call with <C-r>=Input("prompt")<CR>)
+  function! Input(prompt)
+    call inputsave()
+    let text = input(a:prompt . ': ')
+    call inputrestore()
+    return text
+  endfunction
 
   " Generate new tags file recursively from cwd or a specific path
   function! GenerateTags(...)
