@@ -5,14 +5,14 @@ snippet b
 		${1}
 	}${2}
 snippet font font shorthand
-	font: ${1:normal} ${2:13px}/${3:1.5} ${4:sans-serif};
+	font: ${1:normal} ${2:13px}/${3:1.5} ${4:sans-serif};${5}
 snippet br border-radius
 	-webkit-border-radius: ${1:4px};
 	-moz-border-radius: $1;
-	border-radius: $1;
+	border-radius: $1;${2}
 snippet bs box-shadow
 	-webkit-box-shadow: ${1:top}px ${2:left}px ${3:blur}px ${4:spread}px rgba(${5:0}, ${6:0}, ${7:0}, ${8:0.5});
-	box-shadow: $1px $2px $3px $4px rgba($5, $6, $7, $8);
+	box-shadow: $1px $2px $3px $4px rgba($5, $6, $7, $8);${9}
 snippet sprite background shorthand
 	background: url(${1:sprites.png}) no-repeat 0 0;${2}
 snippet vgrad Vertical gradient
@@ -23,7 +23,7 @@ snippet vgrad Vertical gradient
 	background: -o-linear-gradient(top, $1 0%, $2 100%);
 	background: -ms-linear-gradient(top, $1 0%, $2 100%);
 	background: linear-gradient(to bottom, $1 0%, $2 100%);
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$1', endColorstr='$2', GradientType=0);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$1', endColorstr='$2', GradientType=0);${3}
 snippet hgrad Horizontal gradient
 	background: $1;
 	background: -moz-linear-gradient(left, ${1:#999} 0%, ${2:#ccc} 100%);
@@ -32,7 +32,7 @@ snippet hgrad Horizontal gradient
 	background: -o-linear-gradient(left, $1 0%, $2 100%);
 	background: -ms-linear-gradient(left, $1 0%, $2 100%);
 	background: linear-gradient(to right, $1 0%, $2 100%);
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$1', endColorstr='$2', GradientType=1);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$1', endColorstr='$2', GradientType=1);${3}
 snippet reset css reset
 	html, body, div, span, applet, object, iframe,
 	h1, h2, h3, h4, h5, h6, p, blockquote, pre,
