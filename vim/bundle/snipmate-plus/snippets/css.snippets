@@ -8,31 +8,31 @@ snippet font font shorthand
 	font: ${1:normal} ${2:13px}/${3:1.5} ${4:sans-serif};
 snippet br border-radius
 	-webkit-border-radius: ${1:4px};
-	-moz-border-radius: ${1};
-	border-radius: ${1};${2}
+	-moz-border-radius: $1;
+	border-radius: $1;
 snippet bs box-shadow
 	-webkit-box-shadow: ${1:top}px ${2:left}px ${3:blur}px ${4:spread}px rgba(${5:0}, ${6:0}, ${7:0}, ${8:0.5});
-	box-shadow: ${1}px ${2}px ${3}px ${4}px rgba(${5}, ${6}, ${7}, ${8});
+	box-shadow: $1px $2px $3px $4px rgba($5, $6, $7, $8);
 snippet sprite background shorthand
 	background: url(${1:sprites.png}) no-repeat 0 0;${2}
 snippet vgrad Vertical gradient
-	background: ${1:#666};
-	background: -moz-linear-gradient(top, ${1} 0%, ${2} 100%);
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, ${1}), color-stop(100%, ${2}));
-	background: -webkit-linear-gradient(top, ${1} 0%, ${2} 100%);
-	background: -o-linear-gradient(top, ${1} 0%, ${2} 100%);
-	background: -ms-linear-gradient(top, ${1} 0%, ${2} 100%);
-	background: linear-gradient(to bottom, ${1} 0%, ${2} 100%);
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='${1}', endColorstr='${2}', GradientType=0);
+	background: $1;
+	background: -moz-linear-gradient(top, ${1:#999} 0%, ${2:#ccc} 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, $1), color-stop(100%, $2));
+	background: -webkit-linear-gradient(top, $1 0%, $2 100%);
+	background: -o-linear-gradient(top, $1 0%, $2 100%);
+	background: -ms-linear-gradient(top, $1 0%, $2 100%);
+	background: linear-gradient(to bottom, $1 0%, $2 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$1', endColorstr='$2', GradientType=0);
 snippet hgrad Horizontal gradient
-	background: ${1:#666};
-	background: -moz-linear-gradient(left, ${1} 0%, ${2} 100%);
-	background: -webkit-gradient(linear, left top, right top, color-stop(0%, ${1}), color-stop(100%, ${2}));
-	background: -webkit-linear-gradient(left, ${1} 0%, ${2} 100%);
-	background: -o-linear-gradient(left, ${1} 0%, ${2} 100%);
-	background: -ms-linear-gradient(left, ${1} 0%, ${2} 100%);
-	background: linear-gradient(to right, ${1} 0%, ${2} 100%);
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='${1}', endColorstr='${2}', GradientType=1);
+	background: $1;
+	background: -moz-linear-gradient(left, ${1:#999} 0%, ${2:#ccc} 100%);
+	background: -webkit-gradient(linear, left top, right top, color-stop(0%, $1), color-stop(100%, $2));
+	background: -webkit-linear-gradient(left, $1 0%, $2 100%);
+	background: -o-linear-gradient(left, $1 0%, $2 100%);
+	background: -ms-linear-gradient(left, $1 0%, $2 100%);
+	background: linear-gradient(to right, $1 0%, $2 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$1', endColorstr='$2', GradientType=1);
 snippet reset css reset
 	html, body, div, span, applet, object, iframe,
 	h1, h2, h3, h4, h5, h6, p, blockquote, pre,
