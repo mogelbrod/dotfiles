@@ -705,7 +705,10 @@
     if has("unix")
       au FileType markdown setlocal dictionary+=/usr/share/dict/words
     endif
-    au FileType markdown setlocal infercase
+    au FileType markdown setlocal infercase ai formatoptions=tcroqln
+    au FileType markdown setlocal com=s1:/*,mb:*,ex:*/,://,b:#,:%,:XCOMM,n:>,b:-
+    au FileType markdown noremap <buffer> <leader>. yypVr=<Esc>
+    au FileType markdown noremap <buffer> <leader>- yypVr-<Esc>
   augroup END
 
   " C++
