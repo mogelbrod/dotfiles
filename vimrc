@@ -175,7 +175,7 @@
   vnoremap <C-h> "hy<Esc>:call ReplaceSelection()<CR>
   fun! ReplaceSelection()
     let replacement = input("Replacement for ".@h.": ")
-    exe "%s~".escape(@h, '~').'~'.replacement.'~gc'
+    exe "%s~\\M".escape(@h, '~').'~'.replacement.'~gc'
   endfun
 
   " Map P to replace selection without overwriting any registers
