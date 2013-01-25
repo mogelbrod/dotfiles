@@ -196,6 +196,12 @@ snippet a
 	array(${1})${2}
 snippet array $... = array (...)
 	$${1:arrayName} = array('${2}' => ${3});${4}
+snippet : Associative array assignment
+	'${1}' => "${2}"${3:,}
+snippet here Heredoc
+	<<<${1:EOS}
+	${2}
+	EOS;${3}
 # Built-in functions
 snippet isset
 	isset(${1:$var})${2}
