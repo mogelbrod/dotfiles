@@ -237,7 +237,7 @@
   vmap <leader><space> :Tabularize /
 
   " Search for selection and replace with input() in all open buffers
-  vmap <leader>h "hy:bufdo! %s~\V<C-r>h~~ge<left><left><left>
+  vnoremap <leader>h "hy:bufdo! %s~\V<C-r>h~~ge<left><left><left>
 
   noremap <leader>m :Make<space>
   noremap <leader>c :Make<CR>
@@ -245,7 +245,10 @@
   " Change directory to current buffer path
   nmap <leader>d :cd %:p:h<CR>
 
-  map <leader>sh <Esc>:call HexToRGB()<CR>
+  " Convert number(s) under cursor
+  nore <leader>sd <Esc>:call DecToHex()<CR>
+  vnore <leader>sd <Esc>:call DecToHex()<CR>
+  nore <leader>sh <Esc>:call HexToRGB()<CR>
 
   " Open / reload vimrc
   nmap <silent> <leader>V :e $MYVIMRC<CR>:filetype detect<CR>
@@ -513,7 +516,7 @@
   let g:indent_guides_color_change_percent = 5
 
 " }}}
-" {{{ Custom functions
+" {{{ Custom functions and commands
 
   " Make
   command! -nargs=* Make silent! make <args> | redraw! | botright cwindow 5
@@ -521,18 +524,10 @@
   " Update tags file using ctags executable
   command! -nargs=? Tags call GenerateTags(<args>)
 
-  command! -nargs=* IndentFolds setlocal foldmethod=expr foldexpr=IndentationFoldExpr(v:lnum)
-
   command! -nargs=0 SnippetFile exe "sp $VIMHOME/bundle/snipmate-plus/snippets/".&ft.".snippets"
 
-  " Helper function which can be used to prompt for input in mappings and macros
-  " (call with <C-r>=Input("prompt")<CR>)
-  function! Input(prompt)
-    call inputsave()
-    let text = input(a:prompt . ': ')
-    call inputrestore()
-    return text
-  endfunction
+  command! -nargs=1 Hex2RGB call HexToRGB(<args>)
+  command! -nargs=1 Dec2Hex call DecToHex(<args>)
 
   " Generate new tags file recursively from cwd or a specific path
   function! GenerateTags(...)
@@ -559,7 +554,7 @@
   " Display hex color under cursor as RGB combo
   function! HexToRGB(...)
     if a:0 > 0
-      let str = a:1
+      let str = string(a:1)
     else
       let str = expand("<cword>")
     endif
@@ -570,12 +565,29 @@
       return
     endif
 
-    let out = "RGB[ "
+    let out = "#".parts[1].parts[2].parts[3]." = RGB( "
     for i in range(1, 3)
       let out = out . printf("%d ", "0x" . parts[i])
     endfor
 
-    echo out . "]"
+    echo out . ")"
+  endfunction
+
+  " Display the decimal number under cursor in hexadecimal format
+  function! DecToHex(...)
+    if a:0 > 0
+      let str = string(a:1)
+    else
+      let str = expand("<cword>")
+    endif
+
+    let m = matchlist(str, '\c\v([0-9.]+)')
+    if len(m) < 1
+      echo "Word under cursor does not appear to be a decimal number"
+      return
+    endif
+
+    echo printf("%s = 0x%x", m[1], m[1])
   endfunction
 
   " Copy everything on current side of equals sign (=)
@@ -591,8 +603,17 @@
     call setreg(&clipboard == 'unnamed' ? '*' : '"', line)
   endfunction
 
+  " Helper function which can be used to prompt for input in mappings and macros
+  " (call with <C-r>=Input("prompt")<CR>)
+  function! Input(prompt)
+    call inputsave()
+    let text = input(a:prompt . ': ')
+    call inputrestore()
+    return text
+  endfunction
+
   function! Preserve(command)
-    " Preparation: save last search, and cursor position.
+    " Preparation: save last search, and cursor position
     let _s=@/
     let l = line(".")
     let c = col(".")
@@ -749,6 +770,6 @@
   au FileType matlab setlocal makeprg=octave\ %
 
   " Snippets
-  au FileType snippet setlocal noexpandtab
+  au FileType snippet setlocal noexpandtab foldmethod=expr foldexpr=IndentationFoldExpr(v:lnum)
 
 " }}}
