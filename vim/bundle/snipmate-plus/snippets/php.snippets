@@ -33,103 +33,24 @@ snippet $_ SESSION['...']
 snippet /* docblock
 	/**
 	 * ${1}
-	 **/
-snippet doc_cp
-	/**
-	 * ${1:undocumented class}
-	 *
-	 * @package ${2:default}
-	 * @author ${3:`g:snips_author`}
-	**/${4}
-snippet doc_vp
-	/**
-	 * ${1:undocumented class variable}
-	 *
-	 * @var ${2:string}
-	 **/${3}
-snippet doc_v
-	/**
-	 * ${3:undocumented class variable}
-	 *
-	 * @var ${4:string}
-	 **/
-	${1:var} $${2};${5}
-snippet doc_c
-	/**
-	 * ${3:undocumented class}
-	 *
-	 * @packaged ${4:default}
-	 * @author ${5:`g:snips_author`}
-	 **/
-	${1:}class ${2:}
-	{${6}
-	} // END $1class $2
-snippet doc_dp
-	/**
-	 * ${1:undocumented constant}
 	 **/${2}
-snippet doc_d
+snippet df
 	/**
-	 * ${3:undocumented constant}
-	 **/
-	define(${1}, ${2});${4}
-snippet doc_fp
-	/**
-	 * ${1:undocumented function}
-	 *
-	 * @return ${2:void}
-	 * @author ${3:`g:snips_author`}
-	 **/${4}
-snippet doc_s
-	/**
-	 * ${4:undocumented function}
+	 * $2
 	 *
 	 * @return ${5:void}
 	 * @author ${6:`g:snips_author`}
 	 **/
-	${1}function ${2}(${3});${7}
-snippet doc_f
-	/**
-	 * ${4:undocumented function}
-	 *
-	 * @return ${5:void}
-	 * @author ${6:`g:snips_author`}
-	 **/
-	${1}function ${2}(${3})
-	{${7}
+	${1}function ${2}(${3}) {
+		${7}
 	}
-snippet doc_h
-	/**
-	 * ${1}
-	 *
-	 * @author ${2:`g:snips_author`}
-	 * @version ${3:$Id$}
-	 * @copyright ${4:$2}, `strftime('%d %B, %Y')`
-	 * @package ${5:default}
-	 **/
-	
-	/**
-	 * Define DocBlock
-	 *//
-snippet doc_i
-	/**
-	 * ${2:undocumented class}
-	 *
-	 * @package ${3:default}
-	 * @author ${4:`g:snips_author`}
-	 **/
-	interface ${1:}
-	{${5}
-	} // END interface $1
 snippet class
 	/**
 	 * ${1}
 	 **/
-	class ${2:ClassName}
-	{
+	class ${2:ClassName} {
 		${3}
-		function ${4:__construct}(${5:argument})
-		{
+		function ${4:__construct}(${5:argument}) {
 			${6}
 		}
 	}
@@ -188,7 +109,7 @@ snippet foreach
 	foreach ($${1:variable} as $${2:key}) {
 		${3}
 	}
-snippet fun
+snippet f
 	${1:public }function ${2:FunctionName}(${3}) {
 		${4}
 	}
