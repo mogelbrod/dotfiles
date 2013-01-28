@@ -770,6 +770,6 @@
   au FileType matlab setlocal makeprg=octave\ %
 
   " Snippets
-  au FileType snippet setlocal noexpandtab foldmethod=expr foldexpr=IndentationFoldExpr(v:lnum)
+  au FileType snippet setlocal noexpandtab foldexpr=IndentationFoldExpr(v:lnum) foldmethod=expr
 
 " }}}
