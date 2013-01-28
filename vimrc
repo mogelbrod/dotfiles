@@ -692,7 +692,7 @@
       \%-G%.%#
     "au FileType ruby let g:rubycomplete_buffer_loading = 1
     au FileType ruby let g:rubycomplete_rails = 1
-    au FileType yaml,haml IndentFolds
+    au FileType yaml,haml setlocal foldexpr=IndentationFoldExpr(v:lnum) foldmethod=expr
   augroup END
 
   augroup ft_python
@@ -707,6 +707,7 @@
   " HTML
   augroup ft_html
     au!
+    au FileType html setlocal sts=2 ts=2 sw=2 noexpandtab autoindent
   augroup END
 
   " CSS
@@ -718,7 +719,15 @@
   augroup END
 
   " XML
-  au FileType xml IndentFolds
+  au FileType xml setlocal foldexpr=IndentationFoldExpr(v:lnum) foldmethod=expr
+
+  " PHP
+  augroup ft_php
+    au!
+    au BufRead,BufNewFile *.php,*.inc set ft=php.html
+    au FileType php.html setlocal sts=2 ts=2 sw=2 noexpandtab autoindent
+    au FileType php.html setlocal omnifunc=phpcomplete#CompletePHP
+  augroup END
 
   " Markdown
   augroup ft_md
@@ -741,13 +750,6 @@
     else
       au FileType c,cpp,h setlocal makeprg=make
     endif
-  augroup END
-
-  augroup ft_php
-    au!
-    au BufRead,BufNewFile *.php,*.inc set ft=php.html
-    au FileType php.html setlocal sts=2 ts=2 sw=2 noexpandtab
-    au FileType php.html setlocal omnifunc=phpcomplete#CompletePHP
   augroup END
 
   " Lua
