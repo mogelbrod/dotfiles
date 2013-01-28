@@ -47,7 +47,7 @@ fun! GObjectNsm()
     return 'namespace_module'
 endf
 
-fun snipMate#removeSnippet()
+fun! snipMate#removeSnippet()
     unl! g:snipmate_snipPos g:snipmate_snipCurPos s:snipLen g:snipmate_endCol g:snipmate_endLine s:prevLen
          \ s:lastBuf s:oldWord g:snipmate_snipStart g:snipmate_snipEnd
     if exists('g:snipmate_snipUpdate')
@@ -59,7 +59,7 @@ fun snipMate#removeSnippet()
     endif
 endf
 
-fun snipMate#expandSnip(snip, col)
+fun! snipMate#expandSnip(snip, col)
     " if we expand in the last tabstop, we start a new round
     if exists('g:snipmate_snipPos') && g:snipmate_snipCurPos == s:snipLen - 1
         call snipMate#removeSnippet()
@@ -158,7 +158,7 @@ fun snipMate#expandSnip(snip, col)
 endf
 
 " find the matching curl
-fun s:MatchingCurl(string, theI)
+fun! s:MatchingCurl(string, theI)
     let counter = 1
     let indexOfI = stridx(a:string, '${'.a:theI.':')
     if indexOfI == -1
@@ -187,12 +187,12 @@ endf
 
 " We now need to find the snippets hierarchy, and recursive algorithm, and
 " return a list of [start, end, hierarchy, parent]
-fun GetHierarchy(snip, hierarchy, parent)
+fun! GetHierarchy(snip, hierarchy, parent)
     let startPos = match(snip, '${')
 endf
 
 " Prepare snippet to be processed by s:BuildTabStops
-fun s:ProcessSnippet(snip)
+fun! s:ProcessSnippet(snip)
     let snippet = a:snip
     " Evaluate eval (`...`) expressions.
     " Backquotes prefixed with a backslash "\" are ignored.
@@ -231,7 +231,7 @@ fun s:ProcessSnippet(snip)
 endf
 
 " Counts occurences of haystack in needle
-fun s:Count(haystack, needle)
+fun! s:Count(haystack, needle)
     let counter = 0
     let index = stridx(a:haystack, a:needle)
     while index != -1
@@ -252,7 +252,7 @@ endf
 "     the matches of "$#", to be replaced with the placeholder. This list is
 "     composed the same way as the parent; the first item is the line number,
 "     and the second is the column.
-fun s:BuildTabStops(snip, lnum, col, indent)
+fun! s:BuildTabStops(snip, lnum, col, indent)
     let snipPos = []
     let i = 1
     let withoutVars = substitute(a:snip, '$\d\+', '', 'g')
@@ -318,7 +318,7 @@ fun s:BuildTabStops(snip, lnum, col, indent)
     return [snipPos, i - 1]
 endf
 
-fun snipMate#jumpTabStop(backwards)
+fun! snipMate#jumpTabStop(backwards)
     let leftPlaceholder = exists('s:origWordLen')
                           \ && s:origWordLen != g:snipmate_snipPos[g:snipmate_snipCurPos][2]
     if leftPlaceholder && exists('s:oldEndCol')
@@ -362,7 +362,7 @@ fun snipMate#jumpTabStop(backwards)
     return g:snipmate_snipPos[g:snipmate_snipCurPos][2] == -1 ? '' : s:SelectWord()
 endf
 
-fun s:UpdatePlaceholderTabStops()
+fun! s:UpdatePlaceholderTabStops()
     let changeLen = s:origWordLen - g:snipmate_snipPos[g:snipmate_snipCurPos][2]
     unl s:startCol s:origWordLen g:snipmate_snipUpdate
     if !exists('s:oldVars') | return | endif
@@ -409,7 +409,7 @@ fun s:UpdatePlaceholderTabStops()
     unl g:snipmate_endCol s:oldVars s:oldEndCol
 endf
 
-fun s:UpdateTabStops()
+fun! s:UpdateTabStops()
     let changeLine = g:snipmate_endLine - g:snipmate_snipPos[g:snipmate_snipCurPos][0]
     let changeCol = g:snipmate_endCol - g:snipmate_snipPos[g:snipmate_snipCurPos][1]
     if exists('s:origWordLen')
@@ -452,7 +452,7 @@ fun s:UpdateTabStops()
     endif
 endf
 
-fun s:SelectWord()
+fun! s:SelectWord()
     let s:origWordLen = g:snipmate_snipPos[g:snipmate_snipCurPos][2]
     let s:oldWord = strpart(getline('.'), g:snipmate_snipPos[g:snipmate_snipCurPos][1] - 1,
                 \ s:origWordLen)
@@ -479,7 +479,7 @@ endf
 "
 " It also automatically quits the snippet if the cursor is moved out of it
 " while in insert mode.
-fun s:UpdateChangedSnip(entering)
+fun! s:UpdateChangedSnip(entering)
     if exists('g:snipmate_snipPos') && bufnr(0) != s:lastBuf
         call snipMate#removeSnippet()
     elseif exists('g:snipmate_snipUpdate') " If modifying a placeholder
@@ -558,7 +558,7 @@ endf
 
 " This updates the variables in a snippet when a placeholder has been edited.
 " (e.g., each "$1" in "${1:foo} $1bar $1bar")
-fun s:UpdateVars()
+fun! s:UpdateVars()
     let newWordLen = g:snipmate_endCol - s:startCol + 1
     let newWord = strpart(getline('.'), s:startCol, newWordLen)
     if newWord == s:oldWord || empty(g:snipmate_snipPos[g:snipmate_snipCurPos][4])
