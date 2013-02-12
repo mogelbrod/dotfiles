@@ -509,6 +509,8 @@
   let g:syntastic_mode_map = { 'mode': 'active',
         \ 'active_filetypes': [],
         \ 'passive_filetypes': ['java'] }
+  " Compiler specific settings
+  let g:syntastic_cpp_compiler_options = "-std=c++0x -W"
 
   " Indent guides
   let g:indent_guides_start_level = 2
