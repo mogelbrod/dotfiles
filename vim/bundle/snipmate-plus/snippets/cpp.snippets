@@ -2,6 +2,27 @@ snippet map std::map
 	std::map<${1:key}, ${2:value}> map${3};
 snippet vector std::vector
 	std::vector<${1:int}> v${2};
+snippet getline std::getline
+	getline(cin, ${1:str})${2}
+snippet fori
+	for (int ${2:i} = 0; $2 < ${1:count}; ${3:++}$2) {
+		${4}
+	}
+snippet ci
+	cin >> ${1}
+snippet co
+	cout << ${1}
+snippet fore for each
+	for (${1:int} &${2:el} : ${3:container}) {
+		${4}
+	}
+snippet pre print each
+	printf("%d\n", ${1:n});
+	for (int ${2:i} = 0; $2 < $1; ++$2) {
+		if ($2 > 0) printf(" ");
+	  printf("%d", ${3:array[i]});
+	}
+	printf("\n");
 snippet ns namespace
 	namespace ${1:`Filename('', 'my')`} {
 		${2}
@@ -15,15 +36,5 @@ snippet cl class
 	private:
 		${3:/* data */}
 	};
-snippet fori
-	for (int ${2:i} = 0; $2 < ${1:count}; ${3:++}$2) {
-		${4}
-	}
-snippet ci
-	cin >> ${1}
-snippet co
-	cout << ${1}
-snippet fore for each
-	for (${1:int} &${2:el} : ${3:container}) {
-		${4}
-	}
+snippet sz size_t
+	size_t ${1}
