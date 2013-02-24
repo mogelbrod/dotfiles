@@ -46,7 +46,6 @@
   set hidden " allow switching of buffers without saving them first
 
   " UI elements / text appearance
-  set lazyredraw
   set autoindent
   set cursorline nocursorcolumn " highlight line but not column
   set nonumber

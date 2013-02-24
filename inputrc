@@ -24,9 +24,6 @@ $include /etc/inputrc
 # Shift+Tab cycles between completions if multiple
 "\e[Z": menu-complete
 
-# Shift-Tab
-"\e[Z": menu-complete
-
 # Ctrl+D deletes the whole line
 "\C-d": kill-whole-line
 
