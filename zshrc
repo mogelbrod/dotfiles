@@ -180,7 +180,13 @@
   alias quit=exit
 
   # Directory listing
-  alias ls='/bin/ls -b -CF --color=auto'
+  if [[ "$OSTYPE" =~ "darwin[0-9.]*" ]] ; then
+    # OSX uses a different flag for colors
+    alias ls='/bin/ls -b -CFG'
+  else
+    alias ls='/bin/ls -b -CF --color=auto'
+  fi
+
   alias la='ls -a'
   alias l='ls -lh'
   alias ll='ls -lha'
