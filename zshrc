@@ -273,7 +273,11 @@
 
   which lsb_release &>/dev/null
   if [[ $? == 0 && `lsb_release -s -i` == "Ubuntu" ]] ; then
+    # Ubuntu
     alias o='gnome-open'
+  elif [[ $OSTYPE =~ "darwin[0-9.]*" ]] ; then
+    # Mac OSX
+    alias o='open'
   fi
 
 #}}}
