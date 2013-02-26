@@ -110,6 +110,8 @@
 
   " Quick shortcut for entering command mode
   noremap - :
+  noremap ö :
+  noremap Ö :
 
   " Usable bindings
   cnoremap <C-A> <Home>
@@ -725,9 +727,9 @@
   " PHP
   augroup ft_php
     au!
-    au BufRead,BufNewFile *.php,*.inc set ft=php.html
-    au FileType php.html setlocal sts=2 ts=2 sw=2 noexpandtab autoindent
-    au FileType php.html setlocal omnifunc=phpcomplete#CompletePHP
+    "au BufRead,BufNewFile *.php,*.inc set ft=php.html
+    au FileType php setlocal sts=2 ts=2 sw=2 noexpandtab autoindent
+    au FileType php setlocal omnifunc=phpcomplete#CompletePHP
   augroup END
 
   " Markdown
