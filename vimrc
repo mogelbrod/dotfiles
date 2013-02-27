@@ -110,9 +110,9 @@
 
   " Quick shortcut for entering command mode
   noremap - :
-  noremap ö : " Swedish layout
-  noremap Ö : " Swedish layout
-  noremap ; : " US layout
+  noremap ö :
+  noremap Ö :
+  noremap ; :
 
   " Usable bindings
   cnoremap <C-A> <Home>
