@@ -1,0 +1,31 @@
+# Configuration
+config defaultToCurrentScreen true
+config nudgePercentOf screenSize
+config resizePercentOf screenSize
+
+# Abstract Positions
+alias full        move screenOriginX;screenOriginY screenSizeX;screenSizeY
+alias left-half   push left   bar-resize:screenSizeX/2
+alias right-half  push right  bar-resize:screenSizeX/2
+alias top-half    push top    bar-resize:screenSizeY/2
+alias bottom-half push bottom bar-resize:screenSizeY/2
+alias visor       push bottom bar-resize:screenSizeY/3
+
+# Push Bindings
+bind right:ctrl;alt;cmd  ${right-half}
+bind left:ctrl;alt;cmd   ${left-half}
+bind up:ctrl;alt;cmd     ${top-half}
+bind down:ctrl;alt;cmd   ${bottom-half}
+bind m:ctrl;alt;cmd      ${full}
+
+# Focus Bindings
+bind right:alt;cmd   focus right
+bind left:alt;cmd    focus left
+bind up:alt;cmd      focus up
+bind down:alt;cmd    focus down
+bind up:ctrl;alt;cmd focus behind
+
+# Other Bindings
+bind g:ctrl;alt;cmd  grid padding:5 0:5,3
+#bind esc:cmd         hint ASDFGHJKLRTYUICVBNM
+#bind tab:ctrl        switch
