@@ -69,7 +69,7 @@
     local git_info="$(git_prompt_info)"
 
     local termwidth; (( termwidth = ${COLUMNS} - 1 ))
-    local promptlen=${#${(%):-[%n@%m:%l]${git_info} [%D{%H:%M:%S}]}}
+    local promptlen=${#${(%):-[%n@%m]${git_info} [%D{%H:%M:%S}]}}
     local pwdlen=${#${(%):-%~}}
     local pwdsize; (( pwdsize = $termwidth - $promptlen))
     local pwdpad=0; (( pwdpad = $pwdsize - $pwdlen))
@@ -88,7 +88,7 @@
       hallberg)  host_color=$PR_GREEN ;;
     esac
 
-    local user_host="${faded}[${PR_RESET}${user_color}%n${faded}@${PR_RESET}${host_color}%m${faded}:%l]"
+    local user_host="${faded}[${PR_RESET}${user_color}%n${faded}@${PR_RESET}${host_color}%m${faded}]"
     local padded_cwd="${PR_RESET}${PR_YELLOW}%$pwdsize<...<%~%<<${(r:$pwdpad:: :::)}"
     local now="${faded}[%D{%H:%M:%S}]${PR_RESET}"
     local error_num="%(?::${faded}[${PR_BRIGHT_RED}%?${PR_RESET}${faded}]${PR_RESET} )"
