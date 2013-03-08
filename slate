@@ -19,10 +19,10 @@ bind down:ctrl;alt;cmd   ${bottom-half}
 bind m:ctrl;alt;cmd      ${full}
 
 # Focus Bindings
-bind right:alt;cmd   focus right
-bind left:alt;cmd    focus left
-bind up:alt;cmd      focus up
-bind down:alt;cmd    focus down
+bind right:ctrl;cmd  focus right
+bind left:ctrl;cmd   focus left
+bind up:ctrl;cmd     focus up
+bind down:ctrl;cmd   focus down
 bind up:ctrl;alt;cmd focus behind
 
 # Other Bindings
