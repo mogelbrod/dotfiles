@@ -237,6 +237,12 @@
 
   nmap <leader>p :CtrlP <C-r>=expand('%:p:h')<CR><CR>
 
+  " Comment toggling
+  map <leader>7 <plug>NERDCommenterToggle
+  vmap <leader>7 <plug>NERDCommenterToggle
+  map <leader>/ <plug>NERDCommenterSexy
+  vmap <leader>/ <plug>NERDCommenterSexy
+
   " Tabular plugin map
   nmap <leader><space> :Tabularize /
   vmap <leader><space> :Tabularize /
@@ -482,6 +488,10 @@
   let g:user_zen_codepretty_keya = '<C-y>C'
   let g:user_zen_anchorizeurl_key = '<C-y>l'
   let g:user_zen_anchorizesummary_key = '<C-y>L'
+
+  " NERDCommenter
+  let g:NERDCreateDefaultMappings = 0
+  let g:NERDSpaceDelims = 1
 
   " NERDtree
   map <F5> :NERDTreeToggle<CR>
