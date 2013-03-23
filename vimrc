@@ -192,6 +192,16 @@
   noremap § <C-]>
   noremap <C-w>§ <C-w>}
 
+  " Swap mark jump mappings
+  nnoremap ' `
+  nnoremap ` '
+
+  " Keep search matches in the middle of the window
+  nnoremap * *zzzv
+  nnoremap # #zzzv
+  nnoremap n nzzzv
+  nnoremap N Nzzzv
+
 " }}}
 " {{{ Leader mappings
 
@@ -233,7 +243,7 @@
   nmap <leader>$ :call Preserve("%s/\\s\\+$//e")<CR>
 
   " Re-indent file
-  nmap <leader>= :call Preserve("normal gg=G")<CR>
+  nmap <leader>= :call Preserve("normal mzgg=G'z")<CR>
 
   nmap <leader>p :CtrlP <C-r>=expand('%:p:h')<CR><CR>
 
