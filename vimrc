@@ -789,6 +789,12 @@
   augroup END
   let java_highlight_functions="style"
 
+  " Go
+  augroup ft_go
+    au!
+    au FileType go setlocal makeprg=go\ run\ %
+  augroup END
+
   " Help files
   au FileType help nmap <buffer> <CR> <C-]>
 
