@@ -133,7 +133,13 @@ hi Todo        ctermfg=White  ctermbg=none  cterm=bold    guifg=yellow  guibg=bg
 hi Underlined  ctermfg=White  ctermbg=none  cterm=underline  guifg=#ffffff  gui=none
 
 " }}}
-" {{{ File type specific
+" {{{ Context specific
+
+" Spelling
+hi SpellBad     ctermfg=Black    ctermbg=9     cterm=none    gui=undercurl  guisp=#f05050
+hi SpellCap     ctermfg=Black    ctermbg=12    cterm=none    gui=undercurl  guisp=#8787ff
+hi SpellRare    ctermfg=Black    ctermbg=13    cterm=none    gui=undercurl  guisp=#3cb9e6
+hi SpellLocal   ctermfg=Black    ctermbg=14    cterm=none    gui=undercurl  guisp=#7373e6
 
 " HTML
 hi link htmlH1 Normal
