@@ -26,6 +26,6 @@ bind down:ctrl;cmd   focus down
 bind up:ctrl;alt;cmd focus behind
 
 # Other Bindings
-bind g:ctrl;alt;cmd  grid padding:5 0:5,3
+bind ,:ctrl;alt;cmd  grid padding:5 0:5,3
 #bind esc:cmd         hint ASDFGHJKLRTYUICVBNM
 #bind tab:ctrl        switch
