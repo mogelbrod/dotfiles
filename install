@@ -50,11 +50,11 @@ Dir['*'].each do |origin|
   end
 end
 
-unless IS_WINDOWS
-  puts "Create vim swap directory ..."
-  FileUtils.mkdir_p "~/.vim/swap"
-  FileUtils.mkdir_p "~/.vim/backup"
-end
+# unless IS_WINDOWS
+  # puts "Create vim swap directory ..."
+  # FileUtils.mkdir_p "~/.vim/swap"
+  # FileUtils.mkdir_p "~/.vim/backup"
+# end
 
 # initialize git submodules
 puts "Initialize git submodules ..."
