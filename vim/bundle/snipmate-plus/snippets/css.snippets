@@ -1,14 +1,24 @@
+snippet . class block
+	.${1:class} {${2}}${3}
+snippet # id block
+	#${1:id} {${2}}${3}
 snippet i inline {}
 	{ ${1}; }${2}
 snippet b multiline {}
 	{
 		${1}
 	}${2}
-snippet dispi inline
+snippet /* comment
+	/* ${1} */${2}
+snippet ! important
+	!important${1}
+snippet disp display
+	display: ${1:block};${2}
+snippet inline inline
 	display: inline;${1}
-snippet dispb block
+snippet block block
 	display: block;${1}
-snippet dispib inline-block
+snippet iblock inline-block
 	display: inline-block;${1}
 snippet fl float left
 	float: left;${1}
@@ -16,16 +26,48 @@ snippet fr float right
 	float: right;${1}
 snippet cl clear
 	clear: ${1:both};${2}
-snippet font font shorthand
-	font: ${1:normal} ${2:13px}/${3:1.5} ${4:sans-serif};${5}
+snippet ps position static
+	position: static;${1}
+snippet pa position absolute
+	position: absolute;${1}
+snippet pr position relative
+	position: relative;${1}
+snippet pf position fixed
+	position: fixed;${1}
+snippet z
+	z-index: ${1:auto};${2}
 snippet m margin
 	margin: ${1:0 20px};${2}
 snippet p padding
 	padding: ${1:5px 10px};${2}
+snippet w width
+	width: ${1:auto};${2}
+snippet h height
+	height: ${1:auto};${2}
+snippet mw min-width
+	min-width: ${1:auto};${2}
+snippet mh min-height
+	min-height: ${1:auto};${2}
 snippet bg
 	background: ${1:#fff};${2}
 snippet sprite background sprite
 	background: url(${1:sprites.png}) no-repeat 0 0;${2}
+snippet font font shorthand
+	font: ${1:normal} ${2:13px}/${3:1.5} ${4:sans-serif};${5}
+snippet fs font-size
+	font-size: ${1};${2}
+snippet fw font-weight
+	font-weight: ${1:bold};${2}
+snippet td text-decoration
+	text-decoration: ${1:underline};${2}
+snippet ts text-style
+	text-style: ${1:italic};${2}
+snippet lh line-height
+	line-height: ${1:1.5};${2}
+snippet ta text-align
+	text-style: ${1:left};${2}
+snippet cursor
+	cursor:${1:default|crosshair|auto|hand|move|help|pointer|progress|text|wait};${2}
 snippet sizing box-sizing
 	-webkit-box-sizing: ${1:border-box};
 	-moz-box-sizing: $1;
