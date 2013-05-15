@@ -1,7 +1,7 @@
 snippet map std::map
-	std::map<${1:key}, ${2:value}> map${3}
+	map<${1:key}, ${2:value}> ${3}
 snippet vector std::vector
-	std::vector<${1:int}> v${2}
+	vector<${1:int}> ${2}
 snippet getline std::getline
 	getline(cin, ${1:str})${2}
 snippet fori
@@ -12,8 +12,14 @@ snippet ci
 	cin >> ${1}
 snippet co
 	cout << ${1}
+snippet ce
+	cerr << ${1}
+snippet < <<
+	<< ${1}
+snippet > >>
+	>> ${1}
 snippet fore for each
-	for (${1:int} &${2:el} : ${3:container}) {
+	for (${1:auto} &${2:el} : ${3:container}) {
 		${4}
 	}
 snippet pre print each

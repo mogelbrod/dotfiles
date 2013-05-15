@@ -3,6 +3,8 @@ snippet cl Console log
 	console.log(${1});
 snippet 3 $(...)
 	$(${1'#sel'})${2}
+snippet # $(...)
+	$(${1'#sel'})${2}
 snippet $r jQuery DOM ready function
 	$(function() {
 		${1}
@@ -87,3 +89,7 @@ snippet get
 # Get Element
 snippet gett
 	getElementBy${1:Id}('${2}')${3}
+snippet /* doc block
+	/**
+	 * ${1}
+	 */${2}
