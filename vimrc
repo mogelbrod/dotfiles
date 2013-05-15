@@ -533,7 +533,7 @@
   let g:syntastic_loc_list_height = 4
   let g:syntastic_mode_map = { 'mode': 'active',
         \ 'active_filetypes': [],
-        \ 'passive_filetypes': ['java'] }
+        \ 'passive_filetypes': ['java', 'html'] }
   " Compiler specific settings
   let g:syntastic_cpp_compiler_options = "-std=c++0x -W"
 
@@ -734,7 +734,7 @@
   " HTML
   augroup ft_html
     au!
-    au FileType html setlocal sts=2 ts=2 sw=2 noexpandtab autoindent
+    au FileType html setlocal sts=2 ts=2 sw=2 expandtab autoindent
   augroup END
 
   " CSS
