@@ -2,9 +2,9 @@
 snippet cl Console log
 	console.log(${1});
 snippet 3 $(...)
-	$(${1'#sel'})${2}
+	$(${1:'#sel'})${2}
 snippet # $(...)
-	$(${1'#sel'})${2}
+	$(${1:'#sel'})${2}
 snippet $r jQuery DOM ready function
 	$(function() {
 		${1}
@@ -31,14 +31,19 @@ snippet :f Object method
 	}${3:,}
 # if
 snippet if
-	if (${1:true}) {${2}}
+	if (${1:true}) {
+		${2}
+	}${3}
 # if ... else
 snippet ife
-	if (${1:true}) {${2}}
-	else{${3}}
+	if (${1:true}) {
+		${2}
+	} else {
+		${3}
+	}${4}
 # tertiary conditional
 snippet t
-	${1:/* condition */} ? ${2:a} : ${3:b}
+	${1:true} ? ${2:a} : ${3:b}
 # switch
 snippet switch
 	switch(${1:expression}) {
@@ -51,44 +56,36 @@ snippet switch
 	}
 # case
 snippet case
-	case '${1:case}':
+	case ${1:1}:
 		${2:// code}
 		break;
 	${3}
-# for (...) {...}
-snippet for
+snippet for for
 	for (var ${2:i} = 0; $2 < ${1:Things}.length; $2${3:++}) {
 		${4:$1[$2]}
 	};
-# for (...) {...} (Improved Native For-Loop)
-snippet forr
+snippet forr reverse for
 	for (var ${2:i} = ${1:Things}.length - 1; $2 >= 0; $2${3:--}) {
 		${4:$1[$2]}
 	};
-# while (...) {...}
-snippet forin
+snippet forin for each in
 	for (var ${1} in ${2}) {
 		${3}
-	}
-	${4}
-snippet wh
-	while (${1:/* condition */}) {
+	}${4}
+snippet wh while
+	while (${1:true}) {
 		${2:/* code */}
-	}
-# do...while
+	}${3}
 snippet do
 	do {
 		${2:/* code */}
-	} while (${1:/* condition */});
-# setTimeout function
-snippet timeout
-	setTimeout(function() {${3}}${2}, ${1:10};
-# Get Elements
-snippet get
-	getElementsBy${1:TagName}('${2}')${3}
-# Get Element
-snippet gett
-	getElementBy${1:Id}('${2}')${3}
+	} while (${1:true});
+snippet timeout setTimeout function
+	setTimeout(function() {${2}}, ${1:10};${3}
+snippet byid
+	getElementById('${1}')${2}
+snippet bytag
+	getElementsByTagName('${1}')${2}
 snippet /* doc block
 	/**
 	 * ${1}
