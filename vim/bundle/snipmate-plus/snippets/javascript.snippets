@@ -1,4 +1,3 @@
-# Console log
 snippet cl Console log
 	console.log(${1});
 snippet 3 $(...)
@@ -16,35 +15,28 @@ snippet proto Class prototype
 	function(${3}) {
 		${4}
 	};
-# Function
-snippet fun Named function
+snippet fn Named function
 	function ${1:name}(${2}) {
 		${3}
 	}
-# Anonymous Function
 snippet f Anonymous function
 	function(${1}) {${2}}
-# Object Method
 snippet :f Object method
 	${1:method_name}: function(${2:attribute}) {
 		${4}
 	}${3:,}
-# if
 snippet if
 	if (${1:true}) {
 		${2}
 	}${3}
-# if ... else
-snippet ife
+snippet ife if ... else
 	if (${1:true}) {
 		${2}
 	} else {
 		${3}
 	}${4}
-# tertiary conditional
-snippet t
+snippet t tertiary
 	${1:true} ? ${2:a} : ${3:b}
-# switch
 snippet switch
 	switch(${1:expression}) {
 		case '${3:case}':
@@ -54,7 +46,6 @@ snippet switch
 		default:
 			${2:// code}
 	}
-# case
 snippet case
 	case ${1:1}:
 		${2:// code}
