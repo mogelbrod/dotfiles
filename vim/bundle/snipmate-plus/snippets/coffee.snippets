@@ -1,0 +1,18 @@
+snippet cl Console log
+	console.log ${1}
+snippet fp Function with params
+	(${1}) -> ${2}
+snippet f Function
+	-> ${1}
+snippet t tertiary
+	if ${1:true} then ${2:trueCase} else ${3:falseCase}
+snippet sto setTimeout
+	setTimeout ->
+		${1:# callback code}
+	, ${2:100}
+snippet sint setInterval
+	setInterval ->
+		${1:# callback code}
+	, ${2:100}
+snippet req assigned require
+	${1:lib} = require '${2:$1}'${3}
