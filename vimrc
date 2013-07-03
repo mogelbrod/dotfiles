@@ -177,7 +177,7 @@
   imap <silent>  <Plug>Isurround
 
   " Ctrl+H replaces all occurences of the selected text with something else
-  vnoremap <C-h> "hy<Esc>:call ReplaceSelection()<CR>
+  vnoremap <C-h> "zy<Esc>:call ReplaceSelection()<CR>
   fun! ReplaceSelection()
     let replacement = input("Replacement for ".@h.": ")
     exe "%s~\\M".escape(@h, '~\').'~'.replacement.'~gc'
@@ -220,6 +220,9 @@
   noremap <silent> <leader>8 8gt
   noremap <silent> <leader>9 9gt
 
+  map <leader>g :call RecursiveGrepCommand() <Bar> cw<CR><CR><CR>
+  vmap <leader>g "zy:call RecursiveGrepCommand(@z) <Bar> cw<CR><CR><CR>
+
   " Copy buffer contents to clipboard
   map <silent> <leader>ya ggVG"+y''
   " Yank everything on the current side of a = character
@@ -233,7 +236,7 @@
   nmap <silent> <leader>i <Plug>IndentGuidesToggle
 
   " Join visual selection lines with commas
-  vmap <silent> <leader>j "hy:let @h=join(split(@h, "\n"), ", ")<CR>gv"hp
+  vmap <silent> <leader>j "zy:let @h=join(split(@h, "\n"), ", ")<CR>gv"hp
 
   " Expand tabs to spaces in selection
   vmap <leader>e :s#\t#\=repeat(" ", &l:ts)#g<CR>
@@ -258,7 +261,7 @@
   vmap <leader><space> :Tabularize /
 
   " Search for selection and replace with input() in all open buffers
-  vnoremap <leader>h "hy:bufdo! %s~\V<C-r>h~~ge<left><left><left>
+  vnoremap <leader>h "zy:bufdo! %s~\V<C-r>h~~ge<left><left><left>
 
   noremap <leader>m :Make<space>
   noremap <leader>c :Make<CR>
@@ -578,6 +581,33 @@
     echo "Tags file generated at: " . path.".tags"
   endfunction
 
+  " External grep (recursive) on word under cursor or a given string
+  function! RecursiveGrepCommand(...)
+    if a:0 > 0
+      let str = a:1
+    else
+      let str = expand("<cword>")
+    endif
+
+    let str = escape(str, '.\*+[]^$')
+
+    " TODO: don't add word boundary prefix/suffix when a word boundary character already starts/ends the string
+    let filter = (expand("%:e") == '' ? '.' : '*.'.expand("%:e"))
+
+    if has('win32') || has ('win64')
+      " TODO: don't change grepprg on windows?
+      set grepprg=findstr\ /spn
+      let call = 'grep "\<'.str.'\>"'.filter
+    else
+      if len(filter) > 1
+        let filter = '**/'.filter
+      endif
+      let call = 'grep -srnw --binary-files=without-match --exclude-dir=.git "\b'.str.'\b" '.filter
+    endif
+
+    exe call
+  endfunction
+
   " Display hex color under cursor as RGB combo
   function! HexToRGB(...)
     if a:0 > 0
@@ -744,6 +774,9 @@
     au FileType css vmap <buffer> <leader>j :s/\([{;]\)\s*\n\?\s*/\1\r  /ge<BAR>:nohl<CR><<
     au FileType css setlocal sts=2 ts=2 sw=2 noexpandtab
   augroup END
+
+  " CoffeeScript / Jade
+  au FileType jade,coffee setlocal foldexpr=IndentationFoldExpr(v:lnum) foldmethod=expr
 
   " XML
   au FileType xml setlocal foldexpr=IndentationFoldExpr(v:lnum) foldmethod=expr
