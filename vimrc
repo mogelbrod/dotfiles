@@ -179,8 +179,8 @@
   " Ctrl+H replaces all occurences of the selected text with something else
   vnoremap <C-h> "zy<Esc>:call ReplaceSelection()<CR>
   fun! ReplaceSelection()
-    let replacement = input("Replacement for ".@h.": ")
-    exe "%s~\\M".escape(@h, '~\').'~'.replacement.'~gc'
+    let replacement = input("Replacement for ".@z.": ")
+    exe "%s~\\M".escape(@z, '~\').'~'.replacement.'~gc'
   endfun
 
   " Map P to replace selection without overwriting any registers
@@ -236,7 +236,7 @@
   nmap <silent> <leader>i <Plug>IndentGuidesToggle
 
   " Join visual selection lines with commas
-  vmap <silent> <leader>j "zy:let @h=join(split(@h, "\n"), ", ")<CR>gv"hp
+  vmap <silent> <leader>j "zy:let @z=join(split(@z, "\n"), ", ")<CR>gv"zp
 
   " Expand tabs to spaces in selection
   vmap <leader>e :s#\t#\=repeat(" ", &l:ts)#g<CR>
@@ -261,7 +261,7 @@
   vmap <leader><space> :Tabularize /
 
   " Search for selection and replace with input() in all open buffers
-  vnoremap <leader>h "zy:bufdo! %s~\V<C-r>h~~ge<left><left><left>
+  vnoremap <leader>h "zy:bufdo! %s~\V<C-r>z~~ge<left><left><left>
 
   noremap <leader>m :Make<space>
   noremap <leader>c :Make<CR>
@@ -471,9 +471,9 @@
   map <C-b> :CtrlPBuffer<CR>
   " search for both files, buffers and MRUs
   let g:ctrlp_cmd = 'CtrlPMixed'
-  let g:ctrlp_switch_buffer = 1 " jump to existing buffers in same tab
+  let g:ctrlp_switch_buffer = 't'
+  let g:ctrlp_open_new_file = 'r'
   let g:ctrlp_max_depth = 10
-  let g:ctrlp_open_new_file = 'ra'
   let g:ctrlp_mruf_max = 50
   let g:ctrlp_lazy_update = 200
   let g:ctrlp_extensions = ['mixed', 'tag']
@@ -552,7 +552,9 @@
   command! -nargs=* Make silent! make <args> | redraw! | botright cwindow 5
 
   " Update tags file using ctags executable
-  command! -nargs=? Tags call GenerateTags(<args>)
+  command! -nargs=? Tags call GenerateTags(<args>) | cw
+
+  command! -nargs=1 Egrep call RecursiveGrepCommand(<args>)
 
   command! -nargs=0 SnippetFile exe "sp $VIMHOME/bundle/snipmate-plus/snippets/".&ft.".snippets"
 
