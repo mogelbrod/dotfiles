@@ -508,8 +508,11 @@
 
   " NERDtree
   map <F5> :NERDTreeToggle<CR>
-  let NERDTreeWinSize=26
-  let NERDTreeMinimalUI=1
+  let g:NERDTreeWinSize = 26
+  let g:NERDTreeMinimalUI = 1
+  let g:NERDTreeMapChangeRoot = 'cd'
+  let g:NERDTreeMapCWD = 'CD'
+  let g:NERDTreeMapChdir = 'CW'
 
   " Tag list
   map <F6> :TlistToggle<CR>
