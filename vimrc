@@ -554,7 +554,7 @@
   " Update tags file using ctags executable
   command! -nargs=? Tags call GenerateTags(<args>) | cw
 
-  command! -nargs=1 Egrep call RecursiveGrepCommand(<args>)
+  command! -nargs=1 Egrep exe 'normal! :call RecursiveGrepCommand("'.<args>.'")<Bar> cw<CR><CR><CR>'
 
   command! -nargs=0 SnippetFile exe "sp $VIMHOME/bundle/snipmate-plus/snippets/".&ft.".snippets"
 
