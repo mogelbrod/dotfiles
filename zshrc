@@ -60,9 +60,11 @@
   }
 
   precmd() {
-    # Title
+    # Terminal title (overriden by $TERM_TITLE env)
     if [[ $TERM == (*xterm*|rxvt); ]]; then
-      print -Pn "]0;[%n@%m] %~\a"
+      title=$TERM_TITLE
+      [[ -z $TERM_TITLE ]] && title="[%n@%m] %~"
+      print -Pn "]0;$title\a"
     fi
 
     # Git info
@@ -227,6 +229,10 @@
   # Use BC to calculate stuff
   function c {
     echo "scale=6; $*" | bc
+  }
+
+  function title {
+  	TERM_TITLE="$*"
   }
 
 #}}}
