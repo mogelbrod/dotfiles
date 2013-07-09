@@ -460,6 +460,7 @@
   " SuperTab options
   let g:SuperTabDefaultCompletionType = "<C-n>"
   let g:SuperTabLongestHighlight = 1
+  let g:SuperTabLongestEnhanced = 1
 
   " Snipmate-plus (comment out mappings in snipmate-plus/after/plugin)
   "inoremap <silent> <C-s> <c-r>=TriggerSnippet()<cr>
