@@ -444,7 +444,8 @@
 " {{{ Plugins
 
   " SuperTab mappings
-  let g:SuperTabMappingForward  = '<tab>'
+  let g:SuperTabMappingForward = '<tab>'
+  let g:SuperTabMappingTabLiteral = '<c-tab>'
   if has("gui_running")
     let g:SuperTabMappingBackward = '<s-tab>'
   else
@@ -461,6 +462,8 @@
   let g:SuperTabDefaultCompletionType = "<C-n>"
   let g:SuperTabLongestHighlight = 1
   let g:SuperTabLongestEnhanced = 1
+  let g:SuperTabClosePreviewOnPopupClose = 1
+  let g:SuperTabRetainCompletionDuration = 'completion'
 
   " Snipmate-plus (comment out mappings in snipmate-plus/after/plugin)
   "inoremap <silent> <C-s> <c-r>=TriggerSnippet()<cr>
