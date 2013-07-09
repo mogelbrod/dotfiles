@@ -556,13 +556,13 @@
 
   command! -nargs=1 Egrep exe 'normal! :call RecursiveGrepCommand("'.<args>.'")<Bar> cw<CR><CR><CR>'
 
-  command! -nargs=0 SnippetFile exe "sp $VIMHOME/bundle/snipmate-plus/snippets/".&ft.".snippets"
+  command! -nargs=0 IFold setlocal foldexpr=IndentationFoldExpr(v:lnum) foldmethod=expr nofoldenable
 
   command! -nargs=1 Hex2RGB call HexToRGB(<args>)
   command! -nargs=1 Dec2Hex call DecToHex(<args>)
 
   " Generate new tags file recursively from cwd or a specific path
-  function! GenerateTags(...)
+  function! GenerateTags(...) "{{{
     let path = a:0 > 0 ? a:1 : getcwd()
     let path .= has("win32") ? "\\" : "/"
     let cmd = "ctags -f ".path.".tags --tag-relative=yes --exclude=.git --exclude=.svn"
@@ -581,10 +581,10 @@
 
 		call system(cmd . " --languages=".langs . " -R ".path . extra)
     echo "Tags file generated at: " . path.".tags"
-  endfunction
+  endfunction "}}}
 
   " External grep (recursive) on word under cursor or a given string
-  function! RecursiveGrepCommand(...)
+  function! RecursiveGrepCommand(...) "{{{
     if a:0 > 0
       let str = a:1
     else
@@ -608,10 +608,10 @@
     endif
 
     exe call
-  endfunction
+  endfunction "}}}
 
   " Display hex color under cursor as RGB combo
-  function! HexToRGB(...)
+  function! HexToRGB(...) "{{{
     if a:0 > 0
       let str = string(a:1)
     else
@@ -630,10 +630,10 @@
     endfor
 
     echo out . ")"
-  endfunction
+  endfunction "}}}
 
   " Display the decimal number under cursor in hexadecimal format
-  function! DecToHex(...)
+  function! DecToHex(...) "{{{
     if a:0 > 0
       let str = string(a:1)
     else
@@ -647,10 +647,10 @@
     endif
 
     echo printf("%s = 0x%x", m[1], m[1])
-  endfunction
+  endfunction "}}}
 
   " Copy everything on current side of equals sign (=)
-  function! YankSide()
+  function! YankSide() "{{{
     let line = getline('.')
     let cur_col = col('.') " cursor column
     let eq_col = match(line, '=') " equal sign column
@@ -660,18 +660,18 @@
       let line = substitute(line, '\s*=.\+', '', '')
     endif
     call setreg(&clipboard == 'unnamed' ? '*' : '"', line)
-  endfunction
+  endfunction "}}}
 
   " Helper function which can be used to prompt for input in mappings and macros
   " (call with <C-r>=Input("prompt")<CR>)
-  function! Input(prompt)
+  function! Input(prompt) "{{{
     call inputsave()
     let text = input(a:prompt . ': ')
     call inputrestore()
     return text
-  endfunction
+  endfunction "}}}
 
-  function! Preserve(command)
+  function! Preserve(command) "{{{
     " Preparation: save last search, and cursor position
     let _s=@/
     let l = line(".")
@@ -681,7 +681,7 @@
     " Clean up: restore previous search history, and cursor position
     let @/=_s
     call cursor(l, c)
-  endfunction
+  endfunction "}}}
 
 " }}}
 " {{{ GUI settings/overwrites
@@ -778,10 +778,13 @@
   augroup END
 
   " CoffeeScript / Jade
-  au FileType jade,coffee setlocal foldexpr=IndentationFoldExpr(v:lnum) foldmethod=expr
+  augroup ft_css
+    au!
+    au FileType jade,coffee IFold
+  augroup END
 
   " XML
-  au FileType xml setlocal foldexpr=IndentationFoldExpr(v:lnum) foldmethod=expr
+  au FileType xml IFold
 
   " PHP
   augroup ft_php
@@ -841,5 +844,43 @@
 
   " Snippets
   au FileType snippet setlocal noexpandtab foldexpr=IndentationFoldExpr(v:lnum) foldmethod=expr
+
+  " {{{ CoffeeScript tagbar configuration
+  let g:tagbar_type_coffee = {
+      \ 'ctagstype' : 'coffee',
+      \ 'kinds'     : [
+          \ 'c:classes',
+          \ 'm:methods',
+          \ 'f:functions',
+          \ 'v:variables',
+          \ 'f:fields',
+      \ ]
+  \ }
+
+  " Adapted from: https://gist.github.com/2901844
+  let s:ctags_opts = '
+    \ --langdef=coffee
+    \ --langmap=coffee:.coffee
+    \ --regex-coffee=/(^|=[[:space:]])*class[[:space:]]([A-Za-z]+\.)*([A-Za-z]+)([[:space:]]extends[[:space:]][A-Za-z._]+)?$/\3/c,class/
+    \ --regex-coffee=/^[[:space:]]*(module\.)?(exports\.)?@?([A-Za-z._]+):.*[-=]>.*$/\3/m,method/
+    \ --regex-coffee=/^[[:space:]]*(module\.)?(exports\.)?([A-Za-z._]+)[[:space:]]+=.*[-=]>.*$/\3/f,function/
+    \ --regex-coffee=/^[[:space:]]*([A-Za-z._]+)[[:space:]]+=[^->\n]*$/\1/v,variable/
+    \ --regex-coffee=/^[[:space:]]*@([A-Za-z._]+)[[:space:]]+=[^->\n]*$/\1/f,field/
+    \ --regex-coffee=/^[[:space:]]*@([A-Za-z._]+):[^->\n]*$/\1/f,staticField/
+    \ --regex-coffee=/(constructor:[[:space:]]\()@([A-Za-z._]+)/\2/f,field/
+    \ --regex-coffee=/(constructor:[[:space:]]\()@[A-Za-z._]+(,[[:space:]]@([A-Za-z._]+)){0}/\3/f,field/
+    \ --regex-coffee=/(constructor:[[:space:]]\()@[A-Za-z._]+(,[[:space:]]@([A-Za-z._]+)){1}/\3/f,field/
+    \ --regex-coffee=/(constructor:[[:space:]]\()@[A-Za-z._]+(,[[:space:]]@([A-Za-z._]+)){2}/\3/f,field/
+    \ --regex-coffee=/(constructor:[[:space:]]\()@[A-Za-z._]+(,[[:space:]]@([A-Za-z._]+)){3}/\3/f,field/
+    \ --regex-coffee=/(constructor:[[:space:]]\()@[A-Za-z._]+(,[[:space:]]@([A-Za-z._]+)){4}/\3/f,field/
+    \ --regex-coffee=/(constructor:[[:space:]]\()@[A-Za-z._]+(,[[:space:]]@([A-Za-z._]+)){5}/\3/f,field/
+    \ --regex-coffee=/(constructor:[[:space:]]\()@[A-Za-z._]+(,[[:space:]]@([A-Za-z._]+)){6}/\3/f,field/
+    \ --regex-coffee=/(constructor:[[:space:]]\()@[A-Za-z._]+(,[[:space:]]@([A-Za-z._]+)){7}/\3/f,field/
+    \ --regex-coffee=/(constructor:[[:space:]]\()@[A-Za-z._]+(,[[:space:]]@([A-Za-z._]+)){8}/\3/f,field/
+    \ --regex-coffee=/(constructor:[[:space:]]\()@[A-Za-z._]+(,[[:space:]]@([A-Za-z._]+)){9}/\3/f,field/'
+
+
+  let $CTAGS = substitute(s:ctags_opts, '\v\([nst]\)', '\\', 'g')
+  " }}}
 
 " }}}
