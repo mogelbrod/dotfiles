@@ -510,6 +510,8 @@
   map <F5> :NERDTreeToggle<CR>
   let g:NERDTreeWinSize = 26
   let g:NERDTreeMinimalUI = 1
+  let g:NERDTreeMapActivateNode = 'l'
+  let g:NERDTreeMapOpenRecursively = 'L'
   let g:NERDTreeMapChangeRoot = 'cd'
   let g:NERDTreeMapCWD = 'CD'
   let g:NERDTreeMapChdir = 'CW'
