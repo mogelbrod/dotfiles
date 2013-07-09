@@ -520,20 +520,11 @@
   let g:NERDTreeMapCWD = 'CD'
   let g:NERDTreeMapChdir = 'CW'
 
-  " Tag list
-  map <F6> :TlistToggle<CR>
-  let Tlist_Compact_Format = 1
-  let Tlist_Enable_Fold_Column = 0
-  let Tlist_File_Fold_Auto_Close = 1
-  "let Tlist_Exit_OnlyWindow = 1
-  "let Tlist_GainFocus_On_ToggleOpen = 1
-  let Tlist_Highlight_Tag_On_BufEnter = 0
-  let Tlist_Use_Right_Window = 1
-
-  if !has("gui_running")
-    " Do not resize window when toggling tag list split
-    let Tlist_Inc_Winwidth = 0
-  endif
+  " TagBar
+  nnore <silent> <F6> :TagbarToggle<CR>
+  let g:tagbar_autofocus = 1
+  let g:tagbar_compact = 1
+  let g:tagbar_expand = 0
 
   " Syntastic
   let g:syntastic_check_on_open = 0
