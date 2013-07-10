@@ -4,3 +4,4 @@ fish/fishd.*
 vim/.netrwhist
 vim/swap/*
 vim/backup/*
+vimrc.local

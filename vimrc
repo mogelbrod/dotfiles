@@ -467,9 +467,9 @@
 
   " UltiSnips
   let g:UltiSnipsExpandTrigger = '<tab>' " overridden below
-  let g:UltiSnipsJumpForwardTrigger = '<c-j>'
-  let g:UltiSnipsJumpBackwardTrigger = '<c-k>'
-  let g:UltiSnipsListSnippets = '<c-s-j>'
+  let g:UltiSnipsJumpForwardTrigger = '<tab>'
+  let g:UltiSnipsJumpBackwardTrigger = '<S-tab>'
+  let g:UltiSnipsListSnippets = '<C-j>'
   let g:did_UltiSnips_vim_after = 1
   let g:UltiSnipsSnippetDirectories = ['ultisnippets']
 
@@ -885,5 +885,13 @@
 
   let $CTAGS = substitute(s:ctags_opts, '\v\([nst]\)', '\\', 'g')
   " }}}
+
+" }}}
+" {{{ Optionally load local rc file
+
+  let s:local_rc_file = '~/.vimrc.local'
+  if filereadable(s:local_rc_file)
+    source s:local_rc_file
+  endif
 
 " }}}
