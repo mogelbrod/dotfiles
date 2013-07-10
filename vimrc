@@ -889,9 +889,9 @@
 " }}}
 " {{{ Optionally load local rc file
 
-  let s:local_rc_file = '~/.vimrc.local'
+  let s:local_rc_file = expand($HOME . '/.vimrc.local')
   if filereadable(s:local_rc_file)
-    source s:local_rc_file
+    exec ':so ' . s:local_rc_file
   endif
 
 " }}}
