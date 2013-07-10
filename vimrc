@@ -471,6 +471,7 @@
   let g:UltiSnipsJumpBackwardTrigger = '<c-k>'
   let g:UltiSnipsListSnippets = '<c-s-j>'
   let g:did_UltiSnips_vim_after = 1
+  let g:UltiSnipsSnippetDirectories = ['ultisnippets']
 
   " CtrlP plugin
   map <C-p> :CtrlP<CR>
