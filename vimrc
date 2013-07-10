@@ -426,12 +426,12 @@
 " {{{ (Re)formatting
 
   " Using Tab and Shift-Tab to (un)indent
-  nmap <Tab> >>
-  nmap <S-Tab> <<
-  nmap [Z <<
-  vmap <Tab> >gv
-  vmap <S-Tab> <gv
-  vmap [Z <gv
+  nore <tab> >>
+  nore <S-tab> <<
+  nore [Z <<
+  vnore <tab> >gv
+  vnore <S-tab> <gv
+  vnore [Z <gv
 
   " Formatting options (disable autocommenting)
   set formatoptions-=cro
@@ -465,10 +465,12 @@
   let g:SuperTabClosePreviewOnPopupClose = 1
   let g:SuperTabRetainCompletionDuration = 'completion'
 
-  " Snipmate-plus (comment out mappings in snipmate-plus/after/plugin)
-  "inoremap <silent> <C-s> <c-r>=TriggerSnippet()<cr>
-  "snoremap <silent> <C-s> <esc>i<right><c-r>=TriggerSnippet()<cr>
-  let g:snips_author = "Victor Hallberg"
+  " UltiSnips
+  let g:UltiSnipsExpandTrigger = '<tab>' " overridden below
+  let g:UltiSnipsJumpForwardTrigger = '<c-j>'
+  let g:UltiSnipsJumpBackwardTrigger = '<c-k>'
+  let g:UltiSnipsListSnippets = '<c-s-j>'
+  let g:did_UltiSnips_vim_after = 1
 
   " CtrlP plugin
   map <C-p> :CtrlP<CR>
