@@ -260,8 +260,8 @@
   alias gd='git diff --color -b'
   alias gds='git diff --color -b --staged'
 
-  alias gl='git log --color --name-status --pretty=format:"%Cred[%h] %an %Cblue(%ar)%n%Cgreen%s%n%b%Creset"'
-  alias glt='git log --color --name-status --graph --pretty=format:"%Cred[%h] %an %Cblue(%ar)%Creset"'
+  alias gl='git log --color --name-status --pretty=format:"%C(red)[%h] %an %C(blue)(%ar)%n%C(green)%s%n%b%C(reset)"'
+  alias glt='git log --color --graph --pretty=format:"%C(red)[%h] %an %C(blue)(%ar)%C(reset) %s"'
 
 #}}}
 #{{{ File associations
