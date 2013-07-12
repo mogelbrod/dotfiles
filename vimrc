@@ -225,8 +225,9 @@
   noremap <silent> <leader>8 8gt
   noremap <silent> <leader>9 9gt
 
-  map <leader>g :call RecursiveGrepCommand() <Bar> cw<CR><CR><CR>
-  vmap <leader>g "zy:call RecursiveGrepCommand(@z) <Bar> cw<CR><CR><CR>
+  nore <leader>g :call RecursiveGrepCommand() <Bar> cw<CR><CR><CR>
+  nore <leader><leader>g <Esc>:Egrep ""<left>
+  vnore <leader>g "zy:call RecursiveGrepCommand(@z) <Bar> cw<CR><CR><CR>
 
   " Copy buffer contents to clipboard
   map <silent> <leader>ya ggVG"+y''
