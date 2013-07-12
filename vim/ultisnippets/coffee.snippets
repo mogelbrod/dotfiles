@@ -1,5 +1,6 @@
-snippet f "Anonumous function"
--> ${1}
+snippet f "Function" b
+${1:(${2:args}) }->
+	${0:# body...}
 endsnippet
 
 snippet fn "Function" b
@@ -7,7 +8,7 @@ ${1:name} = ${2:(${3:args}) }->
 	${0:# body...}
 endsnippet
 
-snippet fnb "Function (bound)" b
+snippet fb "Function (bound)" b
 ${1:(${2:args}) }=>
 	${0:# body...}
 endsnippet
@@ -29,11 +30,11 @@ else if ${1:condition}
 	${0:# body...}
 endsnippet
 
-snippet ift "Ternary if" b
+snippet ift "Ternary if"
 if ${1:condition} then ${2:true} else ${3:false}
 endsnippet
 
-snippet unl "Unless" b
+snippet unl "Unless"
 unless ${1:condition}
 endsnippet
 
