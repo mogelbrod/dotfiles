@@ -1,0 +1,12 @@
+# Suppress errors
+-s
+# Treat string as literal (no regex)
+--literal
+# Wrap string with \b
+--word-regexp
+
+# Ignored stuff
+--ignore-directory=node_modules
+
+# Type definitions
+--type-set=coffee:ext:coffee,jade
