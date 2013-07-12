@@ -97,6 +97,11 @@
   " Increase input timeout length
   set timeoutlen=3000
 
+  " Update external program settings
+  if executable("ack")
+    set grepprg=ack\ -k
+  endif
+
 " }}}
 " {{{ Buffer navigation
 
@@ -594,20 +599,24 @@
       let str = expand("<cword>")
     endif
 
-    let str = escape(str, '.\*+[]^$')
-
-    " TODO: don't add word boundary prefix/suffix when a word boundary character already starts/ends the string
-    let filter = (expand("%:e") == '' ? '.' : '*.'.expand("%:e"))
-
-    if has('win32') || has ('win64')
-      " TODO: don't change grepprg on windows?
-      set grepprg=findstr\ /spn
-      let call = 'grep "\<'.str.'\>"'.filter
+    if &grepprg == "ack -k"
+      let call = 'grep "'.str.'"'
     else
-      if len(filter) > 1
-        let filter = '**/'.filter
+      let str = escape(str, '.\*+[]^$')
+
+      " TODO: don't add word boundary prefix/suffix when a word boundary character already starts/ends the string
+      let filter = (expand("%:e") == '' ? '.' : '*.'.expand("%:e"))
+
+      if has('win32') || has ('win64')
+        " TODO: don't change grepprg on windows?
+        set grepprg=findstr\ /spn
+        let call = 'grep "\<'.str.'\>"'.filter
+      else
+        if len(filter) > 1
+          let filter = '**/'.filter
+        endif
+        let call = 'grep -srnw --binary-files=without-match --exclude-dir=.git "\b'.str.'\b" '.filter
       endif
-      let call = 'grep -srnw --binary-files=without-match --exclude-dir=.git "\b'.str.'\b" '.filter
     endif
 
     exe call
@@ -754,7 +763,7 @@
       \%-G%.%#
     "au FileType ruby let g:rubycomplete_buffer_loading = 1
     au FileType ruby let g:rubycomplete_rails = 1
-    au FileType yaml,haml setlocal foldexpr=IndentationFoldExpr(v:lnum) foldmethod=expr
+    au FileType yaml,haml IFold
   augroup END
 
   augroup ft_python
