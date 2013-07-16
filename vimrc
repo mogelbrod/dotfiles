@@ -452,7 +452,7 @@
   " SuperTab mappings
   let g:SuperTabMappingForward = '<tab>'
   let g:SuperTabMappingTabLiteral = '<c-tab>'
-  if has("gui_running")
+  if has("gui_running") || has("mac")
     let g:SuperTabMappingBackward = '<s-tab>'
   else
     let g:SuperTabMappingBackward = '[Z'
