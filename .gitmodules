@@ -84,3 +84,6 @@
 [submodule "vim/bundle/ultisnips"]
 	path = vim/bundle/ultisnips
 	url = https://github.com/SirVer/ultisnips.git
+[submodule "vim/bundle/livescript"]
+	path = vim/bundle/livescript
+	url = https://github.com/gkz/vim-ls.git

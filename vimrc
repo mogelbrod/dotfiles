@@ -790,10 +790,10 @@
     au FileType css setlocal sts=2 ts=2 sw=2 noexpandtab
   augroup END
 
-  " CoffeeScript / Jade
-  augroup ft_css
+  " CoffeeScript / Jade / LiveScript
+  augroup ft_coffee
     au!
-    au FileType jade,coffee IFold
+    au FileType jade,coffee,ls IFold
   augroup END
 
   " XML
