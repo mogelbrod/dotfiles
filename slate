@@ -18,6 +18,10 @@ bind up:ctrl;alt;cmd     ${top-half}
 bind down:ctrl;alt;cmd   ${bottom-half}
 bind m:ctrl;alt;cmd      ${full}
 
+# Screen bindings
+bind j:ctrl;alt;cmd throw 0
+bind k:ctrl;alt;cmd throw 1
+
 # Focus Bindings
 bind right:ctrl;cmd  focus right
 bind left:ctrl;cmd   focus left
