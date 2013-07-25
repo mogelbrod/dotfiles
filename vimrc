@@ -794,6 +794,8 @@
   augroup ft_coffee
     au!
     au FileType jade,coffee,ls IFold
+    au FileType coffee noremap <buffer> <leader>x ::CoffeeCompile<CR>
+    au FileType ls noremap <buffer> <leader>x :LiveScriptCompile<CR>
   augroup END
 
   " XML
