@@ -84,14 +84,6 @@ snippet req "Require" b
 ${1/^'?(\w+)'?$/\L$1\E/} = require ${1:'${2:sys}'}
 endsnippet
 
-snippet # "Interpolated Code"
-#{$1}$0
-endsnippet
-
-snippet cl "Log" b
-console.log ${1:"${2:msg}"}
-endsnippet
-
 snippet sto "setTimeout" b
 setTimeout ->
 	${1:# callback code}
@@ -104,9 +96,17 @@ setInterval ->
 , ${2:100}
 endsnippet
 
+snippet # "Interpolated Code"
+#{$1}$0
+endsnippet
+
+snippet cl "Log" b
+console.log ${1:"${2:msg}"}
+endsnippet
+
 snippet ## "JSDoc bloc" b
 ###*
-* ${1:Description...}
+* ${1:Description}
 * @param ${2}
 * @return ${0}
 ###
