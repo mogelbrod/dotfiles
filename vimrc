@@ -1,12 +1,16 @@
 " {{{ Home directory and swap files
 
-  if has('win32') || has ('win64')
+  if has('win32') || has('win64')
     let $VIMHOME = $HOME."\\vimfiles"
     set noswapfile
   else
     let $VIMHOME = $HOME."/.vim"
     set directory=$VIMHOME/swap//,.
     set backupdir=$VIMHOME/backup//,.
+
+    if has('mac')
+      set noswapfile
+    endif
   endif
 
 " }}}
