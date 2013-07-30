@@ -263,6 +263,13 @@
   alias gl='git log --color --name-status --pretty=format:"%C(red)[%h] %an %C(blue)(%ar)%n%C(green)%s%n%b%C(reset)"'
   alias glt='git log --all --color --graph --pretty=format:"%C(red)[%h] %an %C(blue)(%ar)%C(green)%d%C(reset) %s"'
 
+  function gbump() {
+    changed=$(git diff-index --name-only HEAD --)
+    [ -n "$changed" ] && git stash
+    git pull --rebase && npm version patch && git push && git push --tags
+    [ -n "$changed" ] && git stash pop
+  }
+
 #}}}
 #{{{ File associations
 
