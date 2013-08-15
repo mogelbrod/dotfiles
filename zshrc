@@ -264,9 +264,11 @@
   alias glt='git log --all --color --graph --pretty=format:"%C(red)[%h] %an %C(blue)(%ar)%C(green)%d%C(reset) %s"'
 
   function gbump() {
+    what=${1:-patch}
+    echo "Bumping $what version and pushing to origin"
     changed=$(git diff-index --name-only HEAD --)
     [ -n "$changed" ] && git stash
-    git pull --rebase && npm version patch && git push && git push --tags
+    git pull --rebase && npm version $what && git push && git push --tags
     [ -n "$changed" ] && git stash pop
   }
 
