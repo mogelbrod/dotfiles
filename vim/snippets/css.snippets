@@ -1,127 +1,220 @@
-snippet . class block
-	.${1:class} {${2}}${3}
-snippet # id block
-	#${1:id} {${2}}${3}
-snippet i inline {}
-	{ ${1}; }${2}
-snippet b multiline {}
-	{
-		${1}
-	}${2}
-snippet /* comment
-	/* ${1} */${2}
-snippet ! important
-	!important${1}
+snippet . "class block"
+.${1:class} {${2}}$0
+endsnippet
+
+snippet # "id block"
+#${1:id} {${2}}$0
+endsnippet
+
+snippet i "inline {}"
+{ ${1}; }$0
+endsnippet
+
+snippet b "Multiline {}"
+{
+	${1}
+}$0
+endsnippet
+
+snippet /* "Comment"
+/* ${1} */$0
+endsnippet
+
+snippet ! "!important"
+!important${1}
+endsnippet
+
 snippet display
-	display: ${1:block};${2}
-snippet di display inline
-	display: inline;${1}
-snippet db display block
-	display: block;${1}
-snippet dib display inline-block
-	display: inline-block;${1}
-snippet dn display none
-	display: none;${1}
-snippet fl float left
-	float: left;${1}
-snippet fr float right
-	float: right;${1}
-snippet fn float none
-	float: none;${1}
-snippet cl clear
-	clear: ${1:both};${2}
-snippet ps position static
-	position: static;${1}
-snippet pa position absolute
-	position: absolute;${1}
-snippet pr position relative
-	position: relative;${1}
-snippet pf position fixed
-	position: fixed;${1}
-snippet z
-	z-index: ${1:auto};${2}
-snippet m margin
-	margin: ${1:0 20px};${2}
-snippet p padding
-	padding: ${1:5px 10px};${2}
-snippet w width
-	width: ${1:auto};${2}
-snippet h height
-	height: ${1:auto};${2}
-snippet mw min-width
-	min-width: ${1:auto};${2}
-snippet mh min-height
-	min-height: ${1:auto};${2}
-snippet bg
-	background: ${1:#fff};${2}
-snippet sprite background sprite
-	background: url(${1:sprites.png}) no-repeat 0 0;${2}
-snippet font font shorthand
-	font: ${1:normal} ${2:13px}/${3:1.5} ${4:sans-serif};${5}
-snippet fs font-size
-	font-size: ${1};${2}
-snippet fw font-weight
-	font-weight: ${1:bold};${2}
-snippet td text-decoration
-	text-decoration: ${1:underline};${2}
-snippet ts text-style
-	text-style: ${1:italic};${2}
-snippet lh line-height
-	line-height: ${1:1.5};${2}
-snippet ta text-align
-	text-align: ${1:left};${2}
+display: ${1:block};${2}
+endsnippet
+
+snippet di "display inline"
+display: inline;${1}
+endsnippet
+
+snippet db "display block"
+display: block;${1}
+endsnippet
+
+snippet dib "display inline-block"
+display: inline-block;${1}
+endsnippet
+
+snippet dn "display none"
+display: none;${1}
+endsnippet
+
+snippet fl "float left"
+float: left;${1}
+endsnippet
+
+snippet fr "float right"
+float: right;${1}
+endsnippet
+
+snippet fn "float none"
+float: none;${1}
+endsnippet
+
+snippet cl "clear"
+clear: ${1:both};${2}
+endsnippet
+
+snippet ps "position static"
+position: static;${1}
+endsnippet
+
+snippet pa "position absolute"
+position: absolute;${1}
+endsnippet
+
+snippet pr "position relative"
+position: relative;${1}
+endsnippet
+
+snippet pf "position fixed"
+position: fixed;${1}
+endsnippet
+
+snippet z "z-index"
+z-index: ${1:auto};${2}
+endsnippet
+
+snippet m "margin"
+margin: ${1:0 20px};${2}
+endsnippet
+
+snippet p "padding"
+padding: ${1:5px 10px};${2}
+endsnippet
+
+snippet w "width"
+width: ${1:auto};${2}
+endsnippet
+
+snippet h "height"
+height: ${1:auto};${2}
+endsnippet
+
+snippet mw "min-width"
+min-width: ${1:auto};${2}
+endsnippet
+
+snippet mh "min-height"
+min-height: ${1:auto};${2}
+endsnippet
+
+snippet bg "background shorthand"
+background: ${1:#fff};${2}
+endsnippet
+
+snippet sprite "background sprite"
+background: url(${1:sprites.png}) no-repeat 0 0;${2}
+endsnippet
+
+snippet font "font shorthand"
+font: ${1:normal} ${2:13px}/${3:1.5} ${4:sans-serif};${5}
+endsnippet
+
+snippet fs "font-size"
+font-size: ${1};${2}
+endsnippet
+
+snippet fw "font-weight"
+font-weight: ${1:bold};${2}
+endsnippet
+
+snippet td "text-decoration"
+text-decoration: ${1:underline};${2}
+endsnippet
+
+snippet ts "text-style"
+text-style: ${1:italic};${2}
+endsnippet
+
+snippet lh "line-height"
+line-height: ${1:1.5};${2}
+endsnippet
+
+snippet ta "text-align"
+text-align: ${1:left};${2}
+endsnippet
+
 snippet cursor
-	cursor:${1:default|crosshair|auto|hand|move|help|pointer|progress|text|wait};${2}
-snippet sizing box-sizing
-	-webkit-box-sizing: ${1:border-box};
-	-moz-box-sizing: $1;
-	box-sizing: $1;${2}
-snippet br border-radius
-	-webkit-border-radius: ${1:4px};
-	-moz-border-radius: $1;
-	border-radius: $1;${2}
-snippet bs box-shadow
-	-webkit-box-shadow: ${1:(top)}px ${2:(left)}px ${3:(blur)}px ${4:(spread)}px rgba(${5:0}, ${6:0}, ${7:0}, ${8:0.5});
-	box-shadow: $1px $2px $3px $4px rgba($5, $6, $7, $8);${9}
-snippet vgrad Vertical gradient
-	background: $1;
-	background: -moz-linear-gradient(top, ${1:#999} 0%, ${2:#ccc} 100%);
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, $1), color-stop(100%, $2));
-	background: -webkit-linear-gradient(top, $1 0%, $2 100%);
-	background: -o-linear-gradient(top, $1 0%, $2 100%);
-	background: -ms-linear-gradient(top, $1 0%, $2 100%);
-	background: linear-gradient(to bottom, $1 0%, $2 100%);
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$1', endColorstr='$2', GradientType=0);${3}
-snippet hgrad Horizontal gradient
-	background: $1;
-	background: -moz-linear-gradient(left, ${1:#999} 0%, ${2:#ccc} 100%);
-	background: -webkit-gradient(linear, left top, right top, color-stop(0%, $1), color-stop(100%, $2));
-	background: -webkit-linear-gradient(left, $1 0%, $2 100%);
-	background: -o-linear-gradient(left, $1 0%, $2 100%);
-	background: -ms-linear-gradient(left, $1 0%, $2 100%);
-	background: linear-gradient(to right, $1 0%, $2 100%);
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$1', endColorstr='$2', GradientType=1);${3}
-snippet reset CSS reset
-	html, body, div, span, applet, object, iframe,
-	h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-	a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd,
-	q, s, samp, small, strike, strong, sub, sup, tt, var, dl, dt, dd, ol, ul, li,
-	form, fieldset, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {
-		margin: 0;
-		padding: 0;
-		border: 0;
-		outline: 0;
-		font-size: 100%;
-		font: inherit;
-		vertical-align: baseline;
-	} 
-	ol, ul { list-style: none; }
-	blockquote, q { quotes: none; }
-	blockquote:before, blockquote:after, q:before, q:after {
-		content: '';
-		content: none;
-	}
+cursor:${1:default|crosshair|auto|hand|move|help|pointer|progress|text|wait};${2}
+endsnippet
+
+snippet sizing "box-sizing"
+-webkit-box-sizing: ${1:border-box};
+-moz-box-sizing: $1;
+box-sizing: $1;${2}
+endsnippet
+
+snippet br "border-radius"
+-webkit-border-radius: ${1:4px};
+-moz-border-radius: $1;
+border-radius: $1;${2}
+endsnippet
+
+snippet bs "box-shadow"
+-webkit-box-shadow: ${1:(top)}px ${2:(left)}px ${3:(blur)}px ${4:(spread)}px rgba(${5:0}, ${6:0}, ${7:0}, ${8:0.5});
+box-shadow: $1px $2px $3px $4px rgba($5, $6, $7, $8);${9}
+endsnippet
+
+snippet vgrad "Vertical gradient"
+background: $1;
+background: -moz-linear-gradient(top, ${1:#999} 0%, ${2:#ccc} 100%);
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, $1), color-stop(100%, $2));
+background: -webkit-linear-gradient(top, $1 0%, $2 100%);
+background: -o-linear-gradient(top, $1 0%, $2 100%);
+background: -ms-linear-gradient(top, $1 0%, $2 100%);
+background: linear-gradient(to bottom, $1 0%, $2 100%);
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$1', endColorstr='$2', GradientType=0);${3}
+endsnippet
+
+snippet hgrad "Horizontal gradient"
+background: $1;
+background: -moz-linear-gradient(left, ${1:#999} 0%, ${2:#ccc} 100%);
+background: -webkit-gradient(linear, left top, right top, color-stop(0%, $1), color-stop(100%, $2));
+background: -webkit-linear-gradient(left, $1 0%, $2 100%);
+background: -o-linear-gradient(left, $1 0%, $2 100%);
+background: -ms-linear-gradient(left, $1 0%, $2 100%);
+background: linear-gradient(to right, $1 0%, $2 100%);
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$1', endColorstr='$2', GradientType=1);${3}
+endsnippet
+
+snippet reset "CSS reset"
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd,
+q, s, samp, small, strike, strong, sub, sup, tt, var, dl, dt, dd, ol, ul, li,
+form, fieldset, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {
+margin: 0;
+padding: 0;
+border: 0;
+outline: 0;
+font-size: 100%;
+font: inherit;
+vertical-align: baseline;
+} 
+ol, ul { list-style: none; }
+blockquote, q { quotes: none; }
+blockquote:before, blockquote:after, q:before, q:after {
+content: '';
+content: none;
+}
+endsnippet
+
 snippet media
-	@media screen and (${1:max}-width: ${2:800}px) {
+@media screen and (${1:max}-width: ${2:800}px) {
 		${3}
 	}
+endsnippet
+
+snippet selection "selection"
+$1::-moz-selection,
+$1::selection {
+	color: ${2:inherit};
+	background: ${3:inherit};
+}
+endsnippet
