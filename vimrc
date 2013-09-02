@@ -482,6 +482,7 @@
   let g:UltiSnipsListSnippets = '<C-j>'
   let g:did_UltiSnips_vim_after = 1
   let g:UltiSnipsSnippetDirectories = ['ultisnippets']
+  let g:UltiSnipsNoPythonWarning = 1
 
   " CtrlP plugin
   map <C-p> :CtrlP<CR>
