@@ -1,3 +1,24 @@
+snippet f "Function"
+${1:(${2:args}) }->
+	${0:# body...}
+endsnippet
+
+snippet fn "Function"
+${1:name} = ${2:(${3:args}) }->
+	${0:# body...}
+endsnippet
+
+snippet fb "Function (bound)"
+${1:(${2:args}) }~>
+	${0:# body...}
+endsnippet
+
+snippet switch "Switch" b
+switch ${1:object}
+	when ${2:value}
+		${0:# body...}
+endsnippet
+
 snippet # "Interpolated Code"
 #{$1}$0
 endsnippet
@@ -12,4 +33,23 @@ snippet ## "JSDoc bloc" b
  * @param ${2}
  * @return ${0}
  */
+endsnippet
+
+snippet try "Try .. Catch" b
+try
+	$1
+catch ${2:error}
+	$3
+endsnippet
+
+snippet sto "setTimeout" b
+setTimeout ->
+	${1:# callback code}
+, ${2:100}
+endsnippet
+
+snippet sint "setInterval" w
+setInterval ->
+	${1:# callback code}
+, ${2:100}
 endsnippet
