@@ -865,6 +865,8 @@
   " Snippets
   au FileType snippet setlocal noexpandtab foldexpr=IndentationFoldExpr(v:lnum) foldmethod=expr
 
+  au FileType sh noremap <buffer> <leader>x :!%<CR>
+
   " {{{ CoffeeScript tagbar configuration
   let g:tagbar_type_coffee = {
       \ 'ctagstype' : 'coffee',
