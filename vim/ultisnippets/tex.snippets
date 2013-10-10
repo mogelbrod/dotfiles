@@ -15,8 +15,8 @@ endsnippet
 #################
 # GENERAL STUFF #
 #################
-snippet "b(egin)?" "begin{} / end{}" br
-\begin{${1:something}}
+snippet begin "begin{} / end{}" b
+\begin{${1:verbatim}}
 	${0:${VISUAL}}
 \end{$1}
 endsnippet
@@ -61,65 +61,42 @@ snippet part "Part" b
 \label{prt:${2:${1/(\w+)|\W+/(?1:\L$0\E:_)/g}}}
 
 ${0}
-
-% part $2 (end)
 endsnippet
 
 snippet cha "Chapter" b
-\chapter{${1:chapter name}}
-\label{cha:${2:${1/\\\w+\{(.*?)\}|\\(.)|(\w+)|([^\w\\]+)/(?4:_:\L$1$2$3\E)/g}}}
+\chapter{${1}}
 
 ${0}
-
-% chapter $2 (end)
 endsnippet
 
-snippet sec "Section" b
-\section{${1:section name}}
-\label{sec:${2:${1/\\\w+\{(.*?)\}|\\(.)|(\w+)|([^\w\\]+)/(?4:_:\L$1$2$3\E)/g}}}
+snippet s "Section" b
+\section{${1}}
 
 ${0}
-
-% section $2 (end)
 endsnippet
 
-
-snippet sub "Subsection" b
-\subsection{${1:subsection name}}
-\label{sub:${2:${1/\\\w+\{(.*?)\}|\\(.)|(\w+)|([^\w\\]+)/(?4:_:\L$1$2$3\E)/g}}}
+snippet ss "Subsection" b
+\subsection{${1}}
 
 ${0}
-
-% subsection $2 (end)
 endsnippet
 
-snippet ssub "Subsubsection" b
-\subsubsection{${1:subsubsection name}}
-\label{ssub:${2:${1/\\\w+\{(.*?)\}|\\(.)|(\w+)|([^\w\\]+)/(?4:_:\L$1$2$3\E)/g}}}
+snippet sss "Subsubsection" b
+\subsubsection{${1}}
 
 ${0}
-
-% subsubsection $2 (end)
-
 endsnippet
 
 snippet par "Paragraph" b
-\paragraph{${1:paragraph name}}
-\label{par:${2:${1/\\\w+\{(.*?)\}|\\(.)|(\w+)|([^\w\\]+)/(?4:_:\L$1$2$3\E)/g}}}
+\paragraph{${1:Paragraph}}
 
 ${0}
-
-% paragraph $2 (end)
 endsnippet
-
 
 snippet subp "Subparagraph" b
 \subparagraph{${1:subparagraph name}}
-\label{par:${2:${1/\\\w+\{(.*?)\}|\\(.)|(\w+)|([^\w\\]+)/(?4:_:\L$1$2$3\E)/g}}}
 
 ${0}
-
-% subparagraph $2 (end)
 endsnippet
 
 ###############
@@ -130,8 +107,88 @@ snippet pac "Package" b
 \usepackage[${1:options}]{${2:package}}$0
 endsnippet
 
-
 snippet lp "Long parenthesis" 
 \left(${1:${VISUAL:contents}}\right)$0
 endsnippet
+
+snippet em "Emph"
+\emph{${1}}$0
+endsnippet
+
+snippet b "Bold font"
+\textbf{${1}}$0
+endsnippet
+
+snippet i "Italic"
+\textit{${1:text}}$0
+endsnippet
+
+snippet cite "Cite"
+\cite{${1}}$0
+endsnippet
+
+snippet sf "Sans serif"
+\textsf{${1:text}}$0
+endsnippet
+
+snippet rm "Reset font"
+\textrm{${1:text}}$0
+endsnippet
+
+snippet tt "Teletype"
+\texttt{${1:text}}$0
+endsnippet
+
+snippet v "Inline verbatim"
+\verb|${1:code}|$0
+endsnippet
+
+snippet cpage "Clear page"
+\clearpage
+$0
+endsnippet
+
+snippet npage "New page"
+\newpage
+$0
+endsnippet
+
+snippet nc "newcommand"
+\newcommand{\${1:cmd}}[${2:opt}]{${3:realcmd}}$0
+endsnippet
+
+snippet up "usepackage"
+\usepackage{${1}}$0
+endsnippet
+
+snippet table "tabular"
+\begin{${1:tabular}}{${2:l}}
+${3}
+\end{$1}
+endsnippet
+
+snippet align "Aligned environment"
+\begin{align${1:ed}}
+${2}
+\end{align$1}
+endsnippet
+
+snippet gather "Gather"
+\begin{gather${1:ed}}
+${2}
+\end{gather$1}
+endsnippet
+
+snippet eq "Equation"
+\begin{equation}
+${1}
+\end{equation}
+endsnippet
+
+snippet \ "Unnumbered equation"
+\\[
+${1}
+\\]
+endsnippet
+
 # vim:ft=snippets:
