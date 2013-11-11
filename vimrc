@@ -795,6 +795,11 @@
     au FileType css setlocal sts=2 ts=2 sw=2 noexpandtab
   augroup END
 
+  augroup ft_js
+    au!
+    au FileType javascript call SuperTabSetDefaultCompletionType("<c-n>")
+  augroup END
+
   " CoffeeScript / Jade / LiveScript
   augroup ft_coffee
     au!
