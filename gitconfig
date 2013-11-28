@@ -4,3 +4,5 @@
 [core]
 	excludesfile = ~/.gitignore
 	autocrlf = input
+[push]
+	default = matching

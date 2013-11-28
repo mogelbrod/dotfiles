@@ -33,7 +33,8 @@ Dir['*'].each do |origin|
   if origin == 'vim' && IS_WINDOWS
     file = 'vimfiles' 
   elsif %w(terminator).include? origin
-    FileUtils.mkdir_p('.config') unless File.exists?('.config')
+    config_dir = File.join home, '.config'
+    FileUtils.mkdir_p(config_dir) unless File.exists?(config_dir)
     file = File.join('.config', origin)
   end
 
