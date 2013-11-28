@@ -84,3 +84,6 @@
 [submodule "vim/bundle/livescript"]
 	path = vim/bundle/livescript
 	url = https://github.com/gkz/vim-ls.git
+[submodule "vim/bundle/emmet-vim"]
+	path = vim/bundle/emmet-vim
+	url = https://github.com/mattn/emmet-vim.git
