@@ -43,9 +43,9 @@ Dir['*'].each do |origin|
     puts " - #{file} (#{target}) already exists, skipping."
   else
     if link(origin, target)
-      puts " ! #{target} could not be linked."
-    else
       puts " + #{file} => #{target} has been linked."
+    else
+      puts " ! #{target} could not be linked."
     end
   end
 end
