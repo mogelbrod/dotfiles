@@ -102,7 +102,11 @@
   set timeoutlen=3000
 
   " Update external program settings
-  if executable("ack")
+  if executable('ag')
+    set grepprg=ag\ --nogroup\ --nocolor
+    let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+    let g:ctrlp_use_caching = 0
+  elseif executable("ack")
     set grepprg=ack\ -k
   endif
 
@@ -605,7 +609,7 @@
       let str = expand("<cword>")
     endif
 
-    if &grepprg == "ack -k"
+    if &grepprg == "ack -k" || &grepprg == "ag --nogroup --nocolor"
       let call = 'grep "'.str.'"'
     else
       let str = escape(str, '.\*+[]^$')
@@ -778,7 +782,7 @@
     au FileType python noremap <buffer> <leader>o :!python %<CR>
     au FileType python setlocal makeprg=python\ %
     au FileType python setlocal efm=%C\ %.%#,%A\ \ File\ \"%f\"\\,\ line\ %l%.%#,%Z%[%^\ ]%\\@=%m
-    au FileType python call SuperTabSetDefaultCompletionType("<c-x><c-o>")
+    " au FileType python call SuperTabSetDefaultCompletionType("<c-x><c-o>")
   augroup END
 
   " HTML
