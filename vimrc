@@ -840,9 +840,9 @@
     au!
     "au FileType cpp setlocal foldmarker={,}
     if has("win32")
-      au FileType c,cpp,h setlocal makeprg=mingw32-make
+      au FileType c,cpp,h,hpp setlocal makeprg=mingw32-make
     else
-      au FileType c,cpp,h setlocal makeprg=make
+      au FileType c,cpp,h,hpp setlocal makeprg=make
     endif
   augroup END
 
