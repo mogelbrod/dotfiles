@@ -1,15 +1,19 @@
 extends c
 
-###########################################################################
-#                            TextMate Snippets                            #
-###########################################################################
 snippet beginend "$1.begin(), $1.end() (beginend)"
 ${1:v}${1/^.*?(-)?(>)?$/(?2::(?1:>:.))/}begin(), $1${1/^.*?(-)?(>)?$/(?2::(?1:>:.))/}end()
 endsnippet
 
+snippet inc "#include local header (inc)" !
+#include "${1:`!p snip.rv = snip.basename + '.hpp'`}"$0
+endsnippet
+
+snippet Inc "#include <> (Inc)" !
+#include <${1}>$0
+endsnippet
+
 snippet cl "class .. (class)"
-class ${1:`!p snip.rv = snip.basename or "name"`}
-{
+class ${1:`!p snip.rv = snip.basename or "name"`} {
 public:
 	${1/(\w+).*/$1/} (${2:arguments});
 	virtual ~${1/(\w+).*/$1/} ();
@@ -20,8 +24,7 @@ private:
 endsnippet
 
 snippet ns "namespace .. (namespace)"
-namespace${1/.+/ /m}${1:`!p snip.rv = snip.basename or "name"`}
-{
+namespace${1/.+/ /m}${1:`!p snip.rv = snip.basename or "name"`} {
 	${VISUAL}${0:${VISUAL/(.*)/(?1::\/* code *\/)/}}
 }${1/.+/ \/* /m}$1${1/.+/ *\/ /m}
 endsnippet
@@ -47,6 +50,18 @@ endsnippet
 
 snippet tp "template <typename ..> (template)"
 template <typename ${1:_InputIter}>
+endsnippet
+
+snippet ustd "using namespace std;" b
+using namespace ${1:std};$0
+endsnippet
+
+snippet s "std::" w
+std::$0
+endsnippet
+
+snippet t "this->" w
+this->$0
 endsnippet
 
 # vim:ft=snippets:
