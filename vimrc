@@ -563,6 +563,12 @@
   let g:indent_guides_guide_size = 1
   let g:indent_guides_color_change_percent = 5
 
+  " EnhancedJumps
+  nmap <C-o> <Plug>EnhancedJumpsRemoteOlder
+  nmap <C-t> <Plug>EnhancedJumpsRemoteNewer
+  nmap <leader><C-o> <Plug>EnhancedJumpsOlder
+  nmap <leader><C-t> <Plug>EnhancedJumpsNewer
+
 " }}}
 " {{{ Custom functions and commands
 

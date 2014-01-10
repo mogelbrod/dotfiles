@@ -90,3 +90,9 @@
 [submodule "vim/bundle/ag"]
 	path = vim/bundle/ag
 	url = https://github.com/rking/ag.vim
+[submodule "vim/bundle/enhanced-jumps"]
+	path = vim/bundle/enhanced-jumps
+	url = https://github.com/vim-scripts/EnhancedJumps.git
+[submodule "vim/bundle/ingo-library"]
+	path = vim/bundle/ingo-library
+	url = https://github.com/vim-scripts/ingo-library.git
