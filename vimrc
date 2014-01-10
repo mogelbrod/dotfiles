@@ -705,6 +705,16 @@
     call cursor(l, c)
   endfunction "}}}
 
+  " Command which switches between source and header files
+  function! SwitchSourceHeader() "{{{
+    "update!
+    if (expand ("%:e") == "cpp")
+      silent find %:t:r.hpp
+    else
+      silent find %:t:r.cpp
+    endif
+  endfunction "}}}
+
 " }}}
 " {{{ GUI settings/overwrites
 
@@ -844,6 +854,7 @@
     else
       au FileType c,cpp,h,hpp setlocal makeprg=make
     endif
+    au FileType cpp,hpp noremap <buffer> <leader>x :call SwitchSourceHeader()<CR>
   augroup END
 
   " Lua
