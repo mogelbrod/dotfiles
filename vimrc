@@ -864,6 +864,7 @@
       au FileType c,cpp,h,hpp setlocal makeprg=make
     endif
     au FileType cpp,hpp noremap <buffer> <leader>x :call SwitchSourceHeader()<CR>
+    au FileType cpp,hpp setlocal commentstring=//\ %s
   augroup END
 
   " Lua
