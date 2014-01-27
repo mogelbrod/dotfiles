@@ -103,8 +103,8 @@
 
   " Update external program settings
   if executable('ag')
-    set grepprg=ag\ --nogroup\ --nocolor
-    let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+    set grepprg=ag\ --nogroup\ --nocolor\ --skip-vcs-ignores
+    let g:ctrlp_user_command = 'ag %s -l --nocolor --skip-vcs-ignores -g ""'
     let g:ctrlp_use_caching = 0
   elseif executable("ack")
     set grepprg=ack\ -k
@@ -505,6 +505,9 @@
     \ 'dir':  '\v\.(git|hg|svn)$',
     \ 'file': '\v\.(exe|so|dll|tar|bz2|gz|zip|jar|deb|jpe?g|png|gif|bmp|mp3|avi|mp4|mov|mpe?g|mkv|pdf)$'
     \ }
+
+  " Ag
+  let g:agprg="ag --column --smart-case --skip-vcs-ignores"
 
   " Auto-Pairs
   let g:AutoPairsMapSpace = 0
