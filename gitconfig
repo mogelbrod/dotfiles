@@ -6,3 +6,5 @@
 	autocrlf = input
 [push]
 	default = matching
+[color]
+	ui = true
