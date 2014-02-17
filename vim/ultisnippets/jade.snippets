@@ -1,0 +1,51 @@
+snippet m "mixin" b
+mixin $0
+endsnippet
+
+snippet attr "attributes" w
+attributes
+endsnippet
+
+snippet delattr "extract attribute" w
+(${1:var} = attributes.${2:$1}) && delete attributes.$2$0
+endsnippet
+
+snippet ngm "ng-model" w
+ng-model="${1}"$0
+endsnippet
+
+snippet ngo "ng-options" w
+ng-options="o.id as o.name for o in ${1}"$0
+endsnippet
+
+snippet ngr "ng-repeat" w
+ng-repeat="${1:v} in ${2:ary}"$0
+endsnippet
+
+snippet ngif "ng-if" w
+ng-if="${1}"$0
+endsnippet
+
+snippet ngs "ng-show" w
+ng-show="${1}"$0
+endsnippet
+
+snippet ngh "ng-hide" w
+ng-hide="${1}"$0
+endsnippet
+
+snippet ngd "ng-disabled" w
+ng-disabled="${1}"$0
+endsnippet
+
+snippet ngc "ng-click" w
+ng-click="${1}"$0
+endsnippet
+
+snippet ngb "ng-bind" w
+ng-bind="${1}"$0
+endsnippet
+
+snippet ngcl "ng-class" w
+ng-class="{${1}}"$0
+endsnippet
