@@ -493,13 +493,14 @@
   map <C-b> :CtrlPBuffer<CR>
   " search for both files, buffers and MRUs
   let g:ctrlp_cmd = 'CtrlPMixed'
-  let g:ctrlp_switch_buffer = 't'
+  let g:ctrlp_switch_buffer = ''
   let g:ctrlp_open_new_file = 'r'
   let g:ctrlp_max_depth = 10
   let g:ctrlp_mruf_max = 50
   let g:ctrlp_lazy_update = 200
   let g:ctrlp_extensions = ['mixed', 'tag']
   let g:ctrlp_reuse_window = 'netrw\|quickfix'
+  let g:ctrlp_mruf_relative = 1
 
   let g:ctrlp_custom_ignore = {
     \ 'dir':  '\v\.(git|hg|svn)$',
