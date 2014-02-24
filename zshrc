@@ -256,6 +256,14 @@
   	fi
   }
 
+  function findext {
+    find ${2:=.} -type f -name "*.${1:=*}"
+  }
+
+  function agext {
+    ag -G "\\.$1$" -Q $2
+  }
+
 #}}}
 #{{{ Git specific
 
