@@ -256,6 +256,10 @@
   	fi
   }
 
+  function findn {
+    find ${2:=.} -name $1
+  }
+
   function findext {
     find ${2:=.} -type f -name "*.${1:=*}"
   }
