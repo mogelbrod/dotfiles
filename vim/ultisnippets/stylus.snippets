@@ -165,3 +165,11 @@ endsnippet
 snippet br "border-radius" b
 border-radius ${1:4px}
 endsnippet
+
+snippet cf "clearfix" b
+&:before, &:after
+	content ' '
+	display table
+&:after
+	clear both
+endsnippet
