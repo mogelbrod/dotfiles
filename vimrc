@@ -589,6 +589,17 @@
   command! -nargs=1 Hex2RGB call HexToRGB(<args>)
   command! -nargs=1 Dec2Hex call DecToHex(<args>)
 
+  command! -nargs=+ Agext call AgExt(<q-args>)
+
+  " Limit Ag command search to a specific file type
+  function! AgExt(...) "{{{
+    let words = split(a:1)
+    let ext = words[0]
+    let rest = join(words[1:-1], ' ')
+    echo "normal :Ag -G '\.".ext."$' ".rest."<CR>"
+    exe "Ag -G '\.".ext."$' ".rest
+  endfunction "}}}
+
   " Generate new tags file recursively from cwd or a specific path
   function! GenerateTags(...) "{{{
     let path = a:0 > 0 ? a:1 : getcwd()
@@ -734,6 +745,8 @@
       set guifont=ProFontWindows:h9
       map <leader>0 :set guifont=ProFontWindows:h9<CR>
       map <leader>+ :set guifont=ProFontWindows:h16<CR>
+    else
+      set guifont=Monaco:h12
     endif
 
     set guioptions=
