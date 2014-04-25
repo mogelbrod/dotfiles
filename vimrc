@@ -361,7 +361,8 @@
     
     let cols = winwidth(0) - (&nu ? &numberwidth : 0)
 
-    let fill = repeat('-', cols - strlen(line) - strlen(linecount))
+
+    let fill = repeat('-', cols - strlen(substitute(line, '.', 'x', 'g'))  - strlen(linecount))
     let line = strpart(line, 0, cols - strlen(linecount)) . fill . linecount
 
     return line
