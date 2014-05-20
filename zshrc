@@ -276,7 +276,7 @@
   alias gpp='git pull --rebase && git push'
   alias gco='git checkout'
 
-  alias ga='git add'
+  alias ga='git add --all'
   alias gap='git add --patch'
   alias gaundo='git rm --cached -r' # remove from index (keep in working dir)
 
@@ -295,6 +295,10 @@
 
   alias gl='git log --color --name-status --pretty=format:"%C(red)[%h] %an %C(blue)(%ar)%n%C(green)%s%n%b%C(reset)"'
   alias glt='git log --all --color --graph --pretty=format:"%C(red)[%h] %an %C(blue)(%ar)%C(green)%d%C(reset) %s"'
+
+  function gdc() {
+    git diff --diff-algorithm minimal $1^ $1 $*
+  }
 
   function gbump() {
     what=${1:-patch}
