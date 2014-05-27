@@ -103,8 +103,9 @@
 
   " Update external program settings
   if executable('ag')
-    set grepprg=ag\ --nogroup\ --nocolor\ --skip-vcs-ignores
-    let g:ctrlp_user_command = 'ag %s -l --nocolor --skip-vcs-ignores -g ""'
+    " set grepprg=ag\ --nogroup\ --nocolor\ --skip-vcs-ignores
+    set grepprg=ag\ --nogroup\ --nocolor
+    let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""' " --skip-vcs-ignores
     let g:ctrlp_use_caching = 0
   elseif executable("ack")
     set grepprg=ack\ -k
