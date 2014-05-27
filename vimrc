@@ -782,6 +782,8 @@
   " Dictionary
   au FileType * exe('setl dict+='.$VIMHOME.'/dict/'.&filetype)
 
+  au FileType qf setlocal nowrap
+
   " LaTeX
   augroup ft_latex
     au!
@@ -845,6 +847,7 @@
     au FileType jade,coffee,ls IFold
     au FileType coffee noremap <buffer> <leader>x :CoffeeCompile<CR>
     au FileType ls noremap <buffer> <leader>x :LiveScriptCompile<CR>
+    au FileType ls setlocal indentkeys=o,O,},],0),!^F
   augroup END
 
   " XML
