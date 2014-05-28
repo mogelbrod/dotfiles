@@ -235,7 +235,7 @@
   }
   
   # Credits to http://dotfiles.org/~pseup/.bashrc
-  function extract() {
+  function extract {
   	if [ -f $1 ] ; then
   		case $1 in
   			*.tar.bz2) tar xjf $1 ;;
@@ -266,6 +266,11 @@
 
   function agext {
     ag -G "\\.$1$" -Q $2
+  }
+
+  function port-usage {
+    [[ -z $1 ]] || 1=":$1"
+    lsof -Pi | grep "$1 (LISTEN)"
   }
 
 #}}}
