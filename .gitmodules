@@ -99,3 +99,6 @@
 [submodule "vim/bundle/indent-object"]
 	path = vim/bundle/indent-object
 	url = https://github.com/michaeljsmith/vim-indent-object.git
+[submodule "vim/bundle/angry"]
+	path = vim/bundle/angry
+	url = git@github.com:b4winckler/vim-angry.git
