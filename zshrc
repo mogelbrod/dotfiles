@@ -125,7 +125,7 @@
   HISTFILE=~/.histfile
   HISTSIZE=5000
   SAVEHIST=1000
-  setopt append_history hist_reduce_blanks share_history
+  setopt append_history hist_reduce_blanks
 
 #}}}
 #{{{ Bindings
