@@ -1,10 +1,29 @@
 [user]
 	name = Victor Hallberg
-	email = vigge19@gmail.com
+	email = victor@hallberg.cc
 [core]
 	excludesfile = ~/.gitignore
 	autocrlf = input
 [push]
 	default = matching
+
 [color]
-	ui = true
+  branch = auto
+  diff = auto
+  interactive = auto
+  status = auto
+  ui = auto
+
+[apply]
+  whitespace = fix
+
+[diff]
+  renames = copies # Detect copies as well as renames.
+
+[merge]
+	tool = diffconflicts
+
+[mergetool "diffconflicts"]
+	cmd = ~/.vim/diffconflicts vim $BASE $LOCAL $REMOTE $MERGED
+	trustExitCode = true
+	keepBackup = false
