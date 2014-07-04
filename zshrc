@@ -231,7 +231,8 @@
   }
 
   function title {
-  	TERM_TITLE="$*"
+    TERM_TITLE="$*"
+    [[ -z "$TERM_TITLE" ]] && TERM_TITLE=$(basename `pwd`)
   }
   
   # Credits to http://dotfiles.org/~pseup/.bashrc
@@ -304,7 +305,7 @@
 
   function gdc() {
     [[ -z $1 ]] && 1="HEAD"
-    git diff --diff-algorithm minimal $1^ $1
+    git diff --diff-algorithm minimal $1^ $1 $*
   }
 
   function gbump() {
