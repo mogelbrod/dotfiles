@@ -916,6 +916,17 @@
 
   au FileType sh noremap <buffer> <leader>x :!%<CR>
 
+  " {{{ Use dash as keyword program (Mac OSX only)
+  augroup query_dash
+    if has('mac')
+      au FileType html setlocal keywordprg=~/dotfiles/vim/query-dash\ html
+      au FileType jade setlocal keywordprg=~/dotfiles/vim/query-dash\ html,jade
+      au FileType coffee setlocal keywordprg=~/dotfiles/vim/query-dash\ node,js,coffee
+      au FileType javascript,ls setlocal keywordprg=~/dotfiles/vim/query-dash\ node,js
+    end
+  augroup END
+  " }}}
+
   " {{{ CoffeeScript tagbar configuration
   let g:tagbar_type_coffee = {
       \ 'ctagstype' : 'coffee',
@@ -953,7 +964,6 @@
 
   let $CTAGS = substitute(s:ctags_opts, '\v\([nst]\)', '\\', 'g')
   " }}}
-
 " }}}
 " {{{ Optionally load local rc file
 

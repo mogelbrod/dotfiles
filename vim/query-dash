@@ -1,0 +1,6 @@
+#!/bin/sh
+
+query="keys=$1"
+[[ -z "$2" ]] || query="${query}&query=$2"
+
+open "dash-plugin://${query}"
