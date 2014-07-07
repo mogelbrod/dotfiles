@@ -102,3 +102,6 @@
 [submodule "vim/bundle/angry"]
 	path = vim/bundle/angry
 	url = git@github.com:b4winckler/vim-angry.git
+[submodule "vim/bundle/dash.vim"]
+	path = vim/bundle/dash.vim
+	url = https://github.com/rizzatti/dash.vim.git
