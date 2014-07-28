@@ -154,12 +154,20 @@ snippet ta "text-align" b
 text-align ${1:left}
 endsnippet
 
+snippet va "vertical-align" b
+vertical-align ${1:middle}
+endsnippet
+
 snippet cursor "cursor" b
 cursor ${1:default|crosshair|auto|hand|move|help|pointer|progress|text|wait}$0
 endsnippet
 
 snippet bs "box-shadow" b
 box-shadow ${1:horiz} ${2:vert} ${3:blur} ${4:spread} ${5:rgba(#000, .5)}
+endsnippet
+
+snippet siz "box-sizing" b
+box-sizing ${1:border-box}
 endsnippet
 
 snippet br "border-radius" b
@@ -172,6 +180,14 @@ snippet cf "clearfix" b
 	display table
 &:after
 	clear both
+endsnippet
+
+snippet pe "pointer-events" b
+pointer-events ${1:none}
+endsnippet
+
+snippet us "user-select" b
+user-select ${1:none}
 endsnippet
 
 snippet fc "Folding comment" b
