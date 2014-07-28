@@ -304,8 +304,10 @@
   alias glt='git log --all --color --graph --pretty=format:"%C(red)[%h] %an %C(blue)(%ar)%C(green)%d%C(reset) %s"'
 
   function gdc() {
-    [[ -z $1 ]] && 1="HEAD"
-    git diff --diff-algorithm minimal $1^ $1 $*
+    commit="$1"
+    [[ -z $1 ]] && commit="HEAD"
+    shift
+    git diff --diff-algorithm minimal $commit^ $commit $*
   }
 
   function gbump() {
