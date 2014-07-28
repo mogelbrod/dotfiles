@@ -45,7 +45,6 @@
 
   " Buffer saving/reading
   set nobackup nowritebackup " do not create backups when writing to files
-  set autoread " automatically reload file after external write
   set autowrite " autosave before making
   set hidden " allow switching of buffers without saving them first
 
