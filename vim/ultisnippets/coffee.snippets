@@ -101,7 +101,7 @@ snippet # "Interpolated Code" i
 endsnippet
 
 snippet cl "Log" b
-console.log ${1:"${2:msg}"}
+console.log $0
 endsnippet
 
 snippet ## "JSDoc bloc" b
@@ -110,4 +110,8 @@ snippet ## "JSDoc bloc" b
 * @param ${2}
 * @return ${0}
 ###
+endsnippet
+
+snippet typeof! "LiveScript typeof!" w
+{}.toString.call(${1:value}).slice(8, -1)$0
 endsnippet

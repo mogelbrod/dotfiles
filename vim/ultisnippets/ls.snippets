@@ -1,3 +1,17 @@
+snippet req "require"
+require $0
+endsnippet
+
+snippet r! "require!"
+require! $0
+endsnippet
+
+snippet req! "require! {}" b
+require! {
+	$0
+}
+endsnippet
+
 snippet f "Function"
 ${1:(${2:args}) }->
 	${0:# body...}
@@ -24,7 +38,11 @@ snippet # "Interpolated Code"
 endsnippet
 
 snippet cl "Log" b
-console.log ${1:"${2:msg}"}
+console.log $0
+endsnippet
+
+snippet cld "Debug log" b
+console.log "${1:x}", $1
 endsnippet
 
 snippet ## "JSDoc bloc" b
@@ -57,4 +75,11 @@ endsnippet
 
 snippet ary "String array" w
 <[ $1 ]>
+endsnippet
+
+snippet fc "Folding comment" b
+#{{{ ${1}
+#---------------------------------------------------------
+$0
+#}}}
 endsnippet
