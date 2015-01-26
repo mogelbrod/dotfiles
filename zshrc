@@ -280,7 +280,7 @@
   alias gs='git status'
 
   alias gp='git push'
-  alias gpp='git pull --rebase && git push'
+  alias gpp='git pull && git push'
   alias gco='git checkout'
 
   alias ga='git add --all'
