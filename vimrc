@@ -843,7 +843,7 @@
   " CoffeeScript / Jade / LiveScript
   augroup ft_coffee
     au!
-    au FileType jade,coffee,ls IFold
+    au FileType jade,coffee IFold
     au FileType coffee noremap <buffer> <leader>x :CoffeeCompile<CR>
     au FileType ls noremap <buffer> <leader>x :LiveScriptCompile<CR>
     au FileType ls setlocal indentkeys=o,O,},],0),!^F
