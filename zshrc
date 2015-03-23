@@ -317,6 +317,7 @@
     [ -n "$changed" ] && git stash
     git pull --rebase && npm version $what && git push && git push --tags
     [ -n "$changed" ] && git stash pop
+    true
   }
 
 #}}}
