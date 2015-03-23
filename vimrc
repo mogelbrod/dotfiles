@@ -597,8 +597,8 @@
     let words = split(a:1)
     let ext = words[0]
     let rest = join(words[1:-1], ' ')
-    echo "normal :Ag -G '\.".ext."$' ".rest."<CR>"
-    exe "Ag -G '\.".ext."$' ".rest
+    echo "normal :Ag -G '\.(".ext.")$' ".rest."<CR>"
+    exe "Ag -G '\.(".ext.")$' ".rest
   endfunction "}}}
 
   " Generate new tags file recursively from cwd or a specific path
