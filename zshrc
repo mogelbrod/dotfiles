@@ -63,7 +63,7 @@
     # Terminal title (overriden by $TERM_TITLE env)
     if [[ $TERM == (*xterm*|rxvt); ]]; then
       title=$TERM_TITLE
-      [[ -z $TERM_TITLE ]] && title="[%n@%m] %~"
+      [[ -z $TERM_TITLE ]] && title="%~"
       print -Pn "]0;$title\a"
     fi
 
@@ -305,8 +305,7 @@
 
   function gdc() {
     commit="$1"
-    [[ -z $1 ]] && commit="HEAD"
-    shift
+    [[ -z $1 ]] && commit="HEAD" || shift
     git diff --diff-algorithm minimal $commit^ $commit $*
   }
 
