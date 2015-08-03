@@ -83,3 +83,13 @@ snippet fc "Folding comment" b
 $0
 #}}}
 endsnippet
+
+snippet tit "Mocha it" b
+it "$1", ->
+	$0
+endsnippet
+
+snippet tdesc "Mocha describe" b
+describe "$1", (_) ->
+	$0
+endsnippet
