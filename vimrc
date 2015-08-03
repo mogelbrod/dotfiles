@@ -591,6 +591,10 @@
 
   command! -nargs=+ Agext call AgExt(<q-args>)
 
+  command! -nargs=0 WipeHidden call WipeHiddenBuffers()
+
+  command! -nargs=0 HiName echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"
+
   " Limit Ag command search to a specific file type
   function! AgExt(...) "{{{
     let words = split(a:1)
@@ -734,6 +738,19 @@
     else
       silent find %:t:r.cpp
     endif
+  endfunction "}}}
+
+  function! WipeHiddenBuffers() "{{{
+    let tpbl=[]
+    let closed = 0
+    call map(range(1, tabpagenr('$')), 'extend(tpbl, tabpagebuflist(v:val))')
+    for buf in filter(range(1, bufnr('$')), 'bufexists(v:val) && index(tpbl, v:val)==-1')
+      if getbufvar(buf, '&mod') == 0
+        silent execute 'bwipeout' buf
+        let closed += 1
+      endif
+    endfor
+    echo "Closed ".closed." hidden buffers"
   endfunction "}}}
 
 " }}}
