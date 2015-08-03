@@ -149,4 +149,8 @@ hi link htmlBold Normal
 "hi link htmlStatement PreProc
 "hi link htmlArg Tag
 
+" Jade
+hi link jadeTag Statement
+hi link jadeJavascriptOutputChar Special
+
 " }}}
