@@ -563,6 +563,8 @@
   " Compiler specific settings
   let g:syntastic_cpp_compiler_options = "-std=c++0x -W"
 
+  let g:jsx_ext_required = 0
+
   " Indent guides
   let g:indent_guides_start_level = 2
   let g:indent_guides_guide_size = 1
