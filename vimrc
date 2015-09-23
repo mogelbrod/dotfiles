@@ -517,16 +517,17 @@
   let g:AutoPairsShortcutFastWrap = '<c-b>' " default conflicts with å character
 
   " Emmet
-  let g:user_emmet_expandabbr_key = '<C-y><cr>'
-  let g:user_emmet_next_key = '<C-y>n'
-  let g:user_emmet_prev_key = '<C-y>p'
-  let g:user_emmet_balancetaginward_key = '<C-y>i'
-  let g:user_emmet_balancetagoutward_key = '<C-y>a'
-  let g:user_emmet_removetag_key = '<C-y>d'
-  let g:user_emmet_togglecomment_key = '<C-y>c'
-  let g:user_emmet_codepretty_keya = '<C-y>C'
-  let g:user_emmet_anchorizeurl_key = '<C-y>l'
-  let g:user_emmet_anchorizesummary_key = '<C-y>L'
+  let g:use_emmet_complete_tag = 1
+  let g:user_emmet_expandabbr_key = '<C-e><cr>'
+  let g:user_emmet_next_key = '<C-e>n'
+  let g:user_emmet_prev_key = '<C-e>p'
+  let g:user_emmet_balancetaginward_key = '<C-e>i'
+  let g:user_emmet_balancetagoutward_key = '<C-e>a'
+  let g:user_emmet_removetag_key = '<C-e>d'
+  let g:user_emmet_togglecomment_key = '<C-e>c'
+  let g:user_emmet_codepretty_keya = '<C-e>C'
+  let g:user_emmet_anchorizeurl_key = '<C-e>l'
+  let g:user_emmet_anchorizesummary_key = '<C-e>L'
 
   " NERDCommenter
   let g:NERDCreateDefaultMappings = 0
