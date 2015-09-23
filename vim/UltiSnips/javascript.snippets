@@ -1,17 +1,57 @@
-snippet fn "Function (named)" w
-function ${1:function_name}(${2}) {
-	${VISUAL}$0
+snippet 3 "string interpolation" w
+\$\{$1}$0
+endsnippet
+
+snippet v "var" w
+var $0
+endsnippet
+
+snippet l "let" w
+let $0
+endsnippet
+
+snippet c "const" w
+const $0
+endsnippet
+
+snippet r "return" w
+return$0;
+endsnippet
+
+snippet t "this" w
+this.$0
+endsnippet
+
+snippet class "class" w
+class $1 {
+	constructor($2) {
+		$3
+	}
 }
 endsnippet
 
-snippet f "Function (inline)" w
-function(${1}) {
-	${VISUAL}$0
-}
+snippet f "Arrow function" w
+${1:()} => $0
+endsnippet
+
+snippet fn "Function (inline)" w
+function($1) {
+	${VISUAL}$2
+}$0
+endsnippet
+
+snippet fnn "Function (named)" w
+function ${1:function_name}($2) {
+	${VISUAL}$3
+}$0
 endsnippet
 
 snippet typeof! "LiveScript typeof!" w
 {}.toString.call(${1:value}).slice(8, -1)$0
+endsnippet
+
+snippet imp "Import statement" b
+import ${1} from '$0';
 endsnippet
 
 snippet iif "Immediately-Invoked Function Expression (iife)" b
@@ -24,25 +64,12 @@ snippet ret "return" w
 return $0
 endsnippet
 
-snippet :f "Object Method" b
-${1:method_name}: function(${3:attribute}) {
-	${VISUAL}$0
-}${10:,}
-endsnippet
-
 snippet :v "Object Value JS"
 ${1:value_name}: ${0:value},
 endsnippet
 
 snippet : "Object key key: 'value'"
 ${1:key}: ${2:"${3:value}"}${4:, }
-endsnippet
-
-snippet proto "Prototype (proto)"
-${1:class_name}.prototype.${2:method_name} = function(${3:first_argument}) {
-	${VISUAL}$0
-};
-
 endsnippet
 
 snippet for "for (...) {...}"
@@ -72,10 +99,47 @@ if (${1:condition}) {
 }
 endsnippet
 
-snippet timeout "setTimeout function"
-setTimeout(function() {
-  ${VISUAL}$0
-}${2:.bind(${3:this})}, ${1:10});
+snippet sto "setTimeout"
+setTimeout(function() {${2}}, ${1:10});$0
+endsnippet
+
+snippet sint "setInterval"
+setInterval(function() {${2}}, ${1:100});$0
+endsnippet
+
+snippet byid "getElementById" w
+getElementById('${1}')${2}
+endsnippet
+
+snippet bytag "getElementsByTagName" w
+getElementsByTagName('${1}')${2}
+endsnippet
+
+snippet $ "$(...)"
+$(${1:'#sel'})${0}
+endsnippet
+
+snippet $r "jQuery DOM ready function"
+$(function() {
+	${1}
+});
+endsnippet
+
+snippet ## "JSDoc bloc" b
+/**
+ * ${1}
+ *
+ * @param ${2}
+ * @return ${0}
+ */
+endsnippet
+
+snippet req "Require"
+require('${1:lib}');${2}
+endsnippet
+
+snippet vreq "Assigned require"
+var ${1:lib} = require('${2:$1}');${3}
 endsnippet
 
 snippet cl "console.log" w
@@ -118,51 +182,31 @@ snippet ctrace "console.trace"
 console.trace();
 endsnippet
 
-snippet 3 "$(...)"
-$(${1:'#sel'})${0}
-endsnippet
-
-snippet $r "jQuery DOM ready function"
-$(function() {
-	${1}
+snippet reactclass "React.createClass"
+React.createClass({
+	displayName: '${1:Component}',
+	mixins: [],
+	propTypes: {},
+	getDefaultProps() {},
+	getInitialState() {},
+	render() {
+		return null;
+	}
 });
 endsnippet
 
-snippet sto "setTimeout"
-setTimeout(function() {${2}}, ${1:10});${3}
-endsnippet
-
-snippet sint "setInterval"
-setInterval(function() {${2}}, ${1:100});${3}
-endsnippet
-
-snippet get "Get Elements"
-getElement${1/(T)|.*/(?1:s)/}By${1:T}${1/(T)|(I)|.*/(?1:agName)(?2:d)/}('$2')
-endsnippet
-
-snippet byid "getElementById"
-getElementById('${1}')${2}
-endsnippet
-
-snippet bytag "getElementsByTagName"
-getElementsByTagName('${1}')${2}
-endsnippet
-
-snippet ## "JSDoc bloc" b
-/**
- * ${1}
- *
- * @param ${2}
- * @return ${0}
- */
-endsnippet
-
-snippet req "Require"
-require('${1:lib}');${2}
-endsnippet
-
-snippet vreq "Assigned require"
-var ${1:lib} = require('${2:$1}');${3}
+snippet reactcomp "Extend React.Component"
+class ${1:Component} extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = {};
+	}
+	render() {
+		return null;
+	}
+}
+$1.propTypes = {};
+$1.defaultProps = {};
 endsnippet
 
 # vim:ft=snippets:
