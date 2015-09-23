@@ -1,11 +1,8 @@
 # Include .bashrc if running bash
-if [ -n "$BASH_VERSION" ]; then
-	if [ -f "$HOME/.bashrc" ]; then
-		. "$HOME/.bashrc"
-	fi
-fi
+[ -n "$BASH_VERSION" ] && [ -f "$HOME/.bashrc" ] && . "$HOME/.bashrc"
 
 # Set PATH so that it includes user's private bin (if it exists)
-if [ -d "$HOME/bin" ] ; then
-    PATH="$HOME/bin:$PATH"
-fi
+[ -d "$HOME/bin" ] && PATH="$HOME/bin:$PATH"
+
+# Load local .profile
+[ -f "$HOME/.profile.local" ] && . "$HOME/.profile.local"
