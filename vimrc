@@ -559,9 +559,10 @@
   let g:syntastic_loc_list_height = 4
   let g:syntastic_mode_map = { 'mode': 'active',
         \ 'active_filetypes': [],
-        \ 'passive_filetypes': ['java', 'html'] }
+        \ 'passive_filetypes': ['java', 'html', 'javascript'] }
   " Compiler specific settings
   let g:syntastic_cpp_compiler_options = "-std=c++0x -W"
+  let g:syntastic_javascript_checkers = ['eslint']
 
   let g:jsx_ext_required = 0
 
@@ -857,6 +858,7 @@
   augroup ft_js
     au!
     au FileType javascript call SuperTabSetDefaultCompletionType("<c-n>")
+    au FileType javascript noremap <buffer> <leader>x :SyntasticCheck<CR>
   augroup END
 
   " CoffeeScript / Jade / LiveScript
