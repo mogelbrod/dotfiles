@@ -1,22 +1,19 @@
----
-  ecmaFeatures:
-    arrowFunctions: true
-    blockBindings: true
-    classes: true
-    destructuring: true
-    forOf: true
-    jsx: true
-    modules: true
-    objectLiteralComputedProperties: true
-    objectLiteralShorthandMethods: true
-    objectLiteralShorthandProperties: true
-    templateStrings: true
-  env:
-    browser: true
-    es6: true
-  rules:
-    camelcase: false
-    comma-dangle: always-multiline
-    no-console: false
-    no-underscore-dangle: false
-    quotes: [1, single]
+ecmaFeatures:
+  arrowFunctions: true
+  blockBindings: true
+  classes: true
+  destructuring: true
+  forOf: true
+  jsx: true
+  modules: true
+  objectLiteralComputedProperties: true
+  objectLiteralShorthandMethods: true
+  objectLiteralShorthandProperties: true
+  templateStrings: true
+env:
+  browser: true
+  es6: true
+extends: 'eslint:recommended'
+rules:
+  indent: [2, 2]
+  quotes: [1, single]
