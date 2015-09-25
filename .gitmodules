@@ -114,3 +114,6 @@
 [submodule "vim/bundle/yajs"]
 	path = vim/bundle/yajs
 	url = git@github.com:othree/yajs.vim.git
+[submodule "vim/bundle/scss-syntax"]
+	path = vim/bundle/scss-syntax
+	url = git@github.com:cakebaker/scss-syntax.vim.git
