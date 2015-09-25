@@ -565,6 +565,7 @@
   let g:syntastic_javascript_checkers = ['eslint']
 
   let g:jsx_ext_required = 0
+  let g:jsx_disable_indent = 1
 
   " Indent guides
   let g:indent_guides_start_level = 2
