@@ -13,6 +13,11 @@ endglobal
 ############
 # Doctypes #
 ############
+snippet doctype "HTML - 5.0 (doctype)" b
+<!DOCTYPE html>
+
+endsnippet
+
 snippet doctype "DocType XHTML 1.0 Strict" b
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
 	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
@@ -34,11 +39,6 @@ endsnippet
 snippet doctype "HTML - 4.0 Transitional (doctype)" b
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
 	"http://www.w3.org/TR/html4/loose.dtd">
-
-endsnippet
-
-snippet doctype "HTML - 5.0 (doctype)" b
-<!DOCTYPE html>
 
 endsnippet
 
@@ -195,7 +195,7 @@ snippet head "XHTML <head>"
 endsnippet
 
 snippet link "XHTML <link>"
-<link rel="${1:stylesheet}" href="${2:/css/master.css}" type="text/css" media="${3:screen}" title="${4:no title}" charset="${5:utf-8}"`!p x(snip)`>
+<link rel="stylesheet" href="$1.css" type="text/css" media="${2:screen}"`!p x(snip)`>
 endsnippet
 
 snippet meta "XHTML <meta>"
@@ -203,11 +203,11 @@ snippet meta "XHTML <meta>"
 endsnippet
 
 snippet scriptsrc "XHTML <script src...>"
-<script src="$1" type="text/javascript" charset="${3:utf-8}"></script>
+<script src="$1" type="text/javascript"></script>
 endsnippet
 
 snippet script "XHTML <script>"
-<script type="text/javascript" charset="utf-8">
+<script type="text/javascript">
 	$0
 </script>
 endsnippet
@@ -219,8 +219,8 @@ snippet style "XHTML <style>"
 endsnippet
 
 snippet table "XHTML <table>"
-<table border="${1:0}"${2: cellspacing="${3:5}" cellpadding="${4:5}"}>
-	<tr><th>${5:Header}</th></tr>
+<table>
+	<tr><th>${1:Header}</th></tr>
 	<tr><td>${0:Data}</td></tr>
 </table>
 endsnippet
@@ -282,15 +282,10 @@ snippet html5 "HTML5 Template"
 <html>
 <head>
     <title>${1}</title>
-    <meta charset="utf-8" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
-    <header>
-        ${2}
-    </header>
-    <footer>
-        ${4}
-    </footer>
 </body>
 </html>
 endsnippet

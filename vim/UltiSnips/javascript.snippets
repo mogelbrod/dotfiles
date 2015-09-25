@@ -72,16 +72,22 @@ snippet : "Object key key: 'value'"
 ${1:key}: ${2:"${3:value}"}${4:, }
 endsnippet
 
+snippet forin "for (x in y)"
+for (var ${2:key} in ${1:obj}) {
+	${3:$1[$2]}${VISUAL}$0
+}
+endsnippet
+
 snippet for "for (...) {...}"
 for (var ${2:i}=0; $2 < ${1:things}.length; $2++) {
 	${3:$1[$2]}${VISUAL}$0
-};
+}
 endsnippet
 
 snippet forr "for (...) {...} (faster)"
 for (var ${2:i} = ${1:things}.length - 1; $2 >= 0; $2--) {
 	${3:$1[$2]}${VISUAL}$0
-};
+}
 endsnippet
 
 
