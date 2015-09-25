@@ -17,5 +17,5 @@ env:
 extends: 'eslint:recommended'
 rules:
   indent: [2, 2]
-  quotes: [1, single]
+  quotes: false
   comma-dangle: [2, always-multiline]
