@@ -18,4 +18,3 @@ extends: 'eslint:recommended'
 rules:
   indent: [2, 2]
   quotes: false
-  comma-dangle: [2, always-multiline]
