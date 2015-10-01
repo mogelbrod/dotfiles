@@ -123,3 +123,6 @@
 [submodule "vim/bundle/vim-twig"]
 	path = vim/bundle/vim-twig
 	url = git@github.com:evidens/vim-twig.git
+[submodule "vim/bundle/vim-go"]
+	path = vim/bundle/vim-go
+	url = git@github.com:fatih/vim-go.git
