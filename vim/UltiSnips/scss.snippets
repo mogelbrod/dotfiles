@@ -1,0 +1,199 @@
+extends css
+priority 1
+
+snippet ! "!important"
+!important
+endsnippet
+
+snippet u "url()"
+url(${1:sprite.png})$0
+endsnippet
+
+snippet display "display" b
+display: ${1:block};$0
+endsnippet
+
+snippet di "display inline" b
+display: inline;$0
+endsnippet
+
+snippet db "display block" b
+display: block;$0
+endsnippet
+
+snippet dib "display inline-block" b
+display: inline-block;$0
+endsnippet
+
+snippet dn "display none" b
+display: none;$0
+endsnippet
+
+snippet fl "float left" b
+float: left;$0
+endsnippet
+
+snippet fr "float right" b
+float: right;$0
+endsnippet
+
+snippet fn "float none" b
+float: none;$0
+endsnippet
+
+snippet cl "clear" b
+clear: ${1:both};$0
+endsnippet
+
+snippet ps "position static" b
+position: static;$0
+endsnippet
+
+snippet pa "position absolute" b
+position: absolute;$0
+endsnippet
+
+snippet pos "position" b
+position: ${1:relative};$0
+endsnippet
+
+snippet z "z-index" b
+z-index: ${1:auto};$0
+endsnippet
+
+snippet m "margin" b
+margin: ${1:0 20px};$0
+endsnippet
+
+snippet mb "margin-bottom" b
+margin-bottom: ${1:0};$0
+endsnippet
+
+snippet mt "margin-top" b
+margin-top: ${1:0};$0
+endsnippet
+
+snippet ml "margin-left" b
+margin-left: ${1:0};$0
+endsnippet
+
+snippet mr "margin-right" b
+margin-right: ${1:0};$0
+endsnippet
+
+snippet p "padding" b
+padding: ${1:5px 10px};$0
+endsnippet
+
+snippet pt "padding-top" b
+padding-top: ${1:0};$0
+endsnippet
+
+snippet pb "padding-bottom" b
+padding-bottom: ${1:0};$0
+endsnippet
+
+snippet pl "padding-left" b
+padding-left: ${1:0};$0
+endsnippet
+
+snippet pr "padding-right" b
+padding-right: ${1:0};$0
+endsnippet
+
+snippet w "width" b
+width: ${1:auto};$0
+endsnippet
+
+snippet h "height" b
+height: ${1:auto};$0
+endsnippet
+
+snippet mw "min-width" b
+min-width: ${1:0};$0
+endsnippet
+
+snippet mh "min-height" b
+min-height: ${1:0};$0
+endsnippet
+
+snippet bg "background" b
+background: #$1;$0
+endsnippet
+
+snippet bgs "background" b
+background: ${1:transparent }url(${2:bg.png}) ${3:no-repeat};$0
+endsnippet
+
+snippet font "font shorthand" b
+font: ${1:normal} ${2:13px}/${3:1.5} ${4:sans-serif};$0
+endsnippet
+
+snippet ff "font-family" b
+font-family: $1;$0
+endsnippet
+
+snippet fs "font-size" b
+font-size: $1;$0
+endsnippet
+
+snippet fw "font-weight" b
+font-weight: ${1:bold};$0
+endsnippet
+
+snippet td "text-decoration" b
+text-decoration: ${1:underline};$0
+endsnippet
+
+snippet tt "text-transform" b
+text-transform: ${1:uppercase};$0
+endsnippet
+
+snippet ts "text-style" b
+text-style: ${1:italic};$0
+endsnippet
+
+snippet lh "line-height" b
+line-height: ${1:1.5};$0
+endsnippet
+
+snippet ta "text-align" b
+text-align: ${1:left};$0
+endsnippet
+
+snippet va "vertical-align" b
+vertical-align: ${1:middle};$0
+endsnippet
+
+snippet cursor "cursor" b
+cursor: ${1:default|crosshair|auto|hand|move|help|pointer|progress|text|wait}$0
+endsnippet
+
+snippet bs "box-shadow" b
+box-shadow: ${1:horiz} ${2:vert} ${3:blur} ${4:spread} ${5:rgba(#000, .5)};$0
+endsnippet
+
+snippet siz "box-sizing" b
+box-sizing: ${1:border-box};$0
+endsnippet
+
+snippet br "border-radius" b
+border-radius: ${1:4px};$0
+endsnippet
+
+snippet pe "pointer-events" b
+pointer-events: ${1:none};$0
+endsnippet
+
+snippet us "user-select" b
+user-select: ${1:none};$0
+endsnippet
+
+snippet fc "Folding comment" b
+//{{{ ${1}
+//---------------------------------------------------------
+
+$0
+
+//}}}
+endsnippet
