@@ -117,3 +117,6 @@
 [submodule "vim/bundle/scss-syntax"]
 	path = vim/bundle/scss-syntax
 	url = git@github.com:cakebaker/scss-syntax.vim.git
+[submodule "vim/bundle/mustache-handlebars"]
+	path = vim/bundle/mustache-handlebars
+	url = git@github.com:mustache/vim-mustache-handlebars.git
