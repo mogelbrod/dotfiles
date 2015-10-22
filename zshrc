@@ -271,7 +271,7 @@
 
   function port-usage {
     [[ -z $1 ]] || 1=":$1"
-    lsof -Pi | grep "$1 (LISTEN)"
+    lsof -nPi4TCP | grep "$1 (LISTEN)"
   }
 
 #}}}
@@ -341,6 +341,7 @@
   elif [[ $OSTYPE =~ "darwin[0-9.]*" ]] ; then
     # Mac OSX
     alias o='open'
+    alias r='rmtrash'
   fi
 
 #}}}
