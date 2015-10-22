@@ -67,4 +67,9 @@ if ARGV.include? 'update'
   `git submodule foreach git pull origin master`
 end
 
+if ARGV.include? 'vim'
+  puts "Installing vim bundles..."
+  `vim +BundleInstall +qall`
+end
+
 puts "All done!"

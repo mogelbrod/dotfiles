@@ -14,12 +14,58 @@
   endif
 
 " }}}
+" {{{ Vundle plugins
+
+  filetype off
+  set runtimepath+=~/.vim/bundle/Vundle
+  call vundle#begin()
+
+  Plugin 'VundleVim/Vundle.vim'
+
+  Plugin 'SirVer/ultisnips'
+  Plugin 'Valloric/YouCompleteMe'
+  Plugin 'b4winckler/vim-angry'
+  Plugin 'cakebaker/scss-syntax.vim'
+  Plugin 'digitaltoad/vim-jade'
+  Plugin 'evidens/vim-twig'
+  Plugin 'fatih/vim-go'
+  Plugin 'gkz/vim-ls'
+  Plugin 'godlygeek/tabular'
+  Plugin 'kchmck/vim-coffee-script'
+  Plugin 'kien/ctrlp.vim'
+  Plugin 'majutsushi/tagbar'
+  Plugin 'mattn/emmet-vim'
+  Plugin 'michaeljsmith/vim-indent-object'
+  Plugin 'mustache/vim-mustache-handlebars'
+  Plugin 'mxw/vim-jsx'
+  Plugin 'nathanaelkane/vim-indent-guides'
+  Plugin 'othree/html5.vim'
+  Plugin 'othree/yajs.vim'
+  Plugin 'rizzatti/dash.vim'
+  Plugin 'rking/ag.vim'
+  Plugin 'scrooloose/nerdcommenter'
+  Plugin 'scrooloose/nerdtree'
+  Plugin 'scrooloose/syntastic'
+  Plugin 'sjl/gundo.vim'
+  Plugin 'tpope/vim-abolish'
+  Plugin 'tpope/vim-endwise'
+  Plugin 'tpope/vim-eunuch'
+  Plugin 'tpope/vim-fugitive'
+  Plugin 'tpope/vim-haml'
+  Plugin 'tpope/vim-rails'
+  Plugin 'tpope/vim-repeat'
+  Plugin 'tpope/vim-surround'
+  Plugin 'vim-scripts/Auto-Pairs'
+  Plugin 'vim-scripts/EnhancedJumps'
+  Plugin 'vim-scripts/ingo-library'
+  Plugin 'wavded/vim-stylus'
+
+  call vundle#end()
+  filetype plugin indent on
+
+" }}}
 " {{{ Basic settings and environment setup
 
-  " Include plugins and stuff via pathogen
-  call pathogen#infect()
-
-  filetype plugin indent on
   syntax on
   colorscheme mogelbrod
   let mapleader = ","
@@ -122,7 +168,7 @@
   noremap [1;5C :bnext<CR>
 
 " }}}
-" {{{ Command mode 
+" {{{ Command mode
 
   " Quick shortcut for entering command mode
   noremap - :
@@ -358,7 +404,7 @@
     else
       let linecount = ' '. linecount .  ' lines | ' . v:foldlevel
     end
-    
+
     let cols = winwidth(0) - (&nu ? &numberwidth : 0)
 
 
@@ -448,6 +494,10 @@
   vnore <S-tab> <gv
   vnore [Z <gv
 
+  " Hack to override UltiSnips overriding visual <tab> mapping
+  au VimEnter * xunmap <tab>
+  au VimEnter * vnore <tab> >gv
+
   " Formatting options (disable autocommenting)
   set formatoptions-=cro
   autocmd FileType * setlocal formatoptions-=cro
@@ -457,28 +507,6 @@
 
 " }}}
 " {{{ Plugins
-
-  " SuperTab mappings
-  let g:SuperTabMappingForward = '<tab>'
-  let g:SuperTabMappingTabLiteral = '<c-tab>'
-  if has("gui_running") || has("mac")
-    let g:SuperTabMappingBackward = '<s-tab>'
-  else
-    let g:SuperTabMappingBackward = '[Z'
-  end
-  " Alternate completion types
-  imap <C-Space> <C-r>=SuperTabAlternateCompletion("\<lt>c-x>\<lt>c-o>")<CR>
-  imap <C-@> <C-r>=SuperTabAlternateCompletion("\<lt>c-x>\<lt>c-o>")<CR>
-  imap <C-a> <C-r>=SuperTabAlternateCompletion("\<lt>c-x>\<lt>c-o>")<CR>
-  imap <C-l> <C-r>=SuperTabAlternateCompletion("\<lt>c-x>\<lt>c-l>")<CR>
-  imap <C-f> <C-r>=SuperTabAlternateCompletion("\<lt>c-x>\<lt>c-f>")<CR>
-
-  " SuperTab options
-  let g:SuperTabDefaultCompletionType = "<C-n>"
-  let g:SuperTabLongestHighlight = 1
-  let g:SuperTabLongestEnhanced = 1
-  let g:SuperTabClosePreviewOnPopupClose = 1
-  let g:SuperTabRetainCompletionDuration = 'completion'
 
   " UltiSnips
   let g:UltiSnipsExpandTrigger = '<tab>' " overridden below
@@ -839,7 +867,6 @@
     au FileType python noremap <buffer> <leader>o :!python %<CR>
     au FileType python setlocal makeprg=python\ %
     au FileType python setlocal efm=%C\ %.%#,%A\ \ File\ \"%f\"\\,\ line\ %l%.%#,%Z%[%^\ ]%\\@=%m
-    " au FileType python call SuperTabSetDefaultCompletionType("<c-x><c-o>")
   augroup END
 
   " HTML
@@ -858,7 +885,6 @@
 
   augroup ft_js
     au!
-    au FileType javascript call SuperTabSetDefaultCompletionType("<c-n>")
     au FileType javascript noremap <buffer> <leader>x :SyntasticCheck<CR>
   augroup END
 

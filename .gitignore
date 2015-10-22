@@ -4,5 +4,6 @@ fish/fishd.*
 vim/.netrwhist
 vim/swap/*
 vim/backup/*
+vim/bundle/**
 vimrc.local
 .DS_Store
