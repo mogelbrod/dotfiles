@@ -516,12 +516,36 @@
 " {{{ Plugins
 
   " UltiSnips
+
   let g:UltiSnipsExpandTrigger = '<tab>' " overridden below
-  let g:UltiSnipsJumpForwardTrigger = '<tab>'
-  let g:UltiSnipsJumpBackwardTrigger = '<S-tab>'
-  let g:UltiSnipsListSnippets = '<C-j>'
+  let g:UltiSnipsJumpForwardTrigger = '<C-j>'
+  let g:UltiSnipsJumpBackwardTrigger = '<C-k>'
+  let g:UltiSnipsListSnippets = '<noop>'
   let g:did_UltiSnips_vim_after = 1
   let g:UltiSnipsNoPythonWarning = 1
+
+  function! g:UltiSnips_Complete()
+    call UltiSnips#ExpandSnippetOrJump()
+    if g:ulti_expand_or_jump_res == 0
+      if pumvisible()
+        return "\<C-N>"
+      else
+        return "\<TAB>"
+      endif
+    endif
+
+    return ""
+  endfunction
+
+  au InsertEnter * inoremap <silent> <tab> <C-R>=g:UltiSnips_Complete()<cr>
+
+  " YouCompleteMe / YCM
+  let g:ycm_min_num_of_chars_for_completion = 1
+  let g:ycm_seed_identifiers_with_syntax = 1 
+  let g:ycm_min_num_identifier_candidate_chars = 1
+  let g:ycm_complete_in_comments = 1
+
+  let g:used_javascript_libs = 'jquery,react,requirejs,underscore'
 
   " CtrlP plugin
   map <C-p> :CtrlP<CR>
