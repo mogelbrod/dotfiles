@@ -216,6 +216,9 @@
   imap <silent> <C-j> <C-x><C-e>
   imap <silent> <C-k> <C-x><C-y>
 
+  " Completion (C-x) key shortcuts
+  inoremap <C-L> <C-X><C-L>
+
   " Allow backspacing over everything
   set backspace=indent,eol,start
 
