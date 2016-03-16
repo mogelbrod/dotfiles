@@ -23,7 +23,7 @@
   Plugin 'VundleVim/Vundle.vim'
   Plugin 'Valloric/YouCompleteMe'
   Plugin 'SirVer/ultisnips'
-  Plugin 'kien/ctrlp.vim'
+  Plugin 'ctrlpvim/ctrlp.vim'
 
   Plugin 'b4winckler/vim-angry'
   Plugin 'godlygeek/tabular'
@@ -152,9 +152,9 @@
 
   " Update external program settings
   if executable('ag')
-    " set grepprg=ag\ --nogroup\ --nocolor\ --skip-vcs-ignores
-    set grepprg=ag\ --nogroup\ --nocolor
-    let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""' " --skip-vcs-ignores
+    set grepprg=ag\ --nogroup\ --nocolor\ --skip-vcs-ignores
+    let g:ag_prg = 'ag --nogroup --column --smart-case --skip-vcs-ignores'
+    let g:ctrlp_user_command = 'ag %s -l --nocolor -g "" --skip-vcs-ignores'
     let g:ctrlp_use_caching = 0
   elseif executable("ack")
     set grepprg=ack\ -k
@@ -316,6 +316,8 @@
   nmap <leader>= :call Preserve("normal mzgg=G'z")<CR>
 
   nmap <leader>p :CtrlP <C-r>=expand('%:p:h')<CR><CR>
+
+  nmap <leader>a :Agext <C-r>=expand('%:e')<CR>
 
   " Comment toggling
   map <leader>7 <plug>NERDCommenterToggle
@@ -525,8 +527,11 @@
   let g:UltiSnipsNoPythonWarning = 1
 
   function! g:UltiSnips_Complete()
+    " exec g:_uspy "UltiSnips_Manager._cursor_moved()"
+    " exec g:_uspy "UltiSnips_Manager.expand()"
     call UltiSnips#ExpandSnippetOrJump()
     if g:ulti_expand_or_jump_res == 0
+    " if g:ulti_expand_res == 0
       if pumvisible()
         return "\<C-N>"
       else
@@ -550,24 +555,21 @@
   " CtrlP plugin
   map <C-p> :CtrlP<CR>
   map <C-b> :CtrlPBuffer<CR>
-  " search for both files, buffers and MRUs
-  let g:ctrlp_cmd = 'CtrlPMixed'
-  let g:ctrlp_switch_buffer = ''
+  let g:ctrlp_cmd = 'CtrlP'
+  let g:ctrlp_switch_buffer = '0'
   let g:ctrlp_open_new_file = 'r'
   let g:ctrlp_max_depth = 10
-  let g:ctrlp_mruf_max = 50
   let g:ctrlp_lazy_update = 200
-  let g:ctrlp_extensions = ['mixed', 'tag']
+  let g:ctrlp_extensions = ['dir', 'tag']
   let g:ctrlp_reuse_window = 'netrw\|quickfix'
   let g:ctrlp_mruf_relative = 1
+  let g:ctrlp_mruf_max = 0 " attempt to disable MRU, just annoying in mixed mode
+  let g:ctrlp_match_current_file = 1
 
   let g:ctrlp_custom_ignore = {
     \ 'dir':  '\v\.(git|hg|svn)$',
     \ 'file': '\v\.(exe|so|dll|tar|bz2|gz|zip|jar|deb|jpe?g|png|gif|bmp|mp3|avi|mp4|mov|mpe?g|mkv|pdf)$'
     \ }
-
-  " Ag
-  let g:agprg="ag --column --smart-case --skip-vcs-ignores"
 
   " Auto-Pairs
   let g:AutoPairsMapSpace = 0
@@ -698,10 +700,10 @@
       let str = expand("<cword>")
     endif
 
-    if &grepprg == "ack -k" || &grepprg == "ag --nogroup --nocolor"
+    if &grepprg == "ack -k" || match(&grepprg, "ag ") == 0
       let call = 'grep "'.str.'"'
     else
-      let str = escape(str, '.\*+[]^$')
+      let str = escape(str, '<>~.\*+[]^$')
 
       " TODO: don't add word boundary prefix/suffix when a word boundary character already starts/ends the string
       let filter = (expand("%:e") == '' ? '.' : '*.'.expand("%:e"))
@@ -914,9 +916,12 @@
     au FileType css setlocal sts=2 ts=2 sw=2 noexpandtab
   augroup END
 
+  au FileType scss setlocal iskeyword+=-
+
   augroup ft_js
     au!
     au FileType javascript noremap <buffer> <leader>x :SyntasticCheck<CR>
+    " au FileType json setlocal foldmethod=syntax
   augroup END
 
   " CoffeeScript / Jade / LiveScript
