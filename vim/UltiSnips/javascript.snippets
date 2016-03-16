@@ -15,7 +15,7 @@ const $0
 endsnippet
 
 snippet r "return" w
-return$0;
+return$0
 endsnippet
 
 snippet t "this" w
@@ -51,7 +51,15 @@ snippet typeof! "LiveScript typeof!" w
 endsnippet
 
 snippet imp "Import statement" b
-import ${1} from '$0';
+import ${1} from '${2:$1}'$0
+endsnippet
+
+snippet exp "export" w
+export $0
+endsnippet
+
+snippet def "default" w
+default $0
 endsnippet
 
 snippet iif "Immediately-Invoked Function Expression (iife)"
@@ -106,11 +114,11 @@ if (${1:condition}) {
 endsnippet
 
 snippet sto "setTimeout"
-setTimeout(function() {${2}}, ${1:10});$0
+setTimeout(function() {${2}}, ${1:10})$0
 endsnippet
 
 snippet sint "setInterval"
-setInterval(function() {${2}}, ${1:100});$0
+setInterval(function() {${2}}, ${1:100})$0
 endsnippet
 
 snippet byid "getElementById" w
@@ -149,35 +157,35 @@ var ${1:lib} = require('${2:$1}');${3}
 endsnippet
 
 snippet cl "console.log" w
-console.log($0);
+console.log($0)
 endsnippet
 
 snippet cld "console.log debug" w
-console.log("${1:value}", ${2:$1});
+console.log("${1:value}", ${2:$1})
 endsnippet
 
 snippet cw "console.warn"
-console.warn($0);
+console.warn($0)
 endsnippet
 
 snippet ce "console.error"
-console.error($0);
+console.error($0)
 endsnippet
 
 snippet ca "console.assert"
-console.assert(${1:assertion}, ${2:"${3:message}"});$0
+console.assert(${1:assertion}, ${2:"${3:message}"})$0
 endsnippet
 
 snippet cgroup "console.group"
-console.group("${1:label}");
+console.group("${1:label}")
 ${VISUAL}$0
-console.groupEnd();
+console.groupEnd()
 endsnippet
 
 snippet ctime "console.time"
-console.time("${1:label}");
+console.time("${1:label}")
 ${VISUAL}$0
-console.timeEnd("$1");
+console.timeEnd("$1")
 endsnippet
 
 snippet ctimestamp "console.timestamp"
@@ -185,34 +193,37 @@ console.timeStamp("${1:label}")
 endsnippet
 
 snippet ctrace "console.trace"
-console.trace();
+console.trace()
+endsnippet
+
+snippet rp "React.PropTypes" w
+React.PropTypes.$0
 endsnippet
 
 snippet reactclass "React.createClass"
 React.createClass({
 	displayName: '${1:Component}',
-	mixins: [],
 	propTypes: {},
 	getDefaultProps() {},
 	getInitialState() {},
 	render() {
-		return null;
+		return null
 	}
-});
+})
 endsnippet
 
 snippet reactcomp "Extend React.Component"
 class ${1:Component} extends React.Component {
 	constructor(props) {
-		super(props);
-		this.state = {};
-	}
+		super(props)
+		this.state = {}
+	},
 	render() {
-		return null;
+		return null
 	}
 }
-$1.propTypes = {};
-$1.defaultProps = {};
+$1.propTypes = {}
+$1.defaultProps = {}
 endsnippet
 
 # vim:ft=snippets:
