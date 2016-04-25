@@ -202,6 +202,8 @@
   alias scr='screen -RdU'
   alias du='du -hs'
 
+  alias rmorig='find . -name "*.orig" -delete'
+
   # cd which replaces substrings in PWD
   function scd { cd `echo $PWD | sed s/$1/$2/` }
 

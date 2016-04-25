@@ -21,26 +21,15 @@
   call vundle#begin()
 
   Plugin 'VundleVim/Vundle.vim'
-
-  Plugin 'SirVer/ultisnips'
   Plugin 'Valloric/YouCompleteMe'
+  Plugin 'SirVer/ultisnips'
+  Plugin 'ctrlpvim/ctrlp.vim'
+
   Plugin 'b4winckler/vim-angry'
-  Plugin 'cakebaker/scss-syntax.vim'
-  Plugin 'digitaltoad/vim-jade'
-  Plugin 'evidens/vim-twig'
-  Plugin 'fatih/vim-go'
-  Plugin 'gkz/vim-ls'
   Plugin 'godlygeek/tabular'
-  Plugin 'kchmck/vim-coffee-script'
-  Plugin 'kien/ctrlp.vim'
   Plugin 'majutsushi/tagbar'
-  Plugin 'mattn/emmet-vim'
   Plugin 'michaeljsmith/vim-indent-object'
-  Plugin 'mustache/vim-mustache-handlebars'
-  Plugin 'mxw/vim-jsx'
   Plugin 'nathanaelkane/vim-indent-guides'
-  Plugin 'othree/html5.vim'
-  Plugin 'othree/yajs.vim'
   Plugin 'rizzatti/dash.vim'
   Plugin 'rking/ag.vim'
   Plugin 'scrooloose/nerdcommenter'
@@ -51,14 +40,29 @@
   Plugin 'tpope/vim-endwise'
   Plugin 'tpope/vim-eunuch'
   Plugin 'tpope/vim-fugitive'
-  Plugin 'tpope/vim-haml'
-  Plugin 'tpope/vim-rails'
   Plugin 'tpope/vim-repeat'
   Plugin 'tpope/vim-surround'
   Plugin 'vim-scripts/Auto-Pairs'
   Plugin 'vim-scripts/EnhancedJumps'
   Plugin 'vim-scripts/ingo-library'
+
+  " Language specific plugins
+  Plugin 'cakebaker/scss-syntax.vim'
+  Plugin 'digitaltoad/vim-jade'
+  Plugin 'evidens/vim-twig'
+  Plugin 'fatih/vim-go'
+  Plugin 'gkz/vim-ls'
+  Plugin 'kchmck/vim-coffee-script'
+  Plugin 'mattn/emmet-vim'
+  Plugin 'mustache/vim-mustache-handlebars'
+  Plugin 'othree/html5.vim'
+  Plugin 'pangloss/vim-javascript'
+  Plugin 'mxw/vim-jsx'
+  Plugin 'othree/yajs.vim'
+  Plugin 'othree/javascript-libraries-syntax.vim'
   Plugin 'wavded/vim-stylus'
+  Plugin 'tpope/vim-haml'
+  Plugin 'tpope/vim-rails'
 
   call vundle#end()
   filetype plugin indent on
@@ -148,9 +152,9 @@
 
   " Update external program settings
   if executable('ag')
-    " set grepprg=ag\ --nogroup\ --nocolor\ --skip-vcs-ignores
-    set grepprg=ag\ --nogroup\ --nocolor
-    let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""' " --skip-vcs-ignores
+    set grepprg=ag\ --nogroup\ --nocolor\ --skip-vcs-ignores
+    let g:ag_prg = 'ag --nogroup --column --smart-case --skip-vcs-ignores'
+    let g:ctrlp_user_command = 'ag %s -l --nocolor -g "" --skip-vcs-ignores'
     let g:ctrlp_use_caching = 0
   elseif executable("ack")
     set grepprg=ack\ -k
@@ -211,6 +215,9 @@
   nmap <silent> <C-j> <C-y>
   imap <silent> <C-j> <C-x><C-e>
   imap <silent> <C-k> <C-x><C-y>
+
+  " Completion (C-x) key shortcuts
+  inoremap <C-L> <C-X><C-L>
 
   " Allow backspacing over everything
   set backspace=indent,eol,start
@@ -309,6 +316,8 @@
   nmap <leader>= :call Preserve("normal mzgg=G'z")<CR>
 
   nmap <leader>p :CtrlP <C-r>=expand('%:p:h')<CR><CR>
+
+  nmap <leader>a :Agext <C-r>=expand('%:e')<CR>
 
   " Comment toggling
   map <leader>7 <plug>NERDCommenterToggle
@@ -509,34 +518,58 @@
 " {{{ Plugins
 
   " UltiSnips
+
   let g:UltiSnipsExpandTrigger = '<tab>' " overridden below
-  let g:UltiSnipsJumpForwardTrigger = '<tab>'
-  let g:UltiSnipsJumpBackwardTrigger = '<S-tab>'
-  let g:UltiSnipsListSnippets = '<C-j>'
+  let g:UltiSnipsJumpForwardTrigger = '<C-j>'
+  let g:UltiSnipsJumpBackwardTrigger = '<C-k>'
+  let g:UltiSnipsListSnippets = '<noop>'
   let g:did_UltiSnips_vim_after = 1
   let g:UltiSnipsNoPythonWarning = 1
+
+  function! g:UltiSnips_Complete()
+    " exec g:_uspy "UltiSnips_Manager._cursor_moved()"
+    " exec g:_uspy "UltiSnips_Manager.expand()"
+    call UltiSnips#ExpandSnippetOrJump()
+    if g:ulti_expand_or_jump_res == 0
+    " if g:ulti_expand_res == 0
+      if pumvisible()
+        return "\<C-N>"
+      else
+        return "\<TAB>"
+      endif
+    endif
+
+    return ""
+  endfunction
+
+  au InsertEnter * inoremap <silent> <tab> <C-R>=g:UltiSnips_Complete()<cr>
+
+  " YouCompleteMe / YCM
+  let g:ycm_min_num_of_chars_for_completion = 1
+  let g:ycm_seed_identifiers_with_syntax = 1 
+  let g:ycm_min_num_identifier_candidate_chars = 1
+  let g:ycm_complete_in_comments = 1
+
+  let g:used_javascript_libs = 'jquery,react,requirejs,underscore'
 
   " CtrlP plugin
   map <C-p> :CtrlP<CR>
   map <C-b> :CtrlPBuffer<CR>
-  " search for both files, buffers and MRUs
-  let g:ctrlp_cmd = 'CtrlPMixed'
-  let g:ctrlp_switch_buffer = ''
+  let g:ctrlp_cmd = 'CtrlP'
+  let g:ctrlp_switch_buffer = '0'
   let g:ctrlp_open_new_file = 'r'
   let g:ctrlp_max_depth = 10
-  let g:ctrlp_mruf_max = 50
   let g:ctrlp_lazy_update = 200
-  let g:ctrlp_extensions = ['mixed', 'tag']
+  let g:ctrlp_extensions = ['dir', 'tag']
   let g:ctrlp_reuse_window = 'netrw\|quickfix'
   let g:ctrlp_mruf_relative = 1
+  let g:ctrlp_mruf_max = 0 " attempt to disable MRU, just annoying in mixed mode
+  let g:ctrlp_match_current_file = 1
 
   let g:ctrlp_custom_ignore = {
     \ 'dir':  '\v\.(git|hg|svn)$',
     \ 'file': '\v\.(exe|so|dll|tar|bz2|gz|zip|jar|deb|jpe?g|png|gif|bmp|mp3|avi|mp4|mov|mpe?g|mkv|pdf)$'
     \ }
-
-  " Ag
-  let g:agprg="ag --column --smart-case --skip-vcs-ignores"
 
   " Auto-Pairs
   let g:AutoPairsMapSpace = 0
@@ -667,10 +700,10 @@
       let str = expand("<cword>")
     endif
 
-    if &grepprg == "ack -k" || &grepprg == "ag --nogroup --nocolor"
+    if &grepprg == "ack -k" || match(&grepprg, "ag ") == 0
       let call = 'grep "'.str.'"'
     else
-      let str = escape(str, '.\*+[]^$')
+      let str = escape(str, '<>~.\*+[]^$')
 
       " TODO: don't add word boundary prefix/suffix when a word boundary character already starts/ends the string
       let filter = (expand("%:e") == '' ? '.' : '*.'.expand("%:e"))
@@ -883,9 +916,12 @@
     au FileType css setlocal sts=2 ts=2 sw=2 noexpandtab
   augroup END
 
+  au FileType scss setlocal iskeyword+=-
+
   augroup ft_js
     au!
     au FileType javascript noremap <buffer> <leader>x :SyntasticCheck<CR>
+    " au FileType json setlocal foldmethod=syntax
   augroup END
 
   " CoffeeScript / Jade / LiveScript
