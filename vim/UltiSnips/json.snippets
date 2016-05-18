@@ -1,9 +1,15 @@
 snippet s "String" b
-"${1:key}": "${0:value}",
+"${1:key}": "$2",$0
 endsnippet
 
 snippet n "number" b
-"${1:key}": ${0:value},
+"${1:key}": $2,$0
+endsnippet
+
+snippet b "block" b
+"${1:key}": {
+	$0
+},
 endsnippet
 
 snippet a "Array" b
@@ -11,6 +17,7 @@ snippet a "Array" b
    ${VISUAL}$0
 ],
 endsnippet
+
 snippet o "Object" b
 {
    ${VISUAL}$0
