@@ -970,8 +970,9 @@
   augroup ft_php
     au!
     "au BufRead,BufNewFile *.php,*.inc set ft=php.html
-    au FileType php setlocal sts=2 ts=2 sw=2 noexpandtab autoindent
-    au FileType php setlocal omnifunc=phpcomplete#CompletePHP
+    au FileType php setlocal sts=2 ts=2 sw=2 expandtab autoindent
+    au FileType php inoremap <buffer> <c-a>- <?php  ?><left><left><left>
+    au FileType php inoremap <buffer> <c-a>= <?=  ?><left><left><left>
   augroup END
 
   " Markdown
@@ -1032,10 +1033,11 @@
   " {{{ Use dash as keyword program (Mac OSX only)
   augroup query_dash
     if has('mac')
-      au FileType html setlocal keywordprg=~/dotfiles/vim/query-dash\ html
-      au FileType jade setlocal keywordprg=~/dotfiles/vim/query-dash\ html,jade
-      au FileType coffee setlocal keywordprg=~/dotfiles/vim/query-dash\ node,js,coffee
-      au FileType javascript,ls setlocal keywordprg=~/dotfiles/vim/query-dash\ node,js
+      au FileType html setlocal keywordprg=$VIMHOME/query-dash\ html
+      au FileType jade setlocal keywordprg=$VIMHOME/query-dash\ html,jade
+      au FileType coffee setlocal keywordprg=$VIMHOME/query-dash\ node,js,coffee
+      au FileType javascript,ls setlocal keywordprg=$VIMHOME/query-dash\ node,js
+      au FileType php setlocal keywordprg=$VIMHOME/query-dash\ php
     end
   augroup END
   " }}}
