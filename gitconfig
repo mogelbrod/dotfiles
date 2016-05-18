@@ -27,3 +27,13 @@
 	cmd = ~/.vim/diffconflicts vim $BASE $LOCAL $REMOTE $MERGED
 	trustExitCode = true
 	keepBackup = false
+
+[alias]
+  branches = branch -a
+  tags = tag
+  stashes = stash list
+  unstage = reset -q HEAD --
+  discard = checkout --
+  uncommit = reset --mixed HEAD~
+  amend = commit --amend
+  precommit = diff --cached --diff-algorithm=minimal -w
