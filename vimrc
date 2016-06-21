@@ -27,6 +27,7 @@
 
   Plugin 'b4winckler/vim-angry'
   Plugin 'godlygeek/tabular'
+  Plugin 'kana/vim-textobj-user'
   Plugin 'majutsushi/tagbar'
   Plugin 'michaeljsmith/vim-indent-object'
   Plugin 'nathanaelkane/vim-indent-guides'
