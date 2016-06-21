@@ -50,20 +50,21 @@
   " Language specific plugins
   Plugin 'cakebaker/scss-syntax.vim'
   Plugin 'digitaltoad/vim-jade'
+  Plugin 'elzr/vim-json'
   Plugin 'evidens/vim-twig'
   Plugin 'fatih/vim-go'
   Plugin 'gkz/vim-ls'
   Plugin 'kchmck/vim-coffee-script'
   Plugin 'mattn/emmet-vim'
   Plugin 'mustache/vim-mustache-handlebars'
-  Plugin 'othree/html5.vim'
-  Plugin 'pangloss/vim-javascript'
   Plugin 'mxw/vim-jsx'
-  Plugin 'othree/yajs.vim'
+  Plugin 'othree/html5.vim'
   Plugin 'othree/javascript-libraries-syntax.vim'
-  Plugin 'wavded/vim-stylus'
+  Plugin 'othree/yajs.vim'
+  Plugin 'pangloss/vim-javascript'
   Plugin 'tpope/vim-haml'
   Plugin 'tpope/vim-rails'
+  Plugin 'wavded/vim-stylus'
 
   call vundle#end()
   filetype plugin indent on
@@ -897,7 +898,7 @@
   au FileType qf setlocal nowrap
 
   " Disable syntax highlighting for large files
-  au BufWinEnter * if line2byte(line("$") + 1) > 10000 | syntax clear | endif
+  au BufWinEnter * if line2byte(line("$") + 1) > 1000000 | syntax clear | endif
 
   " LaTeX
   augroup ft_latex
@@ -955,7 +956,7 @@
   augroup ft_js
     au!
     au FileType javascript noremap <buffer> <leader>x :SyntasticCheck<CR>
-    " au FileType json setlocal foldmethod=syntax
+    au FileType json setlocal foldmethod=syntax foldlevel=99
   augroup END
 
   " CoffeeScript / Jade / LiveScript
