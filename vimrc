@@ -896,6 +896,9 @@
 
   au FileType qf setlocal nowrap
 
+  " Disable syntax highlighting for large files
+  au BufWinEnter * if line2byte(line("$") + 1) > 10000 | syntax clear | endif
+
   " LaTeX
   augroup ft_latex
     au!
