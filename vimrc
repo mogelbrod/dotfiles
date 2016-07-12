@@ -154,10 +154,12 @@
 
   " Update external program settings
   if executable('ag')
-    set grepprg=ag\ --nogroup\ --nocolor\ --ignore\ dist
-    let g:ag_prg = 'ag --nogroup --column --smart-case --ignore dist'
-    let g:ctrlp_user_command = 'ag %s -l --nocolor -g "" --ignore dist'
+    let g:ctrlp_user_command_ignoring = 'ag %s -l --nocolor -g "" --ignore dist'
+    let g:ctrlp_user_command_all = 'ag %s -l --nocolor -g "" -U'
+    let g:ctrlp_user_command = g:ctrlp_user_command_ignoring
     let g:ctrlp_use_caching = 0
+    let g:ag_prg = 'ag --nogroup --column --smart-case --ignore dist'
+    set grepprg=ag\ --nogroup\ --nocolor\ --ignore\ dist
   elseif executable("ack")
     set grepprg=ack\ -k
   endif
@@ -555,8 +557,9 @@
   let g:used_javascript_libs = 'jquery,react,requirejs,underscore'
 
   " CtrlP plugin
-  map <C-p> :CtrlP<CR>
-  map <C-b> :CtrlPBuffer<CR>
+  noremap <C-p> :let g:ctrlp_user_command = g:ctrlp_user_command_ignoring<CR>:CtrlP<CR>
+  noremap <C-S-p> :let g:ctrlp_user_command = g:ctrlp_user_command_all<CR>:CtrlP<CR>
+  noremap <C-b> :CtrlPBuffer<CR>
   let g:ctrlp_cmd = 'CtrlP'
   let g:ctrlp_switch_buffer = '0'
   let g:ctrlp_open_new_file = 'r'
