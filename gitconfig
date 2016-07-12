@@ -37,3 +37,5 @@
   uncommit = reset --mixed HEAD~
   amend = commit --amend
   precommit = diff --cached --diff-algorithm=minimal -w
+[url "git@github.com:"]
+	insteadOf = https://github.com/
