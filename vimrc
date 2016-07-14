@@ -90,6 +90,9 @@
     set clipboard=unnamed
   end
 
+  " Don't show active mode in status line
+  set noshowmode
+
   " Tabs expand to 2 spaces
   set tabstop=2 shiftwidth=2 softtabstop=2 expandtab shiftround
 
@@ -625,13 +628,15 @@
   let g:syntastic_loc_list_height = 4
   let g:syntastic_mode_map = { 'mode': 'active',
         \ 'active_filetypes': [],
-        \ 'passive_filetypes': ['java', 'html', 'javascript'] }
+        \ 'passive_filetypes': ['java', 'html', 'javascript', 'go'] }
   " Compiler specific settings
   let g:syntastic_cpp_compiler_options = "-std=c++0x -W"
   let g:syntastic_javascript_checkers = ['eslint']
 
   let g:jsx_ext_required = 0
   let g:jsx_disable_indent = 1
+
+  let g:go_fmt_command = "goimports"
 
   " Indent guides
   let g:indent_guides_start_level = 2
@@ -1022,6 +1027,7 @@
   augroup ft_go
     au!
     au FileType go setlocal makeprg=go\ run\ %
+    au FileType go noremap <buffer> <leader>d :GoInfo<CR>
   augroup END
 
   " Help files
