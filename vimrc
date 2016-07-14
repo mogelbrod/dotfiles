@@ -139,7 +139,8 @@
 
   " Statusline: %f(ile) [flags] {align} [%ft] %col %line/%total %percent
   "set ruler " overwritten below
-  set statusline=%<\ %-f\ \ %m%r%h%w\ %=%y\ %4(%v%)\ %10(%l/%L%)\ \ %P
+  let g:currentmode={ 'n': 'N', 'no': 'NOP', 'v': 'V', 'V': 'Vline', '': 'Vblk', 's': 'S', 'S': 'Sline', '': 'Sblk', 'i': 'Ins', 'R': 'R', 'Rv': 'Rvirt', 'c': 'CMD', 'cv': 'vEX', 'ce': 'EX', 'r': 'Prompt', 'rm': 'More', 'r?': 'Confirm', '!': 'Shell' }
+  set statusline=%<\ %-f\ \ %m%r%h%w\ %=%{g:currentmode[mode()]}\ \ %y\ %4(%v%)\ %10(%l/%L%)\ \ %P
 
   " Shorten various messages in vim
   set shortmess=filnxoOtTI
