@@ -346,6 +346,22 @@
     alias r='rmtrash'
   fi
 
+  if [ -n "$ITERM_PROFILE" ] ; then
+    alias tcdef='echo -e "\033]6;1;bg;*;default\a"'
+    alias tcred='echo -en "\033]6;1;bg;red;brightness;255N^G\a" && echo -en "\033]6;1;bg;green;brightness;128N^G\a" && echo -en "\033]6;1;bg;blue;brightness;128N^G\a"'
+    alias tcorange='echo -en "\033]6;1;bg;red;brightness;255N^G\a" && echo -en "\033]6;1;bg;green;brightness;192N^G\a" && echo -en "\033]6;1;bg;blue;brightness;128N^G\a"'
+    alias tcyellow='echo -en "\033]6;1;bg;red;brightness;255N^G\a" && echo -en "\033]6;1;bg;green;brightness;255N^G\a" && echo -en "\033]6;1;bg;blue;brightness;128N^G\a"'
+    alias tcgreen='echo -en "\033]6;1;bg;red;brightness;128N^G\a" && echo -en "\033]6;1;bg;green;brightness;255N^G\a" && echo -en "\033]6;1;bg;blue;brightness;128N^G\a"'
+    alias tccyan='echo -en "\033]6;1;bg;red;brightness;128N^G\a" && echo -en "\033]6;1;bg;green;brightness;255N^G\a" && echo -en "\033]6;1;bg;blue;brightness;255N^G\a"'
+    alias tcblue='echo -en "\033]6;1;bg;red;brightness;128N^G\a" && echo -en "\033]6;1;bg;green;brightness;128N^G\a" && echo -en "\033]6;1;bg;blue;brightness;255N^G\a"'
+    alias tcmagenta='echo -en "\033]6;1;bg;red;brightness;255N^G\a" && echo -en "\033]6;1;bg;green;brightness;128N^G\a" && echo -en "\033]6;1;bg;blue;brightness;255N^G\a"'
+    alias tcpurple='echo -en "\033]6;1;bg;red;brightness;192N^G\a" && echo -en "\033]6;1;bg;green;brightness;128N^G\a" && echo -en "\033]6;1;bg;blue;brightness;255N^G\a"'
+    alias tcwhite='echo -en "\033]6;1;bg;red;brightness;255N^G\a" && echo -en "\033]6;1;bg;green;brightness;255N^G\a" && echo -en "\033]6;1;bg;blue;brightness;255N^G\a"'
+    alias tcgray='echo -en "\033]6;1;bg;red;brightness;128N^G\a" && echo -en "\033]6;1;bg;green;brightness;128N^G\a" && echo -en "\033]6;1;bg;blue;brightness;128N^G\a"'
+    alias tclgray='echo -en "\033]6;1;bg;red;brightness;192N^G\a" && echo -en "\033]6;1;bg;green;brightness;192N^G\a" && echo -en "\033]6;1;bg;blue;brightness;192N^G\a"'
+    alias tcdgray='echo -en "\033]6;1;bg;red;brightness;64N^G\a" && echo -en "\033]6;1;bg;green;brightness;64N^G\a" && echo -en "\033]6;1;bg;blue;brightness;64N^G\a"'
+  fi
+
 #}}}
 
 # Load local .profile
