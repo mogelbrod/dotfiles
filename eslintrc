@@ -16,5 +16,5 @@ env:
   es6: true
 extends: 'eslint:recommended'
 rules:
-  indent: [2, 2]
-  quotes: false
+  indent: [2, 2, {SwitchCase: 1, VariableDeclarator: { var: 2, let: 2, const: 3}}]
+  quotes: 0
