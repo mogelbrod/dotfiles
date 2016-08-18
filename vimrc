@@ -629,7 +629,7 @@
   let g:syntastic_loc_list_height = 4
   let g:syntastic_mode_map = { 'mode': 'active',
         \ 'active_filetypes': [],
-        \ 'passive_filetypes': ['java', 'html', 'javascript', 'go'] }
+        \ 'passive_filetypes': ['java', 'html', 'go'] }
   " Compiler specific settings
   let g:syntastic_cpp_compiler_options = "-std=c++0x -W"
   let g:syntastic_javascript_checkers = ['eslint']
