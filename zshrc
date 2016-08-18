@@ -15,8 +15,8 @@
       export PATH="$HOME/bin:$PATH"
   fi
 
-  # Add current directory to PATH
-  export PATH=.:$PATH
+  # Add various directories to PATH
+  export PATH=".:$HOME/bin:$PATH:node_modules/.bin"
 
   # Auto push dir when CDing
   setopt auto_pushd pushd_silent pushd_ignore_dups
