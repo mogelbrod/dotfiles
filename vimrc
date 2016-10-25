@@ -17,7 +17,7 @@
 " {{{ Vundle plugins
 
   filetype off
-  set runtimepath+=~/.vim/bundle/Vundle
+  set runtimepath+=~/.vim/bundle/Vundle.vim
   call vundle#begin()
 
   Plugin 'VundleVim/Vundle.vim'
