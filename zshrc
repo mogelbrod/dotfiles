@@ -16,7 +16,7 @@
   fi
 
   # Add various directories to PATH
-  export PATH=".:$HOME/bin:$PATH:node_modules/.bin"
+  export PATH=".:./node_modules/.bin:$HOME/bin:$PATH"
 
   # Auto push dir when CDing
   setopt auto_pushd pushd_silent pushd_ignore_dups
@@ -41,6 +41,7 @@
   PR_RESET="%{${reset_color}%}";
 
   export LS_COLORS="no=00:fi=00:di=00;34:ln=01;36:pi=00;33:so=01;35:do=01;35:bd=00;33;01:cd=00;33;01:or=40;34;01:su=00;41:sg=00;43:tw=40;32:ow=40;32:st=37;44:ex=01;32:*.tar=01;33:*.tgz=01;33:*.gz=01;33:*.bz2=01;33:*.png=01;31:*.gif=01;31:*.jpg=01;31:*.jpeg=01;31:*.svg=01;31:*.bmp=01;31"
+  export LSCOLORS=exfxcxdxbxegedabagcaea
   #zstyle ':completion:*' list-colors ''
   #zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
   zmodload zsh/complist
