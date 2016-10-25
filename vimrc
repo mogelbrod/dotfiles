@@ -1048,7 +1048,6 @@
   " Snippets
   au FileType snippet setlocal noexpandtab foldexpr=IndentationFoldExpr(v:lnum) foldmethod=expr
 
-  au FileType sh noremap <buffer> <leader>x :!%<CR>
 
   " {{{ Use dash as keyword program (Mac OSX only)
   augroup query_dash
