@@ -5,7 +5,7 @@
 	excludesfile = ~/.gitignore
 	autocrlf = input
 [push]
-	default = matching
+	default = current
 
 [color]
   branch = auto
