@@ -247,14 +247,11 @@
   " F5 toggle Gundo plugin
   nnoremap <F4> :GundoToggle<CR>
 
-  " Map Ctrl-< (lt) to surround plugin
-  imap <silent>  <Plug>Isurround
-
   " Ctrl+H replaces all occurences of the selected text with something else
   vnoremap <C-h> "zy<Esc>:call ReplaceSelection()<CR>
   fun! ReplaceSelection()
     let replacement = input("Replacement for ".@z.": ")
-    exe "%s~\\M".escape(@z, '[]~\').'~'.replacement.'~gc'
+    exe "%s~\\M".escape(@z, '[]~\').'~'.escape(replacement, '&').'~gc'
   endfun
 
   " Map P to replace selection without overwriting any registers
