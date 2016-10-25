@@ -554,8 +554,9 @@
   let g:ycm_seed_identifiers_with_syntax = 1 
   let g:ycm_min_num_identifier_candidate_chars = 1
   let g:ycm_complete_in_comments = 1
+  let g:ycm_autoclose_preview_window_after_insertion = 1
 
-  let g:used_javascript_libs = 'jquery,react,requirejs,underscore'
+  let g:used_javascript_libs = 'jquery,react,requirejs'
 
   " CtrlP plugin
   noremap <C-p> :let g:ctrlp_user_command = g:ctrlp_user_command_ignoring<CR>:CtrlP<CR>
