@@ -597,6 +597,9 @@
   let g:user_emmet_anchorizeurl_key = '<C-e>l'
   let g:user_emmet_anchorizesummary_key = '<C-e>L'
 
+  " Surround
+  let g:surround_47 = "/*\r*/"
+
   " NERDCommenter
   let g:NERDCreateDefaultMappings = 0
   let g:NERDSpaceDelims = 1
