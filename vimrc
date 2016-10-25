@@ -910,6 +910,9 @@
   " Disable syntax highlighting for large files
   au BufWinEnter * if line2byte(line("$") + 1) > 1000000 | syntax clear | endif
 
+  au FileType c,cpp,cs,javascript,python,rust noremap <buffer> gd :YcmCompleter GoTo<CR>
+  au FileType c,cpp,cs,javascript,python,rust noremap <buffer> gi :YcmCompleter GetType<CR>
+
   " LaTeX
   augroup ft_latex
     au!
