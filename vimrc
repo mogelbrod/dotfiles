@@ -991,6 +991,7 @@
     au FileType php setlocal sts=2 ts=2 sw=2 expandtab autoindent
     au FileType php inoremap <buffer> <c-a>- <?php  ?><left><left><left>
     au FileType php inoremap <buffer> <c-a>= <?=  ?><left><left><left>
+    au FileType php setlocal iskeyword-=$
   augroup END
 
   " Markdown
