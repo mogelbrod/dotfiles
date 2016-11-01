@@ -48,23 +48,13 @@
   Plugin 'vim-scripts/ingo-library'
 
   " Language specific plugins
+  Plugin 'sheerun/vim-polyglot' " bundle of most popular file type plugins
   Plugin 'cakebaker/scss-syntax.vim'
   Plugin 'digitaltoad/vim-jade'
-  Plugin 'elzr/vim-json'
-  Plugin 'evidens/vim-twig'
   Plugin 'fatih/vim-go'
-  Plugin 'gkz/vim-ls'
-  Plugin 'kchmck/vim-coffee-script'
+  Plugin 'heavenshell/vim-jsdoc'
   Plugin 'mattn/emmet-vim'
-  Plugin 'mustache/vim-mustache-handlebars'
-  Plugin 'mxw/vim-jsx'
-  Plugin 'othree/html5.vim'
   Plugin 'othree/javascript-libraries-syntax.vim'
-  Plugin 'othree/yajs.vim'
-  Plugin 'pangloss/vim-javascript'
-  Plugin 'tpope/vim-haml'
-  Plugin 'tpope/vim-rails'
-  Plugin 'wavded/vim-stylus'
 
   call vundle#end()
   filetype plugin indent on
