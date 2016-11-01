@@ -634,6 +634,9 @@
   let g:jsx_ext_required = 0
   let g:jsx_disable_indent = 1
 
+  let g:jsdoc_enable_es6 = 1
+  let g:jsdoc_underscore_private = 1
+
   let g:go_fmt_command = "goimports"
 
   " Indent guides
@@ -965,6 +968,8 @@
   augroup ft_js
     au!
     au FileType javascript noremap <buffer> <leader>x :SyntasticCheck<CR>
+    au FileType javascript noremap <buffer> <silent> <leader><leader>/ :JsDoc<CR>
+
     au FileType json setlocal foldmethod=syntax foldlevel=99
   augroup END
 
