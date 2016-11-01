@@ -237,6 +237,11 @@
   " F5 toggle Gundo plugin
   nnoremap <F4> :GundoToggle<CR>
 
+  " F7 displays syntax highlighting info for token under cursor
+  noremap <F7> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
+    \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
+    \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
+
   " Ctrl+H replaces all occurences of the selected text with something else
   vnoremap <C-h> "zy<Esc>:call ReplaceSelection()<CR>
   fun! ReplaceSelection()
