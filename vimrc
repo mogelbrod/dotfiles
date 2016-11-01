@@ -895,7 +895,7 @@
 
   " Enable mouse actions if possible
   if has('mouse')
-    set mouse=a
+    set mouse=a ttymouse=sgr
   endif
 
 " }}}
