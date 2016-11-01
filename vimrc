@@ -1035,6 +1035,7 @@
     au!
     au FileType go setlocal makeprg=go\ run\ %
     au FileType go noremap <buffer> <leader>d :GoInfo<CR>
+    au FileType go noremap <buffer> <leader>x :GoErrCheck<CR>
   augroup END
 
   " Help files
