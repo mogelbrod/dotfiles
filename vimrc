@@ -558,12 +558,13 @@
   noremap <C-S-p> :let g:ctrlp_user_command = g:ctrlp_user_command_all<CR>:CtrlP<CR>
   noremap <C-b> :CtrlPBuffer<CR>
   let g:ctrlp_cmd = 'CtrlP'
-  let g:ctrlp_switch_buffer = '0'
+  let g:ctrlp_switch_buffer = ''
   let g:ctrlp_open_new_file = 'r'
   let g:ctrlp_max_depth = 10
   let g:ctrlp_lazy_update = 200
+  let g:ctrlp_types = ['fil', 'buf']
   let g:ctrlp_extensions = ['dir', 'tag']
-  let g:ctrlp_reuse_window = 'netrw\|quickfix'
+  let g:ctrlp_reuse_window = 'netrw'
   let g:ctrlp_mruf_relative = 1
   let g:ctrlp_mruf_max = 0 " attempt to disable MRU, just annoying in mixed mode
   let g:ctrlp_match_current_file = 1
