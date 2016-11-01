@@ -121,6 +121,7 @@ hi Type        ctermfg=Green  ctermbg=none  cterm=none    guifg=#78dc1e  gui=non
 
 " Special symbols
 hi Special     ctermfg=Blue   ctermbg=none  cterm=bold    guifg=#7373e6  gui=none
+hi SpecialAlt  ctermfg=Blue   ctermbg=none  cterm=none    guifg=#7373e6  gui=none
 hi SpecialChar ctermfg=Green  ctermbg=none  cterm=none    guifg=#78dc1e  gui=none
 hi Tag         ctermfg=Cyan   ctermbg=none  cterm=bold    guifg=#3cb9e6  gui=none
 hi Delimeter   ctermfg=White  ctermbg=none  cterm=none    guifg=#ffffff  gui=none
@@ -128,9 +129,9 @@ hi Debug       ctermfg=Red    ctermbg=none  cterm=bold    guifg=#f35d5d  gui=non
 
 " Other stuff
 hi Error       ctermfg=White  ctermbg=Red   cterm=none    guifg=#ffcccc  guibg=#aa3333  gui=none
-hi Ignored     ctermfg=White  ctermbg=none  cterm=bold    guifg=#ffffff  gui=none
-hi Todo        ctermfg=White  ctermbg=none  cterm=bold    guifg=yellow  guibg=bg    gui=none
-hi Underlined  ctermfg=White  ctermbg=none  cterm=underline  guifg=#ffffff  gui=none
+hi Ignored     ctermfg=White  ctermbg=none  cterm=bold    guifg=#ffffff                 gui=none
+hi Todo        ctermfg=White  ctermbg=none  cterm=bold    guifg=yellow   guibg=bg       gui=none
+hi Underlined  ctermfg=White  ctermbg=none  cterm=underline  guifg=#ffffff              gui=none
 
 " }}}
 " {{{ Context specific
@@ -152,5 +153,17 @@ hi link htmlBold Normal
 " Jade
 hi link jadeTag Statement
 hi link jadeJavascriptOutputChar Special
+
+" Javascript
+hi link jsParens Delimeter
+hi link jsBraces Delimeter
+hi link jsBrackets Delimeter
+hi link jsObjectBraces Delimeter
+hi link jsFuncCall Function
+hi link jsBlock Normal
+hi link jsThis Constant
+hi link jsArrowFunction PreProc
+hi link jsArrowFuncArgs Special
+hi link jsFuncArgs Special
 
 " }}}
