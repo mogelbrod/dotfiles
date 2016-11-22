@@ -592,6 +592,9 @@
   let g:user_emmet_codepretty_keya = '<C-e>C'
   let g:user_emmet_anchorizeurl_key = '<C-e>l'
   let g:user_emmet_anchorizesummary_key = '<C-e>L'
+  let g:user_emmet_settings = {
+  \  'javascript.jsx': { 'extends': 'jsx' },
+  \}
 
   " Surround
   let g:surround_47 = "/*\r*/"
