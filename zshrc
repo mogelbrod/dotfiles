@@ -10,11 +10,6 @@
   stty -ixon -ixoff
   unsetopt flow_control
 
-  # Add user bin to PATH
-  if [ -d "$HOME/bin" ] ; then
-      export PATH="$HOME/bin:$PATH"
-  fi
-
   # Add various directories to PATH
   export PATH=".:$HOME/bin:$PATH"
 
