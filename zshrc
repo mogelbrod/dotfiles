@@ -264,7 +264,9 @@
   }
 
   function agext {
-    ag -G "\\.$1$" -Q $2
+    ext="$1"
+    shift
+    ag -G "\\.$ext$" -Q $*
   }
 
   function port-usage {
@@ -362,3 +364,5 @@
 
 # Load local .profile
 [ -f "$HOME/.profile.local" ] && . "$HOME/.profile.local"
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
