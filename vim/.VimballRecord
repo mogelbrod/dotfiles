@@ -1,0 +1,1 @@
+x: call delete('/Users/victor/.vim/autoload/EnhancedJumps/Common.vim')|call delete('/Users/victor/.vim/autoload/EnhancedJumps/Changes.vim')|call delete('/Users/victor/.vim/autoload/EnhancedJumps.vim')|call delete('/Users/victor/.vim/plugin/EnhancedJumps.vim')|call delete('/Users/victor/.vim/doc/EnhancedJumps.txt')

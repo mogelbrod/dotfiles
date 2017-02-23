@@ -27,6 +27,7 @@
 
   Plugin 'b4winckler/vim-angry'
   Plugin 'godlygeek/tabular'
+  Plugin 'jiangmiao/auto-pairs'
   Plugin 'kana/vim-textobj-user'
   Plugin 'majutsushi/tagbar'
   Plugin 'michaeljsmith/vim-indent-object'
@@ -43,9 +44,6 @@
   Plugin 'tpope/vim-fugitive'
   Plugin 'tpope/vim-repeat'
   Plugin 'tpope/vim-surround'
-  Plugin 'vim-scripts/Auto-Pairs'
-  Plugin 'vim-scripts/EnhancedJumps'
-  Plugin 'vim-scripts/ingo-library'
 
   " Language specific plugins
   Plugin 'sheerun/vim-polyglot' " bundle of most popular file type plugins
@@ -335,6 +333,8 @@
   noremap <leader>m :Make<space>
   noremap <leader>c :Make<CR>
 
+  noremap <leader>n :cn<CR>
+
   " Change directory to current buffer path
   nmap <leader>d :cd %:p:h<CR>
 
@@ -577,6 +577,7 @@
   " Auto-Pairs
   let g:AutoPairsMapSpace = 0
   let g:AutoPairsCenterLine = 0
+  let g:AutoPairsMultilineClose = 0
   let g:AutoPairsShortcutJump = '<c-s>'
   let g:AutoPairsShortcutFastWrap = '<c-b>' " default conflicts with å character
 
