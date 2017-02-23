@@ -226,4 +226,8 @@ $1.propTypes = {}
 $1.defaultProps = {}
 endsnippet
 
+snippet nary "Array of length N" w
+Array.apply(null, {length: ${1:10}}).map((_, i) => ${2:i+1})$0
+endsnippet
+
 # vim:ft=snippets:
