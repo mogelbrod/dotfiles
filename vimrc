@@ -167,6 +167,9 @@
   noremap [1;5D :bprevious<CR>
   noremap [1;5C :bnext<CR>
 
+  noremap <C-u> <C-i>
+  noremap <C-t> :b#<CR>
+
 " }}}
 " {{{ Command mode
 
@@ -195,22 +198,18 @@
 " {{{ Key behaviour & custom mappings
 
   " Navigate through displayed lines, not physical
-  nmap <silent> j gj
-  nmap <silent> k gk
-  imap <silent> <Down> <C-o>gj
-  imap <silent> <Up> <C-o>gk
-  nmap <silent> <Down> gj
-  nmap <silent> <Up> gk
-  "map <silent> <Up> <nop>
-  "map <silent> <Down> <nop>
-  "map <silent> <Left> <nop>
-  "map <silent> <Right> <nop>
+  noremap <silent> j gj
+  noremap <silent> k gk
+  inoremap <silent> <Down> <C-o>gj
+  inoremap <silent> <Up> <C-o>gk
+  noremap <silent> <Down> gj
+  noremap <silent> <Up> gk
 
   " Scroll screen with <C-j>/<C-k>
-  nmap <silent> <C-k> <C-e>
-  nmap <silent> <C-j> <C-y>
-  imap <silent> <C-j> <C-x><C-e>
-  imap <silent> <C-k> <C-x><C-y>
+  noremap <silent> <C-j> <C-d>
+  noremap <silent> <C-k> <C-u>
+  inoremap <silent> <C-k> <C-x><C-d>
+  inoremap <silent> <C-j> <C-x><C-u>
 
   " Completion (C-x) key shortcuts
   inoremap <C-L> <C-X><C-L>
@@ -647,12 +646,6 @@
   let g:indent_guides_start_level = 2
   let g:indent_guides_guide_size = 1
   let g:indent_guides_color_change_percent = 5
-
-  " EnhancedJumps
-  nmap <C-o> <Plug>EnhancedJumpsRemoteOlder
-  nmap <C-t> <Plug>EnhancedJumpsRemoteNewer
-  nmap <leader><C-o> <Plug>EnhancedJumpsOlder
-  nmap <leader><C-t> <Plug>EnhancedJumpsNewer
 
 " }}}
 " {{{ Custom functions and commands
