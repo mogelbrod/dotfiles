@@ -24,7 +24,9 @@
   Plugin 'Valloric/YouCompleteMe'
   Plugin 'SirVer/ultisnips'
   Plugin 'ctrlpvim/ctrlp.vim'
+  Plugin 'nixprime/cpsm'
 
+  Plugin 'AndrewRadev/splitjoin.vim'
   Plugin 'b4winckler/vim-angry'
   Plugin 'godlygeek/tabular'
   Plugin 'jiangmiao/auto-pairs'
@@ -152,7 +154,7 @@
     let g:ctrlp_use_caching = 0
     let g:ag_prg = 'ag --nogroup --column --smart-case --ignore dist'
     set grepprg=ag\ --nogroup\ --nocolor\ --ignore\ dist
-  elseif executable("ack")
+  elseif executable('ack')
     set grepprg=ack\ -k
   endif
 
@@ -560,18 +562,22 @@
   let g:ctrlp_switch_buffer = ''
   let g:ctrlp_open_new_file = 'r'
   let g:ctrlp_max_depth = 10
-  let g:ctrlp_lazy_update = 200
+  let g:ctrlp_lazy_update = 100
   let g:ctrlp_types = ['fil', 'buf']
   let g:ctrlp_extensions = ['dir', 'tag']
   let g:ctrlp_reuse_window = 'netrw'
   let g:ctrlp_mruf_relative = 1
   let g:ctrlp_mruf_max = 0 " attempt to disable MRU, just annoying in mixed mode
   let g:ctrlp_match_current_file = 1
-
+  let g:ctrlp_path_sort = 1
   let g:ctrlp_custom_ignore = {
     \ 'dir':  '\v\.(git|hg|svn)$',
     \ 'file': '\v\.(exe|so|dll|tar|bz2|gz|zip|jar|deb|jpe?g|png|gif|bmp|mp3|avi|mp4|mov|mpe?g|mkv|pdf)$'
     \ }
+
+  if !has("win32")
+    let g:ctrlp_match_func = {'match': 'cpsm#CtrlPMatch'}
+  endif
 
   " Auto-Pairs
   let g:AutoPairsMapSpace = 0
