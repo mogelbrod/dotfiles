@@ -569,7 +569,6 @@
   let g:ctrlp_mruf_relative = 1
   let g:ctrlp_mruf_max = 0 " attempt to disable MRU, just annoying in mixed mode
   let g:ctrlp_match_current_file = 1
-  let g:ctrlp_path_sort = 1
   let g:ctrlp_custom_ignore = {
     \ 'dir':  '\v\.(git|hg|svn)$',
     \ 'file': '\v\.(exe|so|dll|tar|bz2|gz|zip|jar|deb|jpe?g|png|gif|bmp|mp3|avi|mp4|mov|mpe?g|mkv|pdf)$'
