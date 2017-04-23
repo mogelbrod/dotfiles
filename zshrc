@@ -57,7 +57,7 @@
 
   precmd() {
     # Terminal title (overriden by $TERM_TITLE env)
-    if [[ $TERM == (*xterm*|rxvt); ]]; then
+    if [[ $TERM == (*xterm*|rxvt) ]]; then
       title=$TERM_TITLE
       [[ -z $TERM_TITLE ]] && title="%~"
       print -Pn "]0;$title\a"
