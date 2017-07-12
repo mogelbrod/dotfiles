@@ -657,6 +657,7 @@
 
   " Make
   command! -nargs=* Make silent! make <args> | redraw! | botright cwindow 5
+  command! -nargs=1 -complete=dir Eslint cexpr system("eslint -f unix ".<q-args>) | exe '<mods> cw '
 
   " Update tags file using ctags executable
   command! -nargs=? Tags call GenerateTags(<args>) | cw
