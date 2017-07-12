@@ -196,8 +196,8 @@ snippet ctrace "console.trace"
 console.trace()
 endsnippet
 
-snippet rp "React.PropTypes" w
-React.PropTypes.$0
+snippet rp "PropTypes" w
+PropTypes.$0
 endsnippet
 
 snippet reactclass "React.createClass"
@@ -214,20 +214,36 @@ endsnippet
 
 snippet reactcomp "Extend React.Component"
 class ${1:Component} extends React.Component {
+	static displayName = $1
+
+	static propTypes = {}
+	static defaultProps = {}
+
 	constructor(props) {
 		super(props)
 		this.state = {}
-	},
+	}
+
 	render() {
 		return null
 	}
 }
-$1.propTypes = {}
-$1.defaultProps = {}
 endsnippet
 
 snippet nary "Array of length N" w
 Array.apply(null, {length: ${1:10}}).map((_, i) => ${2:i+1})$0
+endsnippet
+
+snippet tdesc "Mocha describe" !b
+describe('$1', () => {
+	$0
+})
+endsnippet
+
+snippet tit "Mocha it" !b
+it('$1', () => {
+	$0
+})
 endsnippet
 
 # vim:ft=snippets:
