@@ -31,6 +31,7 @@
   Plugin 'godlygeek/tabular'
   Plugin 'jiangmiao/auto-pairs'
   Plugin 'kana/vim-textobj-user'
+  Plugin 'beloglazov/vim-textobj-quotes'
   Plugin 'majutsushi/tagbar'
   Plugin 'michaeljsmith/vim-indent-object'
   Plugin 'nathanaelkane/vim-indent-guides'
