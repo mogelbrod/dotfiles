@@ -31,7 +31,7 @@ class $1 {
 endsnippet
 
 snippet f "Arrow function" w
-${1:()} => $0
+($1) => $0
 endsnippet
 
 snippet fn "Function (inline)" w
@@ -214,7 +214,7 @@ endsnippet
 
 snippet reactcomp "Extend React.Component"
 class ${1:Component} extends React.Component {
-	static displayName = $1
+	static displayName = '$1'
 
 	static propTypes = {}
 	static defaultProps = {}
@@ -226,6 +226,16 @@ class ${1:Component} extends React.Component {
 
 	render() {
 		return null
+	}
+}
+endsnippet
+
+snippet rcon "React constructor"
+constructor(props) {
+	super(props)
+
+	this.state = {
+		$0
 	}
 }
 endsnippet
