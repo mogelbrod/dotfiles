@@ -337,9 +337,6 @@
 
   noremap <leader>n :cn<CR>
 
-  " Change directory to current buffer path
-  nmap <leader>d :cd %:p:h<CR>
-
   " Convert number(s) under cursor
   nore <leader>sd <Esc>:call DecToHex()<CR>
   vnore <leader>sd <Esc>:call DecToHex()<CR>
