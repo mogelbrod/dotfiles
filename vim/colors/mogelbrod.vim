@@ -160,6 +160,7 @@ hi link jsBraces Delimeter
 hi link jsBrackets Delimeter
 hi link jsObjectBraces Delimeter
 hi link jsFuncCall Function
+hi link javascriptRMethods Function
 hi link jsBlock Normal
 hi link jsThis Constant
 hi link jsArrowFunction PreProc
