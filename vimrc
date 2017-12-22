@@ -969,7 +969,11 @@
   augroup ft_js
     au!
     au FileType javascript noremap <buffer> <leader>x :SyntasticCheck<CR>
+    au FileType javascript noremap <buffer> <leader>d
+      \ :execute "!open 'https://www.npmjs.com/package/".substitute(expand('<cWORD>'), '[''" ]', '', 'g')."'"<CR><CR>
     au FileType javascript noremap <buffer> <silent> <leader><leader>/ :JsDoc<CR>
+    au FileType javascript noremap <buffer> <leader><leader>x
+      \ :echo "Running 'npm run lint'" <Bar> cexpr system('npm run --silent lint -- -f unix') <Bar> cw<CR><CR>
 
     au FileType json setlocal foldmethod=syntax foldlevel=99
   augroup END
@@ -1064,9 +1068,9 @@
   augroup END
   " }}}
 
-  " {{{ CoffeeScript tagbar configuration
-  let g:tagbar_type_coffee = {
-      \ 'ctagstype' : 'coffee',
+  " {{{ JavaScript (EcmaScript 6+) tagbar configuration
+  let g:tagbar_type_javascript = {
+      \ 'ctagstype' : 'javascript',
       \ 'kinds'     : [
           \ 'c:classes',
           \ 'm:methods',
