@@ -554,7 +554,7 @@
 
   " CtrlP plugin
   noremap <C-p> :let g:ctrlp_user_command = g:ctrlp_user_command_ignoring<CR>:CtrlP<CR>
-  noremap <C-S-p> :let g:ctrlp_user_command = g:ctrlp_user_command_all<CR>:CtrlP<CR>
+  " noremap <C-S-p> :let g:ctrlp_user_command = g:ctrlp_user_command_all<CR>:CtrlP<CR>
   noremap <C-b> :CtrlPBuffer<CR>
   let g:ctrlp_cmd = 'CtrlP'
   let g:ctrlp_switch_buffer = ''
@@ -600,7 +600,8 @@
   \}
 
   " Surround
-  let g:surround_47 = "/*\r*/"
+  let g:surround_13 = "{\n\t\r\n}"
+  let g:surround_47 = "/*\n\r\n*/"
 
   " NERDCommenter
   let g:NERDCreateDefaultMappings = 0
@@ -661,13 +662,12 @@
   command! -nargs=? Tags call GenerateTags(<args>) | cw
 
   command! -nargs=1 Egrep exe 'normal! :call RecursiveGrepCommand("'.<args>.'")<Bar> cw<CR><CR><CR>'
+  command! -nargs=+ Agext call AgExt(<q-args>)
 
   command! -nargs=0 IFold setlocal foldexpr=IndentationFoldExpr(v:lnum) foldmethod=expr nofoldenable
 
   command! -nargs=1 Hex2RGB call HexToRGB(<args>)
   command! -nargs=1 Dec2Hex call DecToHex(<args>)
-
-  command! -nargs=+ Agext call AgExt(<q-args>)
 
   command! -nargs=0 WipeHidden call WipeHiddenBuffers()
 
