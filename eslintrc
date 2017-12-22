@@ -1,15 +1,3 @@
-ecmaFeatures:
-  arrowFunctions: true
-  blockBindings: true
-  classes: true
-  destructuring: true
-  forOf: true
-  jsx: true
-  modules: true
-  objectLiteralComputedProperties: true
-  objectLiteralShorthandMethods: true
-  objectLiteralShorthandProperties: true
-  templateStrings: true
 env:
   node: true
   browser: true
@@ -18,3 +6,4 @@ extends: 'eslint:recommended'
 rules:
   indent: [2, 2, {SwitchCase: 1, VariableDeclarator: { var: 2, let: 2, const: 3}}]
   quotes: 0
+  no-console: 0
