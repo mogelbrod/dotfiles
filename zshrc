@@ -266,7 +266,7 @@
   function agext {
     ext="$1"
     shift
-    ag -G "\\.$ext$" -Q $*
+    ag -G "\\.$ext$" $*
   }
 
   function port-usage {
@@ -346,16 +346,16 @@
 
   if [ -n "$ITERM_PROFILE" ] ; then
     alias tcdef='echo -e "\033]6;1;bg;*;default\a"'
-    alias tcred='echo -en "\033]6;1;bg;red;brightness;255N^G\a" && echo -en "\033]6;1;bg;green;brightness;128N^G\a" && echo -en "\033]6;1;bg;blue;brightness;128N^G\a"'
-    alias tcorange='echo -en "\033]6;1;bg;red;brightness;255N^G\a" && echo -en "\033]6;1;bg;green;brightness;192N^G\a" && echo -en "\033]6;1;bg;blue;brightness;128N^G\a"'
-    alias tcyellow='echo -en "\033]6;1;bg;red;brightness;255N^G\a" && echo -en "\033]6;1;bg;green;brightness;255N^G\a" && echo -en "\033]6;1;bg;blue;brightness;128N^G\a"'
-    alias tcgreen='echo -en "\033]6;1;bg;red;brightness;128N^G\a" && echo -en "\033]6;1;bg;green;brightness;255N^G\a" && echo -en "\033]6;1;bg;blue;brightness;128N^G\a"'
+    alias tcred='echo -en "\033]6;1;bg;red;brightness;249N^G\a" && echo -en "\033]6;1;bg;green;brightness;108N^G\a" && echo -en "\033]6;1;bg;blue;brightness;108N^G\a"'
+    alias tcorange='echo -en "\033]6;1;bg;red;brightness;244N^G\a" && echo -en "\033]6;1;bg;green;brightness;171N^G\a" && echo -en "\033]6;1;bg;blue;brightness;81N^G\a"'
+    alias tcyellow='echo -en "\033]6;1;bg;red;brightness;239N^G\a" && echo -en "\033]6;1;bg;green;brightness;219N^G\a" && echo -en "\033]6;1;bg;blue;brightness;91N^G\a"'
+    alias tcgreen='echo -en "\033]6;1;bg;red;brightness;180N^G\a" && echo -en "\033]6;1;bg;green;brightness;210N^G\a" && echo -en "\033]6;1;bg;blue;brightness;80N^G\a"'
     alias tccyan='echo -en "\033]6;1;bg;red;brightness;128N^G\a" && echo -en "\033]6;1;bg;green;brightness;255N^G\a" && echo -en "\033]6;1;bg;blue;brightness;255N^G\a"'
-    alias tcblue='echo -en "\033]6;1;bg;red;brightness;128N^G\a" && echo -en "\033]6;1;bg;green;brightness;128N^G\a" && echo -en "\033]6;1;bg;blue;brightness;255N^G\a"'
+    alias tcblue='echo -en "\033]6;1;bg;red;brightness;98N^G\a" && echo -en "\033]6;1;bg;green;brightness;165N^G\a" && echo -en "\033]6;1;bg;blue;brightness;245N^G\a"'
     alias tcmagenta='echo -en "\033]6;1;bg;red;brightness;255N^G\a" && echo -en "\033]6;1;bg;green;brightness;128N^G\a" && echo -en "\033]6;1;bg;blue;brightness;255N^G\a"'
-    alias tcpurple='echo -en "\033]6;1;bg;red;brightness;192N^G\a" && echo -en "\033]6;1;bg;green;brightness;128N^G\a" && echo -en "\033]6;1;bg;blue;brightness;255N^G\a"'
+    alias tcpurple='echo -en "\033]6;1;bg;red;brightness;192N^G\a" && echo -en "\033]6;1;bg;green;brightness;144N^G\a" && echo -en "\033]6;1;bg;blue;brightness;215N^G\a"'
     alias tcwhite='echo -en "\033]6;1;bg;red;brightness;255N^G\a" && echo -en "\033]6;1;bg;green;brightness;255N^G\a" && echo -en "\033]6;1;bg;blue;brightness;255N^G\a"'
-    alias tcgray='echo -en "\033]6;1;bg;red;brightness;128N^G\a" && echo -en "\033]6;1;bg;green;brightness;128N^G\a" && echo -en "\033]6;1;bg;blue;brightness;128N^G\a"'
+    alias tcgray='echo -en "\033]6;1;bg;red;brightness;120N^G\a" && echo -en "\033]6;1;bg;green;brightness;120N^G\a" && echo -en "\033]6;1;bg;blue;brightness;120N^G\a"'
     alias tclgray='echo -en "\033]6;1;bg;red;brightness;192N^G\a" && echo -en "\033]6;1;bg;green;brightness;192N^G\a" && echo -en "\033]6;1;bg;blue;brightness;192N^G\a"'
     alias tcdgray='echo -en "\033]6;1;bg;red;brightness;64N^G\a" && echo -en "\033]6;1;bg;green;brightness;64N^G\a" && echo -en "\033]6;1;bg;blue;brightness;64N^G\a"'
   fi
