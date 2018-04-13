@@ -28,10 +28,11 @@
 
   Plugin 'AndrewRadev/splitjoin.vim'
   Plugin 'b4winckler/vim-angry'
+  Plugin 'beloglazov/vim-textobj-quotes'
+  Plugin 'gcorne/vim-sass-lint'
   Plugin 'godlygeek/tabular'
   Plugin 'jiangmiao/auto-pairs'
   Plugin 'kana/vim-textobj-user'
-  Plugin 'beloglazov/vim-textobj-quotes'
   Plugin 'majutsushi/tagbar'
   Plugin 'michaeljsmith/vim-indent-object'
   Plugin 'nathanaelkane/vim-indent-guides'
@@ -635,8 +636,10 @@
         \ 'active_filetypes': [],
         \ 'passive_filetypes': ['java', 'html', 'go'] }
   " Compiler specific settings
-  let g:syntastic_cpp_compiler_options = "-std=c++0x -W"
+  let g:syntastic_cpp_compiler_options = '-std=c++0x -W'
   let g:syntastic_javascript_checkers = ['eslint']
+  let g:syntastic_sass_checkers = ['sasslint']
+  let g:syntastic_scss_checkers = ['sasslint']
 
   let g:jsx_ext_required = 0
   let g:jsx_disable_indent = 1
@@ -965,6 +968,8 @@
   augroup END
 
   au FileType scss setlocal iskeyword+=-
+  au FileType scss noremap <buffer> <leader><leader>x
+    \ :echo "Running 'sass-lint'" <Bar> cexpr system('sass-lint -vqf unix') <Bar> cw<CR><CR>
 
   augroup ft_js
     au!
