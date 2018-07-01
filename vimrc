@@ -13,6 +13,8 @@
     endif
   endif
 
+  call has('python3')
+
 " }}}
 " {{{ Vundle plugins
 
