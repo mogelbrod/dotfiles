@@ -358,6 +358,12 @@
     alias tcgray='echo -en "\033]6;1;bg;red;brightness;120N^G\a" && echo -en "\033]6;1;bg;green;brightness;120N^G\a" && echo -en "\033]6;1;bg;blue;brightness;120N^G\a"'
     alias tclgray='echo -en "\033]6;1;bg;red;brightness;192N^G\a" && echo -en "\033]6;1;bg;green;brightness;192N^G\a" && echo -en "\033]6;1;bg;blue;brightness;192N^G\a"'
     alias tcdgray='echo -en "\033]6;1;bg;red;brightness;64N^G\a" && echo -en "\033]6;1;bg;green;brightness;64N^G\a" && echo -en "\033]6;1;bg;blue;brightness;64N^G\a"'
+
+    # Make Ctrl-] copy current input to system clipboard
+    pbcopy-whole-line() {
+      echo -n $BUFFER | pbcopy
+    }; zle -N pbcopy-whole-line
+    bindkey '^]' pbcopy-whole-line
   fi
 
 #}}}
