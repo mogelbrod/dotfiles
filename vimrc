@@ -37,6 +37,7 @@
   Plugin 'kana/vim-textobj-user'
   Plugin 'majutsushi/tagbar'
   Plugin 'michaeljsmith/vim-indent-object'
+  Plugin 'mogelbrod/vim-jsonpath'
   Plugin 'nathanaelkane/vim-indent-guides'
   Plugin 'rizzatti/dash.vim'
   Plugin 'rking/ag.vim'
@@ -361,6 +362,8 @@
 
   " Control fold open/closed with <Space>
   nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
+
+  noremap <silent> <leader><leader>f <Plug>SimpleFold_Foldsearch
 
   " Fold text (title)
   function! CustomFoldText(...) " {{{
@@ -984,6 +987,8 @@
       \ :echo "Running 'npm run lint'" <Bar> cexpr system('npm run --silent lint -- -f unix') <Bar> cw<CR><CR>
 
     au FileType json setlocal foldmethod=syntax foldlevel=99
+    au FileType json noremap <buffer> <silent> <expr> <leader>p jsonpath#echo()
+    au FileType json noremap <buffer> <silent> <expr> <leader>g jsonpath#goto()
   augroup END
 
   " CoffeeScript / Jade / LiveScript
