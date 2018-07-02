@@ -43,6 +43,7 @@
   Plugin 'scrooloose/syntastic'
   Plugin 'sjl/gundo.vim'
   Plugin 'tpope/vim-abolish'
+  Plugin 'tpope/vim-apathy'
   Plugin 'tpope/vim-endwise'
   Plugin 'tpope/vim-eunuch'
   Plugin 'tpope/vim-fugitive'
