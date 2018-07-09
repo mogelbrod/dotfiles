@@ -47,7 +47,7 @@
   setopt prompt_subst
 
   git_prompt_info() {
-    [[ $(git symbolic-ref HEAD 2>&1) =~ "fatal: Not a git repository" ]] && return
+    [[ $(git symbolic-ref HEAD 2>&1) =~ "fatal: " ]] && return
     if [[ $(git branch) =~ "\* ([a-z0-9._/-]+)" ]]; then
       echo " (${match[1]})"
     else
