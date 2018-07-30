@@ -9,6 +9,7 @@
   # Disable flow control
   stty -ixon -ixoff
   unsetopt flow_control
+  unsetopt flowcontrol
 
   # Add various directories to PATH
   export PATH=".:./node_modules/.bin:$HOME/bin:$PATH"
@@ -107,8 +108,8 @@
 
   autoload -Uz compinit && compinit
 
-  setopt complete_in_word
-  setopt auto_param_slash auto_param_keys
+  setopt complete_in_word always_to_end
+  setopt auto_param_slash auto_param_keys auto_list
 
   # Ignore uninteresting users
   zstyle ':completion:*:*:*:users' ignored-patterns \
@@ -278,7 +279,7 @@
 #{{{ Git specific
 
   alias gs='git status'
-
+  alias gl='git pull'
   alias gp='git push'
   alias gpp='git pull && git push'
   alias gco='git checkout'
