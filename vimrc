@@ -905,7 +905,10 @@
 
   " Enable mouse actions if possible
   if has('mouse')
-    set mouse=a ttymouse=sgr
+    set mouse=a
+    if !has('nvim')
+      set ttymouse=sgr
+    endif
   endif
 
 " }}}
