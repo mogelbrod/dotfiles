@@ -229,6 +229,10 @@
     echo "scale=6; $*" | bc
   }
 
+  function largest_files {
+    find ${*:-.} -ls | awk '{printf "%12s %s \n", $7, $11}' | sort
+  }
+
   function title {
     TERM_TITLE="$*"
     [[ -z "$TERM_TITLE" ]] && TERM_TITLE=$(basename `pwd`)
