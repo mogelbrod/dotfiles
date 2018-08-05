@@ -1,7 +1,7 @@
 " {{{ Home directory and swap files
 
   if has('win32') || has('win64')
-    let $VIMHOME = $HOME."\\vimfiles"
+    let $VIMHOME = $HOME."\\.vim"
     set noswapfile
   else
     let $VIMHOME = $HOME."/.vim"
@@ -16,54 +16,57 @@
   call has('python3')
 
 " }}}
-" {{{ Vundle plugins
+" {{{ Plugins
 
-  filetype off
-  set runtimepath+=~/.vim/bundle/Vundle.vim
-  call vundle#begin()
+  call plug#begin($VIMHOME . '/bundle')
 
-  Plugin 'VundleVim/Vundle.vim'
-  Plugin 'Valloric/YouCompleteMe'
-  Plugin 'SirVer/ultisnips'
-  Plugin 'ctrlpvim/ctrlp.vim'
-  Plugin 'nixprime/cpsm'
+  Plug 'ctrlpvim/ctrlp.vim'
+  " TODO: Build with PY3=ON prefix once https://github.com/nixprime/cpsm/pull/49 is fixed 
+  Plug 'nixprime/cpsm', { 'do': './install.sh' }
 
-  Plugin 'AndrewRadev/splitjoin.vim'
-  Plugin 'b4winckler/vim-angry'
-  Plugin 'beloglazov/vim-textobj-quotes'
-  Plugin 'gcorne/vim-sass-lint'
-  Plugin 'godlygeek/tabular'
-  Plugin 'jiangmiao/auto-pairs'
-  Plugin 'kana/vim-textobj-user'
-  Plugin 'majutsushi/tagbar'
-  Plugin 'michaeljsmith/vim-indent-object'
-  Plugin 'mogelbrod/vim-jsonpath'
-  Plugin 'nathanaelkane/vim-indent-guides'
-  Plugin 'rizzatti/dash.vim'
-  Plugin 'rking/ag.vim'
-  Plugin 'scrooloose/nerdcommenter'
-  Plugin 'scrooloose/nerdtree'
-  Plugin 'scrooloose/syntastic'
-  Plugin 'sjl/gundo.vim'
-  Plugin 'tpope/vim-abolish'
-  Plugin 'tpope/vim-apathy'
-  Plugin 'tpope/vim-endwise'
-  Plugin 'tpope/vim-eunuch'
-  Plugin 'tpope/vim-fugitive'
-  Plugin 'tpope/vim-repeat'
-  Plugin 'tpope/vim-surround'
+  " Completion & snippets & linting
+  Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
+  Plug 'Shougo/echodoc.vim'
+  Plug 'SirVer/ultisnips'
+  Plug 'neomake/neomake'
+
+  Plug 'AndrewRadev/splitjoin.vim'
+  Plug 'airblade/vim-gitgutter'
+  Plug 'b4winckler/vim-angry'
+  Plug 'beloglazov/vim-textobj-quotes'
+  Plug 'godlygeek/tabular'
+  Plug 'jiangmiao/auto-pairs'
+  Plug 'kana/vim-textobj-user'
+  Plug 'majutsushi/tagbar'
+  Plug 'michaeljsmith/vim-indent-object'
+  Plug 'mogelbrod/vim-jsonpath'
+  Plug 'nathanaelkane/vim-indent-guides'
+  Plug 'rizzatti/dash.vim'
+  Plug 'rking/ag.vim'
+  Plug 'scrooloose/nerdcommenter'
+  Plug 'scrooloose/nerdtree'
+  Plug 'sjl/gundo.vim'
+  Plug 'tpope/vim-abolish'
+  Plug 'tpope/vim-apathy'
+  Plug 'tpope/vim-endwise'
+  Plug 'tpope/vim-eunuch'
+  Plug 'tpope/vim-fugitive'
+  Plug 'tpope/vim-repeat'
+  Plug 'tpope/vim-surround'
 
   " Language specific plugins
-  Plugin 'sheerun/vim-polyglot' " bundle of most popular file type plugins
-  Plugin 'cakebaker/scss-syntax.vim'
-  Plugin 'digitaltoad/vim-jade'
-  Plugin 'fatih/vim-go'
-  Plugin 'heavenshell/vim-jsdoc'
-  Plugin 'mattn/emmet-vim'
-  Plugin 'othree/javascript-libraries-syntax.vim'
+  Plug 'HerringtonDarkholme/yats.vim'
+  Plug 'cakebaker/scss-syntax.vim'
+  Plug 'digitaltoad/vim-jade'
+  Plug 'fatih/vim-go'
+  Plug 'gcorne/vim-sass-lint'
+  Plug 'heavenshell/vim-jsdoc'
+  Plug 'mattn/emmet-vim'
+  Plug 'othree/csscomplete.vim'
+  Plug 'othree/javascript-libraries-syntax.vim'
+  Plug 'sheerun/vim-polyglot' " bundle of most popular file type plugins
 
-  call vundle#end()
-  filetype plugin indent on
+  call plug#end()
 
 " }}}
 " {{{ Basic settings and environment setup
@@ -118,28 +121,20 @@
   set shellslash " always use forward slashes, even on windows
 
   " Command line
-  set laststatus=2 " always show status line
-  set showcmd " show incomplete commands
   set history=100 " command line history length
   set shellslash " always use forward slashes, even on windows
-  set wildmenu
+  set nowildmenu
   set wildmode=list:longest,full
   set wildignore=*.o,*.bak,*.swc,*.swp,.git/*,.gitkeep,*.class
   set wildignore+=*/tmp/*,*.so,*.zip
   set wildignore+=tmp\*,*.zip,*.exe
 
-  " What to scan for in insert mode completion
-  set complete=.,w,b,u,t,i,k
-  " Insert the longest common text, show menu for one result too
+  " Insert mode completion
+  set complete=.,w,t,i,k
   set completeopt=longest,menu ",menuone
 
-  " Statusline: %f(ile) [flags] {align} [%ft] %col %line/%total %percent
-  "set ruler " overwritten below
-  let g:currentmode={ 'n': 'N', 'no': 'NOP', 'v': 'V', 'V': 'Vline', '': 'Vblk', 's': 'S', 'S': 'Sline', '': 'Sblk', 'i': 'Ins', 'R': 'R', 'Rv': 'Rvirt', 'c': 'CMD', 'cv': 'vEX', 'ce': 'EX', 'r': 'Prompt', 'rm': 'More', 'r?': 'Confirm', '!': 'Shell' }
-  set statusline=%<\ %-f\ \ %m%r%h%w\ %=%{g:currentmode[mode()]}\ \ %y\ %4(%v%)\ %10(%l/%L%)\ \ %P
-
   " Shorten various messages in vim
-  set shortmess=filnxoOtTI
+  set shortmess=filmnrxoOtTIc
 
   if has("balloon_eval")
     set noballooneval " disable annoying window popups
@@ -205,6 +200,12 @@
 " }}}
 " {{{ Key behaviour & custom mappings
 
+  " Allow backspacing over everything
+  set backspace=indent,eol,start
+
+  " Have the cursor keys wrap between lines (like <Space> and <BkSpc> do)
+  set whichwrap=<,>,[,]
+
   " Navigate through displayed lines, not physical
   noremap <silent> j gj
   noremap <silent> k gk
@@ -216,17 +217,10 @@
   " Scroll screen with <C-j>/<C-k>
   noremap <silent> <C-j> <C-d>
   noremap <silent> <C-k> <C-u>
-  inoremap <silent> <C-k> <C-x><C-d>
-  inoremap <silent> <C-j> <C-x><C-u>
 
   " Completion (C-x) key shortcuts
-  inoremap <C-L> <C-X><C-L>
-
-  " Allow backspacing over everything
-  set backspace=indent,eol,start
-
-  " Have the cursor keys wrap between lines (like <Space> and <BkSpc> do)
-  set whichwrap=<,>,[,]
+  inoremap <C-l> <C-X><C-L>
+  inoremap <C-f> <C-X><C-F>
 
   "nnoremap <F2> :set invpaste paste?<CR>
   nnoremap <F2> :set paste<CR>i
@@ -352,6 +346,26 @@
   nmap <silent> <leader>v :source $MYVIMRC<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>
 
 " }}}
+" {{{ (Re)formatting
+
+  " Using Tab and Shift-Tab to (un)indent
+  nore <tab> >>
+  nore <S-tab> <<
+  nore [Z <<
+  vnore <tab> >gv
+  vnore <S-tab> <gv
+  vnore [Z <gv
+  " Ensure UltiSnips doesn't override visual <tab>
+  au BufEnter * vnoremap <tab> >gv
+
+  " Formatting options (disable autocommenting)
+  set formatoptions-=cro
+  autocmd FileType * setlocal formatoptions-=cro
+
+  " Do not reindent lines with a comment sign (removed 0#)
+  autocmd FileType * setlocal cinkeys=0{,0},0),:,!^F,o,O,e
+
+" }}}
 " {{{ Folding
 
   " Folding (by braces)
@@ -363,6 +377,7 @@
   " Control fold open/closed with <Space>
   nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
 
+  " TODO: This doesn't work
   noremap <silent> <leader><leader>f <Plug>SimpleFold_Foldsearch
 
   " Fold text (title)
@@ -448,8 +463,10 @@
   endfunction " }}}
 
 " }}}
-" {{{ Tabs
+" {{{ Tabline
 
+  " TODO: Loop through windows in each tab to determine most appropriate tab name
+  " See https://github.com/webastien/vim-tabs/blob/master/plugin/tabs.vim
   if exists('+showtabline')
     function! MyTabLine()
       let s = ''
@@ -489,7 +506,8 @@
       endwhile
 
       let s .= '%T%#TabLineFill#%='
-      let s .= (tabpagenr('$') > 1 ? '%999XX' : 'X')
+      " Don't show close X
+      " let s .= (tabpagenr('$') > 1 ? '%999XX' : 'X')
 
       return s
     endfunction
@@ -499,72 +517,103 @@
   endif
 
 " }}}
-" {{{ (Re)formatting
+" {{{ Statusline
 
-  " Using Tab and Shift-Tab to (un)indent
-  nore <tab> >>
-  nore <S-tab> <<
-  nore [Z <<
-  vnore <tab> >gv
-  vnore <S-tab> <gv
-  vnore [Z <gv
+  set laststatus=2 " always show status line
+  set showcmd " show incomplete commands
+  " %f(ile) [flags] {align} [%ft] %col %line/%total %percent
+  let g:statusline_mode={ 'n': 'N', 'no': 'Nop', 'v': 'Vis', 'V': 'Vln', '': 'Vbl', 's': 'Sel', 'S': 'Sln', '': 'Sbl', 'i': 'Ins', 'R': 'Rep', 'Rv': 'Rvr', 'c': 'Cmd', 'cv': 'vEX', 'ce': 'EX', 'r': 'Prompt', 'rm': 'More', 'r?': 'Confirm', '!': 'Shell' }
 
-  " Hack to override UltiSnips overriding visual <tab> mapping
-  au VimEnter * xunmap <tab>
-  au VimEnter * vnore <tab> >gv
-
-  " Formatting options (disable autocommenting)
-  set formatoptions-=cro
-  autocmd FileType * setlocal formatoptions-=cro
-
-  " Do not reindent lines with a comment sign (removed 0#)
-  autocmd FileType * setlocal cinkeys=0{,0},0),:,!^F,o,O,e
-
-" }}}
-" {{{ Plugins
-
-  " UltiSnips
-
-  let g:UltiSnipsExpandTrigger = '<tab>' " overridden below
-  let g:UltiSnipsJumpForwardTrigger = '<C-j>'
-  let g:UltiSnipsJumpBackwardTrigger = '<C-k>'
-  let g:UltiSnipsListSnippets = '<noop>'
-  let g:did_UltiSnips_vim_after = 1
-  let g:UltiSnipsNoPythonWarning = 1
-
-  function! g:UltiSnips_Complete()
-    " exec g:_uspy "UltiSnips_Manager._cursor_moved()"
-    " exec g:_uspy "UltiSnips_Manager.expand()"
-    call UltiSnips#ExpandSnippetOrJump()
-    if g:ulti_expand_or_jump_res == 0
-    " if g:ulti_expand_res == 0
-      if pumvisible()
-        return "\<C-N>"
-      else
-        return "\<TAB>"
-      endif
+  function! MyStatusLine(active)
+    let st = ""
+    let st .= "%< %-f  " " File path (truncated if necessary)
+    let st .= "%m%r%w %="
+    let st .= " %=" " Separation point
+    if a:active
+      " Show current mode in active window
+      let st .= "%{g:statusline_mode[mode()]}  "
     endif
-
-    return ""
+    let st .= "%y " " File type
+    let st .= "%4(%v%) %10(%l/%L%)  %P" " Colum & line numbers
+    return st
   endfunction
 
-  au InsertEnter * inoremap <silent> <tab> <C-R>=g:UltiSnips_Complete()<cr>
+  set statusline=%!MyStatusLine(1)
+  augroup statusline
+    au WinEnter * setlocal statusline=%!MyStatusLine(1)
+    au WinLeave * setlocal statusline=%!MyStatusLine(0)
+  augroup END
+
+" }}}
+" {{{ Plugin configuration
+
+  " UltiSnips
+  let g:UltiSnipsNoPythonWarning = 1
+  let g:UltiSnipsEnableSnipMate = 0
+  let g:UltiSnipsJumpForwardTrigger = '<c-j>'
+  let g:UltiSnipsJumpBackwardTrigger = '<c-k>'
+  function! UltiSnips_Complete()
+    call UltiSnips#ExpandSnippet()
+    if g:ulti_expand_res == 0
+      return pumvisible() ? "\<c-n>" : "\<tab>"
+    endif
+    return ""
+  endfunction
+  augroup ultisnips
+    au!
+    au VimEnter * au! UltiSnips_AutoTrigger
+    au BufEnter * inoremap <buffer> <silent> <tab> <C-R>=UltiSnips_Complete()<cr>
+    au BufEnter * snoremap <buffer> <silent> <tab> <C-R>=UltiSnips_Complete()<cr>
+  augroup END
 
   " YouCompleteMe / YCM
-  let g:ycm_min_num_of_chars_for_completion = 1
-  let g:ycm_seed_identifiers_with_syntax = 1 
+  let g:ycm_min_num_of_chars_for_completion = 2
   let g:ycm_min_num_identifier_candidate_chars = 1
+  let g:ycm_seed_identifiers_with_syntax = 1
   let g:ycm_complete_in_comments = 1
   let g:ycm_autoclose_preview_window_after_insertion = 0
+  let g:ycm_error_symbol = '> '
+  let g:ycm_warning_symbol = '! '
+  let g:ycm_semantic_triggers = {
+      \ 'javascript': [ 're!([ ;] |\t|: |@)' ],
+      \ 'css,scss': [ '\t', '  ', '; ', ': ', '@' ],
+      \ }
+  let g:ycm_server_use_vim_stdout = 1
+  let g:ycm_server_log_level = 'debug'
 
-  let g:used_javascript_libs = 'jquery,react,requirejs'
+  " EchoDoc
+  let g:echodoc#enable_at_startup = 1
+
+  " NeoMake
+  call neomake#configure#automake('w')
+  let g:neomake_open_list = 2
+  let g:neomake_list_height = 6
+  let g:neomake_place_signs = 1
+  let g:neomake_highlight_columns = 0
+  let g:neomake_javascript_enabled_makers = ['eslint']
+  
+  " Configures neomake to use a project-local instance of a maker
+  function! SetNeomakeExe(ft_maker, file)
+    let bufvar = 'b:neomake_'.a:ft_maker.'_exe'
+    let path = findfile(a:file, '.;')
+    if path != ''
+      let path = fnamemodify(path, ':p')
+      exe 'let '.bufvar.' = "'.escape(path, '"').'"'
+    else
+      exe 'unlet! '.bufvar
+    endif
+  endfunction
+
+  " GitGutter
+  let g:gitgutter_enabled = 0
+  noremap <silent> <leader>u :GitGutterToggle<CR>
 
   " CtrlP plugin
   noremap <C-p> :let g:ctrlp_user_command = g:ctrlp_user_command_ignoring<CR>:CtrlP<CR>
   " noremap <C-S-p> :let g:ctrlp_user_command = g:ctrlp_user_command_all<CR>:CtrlP<CR>
   noremap <C-b> :CtrlPBuffer<CR>
   let g:ctrlp_cmd = 'CtrlP'
-  let g:ctrlp_switch_buffer = ''
+  let g:ctrlp_switch_buffer = 'e'
   let g:ctrlp_open_new_file = 'r'
   let g:ctrlp_max_depth = 10
   let g:ctrlp_lazy_update = 100
@@ -591,17 +640,18 @@
   let g:AutoPairsShortcutFastWrap = '<c-b>' " default conflicts with å character
 
   " Emmet
-  let g:use_emmet_complete_tag = 1
-  let g:user_emmet_expandabbr_key = '<C-e><cr>'
-  let g:user_emmet_next_key = '<C-e>n'
-  let g:user_emmet_prev_key = '<C-e>p'
-  let g:user_emmet_balancetaginward_key = '<C-e>i'
-  let g:user_emmet_balancetagoutward_key = '<C-e>a'
-  let g:user_emmet_removetag_key = '<C-e>d'
-  let g:user_emmet_togglecomment_key = '<C-e>c'
-  let g:user_emmet_codepretty_keya = '<C-e>C'
-  let g:user_emmet_anchorizeurl_key = '<C-e>l'
-  let g:user_emmet_anchorizesummary_key = '<C-e>L'
+  let g:user_emmet_complete_tag = 1
+  let g:user_emmet_leader_key = '<C-e>'
+  imap <c-e><CR> <plug>(emmet-expand-abbr)
+  " let g:user_emmet_next_key = '<C-e>n'
+  " let g:user_emmet_prev_key = '<C-e>p'
+  " let g:user_emmet_balancetaginward_key = '<C-e>i'
+  " let g:user_emmet_balancetagoutward_key = '<C-e>a'
+  " let g:user_emmet_removetag_key = '<C-e>d'
+  " let g:user_emmet_togglecomment_key = '<C-e>c'
+  " let g:user_emmet_codepretty_keya = '<C-e>C'
+  " let g:user_emmet_anchorizeurl_key = '<C-e>l'
+  " let g:user_emmet_anchorizesummary_key = '<C-e>L'
   let g:user_emmet_settings = {
   \  'javascript.jsx': { 'extends': 'jsx' },
   \}
@@ -630,22 +680,13 @@
   let g:tagbar_compact = 1
   let g:tagbar_expand = 0
 
-  " Syntastic
-  let g:syntastic_check_on_open = 0
-  let g:syntastic_echo_current_error = 1
-  let g:syntastic_enable_signs = 0
-  let g:syntastic_enable_highlighting = 0
-  let g:syntastic_auto_jump = 0
-  let g:syntastic_auto_loc_list = 1
-  let g:syntastic_loc_list_height = 4
-  let g:syntastic_mode_map = { 'mode': 'active',
-        \ 'active_filetypes': [],
-        \ 'passive_filetypes': ['java', 'html', 'go'] }
-  " Compiler specific settings
-  let g:syntastic_cpp_compiler_options = '-std=c++0x -W'
-  let g:syntastic_javascript_checkers = ['eslint']
-  let g:syntastic_sass_checkers = ['sasslint']
-  let g:syntastic_scss_checkers = ['sasslint']
+  " Indent guides
+  let g:indent_guides_start_level = 2
+  let g:indent_guides_guide_size = 1
+  let g:indent_guides_color_change_percent = 5
+
+  " Misc
+  let g:used_javascript_libs = 'jquery,react,requirejs'
 
   let g:jsx_ext_required = 0
   let g:jsx_disable_indent = 1
@@ -655,23 +696,16 @@
 
   let g:go_fmt_command = "goimports"
 
-  " Indent guides
-  let g:indent_guides_start_level = 2
-  let g:indent_guides_guide_size = 1
-  let g:indent_guides_color_change_percent = 5
-
 " }}}
 " {{{ Custom functions and commands
 
   " Make
-  command! -nargs=* Make silent! make <args> | redraw! | botright cwindow 5
-  command! -nargs=1 -complete=dir Eslint cexpr system("eslint -f unix ".<q-args>) | exe '<mods> cw '
+  command! -nargs=* -complete=file Make silent! make <args> | redraw! | botright cwindow 5
 
   " Update tags file using ctags executable
   command! -nargs=? Tags call GenerateTags(<args>) | cw
 
   command! -nargs=1 Egrep exe 'normal! :call RecursiveGrepCommand("'.<args>.'")<Bar> cw<CR><CR><CR>'
-  command! -nargs=+ Agext call AgExt(<q-args>)
 
   command! -nargs=0 IFold setlocal foldexpr=IndentationFoldExpr(v:lnum) foldmethod=expr nofoldenable
 
@@ -703,8 +737,8 @@
     let langs = &ft
     let extra = ''
 
-		if &ft == 'haml'
-			let langs = 'ruby'
+    if &ft == 'haml'
+      let langs = 'ruby'
     elseif &ft == 'php'
       let extra = " --PHP-kinds=+ivcf \\
         \ --regex-PHP='/(abstract)?\\s+class\\s+([^ ]+)/\\2/c/' \\
@@ -713,7 +747,7 @@
         \ --regex-PHP='/\\$([a-zA-Z_][a-zA-Z0-9_]*)/\\1/v/'"
     endif
 
-		call system(cmd . " --languages=".langs . " -R ".path . extra)
+    call system(cmd . " --languages=".langs . " -R ".path . extra)
     echo "Tags file generated at: " . path.".tags"
   endfunction "}}}
 
@@ -821,16 +855,6 @@
     call cursor(l, c)
   endfunction "}}}
 
-  " Command which switches between source and header files
-  function! SwitchSourceHeader() "{{{
-    "update!
-    if (expand ("%:e") == "cpp")
-      silent find %:t:r.hpp
-    else
-      silent find %:t:r.cpp
-    endif
-  endfunction "}}}
-
   function! WipeHiddenBuffers() "{{{
     let tpbl=[]
     let closed = 0
@@ -914,33 +938,34 @@
 " }}}
 " {{{ Auto commands and file type specific options
 
-  " Dictionary
-  au FileType * exe('setl dict+='.$VIMHOME.'/dict/'.&filetype)
-
-  au FileType qf setlocal nowrap
-
-  " Disable syntax highlighting for large files
-  au BufWinEnter * if line2byte(line("$") + 1) > 1000000 | syntax clear | endif
-
-  au FileType c,cpp,cs,javascript,python,rust noremap <buffer> gd :YcmCompleter GoTo<CR>
-  au FileType c,cpp,cs,javascript,python,rust noremap <buffer> gi :YcmCompleter GetType<CR>
-
-  " LaTeX
-  augroup ft_latex
+  augroup vimrc
     au!
-    au FileType *tex setlocal makeprg=pdflatex\ -file-line-error\ % errorformat=%f:%l:\ %m
+
+    " Dictionary
+    au FileType * exe('setl dict+='.$VIMHOME.'/dict/'.&filetype)
+
+    au FileType qf setlocal nowrap
+
+    " Disable syntax highlighting for large files
+    au BufWinEnter * if line2byte(line("$") + 1) > 1000000 | syntax clear | endif
+
+    au FileType vim setlocal keywordprg=:help
+
+    au FileType c,cpp,cs,javascript,python,rust noremap <buffer> <leader>r :YcmCompleter RefactorRename<space>
+    au FileType c,cpp,cs,javascript,python,rust noremap <buffer> gd :YcmCompleter GoTo<CR>
+    au FileType c,cpp,cs,javascript,python,rust noremap <buffer> gi :YcmCompleter GetType<CR>
+
+    " LaTeX
+    au FileType *tex setlocal errorformat=%f:%l:\ %m makeprg=pdflatex\ -file-line-error\ %
     if has("win32")
       au FileType *tex noremap <buffer> <leader>o :make<CR>:silent ! start "1" "%:r.pdf"<CR>
     else
       au FileType *tex noremap <buffer> <leader>o :make<CR>:silent !evince %:r.pdf &<CR>
     endif
-  augroup END
 
-  " Ruby
-  augroup ft_ruby
-    au!
+    " Ruby
     au FileType ruby,haml setlocal formatoptions=ql
-    au FileType ruby setlocal makeprg=ruby\ -c\ $* errorformat=
+    au FileType ruby setlocal makeprg=ruby\ -c\ % errorformat=
       \%+E%f:%l:\ parse\ error,
       \%W%f:%l:\ warning:\ %m,
       \%E%f:%l:in\ %*[^:]:\ %m,
@@ -952,73 +977,47 @@
     "au FileType ruby let g:rubycomplete_buffer_loading = 1
     au FileType ruby let g:rubycomplete_rails = 1
     au FileType yaml,haml IFold
-  augroup END
 
-  augroup ft_python
-    au!
     au FileType python setlocal ts=4 sts=4 sw=4
     au FileType python noremap <buffer> <leader>o :!python %<CR>
-    au FileType python setlocal makeprg=python\ %
+    au FileType python setlocal makeprg=pylint\ %
     au FileType python setlocal efm=%C\ %.%#,%A\ \ File\ \"%f\"\\,\ line\ %l%.%#,%Z%[%^\ ]%\\@=%m
-  augroup END
 
-  " HTML
-  augroup ft_html
-    au!
     au FileType html setlocal sts=2 ts=2 sw=2 expandtab autoindent
-  augroup END
 
-  " CSS
-  augroup ft_css
-    au!
-    " Split definitions into separate lines with ,j (inverse of J)
-    au FileType css vmap <buffer> <leader>j :s/\([{;]\)\s*\n\?\s*/\1\r  /ge<BAR>:nohl<CR><<
     au FileType css setlocal sts=2 ts=2 sw=2 noexpandtab
-  augroup END
 
-  au FileType scss setlocal iskeyword+=-
-  au FileType scss noremap <buffer> <leader><leader>x
-    \ :echo "Running 'sass-lint'" <Bar> cexpr system('sass-lint -vqf unix') <Bar> cw<CR><CR>
+    au FileType scss setlocal iskeyword+=-
+    au FileType scss setlocal makeprg=sass-lint\ -vqf\ unix\ --ignore='node_modules/**'
 
-  augroup ft_js
-    au!
-    au FileType javascript noremap <buffer> <leader>x :SyntasticCheck<CR>
+    " Javascript
+    au FileType javascript setlocal makeprg=eslint\ %
+    au FileType javascript call SetNeomakeExe('javascript_eslint', 'node_modules/.bin/eslint')
     au FileType javascript noremap <buffer> <leader>d
       \ :execute "!open 'https://www.npmjs.com/package/".substitute(expand('<cWORD>'), '[''" ]', '', 'g')."'"<CR><CR>
     au FileType javascript noremap <buffer> <silent> <leader><leader>/ :JsDoc<CR>
-    au FileType javascript noremap <buffer> <leader><leader>x
-      \ :echo "Running 'npm run lint'" <Bar> cexpr system('npm run --silent lint -- -f unix') <Bar> cw<CR><CR>
-
+d
     au FileType json setlocal foldmethod=syntax foldlevel=99
-    au FileType json noremap <buffer> <silent> <expr> <leader>p jsonpath#echo()
+    au FileType json noremap <buffer> <silent> <expr> <leader>d jsonpath#echo()
     au FileType json noremap <buffer> <silent> <expr> <leader>g jsonpath#goto()
-  augroup END
 
-  " CoffeeScript / Jade / LiveScript
-  augroup ft_coffee
-    au!
+    " CoffeeScript / Jade / LiveScript
     au FileType jade,coffee IFold
     au FileType coffee noremap <buffer> <leader>x :CoffeeCompile<CR>
     au FileType ls noremap <buffer> <leader>x :LiveScriptCompile<CR>
     au FileType ls setlocal indentkeys=o,O,},],0),!^F
-  augroup END
 
-  " XML
-  au FileType xml IFold
+    " XML
+    au FileType xml IFold
 
-  " PHP
-  augroup ft_php
-    au!
+    " PHP
     "au BufRead,BufNewFile *.php,*.inc set ft=php.html
     au FileType php setlocal sts=2 ts=2 sw=2 expandtab autoindent
     au FileType php inoremap <buffer> <c-a>- <?php  ?><left><left><left>
     au FileType php inoremap <buffer> <c-a>= <?=  ?><left><left><left>
     au FileType php setlocal iskeyword-=$
-  augroup END
 
-  " Markdown
-  augroup ft_md
-    au!
+    " Markdown
     if has("unix")
       au FileType markdown setlocal dictionary+=/usr/share/dict/words
     endif
@@ -1026,54 +1025,41 @@
     au FileType markdown setlocal com=s1:/*,mb:*,ex:*/,://,b:#,:%,:XCOMM,n:>,b:-
     au FileType markdown noremap <buffer> <leader>. yypVr=<Esc>
     au FileType markdown noremap <buffer> <leader>- yypVr-<Esc>
-  augroup END
 
-  " C++
-  augroup ft_cpp
-    au!
+    " C++
     "au FileType cpp setlocal foldmarker={,}
     if has("win32")
       au FileType c,cpp,h,hpp setlocal makeprg=mingw32-make
     else
       au FileType c,cpp,h,hpp setlocal makeprg=make
     endif
-    au FileType cpp,hpp noremap <buffer> <leader>x :call SwitchSourceHeader()<CR>
     au FileType cpp,hpp setlocal commentstring=//\ %s
-  augroup END
 
-  " Lua
-  "au FileType lua setlocal tabstop=2 shiftwidth=2
+    " Lua
+    "au FileType lua setlocal tabstop=2 shiftwidth=2
 
-  " Java
-  augroup ft_java
-    au!
+    " Java
     au FileType java setlocal makeprg=ant\ -e\ -find
-  augroup END
-  let java_highlight_functions="style"
+    let java_highlight_functions="style"
 
-  " Go
-  augroup ft_go
-    au!
-    au FileType go setlocal makeprg=go\ run\ %
+    " Go
+    au FileType go setlocal makeprg=go\ build\ %
     au FileType go noremap <buffer> <leader>d :GoInfo<CR>
     au FileType go noremap <buffer> <leader>x :GoErrCheck<CR>
-  augroup END
 
-  " Help files
-  au FileType help nmap <buffer> <CR> <C-]>
+    " Help files
+    au FileType help nmap <buffer> <CR> <C-]>
 
-  " XQuery
-  au FileType xquery setlocal makeprg=xqilla\ %
+    " XQuery
+    au FileType xquery setlocal makeprg=xqilla\ %
 
-  " Matlab
-  au FileType matlab setlocal makeprg=octave\ %
+    " Matlab
+    au FileType matlab setlocal makeprg=octave\ %
 
-  " Snippets
-  au FileType snippet setlocal noexpandtab foldexpr=IndentationFoldExpr(v:lnum) foldmethod=expr
+    " Snippets
+    au FileType snippet setlocal noexpandtab foldexpr=IndentationFoldExpr(v:lnum) foldmethod=expr
 
-
-  " {{{ Use dash as keyword program (Mac OSX only)
-  augroup query_dash
+    " {{{ Use dash as keyword program (Mac OSX only)
     if has('mac')
       au FileType html setlocal keywordprg=$VIMHOME/query-dash\ html
       au FileType jade setlocal keywordprg=$VIMHOME/query-dash\ html,jade
@@ -1081,46 +1067,23 @@
       au FileType javascript,ls setlocal keywordprg=$VIMHOME/query-dash\ node,js
       au FileType php setlocal keywordprg=$VIMHOME/query-dash\ php
     end
+    " }}}
+
+    " {{{ JavaScript (EcmaScript 6+) tagbar configuration
+    let g:tagbar_type_javascript = {
+        \ 'ctagstype' : 'javascript',
+        \ 'kinds'     : [
+            \ 'c:classes',
+            \ 'm:methods',
+            \ 'f:functions',
+            \ 'v:variables',
+            \ 'f:fields',
+        \ ]
+    \ }
+    " }}}
+
   augroup END
-  " }}}
 
-  " {{{ JavaScript (EcmaScript 6+) tagbar configuration
-  let g:tagbar_type_javascript = {
-      \ 'ctagstype' : 'javascript',
-      \ 'kinds'     : [
-          \ 'c:classes',
-          \ 'm:methods',
-          \ 'f:functions',
-          \ 'v:variables',
-          \ 'f:fields',
-      \ ]
-  \ }
-
-  " Adapted from: https://gist.github.com/2901844
-  let s:ctags_opts = '
-    \ --langdef=coffee
-    \ --langmap=coffee:.coffee
-    \ --regex-coffee=/(^|=[[:space:]])*class[[:space:]]([A-Za-z]+\.)*([A-Za-z]+)([[:space:]]extends[[:space:]][A-Za-z._]+)?$/\3/c,class/
-    \ --regex-coffee=/^[[:space:]]*(module\.)?(exports\.)?@?([A-Za-z._]+):.*[-=]>.*$/\3/m,method/
-    \ --regex-coffee=/^[[:space:]]*(module\.)?(exports\.)?([A-Za-z._]+)[[:space:]]+=.*[-=]>.*$/\3/f,function/
-    \ --regex-coffee=/^[[:space:]]*([A-Za-z._]+)[[:space:]]+=[^->\n]*$/\1/v,variable/
-    \ --regex-coffee=/^[[:space:]]*@([A-Za-z._]+)[[:space:]]+=[^->\n]*$/\1/f,field/
-    \ --regex-coffee=/^[[:space:]]*@([A-Za-z._]+):[^->\n]*$/\1/f,staticField/
-    \ --regex-coffee=/(constructor:[[:space:]]\()@([A-Za-z._]+)/\2/f,field/
-    \ --regex-coffee=/(constructor:[[:space:]]\()@[A-Za-z._]+(,[[:space:]]@([A-Za-z._]+)){0}/\3/f,field/
-    \ --regex-coffee=/(constructor:[[:space:]]\()@[A-Za-z._]+(,[[:space:]]@([A-Za-z._]+)){1}/\3/f,field/
-    \ --regex-coffee=/(constructor:[[:space:]]\()@[A-Za-z._]+(,[[:space:]]@([A-Za-z._]+)){2}/\3/f,field/
-    \ --regex-coffee=/(constructor:[[:space:]]\()@[A-Za-z._]+(,[[:space:]]@([A-Za-z._]+)){3}/\3/f,field/
-    \ --regex-coffee=/(constructor:[[:space:]]\()@[A-Za-z._]+(,[[:space:]]@([A-Za-z._]+)){4}/\3/f,field/
-    \ --regex-coffee=/(constructor:[[:space:]]\()@[A-Za-z._]+(,[[:space:]]@([A-Za-z._]+)){5}/\3/f,field/
-    \ --regex-coffee=/(constructor:[[:space:]]\()@[A-Za-z._]+(,[[:space:]]@([A-Za-z._]+)){6}/\3/f,field/
-    \ --regex-coffee=/(constructor:[[:space:]]\()@[A-Za-z._]+(,[[:space:]]@([A-Za-z._]+)){7}/\3/f,field/
-    \ --regex-coffee=/(constructor:[[:space:]]\()@[A-Za-z._]+(,[[:space:]]@([A-Za-z._]+)){8}/\3/f,field/
-    \ --regex-coffee=/(constructor:[[:space:]]\()@[A-Za-z._]+(,[[:space:]]@([A-Za-z._]+)){9}/\3/f,field/'
-
-
-  let $CTAGS = substitute(s:ctags_opts, '\v\([nst]\)', '\\', 'g')
-  " }}}
 " }}}
 " {{{ Optionally load local rc file
 
