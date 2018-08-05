@@ -36,9 +36,10 @@ hi MatchParen   ctermfg=White  ctermbg=Black  cterm=bold   guifg=#ffffff  guibg=
 " Window Elements
 hi LineNr       ctermfg=Black  ctermbg=Black cterm=bold    guifg=#555555  guibg=#141414  gui=none
 hi StatusLine   ctermfg=Red    ctermbg=Black cterm=none    guifg=#f05050  guibg=#151515  gui=none
-hi StatusLineNC ctermfg=Brown  ctermbg=Black cterm=none    guifg=#e6aa37  guibg=#151515  gui=none
+hi StatusLineNC ctermfg=Gray  ctermbg=Black cterm=none    guifg=#e6aa37  guibg=#151515  gui=none
 hi VertSplit    ctermfg=Black  ctermbg=Black cterm=none    guifg=#151515  guibg=#151515  gui=none
-hi Folded       ctermfg=White  ctermbg=Black cterm=none    guifg=#dddddd  guibg=#151515  gui=none
+hi SignColumn   ctermfg=Black  ctermbg=Black cterm=none    guifg=#151515  guibg=#151515  gui=none
+hi Folded       ctermfg=LightGray  ctermbg=none  cterm=none    guifg=#dddddd  guibg=#151515  gui=none
 hi Visual       ctermfg=Black  ctermbg=White cterm=none    guifg=#f0f0f0  guibg=#464646  gui=none
 hi VisualNOS    ctermfg=White  ctermbg=none  cterm=none    guifg=#f0f0f0  gui=none
 "hi FoldColumn   ctermfg=Gray   ctermbg=Black cterm=bold   guifg=#a6a6a6  guibg=#0a0a0a  gui=none
@@ -168,3 +169,8 @@ hi link jsArrowFuncArgs Special
 hi link jsFuncArgs Special
 
 " }}}
+
+hi YcmErrorSign    ctermfg=Red    ctermbg=Black  cterm=none  guifg=#f05050  guibg=#151515  gui=none
+hi YcmWarningSign  ctermfg=Brown  ctermbg=Black  cterm=none  guifg=#f0b43c  guibg=#151515  gui=none
+hi link YcmErrorSign NeomakeErrorSign
+hi link YcmWarningSign NeomakeWarningSign
