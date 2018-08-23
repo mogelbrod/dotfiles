@@ -1,7 +1,7 @@
 " {{{ Home directory and swap files
 
   if has('win32') || has('win64')
-    let $VIMHOME = $HOME."\\.vim"
+    let $VIMHOME = $HOME."\\vimfiles"
     set noswapfile
   else
     let $VIMHOME = $HOME."/.vim"
@@ -14,6 +14,12 @@
   endif
 
   call has('python3')
+
+  if empty(glob($VIMHOME . '/autoload/plug.vim'))
+    silent !curl -fLo $VIMHOME/autoload/plug.vim --create-dirs
+      \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+  endif
 
 " }}}
 " {{{ Plugins
@@ -149,9 +155,7 @@
 
   " Update external program settings
   if executable('ag')
-    let g:ctrlp_user_command_ignoring = 'ag %s -l --nocolor -g "" --ignore dist'
-    let g:ctrlp_user_command_all = 'ag %s -l --nocolor -g "" -U'
-    let g:ctrlp_user_command = g:ctrlp_user_command_ignoring
+    let g:ctrlp_user_command = 'ag %s -l --nocolor -g "" --ignore dist'
     let g:ctrlp_use_caching = 0
     let g:ag_prg = 'ag --nogroup --column --smart-case --ignore dist'
     set grepprg=ag\ --nogroup\ --nocolor\ --ignore\ dist
@@ -609,8 +613,7 @@
   noremap <silent> <leader>u :GitGutterToggle<CR>
 
   " CtrlP plugin
-  noremap <C-p> :let g:ctrlp_user_command = g:ctrlp_user_command_ignoring<CR>:CtrlP<CR>
-  " noremap <C-S-p> :let g:ctrlp_user_command = g:ctrlp_user_command_all<CR>:CtrlP<CR>
+  noremap <C-p> :CtrlP<CR>
   noremap <C-b> :CtrlPBuffer<CR>
   let g:ctrlp_cmd = 'CtrlP'
   let g:ctrlp_switch_buffer = 'e'
