@@ -1,10 +1,11 @@
 " {{{ Home directory and swap files
 
+  let $VIMHOME = $HOME."/.vim"
+
   if has('win32') || has('win64')
-    let $VIMHOME = $HOME."\\vimfiles"
+    set runtimepath^=~/.vim
     set noswapfile
   else
-    let $VIMHOME = $HOME."/.vim"
     set directory=$VIMHOME/swap//,.
     set backupdir=$VIMHOME/backup//,.
 
