@@ -709,6 +709,7 @@
   " Update tags file using ctags executable
   command! -nargs=? Tags call GenerateTags(<args>) | cw
 
+  command! -nargs=+ -complete=dir Agext call AgExt(<q-args>)
   command! -nargs=1 Egrep exe 'normal! :call RecursiveGrepCommand("'.<args>.'")<Bar> cw<CR><CR><CR>'
 
   command! -nargs=0 IFold setlocal foldexpr=IndentationFoldExpr(v:lnum) foldmethod=expr nofoldenable
