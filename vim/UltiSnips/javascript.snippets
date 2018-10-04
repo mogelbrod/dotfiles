@@ -1,5 +1,5 @@
 snippet 3 "string interpolation" w
-\$\{$1}$0
+\$\{$1}
 endsnippet
 
 snippet v "var" w
@@ -37,21 +37,29 @@ endsnippet
 snippet fn "Function (inline)" w
 function($1) {
 	${VISUAL}$2
-}$0
+}
 endsnippet
 
 snippet fnn "Function (named)" w
 function ${1:function_name}($2) {
 	${VISUAL}$3
-}$0
+}
 endsnippet
 
 snippet typeof! "LiveScript typeof!" w
-{}.toString.call(${1:value}).slice(8, -1)$0
+{}.toString.call(${1:value}).slice(8, -1)
+endsnippet
+
+snippet req "Require"
+require('${1:lib}')
+endsnippet
+
+snippet vreq "Assigned require"
+var ${2:${1/(.+\/)*(\w+)(-|\b|$)(\..+$)?/\u$2/g}} = require('$1')
 endsnippet
 
 snippet imp "Import statement" b
-import ${1} from '${2:$1}'$0
+import ${2:${1/(.+\/)*(\w+)(-|\b|$)(\..+$)?/\u$2/g}} from '$1'
 endsnippet
 
 snippet exp "export" w
@@ -114,11 +122,11 @@ if (${1:condition}) {
 endsnippet
 
 snippet sto "setTimeout"
-setTimeout(function() {${2}}, ${1:10})$0
+setTimeout(function() {${2}}, ${1:10})
 endsnippet
 
 snippet sint "setInterval"
-setInterval(function() {${2}}, ${1:100})$0
+setInterval(function() {${2}}, ${1:100})
 endsnippet
 
 snippet byid "getElementById" w
@@ -152,14 +160,6 @@ snippet ## "JSDoc bloc" b
  */
 endsnippet
 
-snippet req "Require"
-require('${1:lib}')$0
-endsnippet
-
-snippet areq "Assigned require"
-var ${1:lib} = require('${2:$1}')$0
-endsnippet
-
 snippet cl "console.log" w
 console.log($0)
 endsnippet
@@ -177,7 +177,7 @@ console.error($0)
 endsnippet
 
 snippet ca "console.assert"
-console.assert(${1:assertion}, ${2:"${3:message}"})$0
+console.assert(${1:assertion}, ${2:"${3:message}"})
 endsnippet
 
 snippet cgroup "console.group"
@@ -201,7 +201,7 @@ console.trace()
 endsnippet
 
 snippet rp "PropTypes" w
-PropTypes.$0
+PropTypes.
 endsnippet
 
 snippet reactclass "React.createClass"
@@ -216,10 +216,15 @@ React.createClass({
 })
 endsnippet
 
+snippet impr "Import React modules"
+import classNames from 'classnames'
+import PropTypes from 'prop-types'
+import React from 'react'
+$0
+endsnippet
+
 snippet reactcomp "Extend React.Component"
 class ${1:Component} extends React.Component {
-	static displayName = '$1'
-
 	static propTypes = {}
 	static defaultProps = {}
 
@@ -244,8 +249,70 @@ constructor(props) {
 }
 endsnippet
 
+snippet cwm "React componentWillMount"
+UNSAFE_componentWillMount() {
+	$0
+}
+endsnippet
+
+snippet cdm "React componentDidMount"
+componentDidMount() {
+	$0
+}
+endsnippet
+
+snippet cwrp "React componentWillReceiveProps"
+UNSAFE_componentWillReceiveProps(props) {
+	$0
+}
+endsnippet
+
+snippet scu "React shouldComponentUpdate"
+shouldComponentUpdate(props, state) {
+	$0
+}
+endsnippet
+
+snippet cdu "React componentDidUpdate"
+componentDidUpdate(prevProps, prevState) {
+	$0
+}
+endsnippet
+
+snippet cwun "React componentWillUnmount"
+componentWillUnmount() {
+	$0
+}
+endsnippet
+
+snippet gds "React getDerivedStateFromProps"
+static getDerivedStateFromProps(nextProps, prevState) {
+	$0
+}
+endsnippet
+
+snippet rcontext "Create React context" w
+const ${1:contextName} = React.createContext()
+endsnippet
+
+snippet cref "Create ref statement used inside constructor" w
+this.${1:refName}Ref = React.createRef()
+endsnippet
+
+snippet sst "setState" w
+this.setState($1)
+endsnippet
+
+snippet tp "this.props"
+this.props.
+endsnippet
+
+snippet ts "this.state"
+this.state.
+endsnippet
+
 snippet nary "Array of length N" w
-Array.apply(null, {length: ${1:10}}).map((_, i) => ${2:i+1})$0
+Array.apply(null, {length: ${1:10}}).map((_, i) => ${2:i+1})
 endsnippet
 
 snippet tdesc "Mocha describe" !b
