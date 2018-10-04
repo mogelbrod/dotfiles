@@ -1070,6 +1070,7 @@ d
       au FileType jade setlocal keywordprg=$VIMHOME/query-dash\ html,jade
       au FileType coffee setlocal keywordprg=$VIMHOME/query-dash\ node,js,coffee
       au FileType javascript,ls setlocal keywordprg=$VIMHOME/query-dash\ node,js
+      au FileType scss setlocal keywordprg=$VIMHOME/query-dash\ scss,css
       au FileType php setlocal keywordprg=$VIMHOME/query-dash\ php
     end
     " }}}
