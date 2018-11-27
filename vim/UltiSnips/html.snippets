@@ -280,13 +280,21 @@ endsnippet
 snippet html5 "HTML5 Template"
 <!DOCTYPE html>
 <html>
-<head>
+  <head>
     <title>${1}</title>
+    <meta name="application-name" content="${1}">
+    <meta name="apple-mobile-web-app-title" content="${1}">
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-</head>
-<body>
-</body>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="msapplication-TileColor" content="#000">
+    <meta name="theme-color" content="#000">
+    <style>
+		</style>
+  </head>
+  <body>
+
+  </body>
 </html>
 endsnippet
 # vim:ft=snippets:
