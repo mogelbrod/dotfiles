@@ -30,7 +30,7 @@ Dir['*'].each do |origin|
   file = ".#{origin}"
 
   # Special cases
-  elsif %w(terminator).include? origin
+  if %w(terminator).include? origin
     config_dir = File.join home, '.config'
     FileUtils.mkdir_p(config_dir) unless File.exists?(config_dir)
     file = File.join('.config', origin)
