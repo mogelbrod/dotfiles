@@ -295,6 +295,7 @@
   alias gr='git reset HEAD' # unstage files
 
   alias grm='git ls-files -d -z | xargs -0 git update-index --remove'  # remove missing files
+  alias grm-merged='git branch --merged | egrep -v "(^\*|master|dev)" | xargs git branch -d'
 
   alias gc='git commit'
   alias gcm='git commit -m'
