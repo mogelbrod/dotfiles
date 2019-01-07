@@ -164,6 +164,9 @@
     set grepprg=ack\ -k
   endif
 
+  " Session management
+  set sessionoptions=blank,buffers,tabpages,winsize,curdir,help,terminal
+
 " }}}
 " {{{ Buffer navigation
 
