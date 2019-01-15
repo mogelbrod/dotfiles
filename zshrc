@@ -93,7 +93,8 @@
     local error_num="%(?::${faded}[${PR_BRIGHT_RED}%?${PR_RESET}${faded}]${PR_RESET} )"
     local pr="${PR_BLUE}%(!.#.$) ${PR_RESET}"
 
-    PROMPT="${user_host}${PR_GREEN}${git_info} ${padded_cwd} ${now}${error_num}${pr}"
+    print -rP "${user_host}${PR_GREEN}${git_info} ${padded_cwd} ${now}"
+    PROMPT="${error_num}${pr}"
   }
 
 #}}}
@@ -377,4 +378,4 @@
 # Load local .profile
 [ -f "$HOME/.profile.local" ] && . "$HOME/.profile.local"
 
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+[ -e "${HOME}/.iterm2_shell_integration.zsh" ] && . "${HOME}/.iterm2_shell_integration.zsh"
