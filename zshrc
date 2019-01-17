@@ -8,8 +8,7 @@
 
   # Disable flow control
   stty -ixon -ixoff
-  unsetopt flow_control
-  unsetopt flowcontrol
+  unsetopt flow_control flowcontrol
 
   # Add various directories to PATH
   export PATH=".:./node_modules/.bin:$HOME/bin:$PATH"
@@ -123,7 +122,7 @@
   HISTFILE=~/.histfile
   HISTSIZE=5000
   SAVEHIST=1000
-  setopt append_history hist_reduce_blanks
+  setopt append_history incappendhistory hist_reduce_blanks
 
 #}}}
 #{{{ Bindings
@@ -325,12 +324,6 @@
     [ -n "$changed" ] && git stash pop
     true
   }
-
-#}}}
-#{{{ File associations
-
-  alias -s tex=$EDITOR txt=$EDITOR css=$EDITOR js=$EDITOR conf=$EDITOR
-  alias -s htm=$BROWSER html=$BROWSER
 
 #}}}
 #{{{ Platform specific
