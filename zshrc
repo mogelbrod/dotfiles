@@ -302,6 +302,8 @@
   alias gcundo='git reset --soft HEAD^' # undo commit
 
   alias gca='git commit --amend'
+  alias gcf='git commit --fixup'
+  alias gras='git rebase -i --autosquash'
 
   alias gd='git diff --color -b'
   alias gds='git diff --color -b --staged'
