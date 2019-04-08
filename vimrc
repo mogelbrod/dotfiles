@@ -41,8 +41,10 @@
   Plug 'airblade/vim-gitgutter'
   Plug 'b4winckler/vim-angry'
   Plug 'beloglazov/vim-textobj-quotes'
+  Plug 'chrisbra/matchit'
   Plug 'godlygeek/tabular'
   Plug 'jiangmiao/auto-pairs'
+  Plug 'kana/vim-textobj-function'
   Plug 'kana/vim-textobj-user'
   Plug 'majutsushi/tagbar'
   Plug 'michaeljsmith/vim-indent-object'
@@ -53,6 +55,7 @@
   Plug 'scrooloose/nerdcommenter'
   Plug 'scrooloose/nerdtree'
   Plug 'sjl/gundo.vim'
+  Plug 'thinca/vim-textobj-function-javascript'
   Plug 'tpope/vim-abolish'
   Plug 'tpope/vim-apathy'
   Plug 'tpope/vim-endwise'
@@ -254,6 +257,10 @@
   fun! ReplaceSelection()
     let replacement = input("Replacement for ".@z.": ")
     exe "%s~\\M".escape(@z, '[]~\').'~'.escape(replacement, '&').'~gc'
+  endfun
+
+  fun! JsArrowToFunction()
+    s/\v<(const|let)\s+([^(){}\[\] ]+)\s*\=\s*\(?([^)>]{-})\)?\s*\=\>\s*\{?/function \2(\3) {/
   endfun
 
   " Map P to replace selection without overwriting any registers
@@ -1005,6 +1012,7 @@
       \ :execute "!open 'https://www.npmjs.com/package/".substitute(expand('<cWORD>'), '[''" ]', '', 'g')."'"<CR><CR>
     au FileType javascript noremap <buffer> <silent> <leader><leader>/ :JsDoc<CR>
 d
+    au FileType javascript,typescript noremap <buffer> <silent> <leader>f :call JsArrowToFunction()<CR>
     au FileType json setlocal foldmethod=syntax foldlevel=99
     au FileType json noremap <buffer> <silent> <expr> <leader>d jsonpath#echo()
     au FileType json noremap <buffer> <silent> <expr> <leader>g jsonpath#goto()
