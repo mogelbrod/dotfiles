@@ -641,6 +641,9 @@
     \ 'dir':  '\v\.(git|hg|svn)$',
     \ 'file': '\v\.(exe|so|dll|tar|bz2|gz|zip|jar|deb|jpe?g|png|gif|bmp|mp3|avi|mp4|mov|mpe?g|mkv|pdf)$'
     \ }
+  let g:ctrlp_prompt_mappings = {
+    \ 'PrtInsert("c")': ['<MiddleMouse>', '<insert>', '§', '<c-g>'],
+    \ }
 
   if !has("win32")
     let g:ctrlp_match_func = {'match': 'cpsm#CtrlPMatch'}
