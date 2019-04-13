@@ -43,3 +43,5 @@ bind 'c' copy
 bind ^c copy
 bind 'v' paste .
 bind ^v paste .
+
+termcapinfo xterm* ti@:te@
