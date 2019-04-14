@@ -136,6 +136,7 @@
   set listchars=tab:°\ ,trail:·,nbsp:· " whitespace visible on :set list
   set diffopt+=iwhite " ignore whitespace when diffing
   set splitbelow splitright " push new splits to bottom/right
+  set signcolumn=yes
 
   " Search / highlight / replace
   set nojoinspaces
