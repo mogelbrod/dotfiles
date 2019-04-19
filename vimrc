@@ -38,6 +38,7 @@
   Plug 'neomake/neomake'
 
   Plug 'AndrewRadev/splitjoin.vim'
+  Plug 'Konfekt/FastFold'
   Plug 'airblade/vim-gitgutter'
   Plug 'b4winckler/vim-angry'
   Plug 'beloglazov/vim-textobj-quotes'
@@ -66,15 +67,26 @@
 
   " Language specific plugins
   Plug 'HerringtonDarkholme/yats.vim'
+  Plug 'amadeus/vim-jsx'
+  Plug 'amadeus/vim-xml'
   Plug 'cakebaker/scss-syntax.vim'
+  Plug 'chrisbra/csv.vim'
   Plug 'digitaltoad/vim-jade'
+  Plug 'ekalinin/Dockerfile.vim'
+  Plug 'elzr/vim-json'
   Plug 'fatih/vim-go'
   Plug 'gcorne/vim-sass-lint'
   Plug 'heavenshell/vim-jsdoc'
   Plug 'mattn/emmet-vim'
+  Plug 'octol/vim-cpp-enhanced-highlight'
   Plug 'othree/csscomplete.vim'
+  Plug 'othree/html5.vim'
   Plug 'othree/javascript-libraries-syntax.vim'
-  Plug 'sheerun/vim-polyglot' " bundle of most popular file type plugins
+  Plug 'pangloss/vim-javascript'
+  Plug 'stephpy/vim-yaml'
+  Plug 'tpope/vim-git'
+  Plug 'vim-jp/vim-cpp'
+  " Plug 'sheerun/vim-polyglot' " bundle of most popular file type plugins
 
   call plug#end()
 
