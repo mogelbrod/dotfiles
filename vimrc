@@ -272,7 +272,7 @@
   endfun
 
   fun! JsArrowToFunction()
-    s/\v<(const|let)\s+([^(){}\[\] ]+)\s*\=\s*\(?([^)>]{-})\)?\s*\=\>\s*\{?/function \2(\3) {/
+    s/\v(^|<const )\s*([a-zA-Z0-9_]+)\s*[=:]\s*\(?([^)>]{-})\)?\s*\=\>\s*\{/function \2(\3) {/
   endfun
 
   " Map P to replace selection without overwriting any registers
