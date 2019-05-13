@@ -717,6 +717,8 @@
   " Misc
   let g:used_javascript_libs = 'jquery,react,requirejs'
 
+  let g:vim_json_syntax_conceal = 0
+
   let g:jsx_ext_required = 0
   let g:jsx_disable_indent = 1
 
@@ -724,6 +726,8 @@
   let g:jsdoc_underscore_private = 1
 
   let g:go_fmt_command = "goimports"
+
+  let g:gundo_prefer_python3 = 1
 
 " }}}
 " {{{ Custom functions and commands
