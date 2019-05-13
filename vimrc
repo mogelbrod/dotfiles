@@ -131,7 +131,7 @@
   set wrap linebreak " word wrap
   set display=lastline " show as much as possible of the last line
   set scrolloff=3 " minimum number of lines surrounding cursor
-  set listchars=tab:°\ ,trail:· " whitespace visible on :set list
+  set listchars=tab:°\ ,trail:·,nbsp:· " whitespace visible on :set list
   set diffopt+=iwhite " ignore whitespace when diffing
   set splitbelow splitright " push new splits to bottom/right
 
