@@ -64,6 +64,7 @@
   Plug 'tpope/vim-fugitive'
   Plug 'tpope/vim-repeat'
   Plug 'tpope/vim-surround'
+  Plug 'yssl/QFEnter'
 
   " Language specific plugins
   Plug 'HerringtonDarkholme/yats.vim'
@@ -180,7 +181,7 @@
   endif
 
   " Session management
-  set sessionoptions=blank,buffers,tabpages,winsize,curdir,help,terminal
+  set sessionoptions=blank,buffers,tabpages,winsize,curdir,help
 
 " }}}
 " {{{ Buffer navigation
