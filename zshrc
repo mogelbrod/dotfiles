@@ -279,11 +279,19 @@
     lsof -nPi4TCP | grep "$1 (LISTEN)"
   }
 
+  function port-kill {
+    if [[ -z "$1" ]]; then
+      echo "Provide a port number"
+    else
+      kill -9 $(lsof -t -sTCP:LISTEN -i:"$1")
+    fi
+  }
+
 #}}}
 #{{{ Git specific
 
   alias gs='git status'
-  alias gl='git pull'
+  alias gpu='git pull'
   alias gp='git push'
   alias gpp='git pull && git push'
   alias gco='git checkout'
@@ -309,6 +317,7 @@
   alias gds='git diff --color -b --staged'
 
   alias gl='git log --color --name-status --pretty=format:"%C(red)[%h] %an %C(blue)(%ar)%n%C(green)%s%n%b%C(reset)"'
+  alias gcl='git log --pretty="- %s (%h)"'
   alias glt='git log --all --color --graph --pretty=format:"%C(red)[%h] %an %C(blue)(%ar)%C(green)%d%C(reset) %s"'
 
   function gdc() {
