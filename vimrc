@@ -726,9 +726,11 @@
   let g:jsdoc_enable_es6 = 1
   let g:jsdoc_underscore_private = 1
 
-  let g:go_fmt_command = "goimports"
+  let g:go_fmt_command = 'goimports'
 
   let g:gundo_prefer_python3 = 1
+
+  let g:jsonpath_register = '*'
 
 " }}}
 " {{{ Custom functions and commands
@@ -1032,6 +1034,7 @@
       \ :execute "!open 'https://www.npmjs.com/package/".substitute(expand('<cWORD>'), '[''" ]', '', 'g')."'"<CR><CR>
     au FileType javascript noremap <buffer> <silent> <leader><leader>/ :JsDoc<CR>
 d
+    au FileType javascript,typescript setlocal path+=app,src
     au FileType javascript,typescript noremap <buffer> <silent> <leader>f :call JsArrowToFunction()<CR>
     au FileType json setlocal foldmethod=syntax foldlevel=99
     au FileType json noremap <buffer> <silent> <expr> <leader>d jsonpath#echo()
