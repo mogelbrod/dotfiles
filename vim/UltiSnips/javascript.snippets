@@ -90,7 +90,7 @@ endsnippet
 
 snippet forin "for (x in y)"
 for (var ${2:key} in ${1:obj}) {
-	if ($1.hasOwnProperty($2)) {
+	if (Object.prototype.hasOwnProperty.call($1, $2)) {
 		${3:$1[$2]}${VISUAL}$0
 	}
 }
@@ -319,6 +319,12 @@ endsnippet
 
 snippet ts "this.state" w
 this.state.
+endsnippet
+
+snippet fr "<React.Fragment>" w
+<React.Fragment>
+	$0
+</React.Fragment>
 endsnippet
 
 snippet nary "Array of length N" w
