@@ -640,7 +640,7 @@
   noremap <C-p> :CtrlP<CR>
   noremap <C-b> :CtrlPBuffer<CR>
   let g:ctrlp_cmd = 'CtrlP'
-  let g:ctrlp_switch_buffer = 'e'
+  let g:ctrlp_switch_buffer = '0'
   let g:ctrlp_open_new_file = 'r'
   let g:ctrlp_max_depth = 10
   let g:ctrlp_lazy_update = 100
