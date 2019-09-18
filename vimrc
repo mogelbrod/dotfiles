@@ -326,6 +326,10 @@
   map <silent> <Leader><Up> [z
   map <silent> <Leader><Down> ]z
 
+  " :cnext / :cprev
+  map <silent> <Leader>[ :cprev<CR>
+  map <silent> <Leader>] :cnext<CR>
+
   " Toggle Indent guides
   nmap <silent> <leader>i <Plug>IndentGuidesToggle
 
