@@ -1036,8 +1036,9 @@
     au FileType javascript call SetNeomakeExe('javascript_eslint', 'node_modules/.bin/eslint')
     au FileType javascript noremap <buffer> <leader>d
       \ :execute "!open 'https://www.npmjs.com/package/".substitute(expand('<cWORD>'), '[''" ]', '', 'g')."'"<CR><CR>
+    au FileType javascript noremap <buffer> <silent> <leader>x :Neomake<CR>
     au FileType javascript noremap <buffer> <silent> <leader><leader>/ :JsDoc<CR>
-d
+
     au FileType javascript,typescript setlocal path+=app,src
     au FileType javascript,typescript noremap <buffer> <silent> <leader>f :call JsArrowToFunction()<CR>
     au FileType json setlocal foldmethod=syntax foldlevel=99
