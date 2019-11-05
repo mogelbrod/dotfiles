@@ -82,7 +82,7 @@ hi DiffText   ctermfg=none ctermbg=0  cterm=none
 
 " Comments
 hi Comment      ctermfg=Black  ctermbg=none  cterm=bold    guifg=#646464  gui=none
-hi SpecialComment  ctermfg=Black  ctermbg=none  cterm=bold    guifg=#646464  gui=none
+hi SpecialComment  ctermfg=Gray  ctermbg=none  cterm=none    guifg=#e2e2e2  gui=none
 
 " Constants
 hi Constant     ctermfg=Green  ctermbg=none  cterm=bold    guifg=#a0ffa0  gui=none
@@ -116,6 +116,7 @@ hi PreProc      ctermfg=Cyan  ctermbg=none  cterm=none    guifg=#3cb9e6  gui=non
 
 " Types
 hi Type        ctermfg=Green  ctermbg=none  cterm=none    guifg=#78dc1e  gui=none
+" hi Type        ctermfg=Green  ctermbg=none  cterm=bold    guifg=#a0ffa0  gui=none
 "hi StorageClass
 "hi Structure
 "hi Typedef
@@ -156,17 +157,47 @@ hi link jadeTag Statement
 hi link jadeJavascriptOutputChar Special
 
 " Javascript
-hi link jsParens Delimeter
+hi link javascriptRMethods Function
+hi link jsArrowFuncArgs Special
+hi link jsArrowFunction PreProc
+hi link jsBlock Normal
 hi link jsBraces Delimeter
 hi link jsBrackets Delimeter
-hi link jsObjectBraces Delimeter
-hi link jsFuncCall Function
-hi link javascriptRMethods Function
-hi link jsBlock Normal
-hi link jsThis Constant
-hi link jsArrowFunction PreProc
-hi link jsArrowFuncArgs Special
 hi link jsFuncArgs Special
+hi link jsFuncCall Function
+hi link jsNoise Statement
+hi link jsObjectBraces Delimeter
+hi link jsParens Delimeter
+hi link jsStorageClass Keyword
+hi link jsThis Constant
+
+" Typescript
+hi link typescriptBinaryOp Statement
+hi link typescriptCall Special
+hi link typescriptCastKeyword PreProc
+hi link typescriptClassName Identifier
+hi link typescriptClassStatic Keyword
+hi link typescriptEndColons jsNosie
+hi link typescriptExport PreProc
+hi link typescriptFuncTypeArrow PreProc
+hi link typescriptImport PreProc
+hi link typescriptObjectColon jsObjectColon
+hi link typescriptObjectLabel Normal
+hi link typescriptParens jsParens
+hi link typescriptRequestProp Constant
+hi link typescriptTemplateSB Constant
+hi link typescriptTypeReference Type
+hi link typescriptVariable Keyword
+
+" Go
+hi link goParamName Special
+hi link goParamType Type
+hi link goReceiverVar Special
+hi link goVarDefs goBlock
+hi link goVarAssign goBlock
+hi link goParen Delimeter
+hi link goOperator Statement
+hi link goFunctionCall Function
 
 " }}}
 
