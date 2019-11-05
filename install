@@ -70,4 +70,12 @@ if ARGV.include? 'vim'
   `vim +BundleInstall +qall`
 end
 
+if ARGV.include? 'diff'
+  puts "Updating diff-so-fancy cli"
+  `wget "https://raw.githubusercontent.com/so-fancy/diff-so-fancy/master/third_party/build_fatpack/diff-so-fancy"`
+  `chmod +x diff-so-fancy`
+  `mv diff-so-fancy ~/bin/diff-so-fancy`
+  `git config --global core.pager "~/bin/diff-so-fancy | less --tabs=4 -RFX"`
+end
+
 puts "All done!"

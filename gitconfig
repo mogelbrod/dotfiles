@@ -1,9 +1,12 @@
 [user]
 	name = Victor Hallberg
 	email = victor@hallberg.cc
+
 [core]
 	excludesfile = ~/.gitignore
 	autocrlf = input
+	pager = ~/bin/diff-so-fancy | less --tabs=4 -RFX
+
 [push]
 	default = current
 
@@ -39,5 +42,9 @@
   precommit = diff --cached --diff-algorithm=minimal -w
 [url "git@github.com:"]
 	insteadOf = https://github.com/
+
 [pull]
 	rebase = true
+
+[diff-so-fancy]
+	markEmptyLines = false
