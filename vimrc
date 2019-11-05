@@ -76,7 +76,6 @@
   Plug 'ekalinin/Dockerfile.vim'
   Plug 'elzr/vim-json'
   Plug 'fatih/vim-go'
-  Plug 'gcorne/vim-sass-lint'
   Plug 'heavenshell/vim-jsdoc'
   Plug 'mattn/emmet-vim'
   Plug 'octol/vim-cpp-enhanced-highlight'
@@ -612,6 +611,7 @@
       \ }
   let g:ycm_server_use_vim_stdout = 1
   let g:ycm_server_log_level = 'debug'
+  let g:ycm_key_detailed_diagnostics = ''
 
   " EchoDoc
   let g:echodoc#enable_at_startup = 1
