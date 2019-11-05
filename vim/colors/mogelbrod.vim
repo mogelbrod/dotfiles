@@ -72,10 +72,10 @@ hi ModeMsg      gui=none
 " }}}
 " {{{ VimDiff
 
-hi DiffAdd      ctermfg=Black ctermbg=Green   cterm=none
-hi DiffDelete   ctermfg=Black ctermbg=Red     cterm=none
-hi DiffChange   ctermfg=Black ctermbg=Yellow  cterm=none
-hi DiffText     ctermfg=Black ctermbg=Yellow  cterm=none
+hi DiffAdd    ctermfg=none ctermbg=22 cterm=none
+hi DiffDelete ctermfg=52   ctermbg=52 cterm=none
+hi DiffChange ctermfg=none ctermbg=0  cterm=none
+hi DiffText   ctermfg=none ctermbg=0  cterm=none
 
 " }}}
 " {{{ Basic syntax
