@@ -304,6 +304,7 @@
 
   alias grm='git ls-files -d -z | xargs -0 git update-index --remove'  # remove missing files
   alias grm-merged='git branch --merged | egrep -v "(^\*|master|dev)" | xargs git branch -d'
+  alias grm-stale='git remote prune origin'
 
   alias gc='git commit'
   alias gcm='git commit -m'
@@ -313,8 +314,8 @@
   alias gcf='git commit --fixup'
   alias gras='git rebase -i --autosquash'
 
-  alias gd='git diff --color -b'
-  alias gds='git diff --color -b --staged'
+  alias gd='git diff -b'
+  alias gds='git diff -b --staged'
 
   alias gl='git log --color --name-status --pretty=format:"%C(red)[%h] %an %C(blue)(%ar)%n%C(green)%s%n%b%C(reset)"'
   alias gcl='git log --pretty="- %s (%h)"'
