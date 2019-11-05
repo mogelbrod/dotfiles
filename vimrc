@@ -623,6 +623,21 @@
   let g:neomake_place_signs = 1
   let g:neomake_highlight_columns = 0
   let g:neomake_javascript_enabled_makers = ['eslint']
+
+  function! EslintInitForJob(jobinfo) dict abort
+    if !a:jobinfo.file_mode
+      let project_root = neomake#utils#get_project_root(a:jobinfo.bufnr)
+      if empty(project_root)
+        call add(self.args, '.')
+      else
+        call add(self.args, project_root)
+        call add(self.args, '--config=' . project_root . '/.eslintrc')
+        call add(self.args, '--ignore-path=' . project_root . '/.eslintignore')
+      endif
+    endif
+  endfunction
+
+  call neomake#config#set('ft.javascript.eslint.InitForJob', function('EslintInitForJob'))
   
   " Configures neomake to use a project-local instance of a maker
   function! SetNeomakeExe(ft_maker, file)
@@ -992,9 +1007,29 @@
 
     au FileType vim setlocal keywordprg=:help
 
-    au FileType c,cpp,cs,javascript,python,rust noremap <buffer> <leader>r :YcmCompleter RefactorRename<space>
-    au FileType c,cpp,cs,javascript,python,rust noremap <buffer> gd :YcmCompleter GoTo<CR>
-    au FileType c,cpp,cs,javascript,python,rust noremap <buffer> gi :YcmCompleter GetType<CR>
+    au FileType c,cpp,cs,javascript,typescript,typescript.tsx,python,rust noremap <buffer> <leader>r :YcmCompleter RefactorRename<space>
+    au FileType c,cpp,cs,javascript,typescript,typescript.tsx,python,rust noremap <buffer> gd :YcmCompleter GoTo<CR>
+    au FileType c,cpp,cs,javascript,typescript,typescript.tsx,python,rust noremap <buffer> gt :YcmCompleter GetType<CR>
+
+    " Javascript
+    au FileType javascript,javascript.jsx,typescript,typescript.tsx call SetNeomakeExe('javascript_eslint', 'node_modules/.bin/eslint')
+    au FileType javascript,javascript.jsx,typescript,typescript.tsx noremap <buffer> <leader>d
+      \ :execute "!open 'https://www.npmjs.com/package/".substitute(expand('<cWORD>'), '[''" ]', '', 'g')."'"<CR><CR>
+    au FileType javascript,javascript.jsx,typescript,typescript.tsx noremap <buffer> <silent> <leader><leader>/ :JsDoc<CR>
+    au FileType javascript,javascript.jsx,typescript,typescript.tsx noremap <buffer> <silent> <leader>f :call JsArrowToFunction()<CR>
+    au FileType javascript,typescript,typescript.tsx setlocal makeprg=eslint\ %
+    au FileType javascript,javascript.jsx,typescript,typescript.tsx setlocal path+=app,src
+    au FileType javascript,javascript.jsx,typescript,typescript.tsx,css,scss noremap <buffer> <leader>x :Neomake<CR>
+    au FileType javascript,javascript.jsx,typescript,typescript.tsx noremap <buffer> <leader><leader>x :Neomake! eslint<CR>
+    au FileType json setlocal foldmethod=syntax foldlevel=99
+    au FileType json noremap <buffer> <silent> <expr> <leader>d jsonpath#echo()
+    au FileType json noremap <buffer> <silent> <expr> <leader>g jsonpath#goto()
+
+    " CoffeeScript / Jade / LiveScript
+    au FileType jade,coffee IFold
+    au FileType coffee noremap <buffer> <leader>x :CoffeeCompile<CR>
+    au FileType ls noremap <buffer> <leader>x :LiveScriptCompile<CR>
+    au FileType ls setlocal indentkeys=o,O,},],0),!^F
 
     " LaTeX
     au FileType *tex setlocal errorformat=%f:%l:\ %m makeprg=pdflatex\ -file-line-error\ %
@@ -1029,27 +1064,7 @@
     au FileType css setlocal sts=2 ts=2 sw=2 noexpandtab
 
     au FileType scss setlocal iskeyword+=-
-    au FileType scss setlocal makeprg=sass-lint\ -vqf\ unix\ --ignore='node_modules/**'
-
-    " Javascript
-    au FileType javascript setlocal makeprg=eslint\ %
-    au FileType javascript call SetNeomakeExe('javascript_eslint', 'node_modules/.bin/eslint')
-    au FileType javascript noremap <buffer> <leader>d
-      \ :execute "!open 'https://www.npmjs.com/package/".substitute(expand('<cWORD>'), '[''" ]', '', 'g')."'"<CR><CR>
-    au FileType javascript noremap <buffer> <silent> <leader>x :Neomake<CR>
-    au FileType javascript noremap <buffer> <silent> <leader><leader>/ :JsDoc<CR>
-
-    au FileType javascript,typescript setlocal path+=app,src
-    au FileType javascript,typescript noremap <buffer> <silent> <leader>f :call JsArrowToFunction()<CR>
-    au FileType json setlocal foldmethod=syntax foldlevel=99
-    au FileType json noremap <buffer> <silent> <expr> <leader>d jsonpath#echo()
-    au FileType json noremap <buffer> <silent> <expr> <leader>g jsonpath#goto()
-
-    " CoffeeScript / Jade / LiveScript
-    au FileType jade,coffee IFold
-    au FileType coffee noremap <buffer> <leader>x :CoffeeCompile<CR>
-    au FileType ls noremap <buffer> <leader>x :LiveScriptCompile<CR>
-    au FileType ls setlocal indentkeys=o,O,},],0),!^F
+    au FileType scss setlocal makeprg=stylelint\ -f\ unix\ %
 
     " XML
     au FileType xml IFold
@@ -1103,14 +1118,9 @@
     " Snippets
     au FileType snippet setlocal noexpandtab foldexpr=IndentationFoldExpr(v:lnum) foldmethod=expr
 
-    " {{{ Use dash as keyword program (Mac OSX only)
     if has('mac')
-      au FileType html setlocal keywordprg=$VIMHOME/query-dash\ html
-      au FileType jade setlocal keywordprg=$VIMHOME/query-dash\ html,jade
-      au FileType coffee setlocal keywordprg=$VIMHOME/query-dash\ node,js,coffee
-      au FileType javascript,ls setlocal keywordprg=$VIMHOME/query-dash\ node,js
-      au FileType scss setlocal keywordprg=$VIMHOME/query-dash\ scss,css
-      au FileType php setlocal keywordprg=$VIMHOME/query-dash\ php
+      au FileType html,jade,coffee,javascript,javascript.jsx,typescript,typescript.tsx,scss,css,php
+        \ setlocal keywordprg=:Dash
     end
     " }}}
 
