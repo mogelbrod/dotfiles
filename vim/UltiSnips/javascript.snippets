@@ -246,8 +246,8 @@ class ${1:Component} extends React.Component {
 	static propTypes = {}
 	static defaultProps = {}
 
-	constructor(props) {
-		super(props)
+	constructor(props, context) {
+		super(props, context)
 		this.state = {}
 	}
 
@@ -258,8 +258,8 @@ class ${1:Component} extends React.Component {
 endsnippet
 
 snippet rcon "React constructor"
-constructor(props) {
-	super(props)
+constructor(props, context) {
+	super(props, context)
 
 	this.state = {
 		$0
