@@ -1017,6 +1017,8 @@ nnoremap N Nzzzv
 
     au FileType c,cpp,cs,javascript,typescript,typescript.tsx,python,rust noremap <buffer> <leader>r :YcmCompleter RefactorRename<space>
     au FileType c,cpp,cs,javascript,typescript,typescript.tsx,python,rust noremap <buffer> gd :YcmCompleter GoTo<CR>
+    au FileType c,cpp,cs,javascript,typescript,typescript.tsx,python,rust noremap <buffer> gr :YcmCompleter GoToReferences<CR>
+    au FileType c,cpp,cs,javascript,typescript,typescript.tsx,python,rust noremap <buffer> gs :YcmCompleter GetDoc<CR>
     au FileType c,cpp,cs,javascript,typescript,typescript.tsx,python,rust noremap <buffer> gt :YcmCompleter GetType<CR>
 
     " Javascript
@@ -1130,7 +1132,6 @@ nnoremap N Nzzzv
       au FileType html,jade,coffee,javascript,javascript.jsx,typescript,typescript.tsx,scss,css,php
         \ setlocal keywordprg=:Dash
     end
-    " }}}
 
     " {{{ JavaScript (EcmaScript 6+) tagbar configuration
     let g:tagbar_type_javascript = {
