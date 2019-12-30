@@ -166,8 +166,8 @@
   set noerrorbells visualbell t_vb=
   autocmd GUIEnter * set visualbell t_vb=
 
-  " Increase input timeout length
-  set timeoutlen=3000
+  " Timeouts (t = mappings, tt = keycodes)
+  set timeout ttimeout timeoutlen=3000 ttimeoutlen=200
 
   " Update external program settings
   if executable('ag')
