@@ -182,119 +182,119 @@
   " Session management
   set sessionoptions=blank,buffers,tabpages,winsize,curdir,help
 
-" }}}
+  " }}}
 " {{{ Buffer navigation
 
-  " Ctrl+Left/right switches between buffers
-  noremap <C-Left> :bprevious<CR>
-  noremap <C-Right> :bnext<CR>
-  noremap [D :bprevious<CR>
-  noremap [C :bnext<CR>
-  noremap [1;5D :bprevious<CR>
-  noremap [1;5C :bnext<CR>
+" Ctrl+Left/right switches between buffers
+noremap <C-Left> :bprevious<CR>
+noremap <C-Right> :bnext<CR>
+noremap [D :bprevious<CR>
+noremap [C :bnext<CR>
+noremap [1;5D :bprevious<CR>
+noremap [1;5C :bnext<CR>
 
-  noremap <C-u> <C-i>
-  noremap <C-t> :b#<CR>
+noremap <C-u> <C-i>
+noremap <C-t> :b#<CR>
 
 " }}}
 " {{{ Command mode
 
-  " Quick shortcut for entering command mode
-  noremap - :
-  noremap ö :
-  noremap Ö :
-  noremap ; :
+" Quick shortcut for entering command mode
+noremap - :
+noremap ö :
+noremap Ö :
+noremap ; :
 
-  " Usable bindings
-  cnoremap <C-A> <Home>
-  cnoremap <C-E> <End>
-  cnoremap  <Home>
-  cnoremap  <End>
-  " Ctrl-Arrow word jump
-  cnoremap [D <S-Left>
-  cnoremap [C <S-Right>
+" Usable bindings
+cnoremap <C-A> <Home>
+cnoremap <C-E> <End>
+cnoremap  <Home>
+cnoremap  <End>
+" Ctrl-Arrow word jump
+cnoremap [D <S-Left>
+cnoremap [C <S-Right>
 
-  " Alias capital W to write
-  cnoreabbrev W w
+" Alias capital W to write
+cnoreabbrev W w
 
-  " Add :w!! command which will write file as sudo
-  cnoreabbrev w!! %!sudo tee > /dev/null %
+" Add :w!! command which will write file as sudo
+cnoreabbrev w!! %!sudo tee > /dev/null %
 
 " }}}
 " {{{ Key behaviour & custom mappings
 
-  " Allow backspacing over everything
-  set backspace=indent,eol,start
+" Allow backspacing over everything
+set backspace=indent,eol,start
 
-  " Have the cursor keys wrap between lines (like <Space> and <BkSpc> do)
-  set whichwrap=<,>,[,]
+" Have the cursor keys wrap between lines (like <Space> and <BkSpc> do)
+set whichwrap=<,>,[,]
 
-  " Navigate through displayed lines, not physical
-  noremap <silent> j gj
-  noremap <silent> k gk
-  inoremap <silent> <Down> <C-o>gj
-  inoremap <silent> <Up> <C-o>gk
-  noremap <silent> <Down> gj
-  noremap <silent> <Up> gk
+" Navigate through displayed lines, not physical
+noremap <silent> j gj
+noremap <silent> k gk
+inoremap <silent> <Down> <C-o>gj
+inoremap <silent> <Up> <C-o>gk
+noremap <silent> <Down> gj
+noremap <silent> <Up> gk
 
-  " Scroll screen with <C-j>/<C-k>
-  noremap <silent> <C-j> <C-d>
-  noremap <silent> <C-k> <C-u>
+" Scroll screen with <C-j>/<C-k>
+noremap <silent> <C-j> <C-d>
+noremap <silent> <C-k> <C-u>
 
-  " Completion (C-x) key shortcuts
-  inoremap <C-l> <C-X><C-L>
-  inoremap <C-f> <C-X><C-F>
+" Completion (C-x) key shortcuts
+inoremap <C-l> <C-X><C-L>
+inoremap <C-f> <C-X><C-F>
 
-  "nnoremap <F2> :set invpaste paste?<CR>
-  nnoremap <F2> :set paste<CR>i
-  " F2 toggles pasting mode
-  set pastetoggle=<F2>
-  " Disable paste after leaving insert mode
-  au InsertLeave * set nopaste
+"nnoremap <F2> :set invpaste paste?<CR>
+nnoremap <F2> :set paste<CR>i
+" F2 toggles pasting mode
+set pastetoggle=<F2>
+" Disable paste after leaving insert mode
+au InsertLeave * set nopaste
 
-  " F3 toggles highlighting of search results
-  noremap <F3> :set hls!<CR>
-  inoremap <F3> <C-o>:set hls!<CR>
+" F3 toggles highlighting of search results
+noremap <F3> :set hls!<CR>
+inoremap <F3> <C-o>:set hls!<CR>
 
-  " F5 toggle Gundo plugin
-  nnoremap <F4> :GundoToggle<CR>
+" F5 toggle Gundo plugin
+nnoremap <F4> :GundoToggle<CR>
 
-  " F7 displays syntax highlighting info for token under cursor
-  noremap <F7> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
-    \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
-    \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
+" F7 displays syntax highlighting info for token under cursor
+noremap <F7> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
+      \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
+      \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
-  " Ctrl+H replaces all occurences of the selected text with something else
-  vnoremap <C-h> "zy<Esc>:call ReplaceSelection()<CR>
-  fun! ReplaceSelection()
-    let replacement = input("Replacement for ".@z.": ")
-    exe "%s~\\M".escape(@z, '[]~\').'~'.escape(replacement, '&').'~gc'
-  endfun
+" Ctrl+H replaces all occurences of the selected text with something else
+vnoremap <C-h> "zy<Esc>:call ReplaceSelection()<CR>
+fun! ReplaceSelection()
+  let replacement = input("Replacement for ".@z.": ")
+  exe "%s~\\M".escape(@z, '[]~\').'~'.escape(replacement, '&').'~gc'
+endfun
 
-  fun! JsArrowToFunction()
-    s/\v(^|<const )\s*([a-zA-Z0-9_]+)\s*[=:]\s*\(?([^)>]{-})\)?\s*\=\>\s*\{/function \2(\3) {/
-  endfun
+fun! JsArrowToFunction()
+  s/\v(^|<const )\s*([a-zA-Z0-9_]+)\s*[=:]\s*\(?([^)>]{-})\)?\s*\=\>\s*\{/function \2(\3) {/
+endfun
 
-  " Map P to replace selection without overwriting any registers
-  vnoremap P "_dP
+" Map P to replace selection without overwriting any registers
+vnoremap P "_dP
 
-  " Map gp to select the last pasted (or changed) text
-  nnoremap <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'
+" Map gp to select the last pasted (or changed) text
+nnoremap <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'
 
-  noremap § <C-]>
-  noremap <C-w>§ <C-w>}
+noremap § <C-]>
+noremap <C-w>§ <C-w>}
 
-  " Swap mark jump mappings
-  nnoremap ' `
-  nnoremap ` '
+" Swap mark jump mappings
+nnoremap ' `
+nnoremap ` '
 
-  " Keep search matches in the middle of the window
-  nnoremap * *zzzv
-  nnoremap # #zzzv
-  nnoremap n nzzzv
-  nnoremap N Nzzzv
+" Keep search matches in the middle of the window
+nnoremap * *zzzv
+nnoremap # #zzzv
+nnoremap n nzzzv
+nnoremap N Nzzzv
 
-" }}}
+" }}} (
 " {{{ Leader mappings
 
   " Tab manipulation
