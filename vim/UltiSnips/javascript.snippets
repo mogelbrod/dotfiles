@@ -1,28 +1,28 @@
-snippet 3 "string interpolation" w
+snippet 3 "string interpolation"
 \$\{$1}
 endsnippet
 
-snippet v "var" w
+snippet v "var"
 var $0
 endsnippet
 
-snippet l "let" w
+snippet l "let"
 let $0
 endsnippet
 
-snippet c "const" w
+snippet c "const"
 const $0
 endsnippet
 
-snippet r "return" w
+snippet r "return"
 return$0
 endsnippet
 
-snippet t "this" w
+snippet t "this"
 this.$0
 endsnippet
 
-snippet class "class" w
+snippet class "class"
 class $1 {
 	constructor($2) {
 		$3
@@ -30,23 +30,23 @@ class $1 {
 }
 endsnippet
 
-snippet f "Arrow function" w
+snippet f "Arrow function"
 ($1) => $0
 endsnippet
 
-snippet fn "Function (inline)" w
+snippet fn "Function (inline)"
 function($1) {
 	${VISUAL}$2
 }
 endsnippet
 
-snippet fnn "Function (named)" w
+snippet fnn "Function (named)"
 function ${1:function_name}($2) {
 	${VISUAL}$3
 }
 endsnippet
 
-snippet typeof! "LiveScript typeof!" w
+snippet typeof! "LiveScript typeof!"
 {}.toString.call(${1:value}).slice(8, -1)
 endsnippet
 
@@ -62,11 +62,11 @@ snippet imp "Import statement" b
 import ${2:${1/(.+\/)*(\w+)(-|\b|$)(\..+$)?/\u$2/g}} from '$1'
 endsnippet
 
-snippet exp "export" w
+snippet exp "export"
 export $0
 endsnippet
 
-snippet def "default" w
+snippet def "default"
 default $0
 endsnippet
 
@@ -76,7 +76,7 @@ snippet iif "Immediately-Invoked Function Expression (iife)"
 }(${2:$1}));
 endsnippet
 
-snippet ret "return" w
+snippet ret "return"
 return $0
 endsnippet
 
@@ -162,11 +162,11 @@ snippet ## "JSDoc bloc" b
  */
 endsnippet
 
-snippet cl "console.log" w
+snippet cl "console.log"
 console.log($0)
 endsnippet
 
-snippet cld "console.log debug" w
+snippet cld "console.log debug"
 console.log("${1:value}", ${2:$1})
 endsnippet
 
@@ -202,7 +202,7 @@ snippet ctrace "console.trace"
 console.trace()
 endsnippet
 
-snippet rp "PropTypes" w
+snippet rp "PropTypes"
 PropTypes.
 endsnippet
 
@@ -214,11 +214,11 @@ snippet sdp "static defaultProps = {}"
 static defaultProps = {$0}
 endsnippet
 
-snippet rce "React.createElement" w
+snippet rce "React.createElement"
 React.createElement($0)
 endsnippet
 
-snippet rcl "React.cloneElement" w
+snippet rcl "React.cloneElement"
 React.cloneElement($0)
 endsnippet
 
@@ -309,41 +309,41 @@ static getDerivedStateFromProps(nextProps, prevState) {
 }
 endsnippet
 
-snippet rcontext "Create React context" w
+snippet rcontext "Create React context"
 const ${1:contextName} = React.createContext()
 endsnippet
 
-snippet cref "Create ref statement used inside constructor" w
+snippet cref "Create ref statement used inside constructor"
 this.${1:refName}Ref = React.createRef()
 endsnippet
 
-snippet sst "setState" w
+snippet sst "setState"
 this.setState($1)
 endsnippet
 
-snippet tp "this.props" w
+snippet tp "this.props"
 this.props.
 endsnippet
 
-snippet ts "this.state" w
+snippet ts "this.state"
 this.state.
 endsnippet
 
-snippet fr "<React.Fragment>" w
+snippet fr "<React.Fragment>"
 <React.Fragment>
 	$0
 </React.Fragment>
 endsnippet
 
-snippet nary "Array of length N" w
+snippet nary "Array of length N"
 Array.apply(null, {length: ${1:10}}).map((_, i) => ${2:i+1})
 endsnippet
 
-snippet keys "Object.keys()" w
+snippet keys "Object.keys()" i
 Object.keys(${1:obj})
 endsnippet
 
-snippet toset "Convert Array to set" w
+snippet toset "Convert Array to set"
 ${1:array}.reduce((o, k) => (o[k] = true, o), {})
 endsnippet
 
