@@ -55,7 +55,7 @@ hi TabLineFill  ctermfg=White   ctermbg=Black  cterm=none    guifg=#828282  guib
 hi Pmenu        ctermfg=White  ctermbg=Black  cterm=none    guifg=#cacaca  guibg=#0b0b0b  gui=none
 hi PmenuSel     ctermfg=Cyan   ctermbg=Black  cterm=none    guifg=#3cb9e6  guibg=#0b0b0b  gui=none
 hi PmenuSbar    ctermfg=Black  ctermbg=Black  cterm=bold    guifg=#464646  guibg=#0b0b0b  gui=none
-hi PmenuThumb   ctermfg=Black  ctermbg=Black  cterm=bold    guifg=#464646  guibg=#0b0b0b  gui=none
+hi PmenuThumb   ctermfg=Cyan   ctermbg=Cyan   cterm=none    guifg=#3cb9e6  guibg=#3cb9e6  gui=none
 
 " Specials
 hi Title        ctermfg=Cyan   ctermbg=none   cterm=none    guifg=#78c8e6  gui=none
