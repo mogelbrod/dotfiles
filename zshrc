@@ -137,13 +137,12 @@
   bindkey "^[[A" history-search-backward
   bindkey "^[[B" history-search-forward
 
-  # Word moving
-  # Putty Ctrl-left/right
-  bindkey "^[0D" backward-word
-  bindkey "^[0C" forward-word
   # Ctrl+left/right
+  bindkey "^[[D" backward-word # putty
+  bindkey "^[[C" forward-word # putty
   bindkey "^[[1;5D" backward-word 
   bindkey "^[[1;5C" forward-word
+
   # Alt+left/right
   bindkey "^[[1;3D" backward-word
   bindkey "^[[1;3C" forward-word
