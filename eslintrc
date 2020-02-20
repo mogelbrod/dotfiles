@@ -1,27 +1,7 @@
 {
   "extends": "eslint:recommended",
-  "ecmaFeatures": {
-    "jsx": true,
-    "spread": true,
-    "arrowFunctions": true,
-    "blockBindings": true,
-    "classes": true,
-    "destructuring": true,
-    "forOf": true,
-    "modules": true,
-    "objectLiteralComputedProperties": true,
-    "objectLiteralShorthandMethods": true,
-    "objectLiteralShorthandProperties": true,
-    "templateStrings": true
-  },
-  "globals": {
-    "document": true,
-    "window": true,
-    "console": true,
-    "module": true,
-    "require": true
-  },
   "env":{
+    "node": true,
     "es6": true,
     "browser": true
   },
