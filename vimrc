@@ -28,11 +28,10 @@
   call plug#begin($VIMHOME . '/bundle')
 
   Plug 'ctrlpvim/ctrlp.vim'
-  " TODO: Build with PY3=ON prefix once https://github.com/nixprime/cpsm/pull/49 is fixed 
-  Plug 'nixprime/cpsm', { 'do': './install.sh' }
+  Plug 'nixprime/cpsm', { 'do': 'PY3=ON ./install.sh' }
 
   " Completion & snippets & linting
-  Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
+  Plug 'Valloric/YouCompleteMe', { 'do': 'python3 ./install.py --go-completer --ts-completer' }
   Plug 'Shougo/echodoc.vim'
   Plug 'SirVer/ultisnips'
   Plug 'neomake/neomake'
