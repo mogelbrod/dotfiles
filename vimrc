@@ -152,7 +152,8 @@
 
   " Insert mode completion
   set complete=.,w,t,i,k
-  set completeopt=longest,menu ",menuone
+  set completeopt=longest,menu,popup ",menuone
+  set completepopup=border:off,highlight:Pmenu ",align:flip
 
   " Shorten various messages in vim
   set shortmess=filmnrxoOtTIc
