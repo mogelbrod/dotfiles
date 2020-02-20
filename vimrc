@@ -679,6 +679,11 @@ nnoremap N Nzzzv
     endif
   endfunction
 
+  " vim-test
+  let g:test#strategy = "neomake"
+  let g:test#javascript#mocha#file_pattern = '\v(tests?/.*|.*\.(test|spec))\.(js|jsx)$'
+  let g:test#typescript#mocha#file_pattern = '\v(tests?/.*|.*\.(test|spec))\.(ts|tsx)$'
+
   " GitGutter
   let g:gitgutter_enabled = 0
   noremap <silent> <leader>u :GitGutterToggle<CR>
