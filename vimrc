@@ -1048,22 +1048,22 @@ nnoremap N Nzzzv
 
     au FileType vim setlocal keywordprg=:help
 
-    au FileType c,cpp,cs,javascript,typescript,typescript.tsx,python,rust noremap <buffer> <leader>r :YcmCompleter RefactorRename<space>
-    au FileType c,cpp,cs,javascript,typescript,typescript.tsx,python,rust noremap <buffer> gd :YcmCompleter GoTo<CR>
-    au FileType c,cpp,cs,javascript,typescript,typescript.tsx,python,rust noremap <buffer> gr :YcmCompleter GoToReferences<CR>
-    au FileType c,cpp,cs,javascript,typescript,typescript.tsx,python,rust noremap <buffer> gs :YcmCompleter GetDoc<CR>
-    au FileType c,cpp,cs,javascript,typescript,typescript.tsx,python,rust noremap <buffer> gt :YcmCompleter GetType<CR>
+    au FileType c,cpp,cs,javascript,typescript,typescriptreact,python,rust noremap <buffer> <leader>r :YcmCompleter RefactorRename<space>
+    au FileType c,cpp,cs,javascript,typescript,typescriptreact,python,rust noremap <buffer> gd :YcmCompleter GoTo<CR>
+    au FileType c,cpp,cs,javascript,typescript,typescriptreact,python,rust noremap <buffer> gr :YcmCompleter GoToReferences<CR>
+    au FileType c,cpp,cs,javascript,typescript,typescriptreact,python,rust noremap <buffer> gs :YcmCompleter GetDoc<CR>
+    au FileType c,cpp,cs,javascript,typescript,typescriptreact,python,rust noremap <buffer> gt :YcmCompleter GetType<CR>
 
     " Javascript
-    au FileType javascript,javascript.jsx,typescript,typescript.tsx call SetNeomakeExe('javascript_eslint', 'node_modules/.bin/eslint')
-    au FileType javascript,javascript.jsx,typescript,typescript.tsx noremap <buffer> <leader>d
+    au FileType javascript,javascript.jsx,typescript,typescriptreact call SetNeomakeExe('javascript_eslint', 'node_modules/.bin/eslint')
+    au FileType javascript,javascript.jsx,typescript,typescriptreact noremap <buffer> <leader>d
       \ :execute "!open 'https://www.npmjs.com/package/".substitute(expand('<cWORD>'), '[''" ]', '', 'g')."'"<CR><CR>
-    au FileType javascript,javascript.jsx,typescript,typescript.tsx noremap <buffer> <silent> <leader><leader>/ :JsDoc<CR>
-    au FileType javascript,javascript.jsx,typescript,typescript.tsx noremap <buffer> <silent> <leader>f :call JsArrowToFunction()<CR>
-    au FileType javascript,typescript,typescript.tsx setlocal makeprg=eslint\ %
-    au FileType javascript,javascript.jsx,typescript,typescript.tsx setlocal path+=app,src
-    au FileType javascript,javascript.jsx,typescript,typescript.tsx,css,scss noremap <buffer> <leader>x :Neomake<CR>
-    au FileType javascript,javascript.jsx,typescript,typescript.tsx noremap <buffer> <leader><leader>x :Neomake! eslint<CR>
+    au FileType javascript,javascript.jsx,typescript,typescriptreact noremap <buffer> <silent> <leader><leader>/ :JsDoc<CR>
+    au FileType javascript,javascript.jsx,typescript,typescriptreact noremap <buffer> <silent> <leader>f :call JsArrowToFunction()<CR>
+    au FileType javascript,typescript,typescriptreact setlocal makeprg=eslint\ %
+    au FileType javascript,javascript.jsx,typescript,typescriptreact setlocal path+=app,src
+    au FileType javascript,javascript.jsx,typescript,typescriptreact,css,scss noremap <buffer> <leader>x :Neomake<CR>
+    au FileType javascript,javascript.jsx,typescript,typescriptreact noremap <buffer> <leader><leader>x :Neomake! eslint<CR>
     au FileType json setlocal foldmethod=syntax foldlevel=99
     au FileType json noremap <buffer> <silent> <expr> <leader>d jsonpath#echo()
     au FileType json noremap <buffer> <silent> <expr> <leader>g jsonpath#goto()
@@ -1162,7 +1162,7 @@ nnoremap N Nzzzv
     au FileType snippet setlocal noexpandtab foldexpr=IndentationFoldExpr(v:lnum) foldmethod=expr
 
     if has('mac')
-      au FileType html,jade,coffee,javascript,javascript.jsx,typescript,typescript.tsx,scss,css,php
+      au FileType html,jade,coffee,javascript,javascript.jsx,typescript,typescriptreact,scss,css,php
         \ setlocal keywordprg=:Dash
     end
 
