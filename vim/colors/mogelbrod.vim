@@ -81,25 +81,25 @@ hi DiffText   ctermfg=none ctermbg=0  cterm=none
 " {{{ Basic syntax
 
 " Comments
-hi Comment      ctermfg=Black  ctermbg=none  cterm=bold    guifg=#646464  gui=none
-hi SpecialComment  ctermfg=Gray  ctermbg=none  cterm=none    guifg=#e2e2e2  gui=none
+hi Comment         ctermfg=Black    ctermbg=none  cterm=bold       guifg=#646464  gui=none
+hi SpecialComment  ctermfg=Gray     ctermbg=none  cterm=none       guifg=#e2e2e2  gui=none
 
 " Constants
-hi Constant     ctermfg=Green  ctermbg=none  cterm=bold    guifg=#a0ffa0  gui=none
-hi Boolean      ctermfg=Green  ctermbg=none  cterm=bold    guifg=#a0ffa0  gui=none
+hi Constant        ctermfg=Green    ctermbg=none  cterm=bold       guifg=#a0ffa0  gui=none
+hi Boolean         ctermfg=Green    ctermbg=none  cterm=bold       guifg=#a0ffa0  gui=none
 " Text
-hi Character    ctermfg=Magenta  ctermbg=none  cterm=bold    guifg=#e664e6  gui=none
-hi String       ctermfg=Magenta  ctermbg=none  cterm=bold    guifg=#e664e6  gui=none
+hi Character       ctermfg=Magenta  ctermbg=none  cterm=bold       guifg=#e664e6  gui=none
+hi String          ctermfg=Magenta  ctermbg=none  cterm=bold       guifg=#e664e6  gui=none
 " Numbers
-hi Number      ctermfg=Magenta  ctermbg=none  cterm=none    guifg=#f050f0  gui=none
-hi Float       ctermfg=Magenta  ctermbg=none  cterm=none    guifg=#f050f0  gui=none
+hi Number          ctermfg=Magenta  ctermbg=none  cterm=none       guifg=#f050f0  gui=none
+hi Float           ctermfg=Magenta  ctermbg=none  cterm=none       guifg=#f050f0  gui=none
 
 " Identifiers
-hi Identifier  ctermfg=Red    ctermbg=none  cterm=none    guifg=#f65a5a  gui=none
-hi Function    ctermfg=Red    ctermbg=none  cterm=none    guifg=#f65a5a  gui=none
+hi Identifier      ctermfg=Red      ctermbg=none  cterm=none       guifg=#f65a5a  gui=none
+hi Function        ctermfg=Red      ctermbg=none  cterm=none       guifg=#f65a5a  gui=none
 
 " Statements
-hi Statement   ctermfg=Brown  ctermbg=none  cterm=none    guifg=#f0b43c  gui=none
+hi Statement       ctermfg=Brown    ctermbg=none  cterm=none       guifg=#f0b43c  gui=none
 "hi Conditional
 "hi Repeat
 "hi Label
@@ -108,41 +108,41 @@ hi Statement   ctermfg=Brown  ctermbg=none  cterm=none    guifg=#f0b43c  gui=non
 "hi Exception
 
 " Preprocessors
-hi PreProc      ctermfg=Cyan  ctermbg=none  cterm=none    guifg=#3cb9e6  gui=none
+hi PreProc         ctermfg=Cyan     ctermbg=none  cterm=none       guifg=#3cb9e6  gui=none
 "hi Include
 "hi Define
 "hi Macro
 "hi PreCondit
 
 " Types
-hi Type        ctermfg=Green  ctermbg=none  cterm=none    guifg=#78dc1e  gui=none
-" hi Type        ctermfg=Green  ctermbg=none  cterm=bold    guifg=#a0ffa0  gui=none
+hi Type            ctermfg=Green    ctermbg=none  cterm=none       guifg=#78dc1e  gui=none
+" hi Type          ctermfg=Green    ctermbg=none  cterm=bold       guifg=#a0ffa0  gui=none
 "hi StorageClass
 "hi Structure
 "hi Typedef
 
 " Special symbols
-hi Special     ctermfg=Blue   ctermbg=none  cterm=bold    guifg=#7373e6  gui=none
-hi SpecialAlt  ctermfg=Blue   ctermbg=none  cterm=none    guifg=#7373e6  gui=none
-hi SpecialChar ctermfg=Green  ctermbg=none  cterm=none    guifg=#78dc1e  gui=none
-hi Tag         ctermfg=Cyan   ctermbg=none  cterm=bold    guifg=#3cb9e6  gui=none
-hi Delimeter   ctermfg=White  ctermbg=none  cterm=none    guifg=#ffffff  gui=none
-hi Debug       ctermfg=Red    ctermbg=none  cterm=bold    guifg=#f35d5d  gui=none
+hi Special         ctermfg=Blue     ctermbg=none  cterm=bold       guifg=#7373e6  gui=none
+hi SpecialAlt      ctermfg=Blue     ctermbg=none  cterm=none       guifg=#7373e6  gui=none
+hi SpecialChar     ctermfg=Green    ctermbg=none  cterm=none       guifg=#78dc1e  gui=none
+hi Tag             ctermfg=Cyan     ctermbg=none  cterm=bold       guifg=#3cb9e6  gui=none
+hi Delimeter       ctermfg=White    ctermbg=none  cterm=none       guifg=#ffffff  gui=none
+hi Debug           ctermfg=Red      ctermbg=none  cterm=bold       guifg=#f35d5d  gui=none
 
 " Other stuff
-hi Error       ctermfg=White  ctermbg=Red   cterm=none    guifg=#ffcccc  guibg=#aa3333  gui=none
-hi Ignored     ctermfg=White  ctermbg=none  cterm=bold    guifg=#ffffff                 gui=none
-hi Todo        ctermfg=White  ctermbg=none  cterm=bold    guifg=yellow   guibg=bg       gui=none
-hi Underlined  ctermfg=White  ctermbg=none  cterm=underline  guifg=#ffffff              gui=none
+hi Error           ctermfg=White    ctermbg=Red   cterm=none       guifg=#ffcccc  guibg=#aa3333  gui=none
+hi Ignored         ctermfg=White    ctermbg=none  cterm=bold       guifg=#ffffff  gui=none
+hi Todo            ctermfg=White    ctermbg=none  cterm=bold       guifg=yellow   guibg=bg       gui=none
+hi Underlined      ctermfg=White    ctermbg=none  cterm=underline  guifg=#ffffff  gui=none
 
 " }}}
 " {{{ Context specific
 
 " Spelling
-hi SpellBad     ctermfg=Black    ctermbg=9     cterm=none    gui=undercurl  guisp=#f05050
-hi SpellCap     ctermfg=Black    ctermbg=12    cterm=none    gui=undercurl  guisp=#8787ff
-hi SpellRare    ctermfg=Black    ctermbg=13    cterm=none    gui=undercurl  guisp=#3cb9e6
-hi SpellLocal   ctermfg=Black    ctermbg=14    cterm=none    gui=undercurl  guisp=#7373e6
+hi SpellBad    ctermfg=Black  ctermbg=9   cterm=none  gui=undercurl  guisp=#f05050
+hi SpellCap    ctermfg=Black  ctermbg=12  cterm=none  gui=undercurl  guisp=#8787ff
+hi SpellRare   ctermfg=Black  ctermbg=13  cterm=none  gui=undercurl  guisp=#3cb9e6
+hi SpellLocal  ctermfg=Black  ctermbg=14  cterm=none  gui=undercurl  guisp=#7373e6
 
 " HTML
 hi link htmlH1 Normal
@@ -172,21 +172,29 @@ hi link jsStorageClass Keyword
 hi link jsThis Constant
 
 " Typescript
+hi link typescriptArrayMethod Normal
+hi link typescriptArrowFuncArg Special
 hi link typescriptBinaryOp Statement
+hi link typescriptCacheMethod Normal
 hi link typescriptCall Special
 hi link typescriptCastKeyword PreProc
 hi link typescriptClassName Identifier
 hi link typescriptClassStatic Keyword
+hi link typescriptDOMEventMethod Normal
+hi link typescriptDOMFormProp Normal
+hi link typescriptES6SetProp Normal
 hi link typescriptEndColons jsNosie
 hi link typescriptExport PreProc
 hi link typescriptFuncTypeArrow PreProc
 hi link typescriptImport PreProc
 hi link typescriptObjectColon jsObjectColon
 hi link typescriptObjectLabel Normal
+hi link typescriptParamImpl Special
 hi link typescriptParens jsParens
 hi link typescriptRequestProp Constant
 hi link typescriptTemplateSB Constant
 hi link typescriptTypeReference Type
+hi link typescriptExceptions Identifier
 hi link typescriptVariable Keyword
 
 " Go
@@ -205,3 +213,7 @@ hi YcmErrorSign    ctermfg=Red    ctermbg=Black  cterm=none  guifg=#f05050  guib
 hi YcmWarningSign  ctermfg=Brown  ctermbg=Black  cterm=none  guifg=#f0b43c  guibg=#151515  gui=none
 hi link YcmErrorSign NeomakeErrorSign
 hi link YcmWarningSign NeomakeWarningSign
+
+hi NeomakeStatColorTypeE  ctermfg=White  ctermbg=Red    cterm=none
+hi NeomakeStatColorTypeW  ctermfg=White  ctermbg=Brown  cterm=none
+hi NeomakeStatColorTypeI  ctermfg=White  ctermbg=Blue   cterm=none
