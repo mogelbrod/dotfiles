@@ -560,6 +560,7 @@ nnoremap N Nzzzv
   let g:statusline_mode={ 'n': 'N', 'no': 'Nop', 'v': 'Vis', 'V': 'Vln', '': 'Vbl', 's': 'Sel', 'S': 'Sln', '': 'Sbl', 'i': 'Ins', 'R': 'Rep', 'Rv': 'Rvr', 'c': 'Cmd', 'cv': 'vEX', 'ce': 'EX', 'r': 'Prompt', 'rm': 'More', 'r?': 'Confirm', '!': 'Shell' }
 
   function! MyStatusLine(active)
+    let bufnr = winbufnr(g:statusline_winid)
     let st = ""
     let st .= "%< %-f  " " File path (truncated if necessary)
     let st .= "%m%r%w %="
@@ -568,7 +569,14 @@ nnoremap N Nzzzv
       " Show current mode in active window
       let st .= "%{g:statusline_mode[mode()]}  "
     endif
-    let st .= "%y " " File type
+    let st .= neomake#statusline#get(bufnr, {
+      \ 'format_running': '({{running_job_names}}) ',
+      \ 'format_loclist_unknown': '',
+      \ 'format_loclist_ok': '✓',
+      \ 'format_quickfix_ok': '',
+      \ 'format_quickfix_issues': '%s',
+      \ })
+    let st .= " %y " " File type
     let st .= "%4(%v%) %10(%l/%L%)  %P" " Colum & line numbers
     return st
   endfunction
@@ -627,21 +635,38 @@ nnoremap N Nzzzv
   let g:neomake_place_signs = 1
   let g:neomake_highlight_columns = 0
   let g:neomake_javascript_enabled_makers = ['eslint']
+  let g:neomake_typescript_enabled_makers = ['eslint']
 
   function! EslintInitForJob(jobinfo) dict abort
+    let project_root = neomake#utils#get_project_root(a:jobinfo.bufnr)
     if !a:jobinfo.file_mode
-      let project_root = neomake#utils#get_project_root(a:jobinfo.bufnr)
       if empty(project_root)
         call add(self.args, '.')
       else
         call add(self.args, project_root)
-        call add(self.args, '--config=' . project_root . '/.eslintrc')
+      endif
+    endif
+    if !empty(project_root)
+      let rc_path = project_root . '/.eslintrc'
+      if filereadable(rc_path)
+        let rc_path = rc_path
+      elseif filereadable(rc_path . '.js')
+        let rc_path = rc_path . '.js'
+      elseif filereadable(rc_path . '.json')
+        let rc_path = rc_path . '.json'
+      elseif filereadable(rc_path . '.yml')
+        let rc_path = rc_path . '.yml'
+      endif
+      call add(self.args, '--config=' . rc_path)
+      if filereadable(project_root . '/.eslintignore')
         call add(self.args, '--ignore-path=' . project_root . '/.eslintignore')
       endif
     endif
   endfunction
 
   call neomake#config#set('ft.javascript.eslint.InitForJob', function('EslintInitForJob'))
+  call neomake#config#set('ft.typescript.eslint.InitForJob', function('EslintInitForJob'))
+  call neomake#config#set('ft.typescriptreact.eslint.InitForJob', function('EslintInitForJob'))
   
   " Configures neomake to use a project-local instance of a maker
   function! SetNeomakeExe(ft_maker, file)
