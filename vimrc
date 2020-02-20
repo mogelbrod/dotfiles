@@ -1127,6 +1127,9 @@ nnoremap N Nzzzv
     au FileType markdown setlocal com=s1:/*,mb:*,ex:*/,://,b:#,:%,:XCOMM,n:>,b:-
     au FileType markdown noremap <buffer> <leader>. yypVr=<Esc>
     au FileType markdown noremap <buffer> <leader>- yypVr-<Esc>
+    au FileType markdown vmap <buffer> <silent> <leader>c S`gv
+    au FileType markdown vmap <buffer> <silent> <c-k> S]%a()<left>
+    au FileType markdown vmap <buffer> <silent> <c-b> S*gv
 
     " C++
     "au FileType cpp setlocal foldmarker={,}
