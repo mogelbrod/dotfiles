@@ -43,6 +43,7 @@
   Plug 'beloglazov/vim-textobj-quotes'
   Plug 'chrisbra/matchit'
   Plug 'godlygeek/tabular'
+  Plug 'janko/vim-test'
   Plug 'jiangmiao/auto-pairs'
   Plug 'kana/vim-textobj-function'
   Plug 'kana/vim-textobj-user'
@@ -58,6 +59,7 @@
   Plug 'thinca/vim-textobj-function-javascript'
   Plug 'tpope/vim-abolish'
   Plug 'tpope/vim-apathy'
+  Plug 'tpope/vim-dispatch'
   Plug 'tpope/vim-endwise'
   Plug 'tpope/vim-eunuch'
   Plug 'tpope/vim-fugitive'
@@ -313,8 +315,10 @@ nnoremap N Nzzzv
   noremap <silent> <leader>9 9gt
 
   nore <leader>g :call RecursiveGrepCommand() <Bar> cw<CR><CR><CR>
-  nore <leader><leader>g <Esc>:Egrep ""<left>
+  nore <silent> <leader><leader>g <Esc>:Egrep ""<left>
   vnore <leader>g "zy:call RecursiveGrepCommand(@z) <Bar> cw<CR><CR><CR>
+
+  nore <silent> <leader><leader>x TestFile
 
   " Copy buffer contents to clipboard
   map <silent> <leader>ya ggVG"+y''
