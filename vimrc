@@ -621,8 +621,7 @@ nnoremap N Nzzzv
       \ 'javascript': [ 're!([ ;] |\t|: |@)' ],
       \ 'css,scss': [ '\t', '  ', '; ', ': ', '@' ],
       \ }
-  let g:ycm_server_use_vim_stdout = 1
-  let g:ycm_server_log_level = 'debug'
+  let g:ycm_log_level = 'info'
   let g:ycm_key_detailed_diagnostics = ''
 
   " EchoDoc
