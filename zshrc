@@ -138,8 +138,14 @@
   bindkey "^[[B" history-search-forward
 
   # Ctrl+left/right
-  bindkey "^[[D" backward-word # putty
-  bindkey "^[[C" forward-word # putty
+  case "$OSTYPE" in
+    darwin*)
+      ;;
+    linux*)
+      bindkey "^[[D" backward-word # putty
+      bindkey "^[[C" forward-word # putty
+      ;;
+  esac
   bindkey "^[[1;5D" backward-word 
   bindkey "^[[1;5C" forward-word
 
