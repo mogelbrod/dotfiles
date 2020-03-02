@@ -68,8 +68,10 @@
   Plug 'yssl/QFEnter'
 
   " Language specific plugins
+  " Plug 'othree/javascript-libraries-syntax.vim'
+  " Plug 'sheerun/vim-polyglot' " bundle of most popular file type plugins
   Plug 'HerringtonDarkholme/yats.vim'
-  Plug 'amadeus/vim-jsx'
+  Plug 'MaxMEllon/vim-jsx-pretty'
   Plug 'amadeus/vim-xml'
   Plug 'cakebaker/scss-syntax.vim'
   Plug 'chrisbra/csv.vim'
@@ -78,16 +80,15 @@
   Plug 'elzr/vim-json'
   Plug 'fatih/vim-go'
   Plug 'heavenshell/vim-jsdoc'
+  Plug 'jparise/vim-graphql'
   Plug 'mattn/emmet-vim'
   Plug 'octol/vim-cpp-enhanced-highlight'
   Plug 'othree/csscomplete.vim'
   Plug 'othree/html5.vim'
-  Plug 'othree/javascript-libraries-syntax.vim'
   Plug 'pangloss/vim-javascript'
   Plug 'stephpy/vim-yaml'
   Plug 'tpope/vim-git'
   Plug 'vim-jp/vim-cpp'
-  " Plug 'sheerun/vim-polyglot' " bundle of most popular file type plugins
 
   call plug#end()
 

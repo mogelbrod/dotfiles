@@ -30,7 +30,7 @@ hi CursorLineNr ctermfg=Red    ctermbg=Black cterm=none    guifg=#f05050  guibg=
 
 " Search
 hi Search       ctermfg=Black  ctermbg=Brown  cterm=none   guifg=#141414  guibg=#f0b43c  gui=none
-hi IncSearch    ctermfg=Black  ctermbg=Brown  cterm=bold   guifg=#141414  guibg=#ffcd64  gui=none
+hi IncSearch    ctermfg=White  ctermbg=Brown  cterm=none   guifg=#141414  guibg=#ffcd64  gui=none
 hi MatchParen   ctermfg=White  ctermbg=Black  cterm=bold   guifg=#ffffff  guibg=#334455  gui=none
 
 " Window Elements
@@ -206,6 +206,22 @@ hi link goVarAssign goBlock
 hi link goParen Delimeter
 hi link goOperator Statement
 hi link goFunctionCall Function
+
+" GraphQL
+hi link graphqlBoolean            Boolean
+hi link graphqlBraces             Delimiter
+hi link graphqlDirective          PreProc
+hi link graphqlDirectiveLocation  Special
+hi link graphqlKeyword            Keyword
+hi link graphqlMetaFields         Special
+hi link graphqlName               String
+hi link graphqlNull               Keyword
+hi link graphqlNumber             Number
+hi link graphqlOperator           Operator
+hi link graphqlString             String
+hi link graphqlStructure          Structure
+hi link graphqlType               Type
+hi link graphqlVariable           Keyword
 
 " }}}
 
