@@ -795,6 +795,7 @@ nnoremap N Nzzzv
   let g:gundo_prefer_python3 = 1
 
   let g:jsonpath_register = '*'
+  let g:jsonpath_use_pyhon = 1
 
 " }}}
 " {{{ Custom functions and commands
@@ -1069,8 +1070,8 @@ nnoremap N Nzzzv
     au FileType javascript,javascript.jsx,typescript,typescriptreact,css,scss noremap <buffer> <leader>x :Neomake<CR>
     au FileType javascript,javascript.jsx,typescript,typescriptreact noremap <buffer> <leader><leader>x :Neomake! eslint<CR>
     au FileType json setlocal foldmethod=syntax foldlevel=99
-    au FileType json noremap <buffer> <silent> <expr> <leader>d jsonpath#echo()
-    au FileType json noremap <buffer> <silent> <expr> <leader>g jsonpath#goto()
+    au FileType json noremap <buffer> <silent> <leader>d :call jsonpath#echo()<CR>
+    au FileType json noremap <buffer> <silent> <leader>g :call jsonpath#goto()<CR>
 
     " CoffeeScript / Jade / LiveScript
     au FileType jade,coffee IFold
