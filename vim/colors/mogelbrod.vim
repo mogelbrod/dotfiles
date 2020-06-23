@@ -174,6 +174,7 @@ hi link jsThis Constant
 " Typescript
 hi link typescriptArrayMethod Normal
 hi link typescriptArrowFuncArg Special
+hi link typescriptAssign Statement
 hi link typescriptBinaryOp Statement
 hi link typescriptCacheMethod Normal
 hi link typescriptCall Special
@@ -183,18 +184,21 @@ hi link typescriptClassStatic Keyword
 hi link typescriptDOMEventMethod Normal
 hi link typescriptDOMFormProp Normal
 hi link typescriptES6SetProp Normal
-hi link typescriptEndColons jsNosie
+hi link typescriptEndColons jsNoise
+hi link typescriptExceptions Identifier
 hi link typescriptExport PreProc
 hi link typescriptFuncTypeArrow PreProc
+hi link typescriptArrowFunc PreProc
 hi link typescriptImport PreProc
 hi link typescriptObjectColon jsObjectColon
 hi link typescriptObjectLabel Normal
+hi link typescriptOperator Statement
+hi link typescriptTernaryOp Statement
 hi link typescriptParamImpl Special
 hi link typescriptParens jsParens
 hi link typescriptRequestProp Constant
 hi link typescriptTemplateSB Constant
 hi link typescriptTypeReference Type
-hi link typescriptExceptions Identifier
 hi link typescriptVariable Keyword
 
 " Go
@@ -227,8 +231,9 @@ hi link graphqlVariable           Keyword
 
 hi YcmErrorSign    ctermfg=Red    ctermbg=Black  cterm=none  guifg=#f05050  guibg=#151515  gui=none
 hi YcmWarningSign  ctermfg=Brown  ctermbg=Black  cterm=none  guifg=#f0b43c  guibg=#151515  gui=none
-hi link YcmErrorSign NeomakeErrorSign
-hi link YcmWarningSign NeomakeWarningSign
+hi YCMInverse term=bold cterm=bold ctermfg=Blue gui=bold
+hi link NeomakeErrorSign YcmErrorSign
+hi link NeomakeWarningSign YcmWarningSign
 
 hi NeomakeStatColorTypeE  ctermfg=White  ctermbg=Red    cterm=none
 hi NeomakeStatColorTypeW  ctermfg=White  ctermbg=Brown  cterm=none
