@@ -737,7 +737,8 @@ nnoremap N Nzzzv
   " let g:user_emmet_anchorizeurl_key = '<C-e>l'
   " let g:user_emmet_anchorizesummary_key = '<C-e>L'
   let g:user_emmet_settings = {
-  \  'javascript.jsx': { 'extends': 'jsx' },
+  \  'javascript': { 'extends': 'jsx' },
+  \  'typescript': { 'extends': 'jsx' },
   \}
 
   " Surround
