@@ -777,9 +777,7 @@ nnoremap N Nzzzv
   let g:used_javascript_libs = 'jquery,react,requirejs'
 
   let g:vim_json_syntax_conceal = 0
-
-  let g:jsx_ext_required = 0
-  let g:jsx_disable_indent = 1
+  let g:yats_host_keyword = 0
 
   let g:jsdoc_enable_es6 = 1
   let g:jsdoc_underscore_private = 1
