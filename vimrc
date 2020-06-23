@@ -742,8 +742,11 @@ nnoremap N Nzzzv
   \}
 
   " Surround
-  let g:surround_13 = "{\n\t\r\n}"
-  let g:surround_47 = "/*\n\r\n*/"
+  " For nr to use :echo char2nr("-"))
+  let g:surround_13 = "{\n\t\r\n}" " enter
+  let g:surround_40 = "(\n\t\r\n)" " (
+  let g:surround_47 = "/*\n\r\n*/" " /
+  let g:surround_102 = "<React.Fragment>\n\r\n</React.Fragment>" " f
 
   " NERDCommenter
   let g:NERDCreateDefaultMappings = 0
