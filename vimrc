@@ -1187,6 +1187,10 @@ nnoremap N Nzzzv
     \ }
     " }}}
 
+    " Python
+    let g:pyindent_open_paren = 'shiftwidth()'
+    let g:pyindent_continue = 'shiftwidth()'
+
   augroup END
 
 " }}}
