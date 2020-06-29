@@ -1057,8 +1057,9 @@ nnoremap N Nzzzv
     au FileType c,cpp,cs,javascript,typescript,typescriptreact,python,rust noremap <buffer> <leader>r :YcmCompleter RefactorRename<space>
     au FileType c,cpp,cs,javascript,typescript,typescriptreact,python,rust noremap <buffer> gd :YcmCompleter GoTo<CR>
     au FileType c,cpp,cs,javascript,typescript,typescriptreact,python,rust noremap <buffer> gr :YcmCompleter GoToReferences<CR>
-    au FileType c,cpp,cs,javascript,typescript,typescriptreact,python,rust noremap <buffer> gs :YcmCompleter GetDoc<CR>
+    au FileType c,cpp,cs,javascript,typescript,typescriptreact,python,rust noremap <buffer> gh :YcmCompleter GetDoc<CR>
     au FileType c,cpp,cs,javascript,typescript,typescriptreact,python,rust noremap <buffer> gt :YcmCompleter GetType<CR>
+    au FileType c,cpp,cs,javascript,typescript,typescriptreact,python,rust noremap <buffer> gs :YcmShowDetailedDiagnostic<CR>
 
     " Javascript
     au FileType javascript,javascript.jsx,typescript,typescriptreact call SetNeomakeExe('javascript_eslint', 'node_modules/.bin/eslint')
