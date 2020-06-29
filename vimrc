@@ -352,6 +352,7 @@ nnoremap N Nzzzv
   nmap <leader>= :call Preserve("normal mzgg=G'z")<CR>
 
   nmap <leader>p :CtrlP <C-r>=expand('%:p:h')<CR><CR>
+  nmap <leader>l :CtrlP ~/src/
 
   nmap <leader>a :Agext <C-r>=expand('%:e')<CR>
 
