@@ -87,7 +87,7 @@
   alias gl='git log --color --name-status --pretty=format:"%Cred[%h] %an %Cblue(%ar)%n%Cgreen%s%n%b%Creset"'
   alias glt='git log --all --color --graph --pretty=format:"%C(red)[%h] %an %C(blue)(%ar)%C(green)%d%C(reset) %s"'
 
-  function gdc() {
+  gdc() {
     commit="$1"
     [[ -z $1 ]] && commit="HEAD"
     shift
@@ -108,5 +108,10 @@
   if [ "$GDMSESSION" = "ubuntu" ] ; then
     alias o='gnome-open'
   fi
+
+#}}}
+#{{{ Environment specific (optional)
+
+  [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 #}}}

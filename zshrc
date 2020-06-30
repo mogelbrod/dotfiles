@@ -326,13 +326,13 @@
   alias gcl='git log --pretty="- %s (%h)"'
   alias glt='git log --all --color --graph --pretty=format:"%C(red)[%h] %an %C(blue)(%ar)%C(green)%d%C(reset) %s"'
 
-  function gdc() {
+  gdc() {
     commit="$1"
     [[ -z $1 ]] && commit="HEAD" || shift
     git diff --diff-algorithm minimal $commit^ $commit $*
   }
 
-  function gbump() {
+  gbump() {
     what=${1:-patch}
     echo "Bumping $what version and pushing to origin"
     changed=$(git diff-index --name-only HEAD --)
@@ -384,8 +384,12 @@
   fi
 
 #}}}
+#{{{ Environment specific (optional)
+
+  [ -e "${HOME}/.iterm2_shell_integration.zsh" ] && . "${HOME}/.iterm2_shell_integration.zsh"
+  [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+#}}}
 
 # Load local .profile
 [ -f "$HOME/.profile.local" ] && . "$HOME/.profile.local"
-
-[ -e "${HOME}/.iterm2_shell_integration.zsh" ] && . "${HOME}/.iterm2_shell_integration.zsh"
