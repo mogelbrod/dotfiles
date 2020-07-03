@@ -47,6 +47,7 @@
   Plug 'jiangmiao/auto-pairs'
   Plug 'kana/vim-textobj-function'
   Plug 'kana/vim-textobj-user'
+  Plug 'knsh14/vim-github-link'
   Plug 'majutsushi/tagbar'
   Plug 'michaeljsmith/vim-indent-object'
   Plug 'mogelbrod/vim-jsonpath'
@@ -324,8 +325,10 @@ nnoremap N Nzzzv
 
   " Copy buffer contents to clipboard
   map <silent> <leader>ya ggVG"+y''
+  " Copy Git(Hub) permalink to current/selected line(s)
+  nore <silent> <leader>yg :GetCommitLink<CR>
   " Yank everything on the current side of a = character
-  map <silent> <leader>ys <Esc>:call YankSide()<CR>
+  nore <silent> <leader>ys <Esc>:call YankSide()<CR>
 
   " Fold navigation
   map <silent> <Leader><Up> [z
