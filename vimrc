@@ -42,6 +42,7 @@
   Plug 'b4winckler/vim-angry'
   Plug 'beloglazov/vim-textobj-quotes'
   Plug 'chrisbra/matchit'
+  Plug 'christoomey/vim-sort-motion'
   Plug 'godlygeek/tabular'
   Plug 'janko/vim-test'
   Plug 'jiangmiao/auto-pairs'
@@ -67,6 +68,7 @@
   Plug 'tpope/vim-repeat'
   Plug 'tpope/vim-surround'
   Plug 'yssl/QFEnter'
+  Plug 'rickhowe/diffchar.vim'
 
   " Language specific plugins
   " Plug 'othree/javascript-libraries-syntax.vim'
