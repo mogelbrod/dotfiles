@@ -234,6 +234,7 @@ hi YcmWarningSign  ctermfg=Brown  ctermbg=Black  cterm=none  guifg=#f0b43c  guib
 hi YCMInverse term=bold cterm=bold ctermfg=Blue gui=bold
 hi link NeomakeErrorSign YcmErrorSign
 hi link NeomakeWarningSign YcmWarningSign
+hi link qfError YcmErrorSign
 
 hi NeomakeStatColorTypeE  ctermfg=White  ctermbg=Red    cterm=none
 hi NeomakeStatColorTypeW  ctermfg=White  ctermbg=Brown  cterm=none
