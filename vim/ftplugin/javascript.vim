@@ -5,6 +5,9 @@ let b:did_ftplugin = 1
 
 let &makeprg="node %"
 
+" Exclude referenced files from <C-n> completion
+setlocal complete-=i
+
 " Error: bar
 "     at Object.foo [as _onTimeout] (/Users/Me/src/nodeproject/index.js:2:9)
 let &errorformat  = '%AError: %m' . ','
