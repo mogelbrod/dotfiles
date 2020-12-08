@@ -310,6 +310,7 @@
   alias grm='git ls-files -d -z | xargs -0 git update-index --remove'  # remove missing files
   alias grm-merged='git branch --merged | egrep -v "(^\*|master|dev)" | xargs git branch -d'
   alias grm-stale='git remote prune origin'
+  alias git-cleanup='git branch --merged | egrep -v "(^\*|master|main|dev)" | xargs git branch -d; git remote prune origin'
 
   alias gc='git commit'
   alias gcm='git commit -m'
@@ -330,6 +331,10 @@
     commit="$1"
     [[ -z $1 ]] && commit="HEAD" || shift
     git diff --diff-algorithm minimal $commit^ $commit $*
+  }
+
+  gunmerged() {
+    git log "$1" ^master --no-merges
   }
 
   gbump() {

@@ -1,14 +1,14 @@
 [user]
-	name = Victor Hallberg
-	email = victor@hallberg.cc
+  name = Victor Hallberg
+  email = victor@hallberg.cc
 
 [core]
-	excludesfile = ~/.gitignore
-	autocrlf = input
-	pager = ~/bin/diff-so-fancy | less --tabs=4 -RFX
+  excludesfile = ~/.gitignore
+  autocrlf = input
+  pager = ~/bin/diff-so-fancy | less --tabs=4 -RFX
 
 [push]
-	default = current
+  default = current
 
 [color]
   branch = auto
@@ -24,17 +24,18 @@
   renames = copies # Detect copies as well as renames.
 
 [merge]
-	tool = diffconflicts
+  tool = diffconflicts
 
 [mergetool "diffconflicts"]
-	cmd = ~/.vim/diffconflicts vim $BASE $LOCAL $REMOTE $MERGED
-	trustExitCode = true
-	keepBackup = false
+  cmd = ~/.vim/diffconflicts vim $BASE $LOCAL $REMOTE $MERGED
+  trustExitCode = true
+  keepBackup = false
 
 [alias]
   branches = branch -a
   tags = tag
   stashes = stash list
+  stash-staged = "!bash -c \"git stash --keep-index; git stash push -m 'staged' --keep-index; git stash pop stash@{1}\""
   unstage = reset -q HEAD --
   discard = checkout --
   uncommit = reset --mixed HEAD~
@@ -43,15 +44,16 @@
   refs-by-age = for-each-ref --sort=-committerdate refs/remotes --format='%(HEAD) %(color:red)%(refname:short)%(color:reset) (%(color:blue)%(committerdate:relative)%(color:reset)) - %(contents:subject) - %(authorname)'
 
 [url "git@github.com:"]
-	insteadOf = https://github.com/
+  insteadOf = https://github.com/
 
 [pull]
-	rebase = true
+  rebase = true
 
 [diff-so-fancy]
-	markEmptyLines = false
+  markEmptyLines = false
+
 [filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
+  clean = git-lfs clean -- %f
+  smudge = git-lfs smudge -- %f
+  process = git-lfs filter-process
+  required = true
