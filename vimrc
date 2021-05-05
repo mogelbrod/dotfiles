@@ -53,8 +53,10 @@
   Plug 'michaeljsmith/vim-indent-object'
   Plug 'mogelbrod/vim-jsonpath'
   Plug 'nathanaelkane/vim-indent-guides'
+  Plug 'rickhowe/diffchar.vim'
   Plug 'rizzatti/dash.vim'
   Plug 'rking/ag.vim'
+  Plug 'romainl/vim-qf'
   Plug 'scrooloose/nerdcommenter'
   Plug 'scrooloose/nerdtree'
   Plug 'sjl/gundo.vim'
@@ -68,7 +70,6 @@
   Plug 'tpope/vim-repeat'
   Plug 'tpope/vim-surround'
   Plug 'yssl/QFEnter'
-  Plug 'rickhowe/diffchar.vim'
 
   " Language specific plugins
   " Plug 'othree/javascript-libraries-syntax.vim'
@@ -420,9 +421,6 @@ nnoremap N Nzzzv
   " Control fold open/closed with <Space>
   nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
 
-  " TODO: This doesn't work
-  noremap <silent> <leader><leader>f <Plug>SimpleFold_Foldsearch
-
   " Fold text (title)
   function! CustomFoldText(...) " {{{
     if a:0 > 0
@@ -687,6 +685,9 @@ nnoremap N Nzzzv
       exe 'unlet! '.bufvar
     endif
   endfunction
+
+  " vim-qf
+  let g:qf_loclist_window_bottom = 0
 
   " vim-test
   let g:test#strategy = "neomake"
