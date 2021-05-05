@@ -30,23 +30,23 @@ class $1 {
 }
 endsnippet
 
-snippet f "Arrow function"
+snippet f "Arrow function" w
 ($1) => $0
 endsnippet
 
-snippet fn "Function (inline)"
+snippet fn "Function (inline)" w
 function($1) {
 	${VISUAL}$2
 }
 endsnippet
 
-snippet fnn "Function (named)"
+snippet fnn "Function (named)" w
 function ${1:function_name}($2) {
 	${VISUAL}$3
 }
 endsnippet
 
-snippet typeof! "LiveScript typeof!"
+snippet typeof! "LiveScript typeof!" w
 {}.toString.call(${1:value}).slice(8, -1)
 endsnippet
 
@@ -55,7 +55,7 @@ require('${1:lib}')
 endsnippet
 
 snippet vreq "Assigned require"
-var ${2:${1/(.+\/)*(\w+)(-|\b|$)(\..+$)?/\u$2/g}} = require('$1')
+const ${2:${1/(.+\/)*(\w+)(-|\b|$)(\..+$)?/\u$2/g}} = require('$1')
 endsnippet
 
 snippet imp "Import statement" b
@@ -89,7 +89,7 @@ ${1:key}: ${2:"${3:value}"}${4:, }
 endsnippet
 
 snippet forin "for (x in y)"
-for (var ${2:key} in ${1:obj}) {
+for (const ${2:key} in ${1:obj}) {
 	if (Object.prototype.hasOwnProperty.call($1, $2)) {
 		${3:$1[$2]}${VISUAL}$0
 	}
@@ -97,13 +97,13 @@ for (var ${2:key} in ${1:obj}) {
 endsnippet
 
 snippet for "for (...) {...}"
-for (var ${2:i} = 0; $2 < ${1:things}.length; $2++) {
+for (let ${2:i} = 0; $2 < ${1:things}.length; $2++) {
 	${3:$1[$2]}${VISUAL}$0
 }
 endsnippet
 
 snippet forr "for (...) {...} (faster)"
-for (var ${2:i} = ${1:things}.length - 1; $2 >= 0; $2--) {
+for (let ${2:i} = ${1:things}.length - 1; $2 >= 0; $2--) {
 	${3:$1[$2]}${VISUAL}$0
 }
 endsnippet
@@ -226,16 +226,30 @@ snippet ru "React.use"
 React.use$1($2)
 endsnippet
 
-snippet reactclass "React.createClass"
-React.createClass({
-	displayName: '${1:Component}',
-	propTypes: {},
-	getDefaultProps() {},
-	getInitialState() {},
-	render() {
-		return null
-	}
-})
+snippet rus "React.useState"
+const [$1, set${1/\w+\s*/\u$0/g}] = React.useState(${3:''})
+endsnippet
+
+snippet rue "React.useEffect"
+React.useEffect(() => {
+  $1
+}, [$2])
+endsnippet
+
+snippet ruc "React.useCallback"
+React.useCallback(($1) => {
+  $2
+}, [$3])
+endsnippet
+
+snippet rum "React.useMemo"
+React.useMemo(() => {
+  return $1
+}, [$2])
+endsnippet
+
+snippet rur "React.useRef"
+const ${1:ref} = React.useRef($2)
 endsnippet
 
 snippet impr "Import React modules"
@@ -333,10 +347,10 @@ snippet ts "this.state"
 this.state.
 endsnippet
 
-snippet fr "<React.Fragment>"
-<React.Fragment>
+snippet rfr "<React.Fragment>"
+<>
 	$0
-</React.Fragment>
+</>
 endsnippet
 
 snippet nary "Array of length N"
