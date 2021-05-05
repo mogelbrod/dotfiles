@@ -1063,21 +1063,21 @@ nnoremap N Nzzzv
 
     au FileType vim setlocal keywordprg=:help
 
-    au FileType c,cpp,cs,javascript,typescript,typescriptreact,python,rust noremap <buffer> <leader>r :YcmCompleter RefactorRename<space>
     au FileType c,cpp,cs,javascript,typescript,typescriptreact,python,rust noremap <buffer> gd :YcmCompleter GoTo<CR>
+    au FileType c,cpp,cs,javascript,typescript,typescriptreact,python,rust noremap <buffer> ge :YcmCompleter GetDoc<CR>
+    au FileType c,cpp,cs,javascript,typescript,typescriptreact,python,rust noremap <buffer> gh :YcmShowDetailedDiagnostic<CR>
     au FileType c,cpp,cs,javascript,typescript,typescriptreact,python,rust noremap <buffer> gr :YcmCompleter GoToReferences<CR>
     au FileType c,cpp,cs,javascript,typescript,typescriptreact,python,rust noremap <buffer> gt :YcmCompleter GetType<CR>
-    au FileType c,cpp,cs,javascript,typescript,typescriptreact,python,rust noremap <buffer> gh :YcmShowDetailedDiagnostic<CR>
-    " au FileType c,cpp,cs,javascript,typescript,typescriptreact,python,rust noremap <buffer> gh :YcmCompleter GetDoc<CR>
-    " au FileType c,cpp,cs,javascript,typescript,typescriptreact,python,rust noremap <buffer> gh <plug>(YCMHover)
-    nmap <leader>D <plug>(YCMHover)
+    au FileType c,cpp,cs,javascript,typescript,typescriptreact,python,rust noremap <buffer> <leader>d <plug>(YCMHover)
+    au FileType c,cpp,cs,javascript,typescript,typescriptreact,python,rust noremap <buffer> <leader>r :YcmCompleter RefactorRename<space>
+    au FileType c,cpp,cs,javascript,typescript,typescriptreact,python,rust noremap <buffer> <leader>fi :YcmCompleter FixIt<CR>
 
     " Javascript
     " au FileType javascript,javascript.jsx,typescript,typescriptreact call SetNeomakeExe('javascript_eslint', 'npx eslint')
-    au FileType javascript,javascript.jsx,typescript,typescriptreact noremap <buffer> <leader>d
+    au FileType javascript,javascript.jsx,typescript,typescriptreact noremap <buffer> <leader>D
       \ :execute "!open 'https://www.npmjs.com/package/".substitute(expand('<cWORD>'), '[''" ]', '', 'g')."'"<CR><CR>
     au FileType javascript,javascript.jsx,typescript,typescriptreact noremap <buffer> <silent> <leader><leader>/ :JsDoc<CR>
-    au FileType javascript,javascript.jsx,typescript,typescriptreact noremap <buffer> <silent> <leader>f :call JsArrowToFunction()<CR>
+    au FileType javascript,javascript.jsx,typescript,typescriptreact noremap <buffer> <silent> <leader>fa :call JsArrowToFunction()<CR>
     au FileType javascript,typescript,typescriptreact setlocal makeprg=eslint\ %
     au FileType javascript,javascript.jsx,typescript,typescriptreact setlocal path+=app,src
     au FileType javascript,javascript.jsx,typescript,typescriptreact,css,scss noremap <buffer> <leader>x :Neomake<CR>
