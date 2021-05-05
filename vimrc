@@ -653,6 +653,7 @@ nnoremap N Nzzzv
       endif
     endif
     if !empty(project_root)
+      let self.cwd = project_root
       let rc_path = project_root . '/.eslintrc'
       if filereadable(rc_path)
         let rc_path = rc_path
