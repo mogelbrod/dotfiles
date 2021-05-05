@@ -62,7 +62,7 @@
   Plug 'sjl/gundo.vim'
   Plug 'thinca/vim-textobj-function-javascript'
   Plug 'tpope/vim-abolish'
-  Plug 'tpope/vim-apathy'
+  " Plug 'tpope/vim-apathy' " Disabled due to being incompatible with https://github.com/HerringtonDarkholme/yats.vim/issues/200
   Plug 'tpope/vim-dispatch'
   Plug 'tpope/vim-endwise'
   Plug 'tpope/vim-eunuch'
