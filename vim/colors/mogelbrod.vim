@@ -173,6 +173,7 @@ hi link jsThis Constant
 
 " Typescript
 hi link typescriptArrayMethod Normal
+hi link typescriptArrowFunc PreProc
 hi link typescriptArrowFuncArg Special
 hi link typescriptAssign Statement
 hi link typescriptBinaryOp Statement
@@ -188,16 +189,16 @@ hi link typescriptEndColons jsNoise
 hi link typescriptExceptions Identifier
 hi link typescriptExport PreProc
 hi link typescriptFuncTypeArrow PreProc
-hi link typescriptArrowFunc PreProc
 hi link typescriptImport PreProc
 hi link typescriptObjectColon jsObjectColon
 hi link typescriptObjectLabel Normal
 hi link typescriptOperator Statement
-hi link typescriptTernaryOp Statement
 hi link typescriptParamImpl Special
 hi link typescriptParens jsParens
 hi link typescriptRequestProp Constant
 hi link typescriptTemplateSB Constant
+hi link typescriptTernaryOp Statement
+hi link typescriptTypeBrackets Comment
 hi link typescriptTypeReference Type
 hi link typescriptVariable Keyword
 
