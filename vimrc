@@ -824,6 +824,7 @@ nnoremap N Nzzzv
   command! -nargs=0 WipeHidden call WipeHiddenBuffers()
 
   command! -nargs=0 HiName echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"
+  command! -nargs=0 ConcealTodo setlocal cole=2 <bar> call matchadd('Conceal', '/[*/] TODO: \zs.\{-}\ze\($\|\*/\)')
 
   command! -nargs=? -range=% Space2Tab call IndentConvert(<line1>,<line2>,0,<q-args>)
   command! -nargs=? -range=% Tab2Space call IndentConvert(<line1>,<line2>,1,<q-args>)

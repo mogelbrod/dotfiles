@@ -138,6 +138,8 @@ hi Underlined      ctermfg=White    ctermbg=none  cterm=underline  guifg=#ffffff
 " }}}
 " {{{ Context specific
 
+hi Conceal ctermfg=Yellow ctermbg=none guifg=White gui=none
+
 " Spelling
 hi SpellBad    ctermfg=Black  ctermbg=9   cterm=none  gui=undercurl  guisp=#f05050
 hi SpellCap    ctermfg=Black  ctermbg=12  cterm=none  gui=undercurl  guisp=#8787ff
