@@ -1072,34 +1072,39 @@ nnoremap N Nzzzv
     au FileType * exe('setl dict+='.$VIMHOME.'/dict/'.&filetype)
 
     au FileType qf setlocal nowrap
+    au FileType qf nnoremap <silent> <buffer> q :q<CR>
 
     " Disable syntax highlighting for large files
     au BufWinEnter * if line2byte(line("$") + 1) > 1000000 | syntax clear | endif
 
     au FileType vim setlocal keywordprg=:help
 
-    au FileType c,cpp,cs,javascript,typescript,typescriptreact,python,rust noremap <buffer> gd :YcmCompleter GoTo<CR>
-    au FileType c,cpp,cs,javascript,typescript,typescriptreact,python,rust noremap <buffer> ge :YcmCompleter GetDoc<CR>
-    au FileType c,cpp,cs,javascript,typescript,typescriptreact,python,rust noremap <buffer> gh :YcmShowDetailedDiagnostic<CR>
-    au FileType c,cpp,cs,javascript,typescript,typescriptreact,python,rust noremap <buffer> gr :YcmCompleter GoToReferences<CR>
-    au FileType c,cpp,cs,javascript,typescript,typescriptreact,python,rust noremap <buffer> gt :YcmCompleter GetType<CR>
-    au FileType c,cpp,cs,javascript,typescript,typescriptreact,python,rust noremap <buffer> <leader>d <plug>(YCMHover)
-    au FileType c,cpp,cs,javascript,typescript,typescriptreact,python,rust noremap <buffer> <leader>r :YcmCompleter RefactorRename<space>
-    au FileType c,cpp,cs,javascript,typescript,typescriptreact,python,rust noremap <buffer> <leader>fi :YcmCompleter FixIt<CR>
+    au FileType c,cpp,cs,javascript*,typescript*,python,rust noremap <buffer> gd :YcmCompleter GoTo<CR>
+    au FileType c,cpp,cs,javascript*,typescript*,python,rust noremap <buffer> ge :YcmCompleter GetDoc<CR>
+    au FileType c,cpp,cs,javascript*,typescript*,python,rust noremap <buffer> gh :YcmShowDetailedDiagnostic<CR>
+    au FileType c,cpp,cs,javascript*,typescript*,python,rust noremap <buffer> gr :YcmCompleter GoToReferences<CR>
+    au FileType c,cpp,cs,javascript*,typescript*,python,rust noremap <buffer> gt :YcmCompleter GetType<CR>
+    au FileType c,cpp,cs,javascript*,typescript*,python,rust noremap <buffer> <leader>d :YcmDiags<CR>
+    au FileType c,cpp,cs,javascript*,typescript*,python,rust noremap <buffer> <leader>r :YcmCompleter RefactorRename<space>
+    au FileType c,cpp,cs,javascript*,typescript*,python,rust noremap <buffer> <leader>fi :YcmCompleter FixIt<CR>
 
     " Javascript
-    " au FileType javascript,javascript.jsx,typescript,typescriptreact call SetNeomakeExe('javascript_eslint', 'npx eslint')
-    au FileType javascript,javascript.jsx,typescript,typescriptreact noremap <buffer> <leader>D
+    " au FileType javascript*,typescript* call SetNeomakeExe('javascript_eslint', 'npx eslint')
+    au FileType javascript*,typescript* noremap <buffer> <leader>D
       \ :execute "!open 'https://www.npmjs.com/package/".substitute(expand('<cWORD>'), '[''" ]', '', 'g')."'"<CR><CR>
-    au FileType javascript,javascript.jsx,typescript,typescriptreact noremap <buffer> <silent> <leader><leader>/ :JsDoc<CR>
-    au FileType javascript,javascript.jsx,typescript,typescriptreact noremap <buffer> <silent> <leader>fa :call JsArrowToFunction()<CR>
-    au FileType javascript,typescript,typescriptreact setlocal makeprg=eslint\ %
-    au FileType javascript,javascript.jsx,typescript,typescriptreact setlocal path+=app,src
-    au FileType javascript,javascript.jsx,typescript,typescriptreact,css,scss noremap <buffer> <leader>x :Neomake<CR>
-    au FileType javascript,javascript.jsx,typescript,typescriptreact noremap <buffer> <leader><leader>x :Neomake! eslint<CR>
-    au FileType json setlocal foldmethod=syntax foldlevel=99
+    au FileType javascript*,typescript* noremap <buffer> <leader>c :TestFile<CR>
+    au FileType javascript*,typescript* noremap <buffer> <leader><leader>x :Neomake! eslint<CR>
+    au FileType javascript*,typescript* noremap <buffer> <silent> <leader><leader>/ :JsDoc<CR>
+    au FileType javascript*,typescript* noremap <buffer> <silent> <leader>fa :call JsArrowToFunction()<CR>
+    au FileType javascript*,typescript* setlocal path+=app,src
+    au FileType javascript*,typescript* setlocal makeprg=eslint\ %
+    au FileType javascript*,typescript*,css,scss noremap <buffer> <leader>x :Neomake<CR>
+    " Allow vim-test to detect mocha failures through neomake
+    au FileType typescript* let b:current_compiler='tsc'
+    au FileType typescript* setlocal errorformat=\ %#at\ %.%#\ (%f:%l:%c)
     au FileType json noremap <buffer> <silent> <leader>d :call jsonpath#echo()<CR>
     au FileType json noremap <buffer> <silent> <leader>g :call jsonpath#goto()<CR>
+    au FileType json setlocal foldmethod=syntax foldlevel=99
 
     " CoffeeScript / Jade / LiveScript
     au FileType jade,coffee IFold
@@ -1198,7 +1203,7 @@ nnoremap N Nzzzv
     au FileType snippet setlocal noexpandtab foldexpr=IndentationFoldExpr(v:lnum) foldmethod=expr
 
     if has('mac')
-      au FileType html,jade,coffee,javascript,javascript.jsx,typescript,typescriptreact,scss,css,php
+      au FileType html,jade,coffee,javascript*,typescript*,scss,css,php
         \ setlocal keywordprg=:Dash
     end
 
