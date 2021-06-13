@@ -160,8 +160,11 @@
 
   " Insert mode completion
   set complete=.,w,t,i,k
-  set completeopt=longest,menu,popup ",menuone
-  set completepopup=border:off,highlight:Pmenu ",align:flip
+  set completeopt=longest,menu
+  if has('popupwin')
+    set completeopt+=popup
+    set completepopup=border:off,highlight:Pmenu ",align:flip
+  end
 
   " Shorten various messages in vim
   set shortmess=filmnrxoOtTIc
@@ -565,33 +568,35 @@ nnoremap N Nzzzv
   " %f(ile) [flags] {align} [%ft] %col %line/%total %percent
   let g:statusline_mode={ 'n': 'N', 'no': 'Nop', 'v': 'Vis', 'V': 'Vln', '': 'Vbl', 's': 'Sel', 'S': 'Sln', '': 'Sbl', 'i': 'Ins', 'R': 'Rep', 'Rv': 'Rvr', 'c': 'Cmd', 'cv': 'vEX', 'ce': 'EX', 'r': 'Prompt', 'rm': 'More', 'r?': 'Confirm', '!': 'Shell' }
 
-  function! MyStatusLine(active)
-    let bufnr = winbufnr(g:statusline_winid)
-    let st = ""
-    let st .= "%< %-f  " " File path (truncated if necessary)
-    let st .= "%m%r%w %="
-    let st .= " %=" " Separation point
-    if a:active
-      " Show current mode in active window
-      let st .= "%{g:statusline_mode[mode()]}  "
-    endif
-    let st .= neomake#statusline#get(bufnr, {
-      \ 'format_running': '({{running_job_names}}) ',
-      \ 'format_loclist_unknown': '',
-      \ 'format_loclist_ok': '✓',
-      \ 'format_quickfix_ok': '',
-      \ 'format_quickfix_issues': '%s',
-      \ })
-    let st .= " %y " " File type
-    let st .= "%4(%v%) %10(%l/%L%)  %P" " Colum & line numbers
-    return st
-  endfunction
+  if !has('nvim')
+    function! MyStatusLine(active)
+      let bufnr = winbufnr(g:statusline_winid)
+      let st = ""
+      let st .= "%< %-f  " " File path (truncated if necessary)
+      let st .= "%m%r%w %="
+      let st .= " %=" " Separation point
+      if a:active
+        " Show current mode in active window
+        let st .= "%{g:statusline_mode[mode()]}  "
+      endif
+      let st .= neomake#statusline#get(bufnr, {
+        \ 'format_running': '({{running_job_names}}) ',
+        \ 'format_loclist_unknown': '',
+        \ 'format_loclist_ok': '✓',
+        \ 'format_quickfix_ok': '',
+        \ 'format_quickfix_issues': '%s',
+        \ })
+      let st .= " %y " " File type
+      let st .= "%4(%v%) %10(%l/%L%)  %P" " Colum & line numbers
+      return st
+    endfunction
 
-  set statusline=%!MyStatusLine(1)
-  augroup statusline
-    au WinEnter * setlocal statusline=%!MyStatusLine(1)
-    au WinLeave * setlocal statusline=%!MyStatusLine(0)
-  augroup END
+    set statusline=%!MyStatusLine(1)
+    augroup statusline
+      au WinEnter * setlocal statusline=%!MyStatusLine(1)
+      au WinLeave * setlocal statusline=%!MyStatusLine(0)
+    augroup END
+  endif
 
 " }}}
 " {{{ Plugin configuration
