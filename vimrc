@@ -299,6 +299,12 @@ noremap <C-w>§ <C-w>}
 nnoremap ' `
 nnoremap ` '
 
+" Navigate quickfix
+nnoremap ]p :cprev<CR>
+nnoremap ]n :cnext<CR>
+nnoremap ]P :cpfile<CR>
+nnoremap ]N :cnfile<CR>
+
 " Keep search matches in the middle of the window
 nnoremap * *zzzv
 nnoremap # #zzzv
