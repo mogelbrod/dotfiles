@@ -743,6 +743,10 @@ nnoremap N Nzzzv
   let g:AutoPairsShortcutJump = '<c-s>'
   let g:AutoPairsShortcutFastWrap = '<c-b>' " default conflicts with å character
 
+  " splitjoin.vim
+  let g:splitjoin_trailing_comma=1
+  let g:splitjoin_html_attributes_bracket_on_new_line=1
+
   " Emmet
   let g:user_emmet_complete_tag = 1
   let g:user_emmet_leader_key = '<C-e>'
