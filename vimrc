@@ -664,6 +664,7 @@ nnoremap N Nzzzv
   let g:neomake_highlight_columns = 0
   let g:neomake_javascript_enabled_makers = ['eslint']
   let g:neomake_typescript_enabled_makers = ['eslint']
+  let g:neomake_graphql_enabled_makers = ['eslint']
 
   function! EslintInitForJob(jobinfo) dict abort
     let project_root = neomake#utils#get_project_root(a:jobinfo.bufnr)
@@ -696,6 +697,7 @@ nnoremap N Nzzzv
   call neomake#config#set('ft.javascript.eslint.InitForJob', function('EslintInitForJob'))
   call neomake#config#set('ft.typescript.eslint.InitForJob', function('EslintInitForJob'))
   call neomake#config#set('ft.typescriptreact.eslint.InitForJob', function('EslintInitForJob'))
+  call neomake#config#set('ft.graphql.eslint.InitForJob', function('EslintInitForJob'))
   
   " Configures neomake to use a project-local instance of a maker
   function! SetNeomakeExe(ft_maker, file)
@@ -1103,13 +1105,14 @@ nnoremap N Nzzzv
     " au FileType javascript*,typescript* call SetNeomakeExe('javascript_eslint', 'npx eslint')
     au FileType javascript*,typescript* noremap <buffer> <leader>D
       \ :execute "!open 'https://www.npmjs.com/package/".substitute(expand('<cWORD>'), '[''" ]', '', 'g')."'"<CR><CR>
-    au FileType javascript*,typescript* noremap <buffer> <leader>c :TestFile<CR>
-    au FileType javascript*,typescript* noremap <buffer> <leader><leader>x :Neomake! eslint<CR>
+    au FileType javascript* noremap <buffer> <leader>c :TestFile<CR>
+    au FileType typescript* noremap <buffer> <leader>c :Neomake! tsc<CR>
     au FileType javascript*,typescript* noremap <buffer> <silent> <leader><leader>/ :JsDoc<CR>
     au FileType javascript*,typescript* noremap <buffer> <silent> <leader>fa :call JsArrowToFunction()<CR>
     au FileType javascript*,typescript* setlocal path+=app,src
     au FileType javascript*,typescript* setlocal makeprg=eslint\ %
-    au FileType javascript*,typescript*,css,scss noremap <buffer> <leader>x :Neomake<CR>
+    au FileType javascript*,typescript*,graphql,css,scss noremap <buffer> <leader>x :Neomake<CR>
+    au FileType javascript*,typescript*,graphql noremap <buffer> <leader><leader>x :Neomake! eslint<CR>
     " Allow vim-test to detect mocha failures through neomake
     au FileType typescript* let b:current_compiler='tsc'
     au FileType typescript* setlocal errorformat=\ %#at\ %.%#\ (%f:%l:%c)
