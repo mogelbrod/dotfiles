@@ -752,6 +752,7 @@ nnoremap N Nzzzv
     \ }
   let g:ctrlp_prompt_mappings = {
     \ 'PrtInsert("c")': ['<MiddleMouse>', '<insert>', '§', '<c-g>'],
+    \ 'PrtInsert()': ['<c-y>'],
     \ }
 
   if !has("win32")
