@@ -711,13 +711,22 @@ nnoremap N Nzzzv
     endif
   endfunction
 
+  " vim-prettier
+  noremap <leader>q :Prettier<CR>
+  let g:prettier#autoformat_config_present = 1
+  let g:prettier#exec_cmd_async = 1
+  let g:prettier#config#semi = 'false'
+  let g:prettier#config#single_quote = 'true'
+  let g:prettier#config#trailing_comma = 'all'
+  let g:prettier#config#jsx_bracket_same_line = 'false'
+
   " vim-qf
   let g:qf_loclist_window_bottom = 0
 
   " vim-test
-  let g:test#strategy = "neomake"
-  let g:test#javascript#mocha#file_pattern = '\v(tests?/.*|.*\.(test|spec))\.(js|jsx)$'
-  let g:test#typescript#mocha#file_pattern = '\v(tests?/.*|.*\.(test|spec))\.(ts|tsx)$'
+  let g:test#strategy = 'neomake'
+  let g:test#runner_commands = ['Mocha']
+  let g:test#javascript#mocha#file_pattern = '\v(tests?/.*|.*\.(test|spec))\.(js|jsx|ts|tsx)$'
 
   " GitGutter
   let g:gitgutter_enabled = 0
