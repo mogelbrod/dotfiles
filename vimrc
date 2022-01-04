@@ -417,8 +417,8 @@ nnoremap N Nzzzv
   au BufEnter * vnoremap <tab> >gv
 
   " Formatting options (disable autocommenting)
-  set formatoptions-=cro
-  autocmd FileType * setlocal formatoptions-=cro
+  set formatoptions=rjnq1
+  autocmd FileType * setlocal formatoptions-=co
 
   " Do not reindent lines with a comment sign (removed 0#)
   autocmd FileType * setlocal cinkeys=0{,0},0),:,!^F,o,O,e
