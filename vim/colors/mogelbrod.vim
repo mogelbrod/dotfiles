@@ -181,9 +181,11 @@ hi link typescriptAssign Statement
 hi link typescriptBinaryOp Statement
 hi link typescriptCacheMethod Normal
 hi link typescriptCall Special
+hi link typescriptBraces Delimeter
 hi link typescriptCastKeyword PreProc
 hi link typescriptClassName Identifier
 hi link typescriptClassStatic Keyword
+" hi link typescriptRestOrSpread Statement
 hi link typescriptDOMEventMethod Normal
 hi link typescriptDOMFormProp Normal
 hi link typescriptES6SetProp Normal
@@ -216,7 +218,8 @@ hi link goFunctionCall Function
 
 " GraphQL
 hi link graphqlBoolean            Boolean
-hi link graphqlBraces             Delimiter
+hi link graphqlBraces             Delimeter
+hi link graphqlFold               Delimeter
 hi link graphqlDirective          PreProc
 hi link graphqlDirectiveLocation  Special
 hi link graphqlKeyword            Keyword
@@ -226,9 +229,9 @@ hi link graphqlNull               Keyword
 hi link graphqlNumber             Number
 hi link graphqlOperator           Operator
 hi link graphqlString             String
-hi link graphqlStructure          Structure
+hi link graphqlStructure          Statement
 hi link graphqlType               Type
-hi link graphqlVariable           Keyword
+hi link graphqlVariable           Special
 
 " }}}
 
