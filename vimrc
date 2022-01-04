@@ -152,7 +152,7 @@
   set shellslash " always use forward slashes, even on windows
 
   " Command line
-  set history=100 " command line history length
+  set history=1000 " command line history length
   set shellslash " always use forward slashes, even on windows
   set nowildmenu
   set wildmode=list:longest,full
