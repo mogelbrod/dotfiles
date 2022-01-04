@@ -35,7 +35,9 @@
   Plug 'Shougo/echodoc.vim'
   Plug 'SirVer/ultisnips'
   Plug 'neomake/neomake'
+  " Plug 'tom-doerr/vim_codex'
 
+  " Plug 'tpope/vim-apathy' " Disabled due to being incompatible with https://github.com/HerringtonDarkholme/yats.vim/issues/200
   Plug 'AndrewRadev/splitjoin.vim'
   Plug 'Konfekt/FastFold'
   Plug 'airblade/vim-gitgutter'
@@ -53,6 +55,8 @@
   Plug 'michaeljsmith/vim-indent-object'
   Plug 'mogelbrod/vim-jsonpath'
   Plug 'nathanaelkane/vim-indent-guides'
+  Plug 'pechorin/any-jump.vim'
+  Plug 'prettier/vim-prettier', { 'do': 'npm install' }
   Plug 'rickhowe/diffchar.vim'
   Plug 'rizzatti/dash.vim'
   Plug 'rking/ag.vim'
@@ -62,7 +66,6 @@
   Plug 'sjl/gundo.vim'
   Plug 'thinca/vim-textobj-function-javascript'
   Plug 'tpope/vim-abolish'
-  " Plug 'tpope/vim-apathy' " Disabled due to being incompatible with https://github.com/HerringtonDarkholme/yats.vim/issues/200
   Plug 'tpope/vim-dispatch'
   Plug 'tpope/vim-endwise'
   Plug 'tpope/vim-eunuch'
@@ -77,7 +80,6 @@
   Plug 'HerringtonDarkholme/yats.vim'
   Plug 'MaxMEllon/vim-jsx-pretty'
   Plug 'amadeus/vim-xml'
-  Plug 'cakebaker/scss-syntax.vim'
   Plug 'chrisbra/csv.vim'
   Plug 'digitaltoad/vim-jade'
   Plug 'ekalinin/Dockerfile.vim'
