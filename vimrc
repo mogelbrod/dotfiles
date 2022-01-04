@@ -355,8 +355,11 @@ nnoremap N Nzzzv
   " Toggle Indent guides
   nmap <silent> <leader>i <Plug>IndentGuidesToggle
 
+  nnoremap <leader>j :AnyJump<CR>
+  xnoremap <leader>j :AnyJumpVisual<CR>
+
   " Join visual selection lines with commas
-  vmap <silent> <leader>j "zy:let @z=join(split(@z, "\n"), ", ")<CR>gv"zp
+  " vmap <silent> <leader>j "zy:let @z=join(split(@z, "\n"), ", ")<CR>gv"zp
 
   " Expand tabs to spaces in selection
   vmap <leader>e :s#\t#\=repeat(" ", &l:ts)#g<CR>
@@ -643,6 +646,12 @@ nnoremap N Nzzzv
       \ }
   let g:ycm_log_level = 'info'
   let g:ycm_key_detailed_diagnostics = ''
+
+  " Any-jump
+  let g:any_jump_search_prefered_engine = 'ag'
+  let g:any_jump_window_width_ratio  = 0.8
+  let g:any_jump_window_height_ratio = 0.8
+  let g:any_jump_disable_default_keybindings = 1
 
   " EchoDoc
   let g:echodoc#enable_at_startup = 1
