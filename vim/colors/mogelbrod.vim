@@ -1,4 +1,4 @@
-" mogelbrod3 vim color scheme
+" mogelbrod vim color scheme
 " author: Victor Hallberg [ vigge19@gmail.com ]
 " date: 2012-12-20
 " test with :source $VIMRUNTIME/syntax/colortest.vim
@@ -140,11 +140,11 @@ hi Underlined      ctermfg=White    ctermbg=none  cterm=underline  guifg=#ffffff
 
 hi Conceal ctermfg=Yellow ctermbg=none guifg=White gui=none
 
-" Spelling
-hi SpellBad    ctermfg=Black  ctermbg=9   cterm=none  gui=undercurl  guisp=#f05050
-hi SpellCap    ctermfg=Black  ctermbg=12  cterm=none  gui=undercurl  guisp=#8787ff
-hi SpellRare   ctermfg=Black  ctermbg=13  cterm=none  gui=undercurl  guisp=#3cb9e6
-hi SpellLocal  ctermfg=Black  ctermbg=14  cterm=none  gui=undercurl  guisp=#7373e6
+" Spell checking
+hi SpellBad  ctermfg=Red  ctermbg=none  cterm=underline  gui=undercurl  guisp=#f05050
+hi SpellCap  ctermfg=Blue ctermbg=none  cterm=underline  gui=undercurl  guisp=#8787ff
+hi clear SpellRare
+hi clear SpellLocal
 
 " HTML
 hi link htmlH1 Normal
