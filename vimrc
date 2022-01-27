@@ -28,7 +28,6 @@
   call plug#begin($VIMHOME . '/bundle')
 
   Plug 'ctrlpvim/ctrlp.vim'
-  Plug 'nixprime/cpsm', { 'do': 'PY3=ON ./install.sh' }
 
   " Completion & snippets & linting
   Plug 'Valloric/YouCompleteMe', { 'do': 'python3 ./install.py --go-completer --ts-completer' }
@@ -755,10 +754,6 @@ nnoremap N Nzzzv
     \ 'PrtInsert("c")': ['<MiddleMouse>', '<insert>', '§', '<c-g>'],
     \ 'PrtInsert()': ['<c-y>'],
     \ }
-
-  if !has("win32")
-    let g:ctrlp_match_func = {'match': 'cpsm#CtrlPMatch'}
-  endif
 
   " Auto-Pairs
   let g:AutoPairsMapSpace = 0
