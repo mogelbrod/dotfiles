@@ -301,11 +301,14 @@ noremap <C-w>§ <C-w>}
 nnoremap ' `
 nnoremap ` '
 
-" Navigate quickfix
+" Navigate quickfix list
 nnoremap ]p :cprev<CR>
 nnoremap ]n :cnext<CR>
 nnoremap ]P :cpfile<CR>
 nnoremap ]N :cnfile<CR>
+" Navigate location list
+nnoremap ], :lprev<CR>
+nnoremap ]. :lnext<CR>
 
 " Keep search matches in the middle of the window
 nnoremap * *zzzv
