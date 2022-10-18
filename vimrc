@@ -681,16 +681,16 @@ nnoremap N Nzzzv
     if !empty(project_root)
       let self.cwd = project_root
       let rc_path = project_root . '/.eslintrc'
-      if filereadable(rc_path)
-        let rc_path = rc_path
-      elseif filereadable(rc_path . '.js')
+      if filereadable(rc_path . '.js')
         let rc_path = rc_path . '.js'
       elseif filereadable(rc_path . '.json')
         let rc_path = rc_path . '.json'
       elseif filereadable(rc_path . '.yml')
         let rc_path = rc_path . '.yml'
       endif
-      call add(self.args, '--config=' . rc_path)
+      if filereadable(rc_path)
+        call add(self.args, '--config=' . rc_path)
+      endif
       if filereadable(project_root . '/.eslintignore')
         call add(self.args, '--ignore-path=' . project_root . '/.eslintignore')
       endif
