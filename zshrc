@@ -292,6 +292,13 @@
     fi
   }
 
+  # usage: sync-dirs ../capsule/dist/ node_modules/@soundtrackyourbrand/capsule/dist
+  function sync-dirs {
+    fswatch -o "$1" | while read f; do
+      rsync -aci "$1" "$2" | grep '^>' | cut -c 11-
+    done
+  }
+
 #}}}
 #{{{ Git specific
 
