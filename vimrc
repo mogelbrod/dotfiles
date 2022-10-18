@@ -1095,6 +1095,7 @@ nnoremap N Nzzzv
 
     au FileType qf setlocal nowrap
     au FileType qf nnoremap <silent> <buffer> q :q<CR>
+    au FileType qf nnoremap <silent> <buffer> gl <Enter><C-w>p
 
     " Disable syntax highlighting for large files
     au BufWinEnter * if line2byte(line("$") + 1) > 1000000 | syntax clear | endif
