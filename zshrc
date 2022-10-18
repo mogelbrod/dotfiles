@@ -306,6 +306,7 @@
   alias gpu='git pull'
   alias gp='git push'
   alias gpp='git pull && git push'
+  alias gfo='git fetch origin'
   alias gco='git checkout'
 
   alias ga='git add --all'
@@ -331,13 +332,43 @@
   alias gds='git diff -b --staged'
 
   alias gl='git log --color --name-status --pretty=format:"%C(red)[%h] %an %C(blue)(%ar)%n%C(green)%s%n%b%C(reset)"'
-  alias gcl='git log --pretty="- %s (%h)"'
   alias glt='git log --all --color --graph --pretty=format:"%C(red)[%h] %an %C(blue)(%ar)%C(green)%d%C(reset) %s"'
 
+  # Outputs a markdown-like changelog starting from the specified ref (defaults to main branch)
+  gcl() {
+    base="$1"
+    [ -z "$base" ] && base=$(basename $(git symbolic-ref --short refs/remotes/origin/HEAD) )
+    git log --pretty="- %s (%h)" "$base.."
+  }
+
+  # Outputs diff of a specific commit (defaults to most recent one)
   gdc() {
     commit="$1"
-    [[ -z $1 ]] && commit="HEAD" || shift
+    [[ -z "$commit" ]] && commit="HEAD" || shift
     git diff --diff-algorithm minimal $commit^ $commit $*
+  }
+
+  # Outputs a link to the given ref on GitHub
+  gcremote() {
+    cmd="echo"
+    case "$1" in
+      open|browser|copy|pbcopy)
+        cmd="$1"
+        shift
+        ;;
+    esac
+    ref=$(git rev-parse ${1:-HEAD})
+    origin=$(git config --get remote.origin.url | sed -E 's/^git@//; s/\.git$//; s/:/\//g; s#^((git|git+ssh|https?)://)?#https://#')
+    url="$origin/commit/$ref"
+    case "$cmd" in
+      open|browser)
+        open "$url"
+        ;;
+      copy|pbcopy)
+        echo "$url" | pbcopy
+        ;;
+    esac
+    echo "$url"
   }
 
   gunmerged() {
