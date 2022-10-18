@@ -44,9 +44,6 @@
   refs-by-age = for-each-ref --sort=-committerdate refs/remotes --format='%(HEAD) %(color:red)%(refname:short)%(color:reset) (%(color:blue)%(committerdate:relative)%(color:reset)) - %(contents:subject) - %(authorname)'
   cp = cherry-pick
 
-[url "git@github.com:"]
-  insteadOf = https://github.com/
-
 [pull]
   rebase = true
 
