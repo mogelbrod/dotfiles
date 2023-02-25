@@ -104,7 +104,7 @@
   #zstyle ':completion:*' matcher-list 'm:{[:lower:]}={[:upper:]}'
   zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
   #zstyle ':completion:*' max-errors 1
-  zstyle :compinstall filename '/home/mogel/.zshrc'
+  #zstyle :compinstall filename '/home/mogel/.zshrc'
 
   autoload -Uz compinit && compinit
 
