@@ -1124,6 +1124,7 @@ nnoremap N Nzzzv
     au FileType javascript*,typescript* setlocal makeprg=eslint\ %
     au FileType javascript*,typescript*,graphql,css,scss noremap <buffer> <leader>x :Neomake<CR>
     au FileType javascript*,typescript*,graphql noremap <buffer> <leader><leader>x :Neomake! eslint<CR>
+    au FileType javascript*,typescript*,graphql noremap <buffer> <leader><leader>d :Neomake! tsc<CR>
     " Allow vim-test to detect mocha failures through neomake
     au FileType typescript* let b:current_compiler='tsc'
     au FileType typescript* setlocal errorformat=\ %#at\ %.%#\ (%f:%l:%c)
