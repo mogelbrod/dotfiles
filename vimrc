@@ -1119,7 +1119,8 @@ nnoremap N Nzzzv
     au FileType typescript* noremap <buffer> <leader>c :Neomake! tsc<CR>
     au FileType javascript*,typescript* noremap <buffer> <silent> <leader><leader>/ :JsDoc<CR>
     au FileType javascript*,typescript* noremap <buffer> <silent> <leader>fa :call JsArrowToFunction()<CR>
-    au FileType javascript*,typescript* setlocal path+=app,src
+    au FileType javascript*,typescript* exe 'setlocal path^='.finddir('.git/..', expand('%:p:h').';')
+    au FileType javascript*,typescript* setlocal suffixesadd=.tsx,.ts,.jsx,.js,.json,.graphql
     au FileType javascript*,typescript* setlocal makeprg=eslint\ %
     au FileType javascript*,typescript*,graphql,css,scss noremap <buffer> <leader>x :Neomake<CR>
     au FileType javascript*,typescript*,graphql noremap <buffer> <leader><leader>x :Neomake! eslint<CR>
