@@ -155,7 +155,7 @@
   set history=1000 " command line history length
   set shellslash " always use forward slashes, even on windows
   set nowildmenu
-  set wildmode=list:longest,full
+  set wildmode=longest:list,full
   set wildignore=*.o,*.bak,*.swc,*.swp,.git/*,.gitkeep,*.class
   set wildignore+=*/tmp/*,*.so,*.zip
   set wildignore+=tmp\*,*.zip,*.exe
