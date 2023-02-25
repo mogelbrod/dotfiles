@@ -338,7 +338,7 @@
   gcl() {
     base="$1"
     [ -z "$base" ] && base=$(basename $(git symbolic-ref --short refs/remotes/origin/HEAD) )
-    git log --pretty="- %s (%h)" "$base.."
+    git log --pretty="- %s (%h)%n%b" origin/$base.. | sed 's/^\([^-]\)/  \1/'
   }
 
   # Outputs diff of a specific commit (defaults to most recent one)
