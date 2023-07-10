@@ -1,18 +1,7 @@
 #{{{ Environment
 
-  export LC_ALL=en_US.UTF-8
-
-  export EDITOR=vim PAGER=less BROWSER=w3m
-  export MANPAGER="/bin/sh -c \"col -b | vim -c 'set ft=man ts=8 nomod nolist nonu noma' -\""
-
   # Fix readline input
   export INPUTRC=~/.inputrc
-  export WORDCHARS="_-~"
-
-  # Add user bin to PATH
-  if [ -d "$HOME/bin" ] ; then
-    export PATH="$HOME/bin:$PATH"
-  fi
 
 #}}}
 #{{{ Display and behaviour
@@ -115,3 +104,6 @@
   [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 #}}}
+
+# Load .profile
+[ -f "$HOME/.profile" ] && . "$HOME/.profile"
