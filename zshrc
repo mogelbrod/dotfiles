@@ -312,7 +312,6 @@
   alias grm='git ls-files -d -z | xargs -0 git update-index --remove'  # remove missing files
   alias grm-merged='git branch --merged | egrep -v "(^\*|master|dev)" | xargs git branch -d'
   alias grm-stale='git remote prune origin'
-  alias git-cleanup='git branch --merged | egrep -v "(^\*|master|main|dev)" | xargs git branch -d; git remote prune origin'
 
   alias gc='git commit'
   alias gcm='git commit -m'
@@ -320,7 +319,6 @@
 
   alias gca='git commit --amend'
   alias gcf='git commit --fixup'
-  alias gras='git rebase -i --autosquash'
 
   alias gd='git diff -b'
   alias gds='git diff -b --staged'
@@ -328,11 +326,21 @@
   alias gl='git log --color --name-status --pretty=format:"%C(red)[%h] %an %C(blue)(%ar)%n%C(green)%s%n%b%C(reset)"'
   alias glt='git log --all --color --graph --pretty=format:"%C(red)[%h] %an %C(blue)(%ar)%C(green)%d%C(reset) %s"'
 
+  # Interactive rebase against origin branch
+  gras() {
+    base="$1"
+    [ -z "$base" ] && base=$(basename $(git symbolic-ref --short refs/remotes/origin/HEAD))
+    git rebase -i --autosquash $base
+  }
+
   # Outputs a markdown-like changelog starting from the specified ref (defaults to main branch)
   gcl() {
     base="$1"
-    [ -z "$base" ] && base=$(basename $(git symbolic-ref --short refs/remotes/origin/HEAD) )
-    git log --pretty="- %s (%h)%n%b" origin/$base.. | sed 's/^\([^-]\)/  \1/'
+    [ -z "$base" ] && base=$(basename $(git symbolic-ref --short refs/remotes/origin/HEAD))
+    output=$(git log --reverse --pretty="≤ %s (%h)%+b" origin/$base.. | sed 's/^\([^≤]\)/  \1/; s/^\≤ /- /; /^$/d' | tee /dev/tty )
+    if [[ $OSTYPE =~ "darwin[0-9.]*" ]]; then
+      echo "$output" | pbcopy
+    fi
   }
 
   # Outputs diff of a specific commit (defaults to most recent one)
@@ -363,6 +371,12 @@
         ;;
     esac
     echo "$url"
+  }
+
+  gcleanup() {
+    base=$(basename $(git symbolic-ref --short refs/remotes/origin/HEAD))
+    git fetch origin --prune
+    git branch --merged | egrep -v "(^\*|$base|dev)" | xargs git branch -d; git remote prune origin
   }
 
   gunmerged() {
