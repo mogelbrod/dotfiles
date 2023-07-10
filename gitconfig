@@ -32,17 +32,22 @@
   keepBackup = false
 
 [alias]
-  branches = branch -a
-  tags = tag
-  stashes = stash list
-  stash-staged = "!bash -c \"git stash --keep-index; git stash push -m 'staged' --keep-index; git stash pop stash@{1}\""
-  unstage = reset -q HEAD --
-  discard = checkout --
-  uncommit = reset --mixed HEAD~
+	main = !git switch $(basename $(git symbolic-ref --short refs/remotes/origin/HEAD))
   amend = commit --amend
-  precommit = diff --cached --diff-algorithm=minimal -w
-  refs-by-age = for-each-ref --sort=-committerdate refs/remotes --format='%(HEAD) %(color:red)%(refname:short)%(color:reset) (%(color:blue)%(committerdate:relative)%(color:reset)) - %(contents:subject) - %(authorname)'
+  branches = branch -a
+  cleanup = !git pull --prune --all --ff-only && git cleanup-branches && git remote prune origin
+  cleanup-branches = !git branch --format '%(refname:short) %(upstream:track)' | awk '$2 == \"[gone]\" { print $1 }' | xargs -r git branch -D
   cp = cherry-pick
+  discard = checkout --
+  precommit = diff --cached --diff-algorithm=minimal -w
+  rc = rebase --continue
+  refs-by-age = for-each-ref --sort=-committerdate refs/remotes --format='%(HEAD) %(color:red)%(refname:short)%(color:reset) (%(color:blue)%(committerdate:relative)%(color:reset)) - %(contents:subject) - %(authorname)'
+  stash-staged = "!bash -c \"git stash --keep-index; git stash push -m 'staged' --keep-index; git stash pop stash@{1}\""
+  stashes = stash list
+  sync = !git main && git cleanup
+  tags = tag
+  uncommit = reset --mixed HEAD~
+  unstage = reset -q HEAD --
 
 [pull]
   rebase = true
