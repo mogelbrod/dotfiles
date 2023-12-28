@@ -30,7 +30,9 @@
   Plug 'ctrlpvim/ctrlp.vim'
 
   " Completion & snippets & linting
-  Plug 'Valloric/YouCompleteMe', { 'do': 'python3 ./install.py --go-completer --ts-completer' }
+  if !has('win32')
+    Plug 'Valloric/YouCompleteMe', { 'do': 'python3 ./install.py --go-completer --ts-completer' }
+  endif
   Plug 'Shougo/echodoc.vim'
   Plug 'SirVer/ultisnips'
   Plug 'neomake/neomake'
@@ -149,7 +151,6 @@
   set incsearch " show search results while being typed
   set hlsearch " highlight matches
   set smartcase "noignorecase
-  set shellslash " always use forward slashes, even on windows
 
   " Command line
   set history=1000 " command line history length
@@ -1049,9 +1050,9 @@ nnoremap N Nzzzv
   if has("gui_running")
     if has("win32")
       " Editor font
-      set guifont=ProFontWindows:h9
-      map <leader>0 :set guifont=ProFontWindows:h9<CR>
-      map <leader>+ :set guifont=ProFontWindows:h16<CR>
+      set guifont=Cascadia_Mono:h9:cANSI:qDRAFT
+      map <leader>0 :set guifont=Cascadia_Mono:h9:cANSI:qDRAFT<CR>
+      map <leader>+ :set guifont=Cascadia_Mono:h12:cANSI:qDRAFT<CR>
     else
       set guifont=Monaco:h12
     endif
