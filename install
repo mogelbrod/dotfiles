@@ -32,13 +32,13 @@ Dir['*'].each do |origin|
   # Special cases
   if %w(terminator).include? origin
     config_dir = File.join home, '.config'
-    FileUtils.mkdir_p(config_dir) unless File.exists?(config_dir)
+    FileUtils.mkdir_p(config_dir) unless File.exist?(config_dir)
     file = File.join('.config', origin)
   end
 
   target = File.join(home, file)
 
-  if File.exists?(target)
+  if File.exist?(target)
     puts " - #{file} (#{target}) already exists, skipping."
   else
     if link(origin, target)
