@@ -210,6 +210,32 @@ fi
     echo "$url"
   }
 
+  gprc() {
+    ref=$(git rev-parse ${1:-HEAD})
+    refsubject=$(git log -1 --pretty=format:"%s" "$ref")
+    branch="$2"
+    [ -z "$branch" ] && branch="$refsubject"
+    branch=$(echo "$branch" \
+      | sed -r 's#(\(([^):]+)\))?!?:#/\2#' \
+      | iconv -t ascii//TRANSLIT \
+      | sed -r 's/[^a-zA-Z0-9/_-]+/-/g' \
+      | sed -r 's/^-+\|-+$//g' | tr A-Z a-z
+    )
+    echo "Commit: $ref"
+    echo "Title:  $refsubject"
+    echo
+    vared -p "Branch: " branch
+    base=$(git symbolic-ref --short refs/remotes/origin/HEAD)
+    upstream=$(dirname $base)
+    read -r -d '' GITCOMMANDS <<EOF
+    git fetch $upstream
+    git checkout -b $branch $base
+    git cherry-pick $ref
+    gh pr create
+EOF
+    sh -e -c "$GITCOMMANDS" || echo -e "PR creation failed - commands that would've been run:\n$GITCOMMANDS"
+  }
+
   gcleanup() {
     base=$(basename $(git symbolic-ref --short refs/remotes/origin/HEAD))
     git fetch origin --prune
