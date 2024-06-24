@@ -1,3 +1,5 @@
+export DOTFILES_PROFILE_LOADED=1
+
 export LC_ALL=en_US.UTF-8
 export WORDCHARS="_-~"
 
@@ -6,8 +8,9 @@ export EDITOR=vim PAGER=less BROWSER=w3m
 
 [ -n "$VSCODE_INJECTION" ] && command -v code &> /dev/null && export EDITOR="code --wait"
 
-# Include .bashrc if running bash
-# [ -n "$BASH_VERSION" ] && [ -f "$HOME/.bashrc" ] && . "$HOME/.bashrc"
+if [[ "$(uname -s)" == Darwin ]]; then
+  export BROWSER=open
+fi
 
 # Add local bin dirs to path
 if [ -d "$HOME/bin" ]; then
