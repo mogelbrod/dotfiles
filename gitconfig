@@ -7,6 +7,21 @@
   autocrlf = input
   pager = diff-so-fancy | less --tabs=4 -RFX
 
+[init]
+  defaultBranch = main
+
+[rerere]
+  enabled = true
+
+[rebase]
+  updateRefs = true
+
+[pull]
+  rebase = true
+
+[merge]
+  tool = diffconflicts
+
 [push]
   default = current
 
@@ -23,34 +38,31 @@
 [diff]
   renames = copies # Detect copies as well as renames.
 
-[merge]
-  tool = diffconflicts
-
 [mergetool "diffconflicts"]
   cmd = ~/.vim/diffconflicts vim $BASE $LOCAL $REMOTE $MERGED
   trustExitCode = true
   keepBackup = false
 
 [alias]
-	main = !git switch $(basename $(git symbolic-ref --short refs/remotes/origin/HEAD))
+  main = !git switch $(basename $(git symbolic-ref --short refs/remotes/origin/HEAD))
+  fix-origin = remote set-head origin --auto
   amend = commit --amend
   branches = branch -a
-  cleanup = !git pull --prune --all --ff-only && git cleanup-branches && git remote prune origin
+  cleanup = !git pull --prune --all --ff-only && git cleanup-branches && git remote prune origin && git cleanup-stashes
   cleanup-branches = !git branch --format '%(refname:short) %(upstream:track)' | awk '$2 == \"[gone]\" { print $1 }' | xargs -r git branch -D
+  cleanup-stashes = !git stash list --before 180.days.ago --pretty='%gd %s' | grep ' WIP on ' | tac | cut -d ' ' -f 1 | xargs -n1 git stash drop
   cp = cherry-pick
   discard = checkout --
+  pushf = push --force-with-lease
   precommit = diff --cached --diff-algorithm=minimal -w
   rc = rebase --continue
   refs-by-age = for-each-ref --sort=-committerdate refs/remotes --format='%(HEAD) %(color:red)%(refname:short)%(color:reset) (%(color:blue)%(committerdate:relative)%(color:reset)) - %(contents:subject) - %(authorname)'
   stash-staged = "!bash -c \"git stash --keep-index; git stash push -m 'staged' --keep-index; git stash pop stash@{1}\""
-  stashes = stash list
+  stashes = stash list --pretty='%C(red)%gd %C(reset)%s %C(blue)(%ar)%C(reset)'
   sync = !git main && git cleanup
   tags = tag
   uncommit = reset --mixed HEAD~
   unstage = reset -q HEAD --
-
-[pull]
-  rebase = true
 
 [diff-so-fancy]
   markEmptyLines = false
@@ -60,3 +72,10 @@
   smudge = git-lfs smudge -- %f
   process = git-lfs filter-process
   required = true
+
+[difftool "sourcetree"]
+  cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+  path = 
+[mergetool "sourcetree"]
+  cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+  trustExitCode = true
