@@ -37,6 +37,7 @@ fi
   alias du='du -hs'
 
   alias rmorig='find . -name "*.orig" -delete'
+  alias rmnodemodules='find . -name node_modules -type d -prune -exec rm -rf "{}" +'
 
   # cd which replaces substrings in PWD
   function scd {
@@ -121,6 +122,10 @@ fi
     else
       kill -9 $(lsof -t -sTCP:LISTEN -i:"$1")
     fi
+  }
+
+  function nodebug {
+    NODE_OPTIONS="--inspect-brk" "$@"
   }
 
   # usage: sync-dirs ../capsule/dist/ node_modules/@soundtrackyourbrand/capsule/dist

@@ -5,7 +5,7 @@
   unsetopt flow_control flowcontrol
 
   # Add various directories to PATH
-  export PATH=".:./node_modules/.bin"
+  # export PATH=".:./node_modules/.bin:$PATH"
 
   # Auto push dir when CDing
   setopt auto_pushd pushd_silent pushd_ignore_dups
