@@ -152,7 +152,7 @@ fi
   alias gr='git reset HEAD' # unstage files
 
   alias grm='git ls-files -d -z | xargs -0 git update-index --remove'  # remove missing files
-  alias grm-merged='git branch --merged | egrep -v "(^\*|master|dev)" | xargs git branch -d'
+  alias grm-merged='git branch --merged | egrep -v "(^\*|main|master|dev)" | xargs git branch -d'
   alias grm-stale='git remote prune origin'
 
   alias gc='git commit'
