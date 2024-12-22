@@ -76,8 +76,7 @@
     [[ "$USER" == "root" ]] && user_color=$PR_BRIGHT_RED
     local host_color=$PR_CYAN
     case $HOST in
-      mogelserv) host_color=$PR_BRIGHT_BLUE ;;
-      hallberg)  host_color=$PR_GREEN ;;
+      mogelserv*) host_color=$PR_GREEN ;;
     esac
 
     local user_host="${faded}[${PR_RESET}${user_color}%n${faded}@${PR_RESET}${host_color}%m${faded}]"
