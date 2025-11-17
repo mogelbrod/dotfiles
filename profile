@@ -54,6 +54,18 @@ fi
 
   alias psg='ps -A | grep'
 
+  function pst {
+    filter="$1"
+    output=$(ps -a -x -r -o pcpu,time,pid,command)
+    echo "$output" | head -n 1
+    output=$(echo "$output" | tail -n +2)
+    if [[ -n "$filter" ]]; then
+      echo "$output" | grep "$filter" | cut -c-$COLUMNS
+    else
+      echo "$output" | head -n 10 | cut -c-$COLUMNS
+    fi
+  }
+
   # Other useful aliases
   alias vims='vim - -c ":set nowrap buftype=nofile"'
 
