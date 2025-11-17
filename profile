@@ -165,8 +165,14 @@ fi
   alias gd='git diff -b'
   alias gds='git diff -b --staged'
 
-  alias gl='git log --color --name-status --pretty=format:"%C(red)[%h] %an %C(blue)(%ar)%n%C(green)%s%n%b%C(reset)"'
+  alias gl='git log --color --no-patch --pretty=format:"%C(red)[%h] %an %C(blue)(%ar)%n%C(green)%s%n%b%C(reset)"'
+  alias glf='git log --color --name-status --pretty=format:"%C(red)[%h] %an %C(blue)(%ar)%n%C(green)%s%n%b%C(reset)"'
   alias glt='git log --all --color --graph --pretty=format:"%C(red)[%h] %an %C(blue)(%ar)%C(green)%d%C(reset) %s"'
+
+  # Grep for commits changing a specific string and display their diffs
+  ggrep() {
+    git log -G"$1" -p --color --pretty=format:'%C(cyan)%h %C(blue)(%as) %C(yellow)%s %C(blue)[%an]%C(reset)' -- . ':(exclude)*pnpm-lock.yaml' | less -R -p "$1"
+  }
 
   # Interactive rebase against origin branch
   gras() {

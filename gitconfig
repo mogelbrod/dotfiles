@@ -47,7 +47,6 @@
   main = !git switch $(basename $(git symbolic-ref --short refs/remotes/origin/HEAD))
   fix-origin = remote set-head origin --auto
   amend = commit --amend
-  branches = branch -a
   cleanup = !git pull --prune --all --ff-only && git cleanup-branches && git remote prune origin && git cleanup-stashes
   cleanup-branches = !git branch --format '%(refname:short) %(upstream:track)' | awk '$2 == \"[gone]\" { print $1 }' | xargs -r git branch -D
   cleanup-stashes = !git stash list --before 180.days.ago --pretty='%gd %s' | grep ' WIP on ' | tac | cut -d ' ' -f 1 | xargs -n1 git stash drop
@@ -56,13 +55,16 @@
   pushf = push --force-with-lease
   precommit = diff --cached --diff-algorithm=minimal -w
   rc = rebase --continue
-  refs-by-age = for-each-ref --sort=-committerdate refs/remotes --format='%(HEAD) %(color:red)%(refname:short)%(color:reset) (%(color:blue)%(committerdate:relative)%(color:reset)) - %(contents:subject) - %(authorname)'
   stash-staged = "!bash -c \"git stash --keep-index; git stash push -m 'staged' --keep-index; git stash pop stash@{1}\""
-  stashes = stash list --pretty='%C(red)%gd %C(reset)%s %C(blue)(%ar)%C(reset)'
+  stashes = stash list --pretty='%C(green)%>(10)%gd%C(reset) %C(blue)(%as)%C(reset) %s'
+  branches = for-each-ref --sort=committerdate refs/heads/ --format='%(HEAD) %(align:40)%(color:green)%(refname:short)%(color:reset)%(end) %(align:25)%(color:red)%(authorname)%(color:reset)%(end) %(color:blue)(%(committerdate:short))%(color:reset) %(contents:subject)'
+  branches-remote = for-each-ref --sort=committerdate refs/remotes --format='%(HEAD) %(align:60)%(color:green)%(refname:lstrip=3)%(color:reset)%(end) %(align:25)%(color:red)%(authorname)%(color:reset)%(end) %(color:blue)(%(committerdate:short))%(color:reset) %(contents:subject)'
   sync = !git main && git cleanup
   tags = tag
   uncommit = reset --mixed HEAD~
   unstage = reset -q HEAD --
+  l = log --color --no-patch --pretty=format:"%C(red)[%h] %an %C(blue)(%ar)%n%C(green)%s%n%b%C(reset)"
+  lf = log --color --name-status --pretty=format:"%C(red)[%h] %an %C(blue)(%ar)%n%C(green)%s%n%b%C(reset)"
 
 [diff-so-fancy]
   markEmptyLines = false
